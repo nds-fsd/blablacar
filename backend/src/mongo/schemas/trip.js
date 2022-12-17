@@ -6,7 +6,7 @@ const tripSchema = new Schema({
     destination:  {type: String},
     destinationDate: {type:Date},
     seats:{type: Number},
-    price:{type: Number}, 
+    price:{type: Number},
 });
 
 const Trip = model('Trip', tripSchema);
