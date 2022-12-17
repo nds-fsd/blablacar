@@ -1,6 +1,6 @@
 
 import express from 'express';
-export const userRouter = express.Router();
+const userRouter = express.Router();
 
 //de momento suponemos que el schema de users de MongoDB
 //se llamará Users
@@ -50,4 +50,5 @@ userRouter.delete('/users/:id', async(req, res) => {
     res.json(delTask)    
 });
 
+export {userRouter};
   
