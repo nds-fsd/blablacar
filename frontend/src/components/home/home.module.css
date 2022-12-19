@@ -1,0 +1,204 @@
+.navigationBar{
+    height: 70px;
+    width: 100%;
+    /* border: 1px solid black; */
+    background-color: white;
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+    color: rgb(255, 94, 0);
+}
+
+.foto{
+    width: 100%;
+    height: 400px;
+    background-image: url(./coches-conduciendo-carretera-montanas-rocosas-dibujos-animados_107791-14614.webp); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid black;
+    
+}
+
+
+.buttons{
+    display: flex;
+    flex-wrap: wrap; 
+    margin-top: 320px; 
+    width: 100%;
+    height: 70px;
+    justify-content: center;
+
+}
+#register{
+    width: 200px;
+    height: 60px;
+    /* background-color:coral; */
+    background-color:white;
+    border-radius: 15px;
+    /* border:2px solid rgb(255, 94, 0); */
+    /* color: white; */
+    border: 0px;
+    color: rgb(41, 1, 1);
+    font-size: 18px;
+    /* letter-spacing: 3px; */
+    font-family: 'Raleway', sans-serif;
+
+}
+#log_in{
+    width: 200px;
+    height: 60px;
+    /* background-color:coral; */
+    background-color:white;
+    border-radius: 15px;
+    /* border:2px solid rgb(255, 94, 0); */
+    margin-left: 50px; 
+    /* color: white; */
+    border: 0px;
+    color: rgb(41, 1, 1);
+    font-size: 18px;
+    /* letter-spacing: 3px; */
+    font-family: 'Raleway', sans-serif;
+    
+    
+}
+#log_in:hover{
+    background-color: rgb(249, 218, 187);
+}
+#register:hover{
+    background-color: rgb(249, 218, 187);
+}
+
+.titulo{
+    position: absolute;
+    width: 100%;
+    color: rgb(255, 255, 255);
+    font-size: 55px;
+    font-family: 'Raleway', sans-serif;
+    margin-top: 60px;
+    text-align: center;
+    letter-spacing: 3px;
+    /* -webkit-text-stroke: 1px rgb(189, 186, 185);  */
+}
+
+.buscarViajeOut{
+    display: flex;
+    flex-wrap: wrap; 
+    /* border: 1px solid black;  */
+    width: 100%;
+    height: 70px;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.buscarViajeIn{
+    display: flex;
+    flex-wrap: wrap; 
+    width:fit-content;
+    width: fit-content;
+    height:fit-content;
+    justify-content: center;
+    border-radius: 15px;
+    border:2px solid rgb(255, 94, 0);
+    margin-top: 5px;
+
+}
+
+#origen{
+    height: 45px;
+    font-size: 15px;
+    font-family: 'Raleway', sans-serif;
+    border: 0px ;
+    color: rgb(41, 1, 1);
+    border-radius: 12px 0px 0px 12px;
+
+
+}
+
+#destino{
+    height: 45px;
+    font-size: 15px;
+    font-family: 'Raleway', sans-serif;
+    border: 0px;
+
+}
+#date{
+    width: 150px;
+    height: 50px;
+    font-size: 15px;
+    font-family: 'Raleway', sans-serif;
+    border: 0px;
+
+}
+#number{
+    width: 50px;
+    height: 45px;
+    font-size: 20px;
+    font-family: 'Raleway', sans-serif;
+    padding-left: 15px;
+    /* border: 0px; */
+    border:1.5px solid rgb(255, 94, 0);
+    margin-left: 35px;
+
+
+}
+#buscar{
+    height: 50px;
+    width: 100px;
+    font-size: 20px;
+    font-family: 'Raleway', sans-serif;
+    border: 0px;
+    border-radius: 0px 12px 12px 0px;
+    background-color: rgb(255, 94, 0);
+    
+}
+#buscar:hover{
+    background-color: rgb(249, 218, 187);
+
+}
+
+.ventajas{
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+    font-family: 'Raleway', sans-serif;
+    font-size: 15px;
+    margin-top: 40px;
+}
+.p1{
+    width: 270px;
+    padding-right: 20px;
+    color: rgb(115, 93, 93);
+    margin-right: 80px;
+
+}
+.p2{
+    width: 270px;
+    padding-right: 20px;
+    color: rgb(115, 93, 93);
+    margin-right: 80px;
+
+}
+.p3{
+    width: 270px;
+    color: rgb(115, 93, 93);
+    /* margin-right: 50px; */
+
+}
+.importantP{
+    color: rgb(41, 1, 1);
+    font-size: 18px;
+}
+
+/* paleta de colores{
+    button color:coral;
+    hover color: rgb(249, 218, 187);
+    text color: rgb(41, 1, 1);
+    text 2 color: rgb(115, 93, 93)
+    background color: rgb(255, 94, 0);
+} */
+
+/* estilo letra{
+    bold: <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;500&display=swap" rel="stylesheet">
+    no bold: <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet">    <meta name="theme-color" content="#000000" />
+    letter-spacing:3px;
+} */

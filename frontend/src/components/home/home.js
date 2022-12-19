@@ -1,22 +1,22 @@
-import "./home.css";
+import styles from "./home.module.css";
 
 const Home = () => {
   return (
     <>
-      <div className="navigationBar"></div>
-      <div className="foto">
-        <p className="titulo">Viaja a donde quieras a buen precio</p>
-        <div className="buttons">
-          <button id="register" name="register">
+      <div className={styles.navigationBar}></div>
+      <div className={styles.foto}>
+        <p className={styles.titulo}>Viaja a donde quieras a buen precio</p>
+        <div className={styles.buttons}>
+          <button id={styles.register} name="register">
             Registrarse
           </button>
-          <button id="log_in" name="log_in">
+          <button id={styles.log_in} name="log_in">
             Log in
           </button>
         </div>
       </div>
-      <div className="buscarViajeOut">
-        <div className="buscarViajeIn">
+      <div className={styles.buscarViajeOut}>
+        <div className={styles.buscarViajeIn}>
           <input type="text" id="origen" placeholder="Origen" />
           <input type="text" id="destino" placeholder="Destino" />
           <input type="date" id="date" />
@@ -24,14 +24,14 @@ const Home = () => {
           <button id="buscar">Buscar</button>
         </div>
       </div>
-      <div className="ventajas">
+      <div className={styles.ventajas}>
         <p className="p1">
-          <span className="importantP">Miles de viajes baratos</span>
+          <span className={styles.importantP}>Miles de viajes baratos</span>
           <br />
           <br />
           Vayas donde vayas, encuentra tu viaje ideal a un precio muy bajo.
         </p>
-        <p className="p2">
+        <p className={styles.p2}>
           <span className="importantP">Viaja seguro y tranquilo</span>
           <br />
           <br />
@@ -40,7 +40,7 @@ const Home = () => {
           usuarios para que sepas con quién vas a viajar. Puedes reservar tu
           próximo viaje con total seguridad y tranquilidad.
         </p>
-        <p className="p3">
+        <p className={styles.p3}>
           <span className="importantP">¡Busca, elige y a viajar!</span>
           <br />
           <br />

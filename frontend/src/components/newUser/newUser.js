@@ -1,5 +1,6 @@
 import React, {useState} from "react";
-import "./newUser.css";
+import styles from "./newUser.module.css";
+import { request } from "../../utils/apiWrapper";
 
 export const NewUser = () => {
 
@@ -33,37 +34,54 @@ export const NewUser = () => {
     const handlePassword = (event) => {
         setPassword(event.target.value);
     }
-
-    const handleSubmit = () => {
-        const url = "http://localhost:3001/users";
+// cambiamos ya por llamada al apiWrapper
+    // const handleSubmit = () => {
+    //     const url = "http://localhost:3001/users";
+    //     const body = {
+    //         name,
+    //         surname,
+    //         email,
+    //         dateOfBirth,
+    //         treatment,
+    //         password
+    //     }
+    //     const options = {
+    //         method: "POST",
+    //         mode: "no-cors",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             Accept: "application/json",
+    //         },
+    //         body: JSON.stringify(body),
+    //     };
+    //     fetch(url, options)
+    //     .then((response) => response.json())
+    //     .then((data) => {
+    //       console.log(data);
+    //     });
+    // };
+    const handleSubmit = async() => {
         const body = {
-            name,
-            surname,
-            email,
-            dateOfBirth,
-            treatment,
-            password
-        }
-        const options = {
-            method: "POST",
-            mode: "no-cors",
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-            },
-            body: JSON.stringify(body),
-        };
-        fetch(url, options)
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-        });
-    };
-    
+                    name,
+                    surname,
+                    email,
+                    dateOfBirth,
+                    treatment,
+                    password
+                }
+        
+            let res = await request("users","POST",body)
+            if (res.status>199&&res.status<300){
+                alert("Usuario creado con éxito")
+            }else{throw new Error(res.message)}
+
+
+
+
     return(
-        <div className="newInput">
-            <h3 className="newUserTitle">Crea tu cuenta</h3>
-            <label for="name" className="textbox">
+        <div className={styles.newInput}>
+            <h3 className={styles.newUserTitle}>Crea tu cuenta</h3>
+            <label for="name" className={styles.textbox}>
                 <input
                     required
                     type="text"
@@ -73,7 +91,7 @@ export const NewUser = () => {
                 />
             </label>
             <br />
-            <label for="surname" className="textbox">
+            <label for="surname" className={styles.textbox}>
                 <input 
                     required
                     type="text"
@@ -83,7 +101,7 @@ export const NewUser = () => {
                 />
             </label>
             <br />
-            <label for="email" className="textbox">
+            <label for="email" className={styles.textbox}>
                 <input 
                     required
                     type="email"
@@ -93,7 +111,7 @@ export const NewUser = () => {
                 />
             </label>
             <br />
-            <label for="dateOfBirth" className="textbox">
+            <label for="dateOfBirth" className={styles.textbox}>
                 <input
                     required
                     type="date"
@@ -103,7 +121,7 @@ export const NewUser = () => {
                 />
             </label>
             <br />
-            <label for="treatment" className="textbox">
+            <label for="treatment" className={styles.textbox}>
                 <select required id="treatment" name="treatment" onChange={handleTreatment}>
                     <option value="">Tratamiento</option>
                     <option value="Sra.">Sra.</option>
@@ -113,7 +131,7 @@ export const NewUser = () => {
                 </select>
             </label>
             <br />
-            <label for="password" className="textbox">
+            <label for="password" className={styles.textbox}>
                 <input 
                     required
                     type="password"
@@ -126,4 +144,4 @@ export const NewUser = () => {
         </div>
     )
 }
-
+}
