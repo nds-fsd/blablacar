@@ -1,0 +1,55 @@
+.newInput{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    width: 40rem;
+    border-radius: 20px;
+    box-shadow: 0px 0px 7px rgb(0, 0, 0, 0.5);
+    margin: 50px auto auto auto;
+    background-image: linear-gradient(180deg, rgba(255,255,255,1) 31%, rgba(255,255,255,0) 100%), 
+    url('CocheEnPlaya.png');
+    background-size: cover;
+}
+
+h3{
+    font-size: 20px;
+	text-transform: uppercase;
+	color: #384c5f;
+	margin-bottom: 20px;
+}
+
+.textbox{
+    width: 60%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input, select{
+    height:50px;
+    width:100%;
+    border-radius:12px;
+    border:rgba(0,0,0,.3) 2px solid;
+    box-sizing:border-box;
+    padding:10px;
+    margin-bottom:5px;
+  }
+
+
+button{
+    color: white;
+    height: 50px;
+    width: 100px;
+    font-size: 20px;
+    font-family: 'Raleway', sans-serif;
+    border: 0px;
+    border-radius: 12px;
+    background-color: rgb(255, 94, 0);
+    margin: 10px 0px 10px 0px;
+}
+
+button:hover{
+    background-color: rgb(249, 218, 187);
+}
