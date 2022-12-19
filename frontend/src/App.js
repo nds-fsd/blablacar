@@ -1,10 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
+import { NewUser } from './components/newUser/newUser';
 
 function App() {
   return (
     <div>
-      Your app here
+      <NewUser />
     </div>
   );
 }
