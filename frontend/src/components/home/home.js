@@ -14,7 +14,7 @@ const Home = () => {
             <Link to="/users">Registrarse</Link>
           </button>
           <button id={styles.log_in} name="log_in" >
-            Log in
+          <Link to="/login">Log in</Link>
           </button>
         </div>
       </div>
