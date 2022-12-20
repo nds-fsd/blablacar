@@ -1,6 +1,7 @@
 
 import express from 'express';
-export const userRouter = express.Router();
+const userRouter = express.Router();
+import Users from '../mongo/schemas/user.js'
 
 //de momento suponemos que el schema de users de MongoDB
 //se llamará Users
@@ -19,8 +20,10 @@ userRouter.post('/users', async (req, res) => {
     //TODO:comprobar con antonio campos de user y con Alex para formulario creacion
     const receivedUser={
         name:body.name,
-        birthDate:body.birthDate,
+        surname:body.surname,
+        birthDate: body.dateOfBirth,
         email:body.email,
+        //hola
     };
   
     const newUser= new Users(receivedUser);
@@ -37,8 +40,8 @@ userRouter.post('/users', async (req, res) => {
 
 //TODO:añadir middlewares, hablar con Paulo
 userRouter.put('/users/:id', async(req, res) => {
-    const updateUsr=await Tasks.findByIdAndUpdate(req.params.id,req.body)
-    const updatedUsr=await Tasks.findById(req.params.id)
+    const updateUsr=await Users.findByIdAndUpdate(req.params.id,req.body)
+    const updatedUsr=await Users.findById(req.params.id)
     res.json(updatedUsr);
 });
   
@@ -50,4 +53,5 @@ userRouter.delete('/users/:id', async(req, res) => {
     res.json(delTask)    
 });
 
+export {userRouter};
   
