@@ -1,6 +1,9 @@
+
+import { Link } from "react-router-dom";
 import styles from "./home.module.css";
 
 const Home = () => {
+
   return (
     <>
       <div className={styles.navigationBar}></div>
@@ -8,9 +11,9 @@ const Home = () => {
         <p className={styles.titulo}>Viaja a donde quieras a buen precio</p>
         <div className={styles.buttons}>
           <button id={styles.register} name="register">
-            Registrarse
+            <Link to="/users">Registrarse</Link>
           </button>
-          <button id={styles.log_in} name="log_in">
+          <button id={styles.log_in} name="log_in" >
             Log in
           </button>
         </div>

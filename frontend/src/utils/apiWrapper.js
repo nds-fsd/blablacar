@@ -11,6 +11,8 @@ const request= async (route, method, body={},headers={}) =>{
         }
     }
   try{
+    console.log(useUrl);
+    console.log(ops);
     const response = await fetch(useUrl, ops);
     if (response.status >= 200 && response.status < 300){
       return response

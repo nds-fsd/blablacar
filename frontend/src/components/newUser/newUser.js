@@ -1,6 +1,8 @@
-import React, {useState} from "react";
+// import React, {useState} from "react";
 import styles from "./newUser.module.css";
 import { request } from "../../utils/apiWrapper";
+import React, {useState} from "react";
+
 
 export const NewUser = () => {
 
@@ -34,49 +36,23 @@ export const NewUser = () => {
     const handlePassword = (event) => {
         setPassword(event.target.value);
     }
-// cambiamos ya por llamada al apiWrapper
-    // const handleSubmit = () => {
-    //     const url = "http://localhost:3001/users";
-    //     const body = {
-    //         name,
-    //         surname,
-    //         email,
-    //         dateOfBirth,
-    //         treatment,
-    //         password
-    //     }
-    //     const options = {
-    //         method: "POST",
-    //         mode: "no-cors",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             Accept: "application/json",
-    //         },
-    //         body: JSON.stringify(body),
-    //     };
-    //     fetch(url, options)
-    //     .then((response) => response.json())
-    //     .then((data) => {
-    //       console.log(data);
-    //     });
-    // };
+
     const handleSubmit = async() => {
-        const body = {
-                    name,
-                    surname,
-                    email,
-                    dateOfBirth,
-                    treatment,
-                    password
-                }
-        
-            let res = await request("users","POST",body)
-            if (res.status>199&&res.status<300){
-                alert("Usuario creado con éxito")
-            }else{throw new Error(res.message)}
-
-
-
+                const body = {
+                            name,
+                            surname,
+                            email,
+                            dateOfBirth,
+                            treatment,
+                            password
+                        }
+                
+                    let res = await request("users","POST",body)
+                    if (res.status>199&&res.status<300){
+                    }else{throw new Error(res.message)}
+                        alert("Usuario creado con éxito")
+                }        
+    
 
     return(
         <div className={styles.newInput}>
@@ -144,4 +120,4 @@ export const NewUser = () => {
         </div>
     )
 }
-}
+

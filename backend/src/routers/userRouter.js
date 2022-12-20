@@ -20,8 +20,10 @@ userRouter.post('/users', async (req, res) => {
     //TODO:comprobar con antonio campos de user y con Alex para formulario creacion
     const receivedUser={
         name:body.name,
-        birthDate: body.birthDate,
+        surname:body.surname,
+        birthDate: body.dateOfBirth,
         email:body.email,
+        //hola
     };
   
     const newUser= new Users(receivedUser);
