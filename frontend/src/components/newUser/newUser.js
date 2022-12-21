@@ -50,7 +50,7 @@ export const NewUser = () => {
                     let res = await request("users","POST",body)
                     if (res.status>199&&res.status<300){
                     }else{throw new Error(res.message)}
-                        alert("Usuario creado con éxito")
+                        alert("Usuario creado con éxito")            
                 }        
     
 
