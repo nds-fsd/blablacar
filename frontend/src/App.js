@@ -1,6 +1,7 @@
 import './App.css';
 import Home from './components/home/home';
 import { NewUser } from './components/newUser/newUser';
+import {Login} from './components/login/login';
 import { Outlet, Route, Routes } from "react-router-dom";
 import {ErrorForm} from './components/ErrorForm/ErrorForm'
 function App() {
@@ -9,11 +10,10 @@ function App() {
           <Routes>
           <Route path="/" element={<Home />}/>
           <Route path="users" element={<NewUser />}/>
+          <Route path="login" element={<Login />}/>
           <Route path="*" element={<ErrorForm />}/>
       </Routes>
       <Outlet/>
-
-      <NewUser />
     </div>
   );
 }
