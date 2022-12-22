@@ -10,8 +10,8 @@ function App() {
           <Routes>
           <Route path="/" element={<Home />}/>
           <Route path="users" element={<NewUser />}/>
-          <Route path="*" element={<ErrorForm />}/>
           <Route path="login" element={<Login />}/>
+          <Route path="*" element={<ErrorForm />}/>
       </Routes>
       <Outlet/>
     </div>
