@@ -7,8 +7,8 @@ const getAll = async (req, res) => {
 
 const createTrip = async(req,res) =>{
     const newTrip = new Trip(req.body);
-    req.body.originDate = new Date();
-    req.body.destinationDate = new Date();
+    req.body.originDate = new Date().toLocaleDateString('es-ES');
+    req.body.destinationDate = new Date().toLocaleDateString('es-ES');
     await newTrip.save();
     res.status(201).json(newTrip);
 }
@@ -48,4 +48,13 @@ const getTripByOrigin = async(req,res) => {
     }
 }
 
-export default {getAll,createTrip,getTripById,deleteTrip,updatedTrip,getTripByOrigin};
+const findTrip = async(req,res) =>{
+    try{
+        const trip = await Trip.find({origin: req.params.origin,originDate: { $gte: req.params.originDate },destination: req.params.destination,seats: { $gte: req.params.seats }}).sort({originDate: 1});
+        res.status(200).json(trip);
+    }catch(error){
+        res.status(404).send({message : "no hay"})
+    }
+}
+
+export default {getAll,createTrip,getTripById,deleteTrip,updatedTrip,getTripByOrigin,findTrip};

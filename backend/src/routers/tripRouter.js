@@ -4,12 +4,13 @@ import Trip from "../mongo/schemas/trip.js";
 import tripControllers from "../controllers/trip.js"
 import trip from '../controllers/trip.js';
 
-tripRouter.get("/trip", tripControllers.getAll)
-tripRouter.post("/trip",tripControllers.createTrip)
-tripRouter.get("/trip/:id",tripControllers.getTripById)
-tripRouter.delete("/trip/:id",tripControllers.deleteTrip)
-tripRouter.put("/trip/:id",tripControllers.updatedTrip)
-tripRouter.get("/trip/origin/:origin",tripControllers.getTripByOrigin)
+tripRouter.get("/trips", tripControllers.getAll)
+tripRouter.post("/trips",tripControllers.createTrip)
+tripRouter.get("/trips/:id",tripControllers.getTripById)
+tripRouter.delete("/trips/:id",tripControllers.deleteTrip)
+tripRouter.put("/trips/:id",tripControllers.updatedTrip)
+tripRouter.get("/trips/origin/:origin",tripControllers.getTripByOrigin)
+tripRouter.get("/trips/find/:origin/:originDate/:destination/:seats",tripControllers.findTrip)
 
 
 
