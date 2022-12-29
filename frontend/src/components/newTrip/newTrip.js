@@ -38,9 +38,11 @@ export const NewTrip = () =>{
                     price
         }
         let res = await request("trips","POST",body)
-                    if (res.status>199&&res.status<300){
-                    }else{throw new Error(res.message)}
-                        alert("Usuario creado con éxito")
+        if(res?.error){
+            alert(res.message)
+          }else{
+            alert(`viaje creado con destino a ${body.origin}`)
+          }
         
 
     } 
