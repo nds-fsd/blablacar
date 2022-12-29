@@ -47,13 +47,15 @@ const getTripByOrigin = async(req,res) => {
         res.status(404).send({message : "origin not found"})
     }
 }
-
 const findTrip = async(req,res) =>{
     try{
         const trip = await Trip.find({origin: req.params.origin,originDate: { $gte: req.params.originDate },destination: req.params.destination,seats: { $gte: req.params.seats }}).sort({originDate: 1});
+        if(trip.length === 0){
+            return res.status(404).send({message : "not found"})
+        }
         res.status(200).json(trip);
     }catch(error){
-        res.status(404).send({message : "no hay"})
+        res.status(500).send("")
     }
 }
 
