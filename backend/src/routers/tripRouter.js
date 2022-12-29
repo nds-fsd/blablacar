@@ -3,9 +3,10 @@ const tripRouter = express.Router();
 import Trip from "../mongo/schemas/trip.js";
 import tripControllers from "../controllers/trip.js"
 import trip from '../controllers/trip.js';
+import validateTripInput from '../Middleware/tripMiddleware.js';
 
 tripRouter.get("/trip", tripControllers.getAll)
-tripRouter.post("/trip",tripControllers.createTrip)
+tripRouter.post("/trip", validateTripInput, tripControllers.createTrip)
 tripRouter.get("/trip/:id",tripControllers.getTripById)
 tripRouter.delete("/trip/:id",tripControllers.deleteTrip)
 tripRouter.put("/trip/:id",tripControllers.updatedTrip)

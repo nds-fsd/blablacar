@@ -1,5 +1,5 @@
 
-const validateInput = (req, res, next) => {
+const validateUserInput = (req, res, next) => {
     console.log("Request Type:", req.method);
     const newUser = req.body;
     if(newUser.name === undefined || newUser.name.length === 0){
@@ -35,4 +35,4 @@ const validateInput = (req, res, next) => {
     next();
 };
 
-export default validateInput;
+export default validateUserInput;

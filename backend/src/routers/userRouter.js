@@ -2,7 +2,7 @@
 import express from 'express';
 const userRouter = express.Router();
 import Users from '../mongo/schemas/user.js';
-import validateInput from "../Middleware/userMiddleware.js";
+import validateUserInput from "../Middleware/userMiddleware.js";
 
 //de momento suponemos que el schema de users de MongoDB
 //se llamará Users
@@ -15,7 +15,7 @@ userRouter.get('/users',async (req, res) => {
 
 
 //TODO:añadir middlewares, hablar con Paulo
-userRouter.post('/users', validateInput, async (req, res) => {
+userRouter.post('/users', validateUserInput, async (req, res) => {
     const body=(req.body);
 
     //TODO:comprobar con antonio campos de user y con Alex para formulario creacion
