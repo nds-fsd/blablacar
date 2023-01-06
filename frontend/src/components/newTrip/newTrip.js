@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./newTrip.module.css";
-import { request } from "../../utils/apiWrapper";
+import { Request } from "../../utils/apiWrapper";
 
 export const NewTrip = () =>{
     const [origin,SetOrigin] =useState("");
@@ -37,7 +37,7 @@ export const NewTrip = () =>{
                     seats,
                     price
         }
-        let res = await request("trips","POST",body)
+        let res = await Request ("trips","POST",body)
         if(res?.error){
             alert(res.message)
           }else{
