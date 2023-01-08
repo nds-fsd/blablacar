@@ -3,7 +3,7 @@ import { Link,useNavigate } from "react-router-dom";
 import styles from "./home.module.css";
 import React, {useState} from "react";
 import { Request } from "../../utils/apiWrapper";
-
+import { FindTrip } from "../findTrip/findTrip";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ const Home = () => {
   const [destination,setdestination] = useState("");
   const [originDate,setOriginDate] = useState("");
   const [seats,setSeats] = useState("");
-  const [trip,setTrip] = useState([{}]);
+  //const [trip,setTrip] = useState([{}]);
 
   const handleOrigin = (event)=>{
     setOrigin(event.target.value)
@@ -31,16 +31,18 @@ const Home = () => {
   let trips = await Request (`trips/find/${origin}/${originDate}/${destination}/${seats}`);
   console.log("tripsHome",trips)
     if(trips?.error){
-      if(trips.status !== 404){
+      if(trips.status !== 404 || trips.status !== 500){
         alert(trips.message)  
       }else{
         navigate("error");
       }    
     }else{
-      setTrip(trips)
-      console.log(trip)
-      
-      navigate("foundtrips")
+      navigate(`trips/find/${origin}/${originDate}/${destination}/${seats}`,{
+        state: {
+          trip: trips,
+        }
+      })
+      return <FindTrip />    
     }
                    
   }

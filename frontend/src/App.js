@@ -6,7 +6,8 @@ import {Login} from './components/login/login';
 import { Outlet, Route, Routes } from "react-router-dom";
 import {ErrorForm} from './components/ErrorForm/ErrorForm';
 import {FindTrip} from './components/findTrip/findTrip';
-function App() {
+function App(props) {
+  console.log(props)
   return (
     <div>
       <Routes>
@@ -14,7 +15,7 @@ function App() {
           <Route path="users" element={<NewUser />}/>
           <Route path="login" element={<Login />}/>
           <Route path="trips" element={<NewTrip />}/>
-          <Route path="foundtrips" element={<FindTrip />}/>
+          <Route path="trips/find/:origen/:originDate/:destination/:seats" element={<FindTrip  />}/>
           <Route path="error" element={<ErrorForm />}/>
       </Routes>
       <Outlet/>
