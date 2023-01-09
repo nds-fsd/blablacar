@@ -47,12 +47,14 @@ export const NewUser = () => {
                             password
                         }
                 
+
                     let res = await Request("users","POST",body)
                     if(res?.error){
                         alert(res.message)
                     }else{
                       alert("usuario creado con exito")
                     }         
+
                 }        
     
 
