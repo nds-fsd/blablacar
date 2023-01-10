@@ -1,9 +1,71 @@
 
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import styles from "./home.module.css";
+import React, {useState} from "react";
+import { Request } from "../../utils/apiWrapper";
+import { FindTrip } from "../findTrip/findTrip";
 
 const Home = () => {
+  const navigate = useNavigate();
+  const [origin,setOrigin] = useState("");
+  const [destination,setdestination] = useState("");
+  const [originDate,setOriginDate] = useState("");
+  const [seats,setSeats] = useState("");
 
+  const handleOrigin = (event)=>{
+    setOrigin(event.target.value)
+  }
+  const handleDestination = (event)=>{
+    setdestination(event.target.value)
+  }
+  const handleOriginDate = (event)=>{
+    setOriginDate(event.target.value)
+  }
+  const handleSeats = (event)=>{
+    setSeats(event.target.value)
+  }
+
+  const handleSubmit = async () =>{
+
+  let trips = await Request (`trips/find/${origin}/${originDate}/${destination}/${seats}`);
+  console.log("tripsHome",trips)
+    if(trips?.error){
+      if(trips.status !== 404){
+        alert(trips.message)  
+      }else{
+        navigate("error");
+      }    
+    }else{
+      navigate(`trips/find/${origin}/${originDate}/${destination}/${seats}`,{
+        state: {
+          trip: trips,
+        }
+      })
+      //return <FindTrip />    
+    }
+                   
+  }
+  const handleSubmitTrips = async () =>{
+
+    let trips = await Request (`trips`);
+    console.log("trips",trips)
+      if(trips?.error){
+        console.log(trips)
+        if(trips.status !== 404){
+          alert(trips.message)  
+        }else{
+          navigate("error");
+        }    
+      }else{
+        navigate("alltrips",{
+          state: {
+            trip: trips,
+          }
+        })
+        return <FindTrip />    
+      }
+                     
+    }
   return (
     <>
       <div className={styles.navigationBar}></div>
@@ -24,11 +86,11 @@ const Home = () => {
       </div>
       <div className={styles.buscarViajeOut}>
         <div className={styles.buscarViajeIn}>
-          <input type="text" id={styles.origen} placeholder="Origen" />
-          <input type="text" id={styles.destino} placeholder="Destino" />
-          <input type="date" id={styles.date} />
-          <input type="number" id={styles.number} value="1" />
-          <button id={styles.buscar}>Buscar</button>
+          <input type="text" id={styles.origen} placeholder="Origen" value = {origin} onChange ={handleOrigin} />
+          <input type="text" id={styles.destino} placeholder="Destino" value = {destination} onChange ={handleDestination}/>
+          <input type="date" id={styles.date} value = {originDate} onChange ={handleOriginDate} />
+          <input type="number" id={styles.number}  value = {seats} onChange ={handleSeats} />
+          <button id={styles.buscar} onClick={handleSubmit}>Buscar</button>
         </div>
       </div>
       <div className={styles.ventajas}>
@@ -55,6 +117,10 @@ const Home = () => {
           aplicación y a su potente tecnología, podrás reservar un viaje cerca
           de ti en minutos.
         </p>
+      </div>
+      <div  className={styles.buttonsAll}>
+        <button onClick={handleSubmitTrips}>Viajes</button>
+        <button className={styles.buttonUsuarios}>Usuarios</button>
       </div>
     </>
   );

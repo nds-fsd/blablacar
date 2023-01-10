@@ -189,6 +189,16 @@
     font-size: 18px;
 }
 
+.buttonsAll{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonUsuarios{
+    margin-left:10px;
+}
+
 /* paleta de colores{
     button color:coral;
     hover color: rgb(249, 218, 187);

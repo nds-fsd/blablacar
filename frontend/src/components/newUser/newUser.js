@@ -1,11 +1,11 @@
-// import React, {useState} from "react";
-import styles from "./newUser.module.css";
-import { request } from "../../utils/apiWrapper";
-import React, {useState} from "react";
 
+import styles from "./newUser.module.css";
+import { Request } from "../../utils/apiWrapper";
+import React, {useState} from "react";
+import {useNavigate } from "react-router-dom";
 
 export const NewUser = () => {
-
+    const navigate = useNavigate();
     const [name, setName] = useState("");
     const [surname, setSurname] = useState("");
     const [email, setEmail] = useState("");
@@ -47,11 +47,20 @@ export const NewUser = () => {
                             password
                         }
                 
-                    let res = await request("users","POST",body)
-                    if (res.status>199&&res.status<300){
-                    }else{throw new Error(res.message)}
-                        alert("Usuario creado con éxito")            
-                }        
+
+                    let res = await Request("users","POST",body)
+                    if(res?.error){
+                        console.log(res)
+                        if(res.status !== 404){
+                          alert(res.message)  
+                        }else{
+                          navigate("error");
+                        }    
+                    }else{
+                        alert(`el usuario ${body.name} ha sido creado con exito`);
+                    }
+                             
+    }        
     
 
     return(
