@@ -1,6 +1,6 @@
-// import React, {useState} from "react";
+
 import styles from "./newUser.module.css";
-import { request } from "../../utils/apiWrapper";
+import { Request } from "../../utils/apiWrapper";
 import React, {useState} from "react";
 
 
@@ -47,10 +47,14 @@ export const NewUser = () => {
                             password
                         }
                 
-                    let res = await request("users","POST",body)
-                    if (res.status>199&&res.status<300){
-                    }else{throw new Error(res.message)}
-                        alert("Usuario creado con éxito")            
+
+                    let res = await Request("users","POST",body)
+                    if(res?.error){
+                        alert(res.message)
+                    }else{
+                      alert("usuario creado con exito")
+                    }         
+
                 }        
     
 

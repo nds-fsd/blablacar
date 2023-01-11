@@ -1,17 +1,15 @@
 import express from 'express';
 const tripRouter = express.Router();
-import Trip from "../mongo/schemas/trip.js";
 import tripControllers from "../controllers/trip.js"
-import trip from '../controllers/trip.js';
 import validateTripInput from '../Middleware/tripMiddleware.js';
 
-tripRouter.get("/trip", tripControllers.getAll)
-tripRouter.post("/trip", validateTripInput, tripControllers.createTrip)
-tripRouter.get("/trip/:id",tripControllers.getTripById)
-tripRouter.delete("/trip/:id",tripControllers.deleteTrip)
-tripRouter.put("/trip/:id",tripControllers.updatedTrip)
-tripRouter.get("/trip/origin/:origin",tripControllers.getTripByOrigin)
-
+tripRouter.get("/trips", tripControllers.getAll)
+tripRouter.post("/trips",validateTripInput, tripControllers.createTrip)
+tripRouter.get("/trips/:id",tripControllers.getTripById)
+tripRouter.delete("/trips/:id",tripControllers.deleteTrip)
+tripRouter.put("/trips/:id",tripControllers.updatedTrip)
+tripRouter.get("/trips/origin/:origin",tripControllers.getTripByOrigin)
+tripRouter.get("/trips/find/:origin/:originDate/:destination/:seats",tripControllers.findTrip)
 
 
 /*tripRouter.get('/trip', async (req, res) => {
@@ -59,5 +57,6 @@ tripRouter.get('/trip/origin/:origin',  async(req, res) => {
         res.status(404).send({message : "origin not found"})
     }
 });*/
+
 
 export {tripRouter};
