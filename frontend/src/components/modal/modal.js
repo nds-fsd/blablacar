@@ -43,9 +43,6 @@ function Modal(props){
         }else{
           alert("usuario creado con exito")
         } 
-        
-        
-
     }
     if(props.open){
         return (<div className={styles.main}>
