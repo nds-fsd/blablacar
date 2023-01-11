@@ -6,8 +6,7 @@ import {Login} from './components/login/login';
 import { Outlet, Route, Routes } from "react-router-dom";
 import {ErrorForm} from './components/ErrorForm/ErrorForm';
 import {FindTrip} from './components/findTrip/findTrip';
-function App(props) {
-  console.log(props)
+function App() {
   return (
     <div>
       <Routes>

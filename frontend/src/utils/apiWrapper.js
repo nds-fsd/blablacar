@@ -21,9 +21,7 @@ const Request = async (route, method = "GET", body = undefined,headers={}) =>{
       if (response.ok){
         return json
       } else {
-        if(response.status === 404 ){
-          
-        }
+
         return {
               error:true, 
               message: json.message,
