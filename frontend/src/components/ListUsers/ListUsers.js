@@ -1,32 +1,40 @@
-import { useState, useEffect } from "react";
+import { useState , useEffect } from "react";
+import { Request } from "../../utils/apiWrapper";
 import styles from "./ListUsers.module.css";
 
 export const UsersList = () => {
-  const [items, setItems] = useState(null);
-  const [error, setError] = useState(null);
+  const [users,SetUsers]= useState()
 
   useEffect(() => {
+    let ignore=false
     const getUsers = async () => {
       try {
-        const response = await fetch("http://localhost:3001/users");
-        const data = await response.json();
-        setItems(data);
+        let response = await Request("users");
+        console.log(response);
+        !ignore && SetUsers(response);
+        console.log(users);
       } catch (error) {
-        setError("Error");
+        alert(error)
+      ;
       }
     };
     getUsers();
-  }, []);
+    if(users){ignore=true}
+   
+  }, );
+
+  
 
   return (
-    <div>
-      {error && <p>{error}</p>}
-      {items &&
-        items.map((item) => (
-          <div key={item.id}>
-            <p>{item.name}</p>
-          </div>
-        ))}
+    
+    
+    <div className={styles.listWrap}>
+      <div className={styles.itemWrap}><p>Nombre</p><p>Apellido</p><p>Correo electrónico</p></div>
+      {users && users.map((e)=>(
+        <div key={e._id} className={styles.itemWrap}><p>{e.name}</p><p>{e.surname}</p><p>{e.email}</p></div>
+      ))}
+      
+      
     </div>
   );
 };

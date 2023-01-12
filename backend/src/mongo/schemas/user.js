@@ -3,7 +3,7 @@ import { Schema, model } from 'mongoose';
 const userSchema = new Schema({
     name:{type : String},
     surname:{type : String},
-    dateOfBirth:{Type :String},
+    Birthday:Date,
     email:{type: String, unique: true},
     role:{type: String},
     status:{type:Number, min:1, max:5},
@@ -15,7 +15,6 @@ const userSchema = new Schema({
     ID:String,
     ValidatedID:{type:Number, min:1, max:3, default:1},
     RGPDaccepted:Boolean,
-    Nacimiento:Date,
     password:{type: String},
 });
 

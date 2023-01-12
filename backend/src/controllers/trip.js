@@ -60,9 +60,35 @@ const getTripByOrigin = async(req,res) => {
         res.status(500).send({message : ""})
     }
 }
+// const findTrip = async(req,res) =>{
+//     try{
+//         const trip = await Trip.find({origin: req.params.origin,originDate: { $gte: req.params.originDate },destination: req.params.destination,seats: { $gte: req.params.seats }}).sort({originDate: 1});
+//         if(trip.length === 0){
+//             return res.status(404).send({message : " Trip not found"})
+//         }
+//         res.status(200).json(trip);
+//     }catch(error){
+//         res.status(500).send({message : ""})
+//     }
+// }
+
 const findTrip = async(req,res) =>{
     try{
-        const trip = await Trip.find({origin: req.params.origin,originDate: { $gte: req.params.originDate },destination: req.params.destination,seats: { $gte: req.params.seats }}).sort({originDate: 1});
+        let queryCond = {}
+        if(req.body.origin){
+           queryCond.origin={$regex:req.body.origin,$options:"i"};
+        }
+        if(req.body.originDate){
+           queryCond.originDate=req.body.originDate;
+        }
+        if(req.body.destination){
+           queryCond.destination={$regex:req.body.destination,$options:"i"};
+        }
+        if(req.body.seats){
+            queryCond.seats=req.body.seats;
+         }
+         const trip = await Trip.find(queryCond);
+         console.log(trip);
         if(trip.length === 0){
             return res.status(404).send({message : " Trip not found"})
         }

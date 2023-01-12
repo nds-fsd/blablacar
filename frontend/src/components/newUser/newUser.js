@@ -9,7 +9,7 @@ export const NewUser = () => {
     const [name, setName] = useState("");
     const [surname, setSurname] = useState("");
     const [email, setEmail] = useState("");
-    const [dateOfBirth, setDateOfBirth] = useState("");
+    const [Birthday, setBirthday] = useState("");
     const [treatment, setTreatment] = useState("");
     const [password, setPassword] = useState("");
 
@@ -25,8 +25,8 @@ export const NewUser = () => {
         setEmail(event.target.value);
     }
 
-    const handleDateOfBirth = (event) => {
-        setDateOfBirth(event.target.value);
+    const handleBirthday = (event) => {
+        setBirthday(event.target.value);
     }
 
     const handleTreatment = (event) => {
@@ -38,11 +38,13 @@ export const NewUser = () => {
     }
 
     const handleSubmit = async() => {
+            let birth
+            birth=`$Birthday`
                 const body = {
                             name,
                             surname,
                             email,
-                            dateOfBirth,
+                            Birthday,
                             treatment,
                             password
                         }
@@ -91,13 +93,13 @@ export const NewUser = () => {
                 />
             </label>
             <br />
-            <label for="dateOfBirth" className={styles.textbox}>
+            <label for="Birthday" className={styles.textbox}>
                 <input
                     required
                     type="date"
-                    value={dateOfBirth}
+                    value={Birthday}
                     placeholder="DD/MM/YYYY"
-                    onChange={handleDateOfBirth}
+                    onChange={handleBirthday}
                 />
             </label>
             <br />

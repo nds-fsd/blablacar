@@ -1,10 +1,10 @@
+import styles from "./findTrip.module.css";
 import { useLocation } from "react-router-dom";
-import styles from "./finTrip.module.css";
-import {changeToShortDate} from "../../utils/shortdate.js"
+//import {changeToShortDate} from "../../utils/shortdate.js"
 import userLogo from "../assets/user.png"
 const FindTrip = () => {
-    const location = useLocation();
-    const trips =location.state.trip
+    const location=useLocation()
+    const trips = location.state
     console.log("findtrip",trips)
     return(
         <div className={styles.main}>
