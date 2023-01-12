@@ -1,7 +1,7 @@
 
 import { Link,useNavigate } from "react-router-dom";
 import styles from "./home.module.css";
-import React, {useState} from "react";
+import React, {useState , useEffect} from "react";
 import { Request } from "../../utils/apiWrapper";
 import { FindTrip } from "../findTrip/findTrip";
 
@@ -11,7 +11,7 @@ const Home = () => {
   const [destination,setdestination] = useState("");
   const [originDate,setOriginDate] = useState("");
   const [seats,setSeats] = useState("");
-  //const [trip,setTrip] = useState([{}]);
+  const [trips,setTrips] = useState([]);
 
   const handleOrigin = (event)=>{
     setOrigin(event.target.value)
@@ -27,24 +27,34 @@ const Home = () => {
   }
 
   const handleSubmit = async () =>{
-
-  let trips = await Request (`trips/find/${origin}/${originDate}/${destination}/${seats}`);
-  console.log("tripsHome",trips)
+  if(origin ==="" || destination === "" || originDate ==="" || seats === ""){
+    let trips = await Request (`/trips`);
+    console.log(trips)
     if(trips?.error){
-      if(trips.status !== 404 || trips.status !== 500){
-        alert(trips.message)  
+      if(trips.status !== 404){
+         alert(trips.message)  
+       }else{
+          navigate("error");
+        }    
       }else{
-        navigate("error");
-      }    
-    }else{
-      navigate(`trips/find/${origin}/${originDate}/${destination}/${seats}`,{
-        state: {
-          trip: trips,
-        }
-      })
-      return <FindTrip />    
+        navigate("trips/list",{state : {trip :trips,url :`/trips/list`}})
+
+      }
     }
-                   
+  }
+  const handleSubmitUser = async () =>{
+    let users = await Request (`/users`);
+    console.log(users)
+    if(users?.error){
+      if(users.status !== 404){
+         alert(users.message)  
+       }else{
+          navigate("error");
+        }    
+      }else{
+        navigate("users/list",{state : {user :users,url :`/users/list`}})
+
+      }
   }
   return (
     <>
@@ -99,6 +109,9 @@ const Home = () => {
           aplicación y a su potente tecnología, podrás reservar un viaje cerca
           de ti en minutos.
         </p>
+      </div>
+      <div className={styles.userButton}>
+          <button onClick ={handleSubmitUser}>Users</button>
       </div>
     </>
   );

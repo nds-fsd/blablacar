@@ -6,10 +6,10 @@ import {Login} from './components/login/login';
 import { Outlet, Route, Routes } from "react-router-dom";
 import {ErrorForm} from './components/ErrorForm/ErrorForm';
 import {FindTrip} from './components/findTrip/findTrip';
+import {FindUser} from './components/findUser/findUser';
 import { TripList } from "./components/ListTrips/ListTrips";
 import { UsersList } from "./components/ListUsers/ListUsers";
-function App(props) {
-  console.log(props)
+function App() {
   return (
     <div>
       <Routes>
@@ -17,7 +17,9 @@ function App(props) {
           <Route path="users" element={<NewUser />}/>
           <Route path="login" element={<Login />}/>
           <Route path="trips" element={<NewTrip />}/>
-          <Route path="trips/find/:origen/:originDate/:destination/:seats" element={<FindTrip  />}/>
+          <Route path="trips/find/:origen/:originDate/:destination/:seats" element={<FindTrip/>}/>
+          <Route path="trips/list" element={<FindTrip/>}/>
+          <Route path="users/list" element={<FindUser/>}/>
           <Route path="error" element={<ErrorForm />}/>
           <Route path="trip/list" element={<TripList />} />
           <Route path="users/list" element={<UsersList />} />
