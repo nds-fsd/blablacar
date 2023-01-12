@@ -11,8 +11,14 @@
 
     width: 100%;
     height: 400px;
+<<<<<<< HEAD:frontend/src/components/home/home.css
     background-image: url(./coches-conduciendo-carretera-montanas-rocosas-dibujos-animados_107791-14614.webp); 
     background-size: cover;  background-position: center;
+=======
+    background-image: url(../assets/coches-conduciendo-carretera-montanas-rocosas-dibujos-animados_107791-14614.webp); 
+    background-size: cover;
+    background-position: center;
+>>>>>>> Sprint1:frontend/src/components/home/home.module.css
     background-repeat: no-repeat;
     border: 1px solid black;
     
@@ -62,9 +68,11 @@
 }
 #log_in:hover{
     background-color: rgb(249, 218, 187);
+    cursor: pointer;
 }
 #register:hover{
     background-color: rgb(249, 218, 187);
+    cursor: pointer;
 }
 
 .titulo{
@@ -84,14 +92,14 @@
     flex-wrap: wrap; 
     /* border: 1px solid black;  */
     width: 100%;
-    height: 70px;
+    height: 100%;
     justify-content: center;
+    align-items: center;
     margin-top: 40px;
 }
 
 .buscarViajeIn{
     display: flex;
-    flex-wrap: wrap; 
     width:fit-content;
     width: fit-content;
     height:fit-content;
@@ -103,42 +111,42 @@
 }
 
 #origen{
-    height: 45px;
+    height: 50px;
     font-size: 15px;
     font-family: 'Raleway', sans-serif;
     border: 0px ;
     color: rgb(41, 1, 1);
     border-radius: 12px 0px 0px 12px;
-
+    margin: 0px;
 
 }
 
 #destino{
-    height: 45px;
-    font-size: 15px;
-    font-family: 'Raleway', sans-serif;
-    border: 0px;
-
-}
-#date{
-    width: 150px;
     height: 50px;
     font-size: 15px;
     font-family: 'Raleway', sans-serif;
     border: 0px;
-
+    margin: 0px;
+    border-radius: 0px 0px 0px 0px;
+}
+#date{
+    width: 100%;
+    height: 50px;
+    font-size: 15px;
+    font-family: 'Raleway', sans-serif;
+    border: 0px;
+    margin: 0px;
+    border-radius: 0px 12px 12px 0px;
 }
 #number{
-    width: 50px;
-    height: 45px;
+    width: 75px;
+    height: 50px;
     font-size: 20px;
     font-family: 'Raleway', sans-serif;
-    padding-left: 15px;
     /* border: 0px; */
     border:1.5px solid rgb(255, 94, 0);
-    margin-left: 35px;
-
-
+    border-radius: 12px 0px 0px 12px;
+    margin: 0px;
 }
 #buscar{
     height: 50px;
@@ -148,11 +156,11 @@
     border: 0px;
     border-radius: 0px 12px 12px 0px;
     background-color: rgb(255, 94, 0);
-    
+    margin: 0px;
 }
 #buscar:hover{
     background-color: rgb(249, 218, 187);
-
+    cursor: pointer;
 }
 
 .ventajas{
@@ -186,6 +194,9 @@
 .importantP{
     color: rgb(41, 1, 1);
     font-size: 18px;
+}
+#date:hover{
+    cursor: pointer;
 }
 
 /* /* paleta de colores{
