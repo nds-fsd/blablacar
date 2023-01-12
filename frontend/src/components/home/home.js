@@ -1,9 +1,11 @@
 import "./home.css";
-
+import Navbar from "../Navbar/Navbar"
 const Home = () => {
   return (
     <>
-      <div className="navigationBar"></div>
+      <div className="navigationBar">
+        <Navbar/>
+      </div>
       <div className="foto">
         <p className="titulo">Viaja a donde quieras a buen precio</p>
         <div className="buttons">
@@ -54,3 +56,5 @@ const Home = () => {
 };
 
 export default Home;
+
+
