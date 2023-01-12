@@ -27,18 +27,34 @@ const Home = () => {
   }
 
   const handleSubmit = async () =>{
-
-  let trips = await Request (`trips/find/${origin}/${originDate}/${destination}/${seats}`);
-
+  if(origin ==="" || destination === "" || originDate ==="" || seats === ""){
+    let trips = await Request (`/trips`);
+    console.log(trips)
     if(trips?.error){
       if(trips.status !== 404){
-        alert(trips.message)  
+         alert(trips.message)  
+       }else{
+          navigate("error");
+        }    
       }else{
-        navigate("error");
-      }    
-    }else{
-      navigate(`trips/find/${origin}/${originDate}/${destination}/${seats}`, {state : {trip: trips, url :`trips/find/${origin}/${originDate}/${destination}/${seats}`}})
-    }           
+        navigate("trips/list",{state : {trip :trips,url :`/trips/list`}})
+
+      }
+    }
+  }
+  const handleSubmitUser = async () =>{
+    let users = await Request (`/users`);
+    console.log(users)
+    if(users?.error){
+      if(users.status !== 404){
+         alert(users.message)  
+       }else{
+          navigate("error");
+        }    
+      }else{
+        navigate("users/list",{state : {user :users,url :`/users/list`}})
+
+      }
   }
   return (
     <>
@@ -91,6 +107,9 @@ const Home = () => {
           aplicación y a su potente tecnología, podrás reservar un viaje cerca
           de ti en minutos.
         </p>
+      </div>
+      <div className={styles.userButton}>
+          <button onClick ={handleSubmitUser}>Users</button>
       </div>
     </>
   );

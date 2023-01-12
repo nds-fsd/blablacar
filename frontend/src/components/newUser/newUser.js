@@ -46,8 +46,7 @@ export const NewUser = () => {
                             treatment,
                             password
                         }
-                
-                    let res = await Request("users","POST",body)
+                    let res = await Request("/users","POST",body)
                     if(res?.error){
                         alert(res.message)
                     }else{

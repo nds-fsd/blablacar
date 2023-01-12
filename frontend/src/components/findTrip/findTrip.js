@@ -9,29 +9,43 @@ import {Trip} from "../trip/trip"
 
 const FindTrip = () => {
     const location = useLocation();
-    const url = location.state.url
+    console.log(location)
     const [tripsFind,setTripsFind] =useState([])
     const [reload,setReload] = useState(false)
     const [openModal,setModal] = useState(false);
     const reloadPage = () =>{
         setReload(!reload)
     }
+
     const updateModal = () =>{
         setModal(!reload)
     }
 
-    const api = async () =>{
-            const api1 = await Request(`${url}`)
+    const apiFilter = async () =>{
+            const api1 = await Request(`${location.pathname}`)
             setTripsFind(api1)
+            console.log(tripsFind)
+    }
+    const apiList = async () =>{
+        const api1 = await Request(`/trips`)
+        setTripsFind(api1)
+        console.log(tripsFind)
     }
        
    useEffect(() => {
-            api();
+    if(location.pathname  === "/trips/list"){
+        apiList();
+    }else{
+        apiFilter()   
+    }
+
+ 
+
    },[reload])
 
 
     const deleteTrip = async (id) =>{
-        let res = await Request("trips/"+id,"delete")
+        let res = await Request("/trips/"+id,"delete")
                     if(res?.error){
                         alert(res.message)
                     }else{
@@ -44,7 +58,6 @@ const FindTrip = () => {
         console.log(id)
         setModal(!openModal)
         reloadPage();
-        
     }
     return(
         <Trip deleteTrip ={deleteTrip} tripsFind ={tripsFind} updateTrip = {updateTrip} openModal = {openModal} />

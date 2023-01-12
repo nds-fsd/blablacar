@@ -37,7 +37,7 @@ export const NewTrip = () =>{
                     seats,
                     price
         }
-        let res = await Request ("trips","POST",body)
+        let res = await Request ("/trips","POST",body)
         if(res?.error){
             alert(res.message)
           }else{

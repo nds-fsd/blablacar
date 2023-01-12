@@ -1,6 +1,6 @@
 const Request = async (route, method = "GET", body = undefined,headers={}) =>{
  
-    let useUrl = "http://localhost:3001/" + route;
+    let useUrl = "http://localhost:3001" + route;
     let ops = {
       method: method,
       mode: "cors",
