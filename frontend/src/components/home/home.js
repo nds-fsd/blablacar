@@ -76,11 +76,13 @@ const Home = () => {
       </div>
       <div className={styles.buscarViajeOut}>
         <div className={styles.buscarViajeIn}>
+
           <input type="text" id={styles.origen} placeholder="Origen" value = {origin} onChange ={handleOrigin} />
           <input type="text" id={styles.destino} placeholder="Destino" value = {destination} onChange ={handleDestination}/>
           <input type="date" id={styles.date} value = {originDate} onChange ={handleOriginDate} />
           <input type="number" id={styles.number}  value = {seats} onChange ={handleSeats} />
           <button id={styles.buscar} onClick={handleSubmit}>Buscar</button>
+
         </div>
       </div>
       <div className={styles.ventajas}>

@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import styles from "./finTrip.module.css";
-import {changeToShortDate} from "../../utils/apiWrapper"
+import {changeToShortDate} from "../../utils/shortdate.js"
 import userLogo from "../assets/user.png"
 import {useState,useEffect } from "react";
 import { Request } from "../../utils/apiWrapper";

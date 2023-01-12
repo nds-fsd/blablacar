@@ -37,3 +37,7 @@
     align-items: center;
 }
 
+.bttnLogin:hover{
+    cursor: pointer;
+}
+

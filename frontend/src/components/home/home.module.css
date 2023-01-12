@@ -63,9 +63,11 @@
 }
 #log_in:hover{
     background-color: rgb(249, 218, 187);
+    cursor: pointer;
 }
 #register:hover{
     background-color: rgb(249, 218, 187);
+    cursor: pointer;
 }
 
 .titulo{
@@ -153,7 +155,7 @@
 }
 #buscar:hover{
     background-color: rgb(249, 218, 187);
-
+    cursor: pointer;
 }
 
 .ventajas{
@@ -187,6 +189,9 @@
 .importantP{
     color: rgb(41, 1, 1);
     font-size: 18px;
+}
+#date:hover{
+    cursor: pointer;
 }
 
 .userButton{
