@@ -2,55 +2,66 @@ import styles from "./findTrip.module.css";
 import { useLocation } from "react-router-dom";
 //import {changeToShortDate} from "../../utils/shortdate.js"
 import userLogo from "../assets/user.png"
+import {useState,useEffect } from "react";
+import { Request } from "../../utils/apiWrapper";
+import {Trip} from "../trip/trip"
+
+
 const FindTrip = () => {
     const location=useLocation()
     const trips = location.state
     console.log("findtrip",trips)
+    const [tripsFind,setTripsFind] =useState([])
+    const [reload,setReload] = useState(false)
+    const [openModal,setModal] = useState(false);
+    const reloadPage = () =>{
+        setReload(!reload)
+    }
+
+    const updateModal = () =>{
+        setModal(!reload)
+    }
+
+    const apiFilter = async () =>{
+            const api1 = await Request(`${location.pathname}`)
+            setTripsFind(api1)
+            console.log(tripsFind)
+    }
+    const apiList = async () =>{
+        const api1 = await Request(`/trips`)
+        setTripsFind(api1)
+        console.log(tripsFind)
+    }
+       
+   useEffect(() => {
+    if(location.pathname  === "/trips/list"){
+        apiList();
+    }else{
+        apiFilter()   
+    }
+
+ 
+
+   },[reload])
+
+
+    const deleteTrip = async (id) =>{
+        let res = await Request("/trips/"+id,"delete")
+                    if(res?.error){
+                        alert(res.message)
+                    }else{
+                      alert("viaje eliminado con exito")
+                      reloadPage();
+                    }                  
+    }
+
+    const updateTrip = (id) =>{
+        console.log(id)
+        setModal(!openModal)
+        reloadPage();
+    }
     return(
-        <div className={styles.main}>
-                <div className={styles.tittle}>
-                    <div className={styles.tittleText}>
-                        Viajes disponibles
-                    </div>
-                           
-                </div>
-                <div className={styles.body}>
-                {trips.map(trip =>{return (
-                    <div className={styles.trip}>
-                        <div className={styles.location}>
-                            <div className={styles.tripDraw}>
-                                <div className={styles.circle}></div>
-                                <div className={styles.line}></div>
-                                <div className={styles.circle}></div>   
-                            </div>
-                            <div className={styles.tripLocation}>
-                                <div className={styles.locationText}>
-                                {trip.origin} 
-                                </div>
-                                <div className={styles.locationText}>
-                                {trip.destination}   
-                                </div>
-                            </div>
-                            
-                        </div>
-                        <div className={styles.details}>
-                            <div className={styles.price}>
-                                <span>{trip.price}€</span>
-                            </div>
-                            <div className={styles.seats}>
-                            <span>{trip.seats} asientos</span>   
-                            </div>
-                            <div className={styles.user}>
-                                <img src={userLogo} alt="usuario"/>
-                            </div>
-                        </div>
-                    </div>
-                )})}
-                </div>
-        </div>
-        /*trips.map(trip =>{return (
-            
-        )})*/
+        <Trip deleteTrip ={deleteTrip} tripsFind ={tripsFind} updateTrip = {updateTrip} openModal = {openModal} />
     )
 }
 

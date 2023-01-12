@@ -49,6 +49,9 @@ const Home = () => {
           de ti en minutos.
         </p>
       </div>
+      <div className={styles.userButton}>
+          <button onClick ={handleSubmitUser}>Users</button>
+      </div>
     </>
   );
 };
