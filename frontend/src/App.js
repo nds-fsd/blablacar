@@ -9,9 +9,12 @@ import {FindTrip} from './components/findTrip/findTrip';
 import {FindUser} from './components/findUser/findUser';
 import { TripList } from "./components/ListTrips/ListTrips";
 import { UsersList } from "./components/ListUsers/ListUsers";
-function App() {
+import Navbar from './components/Navbar/Navbar';
+function App(props) {
+  console.log(props)
   return (
     <div>
+      <Navbar/>
       <Routes>
           <Route path="/" element={<Home />}/>
           <Route path="users" element={<NewUser />}/>
