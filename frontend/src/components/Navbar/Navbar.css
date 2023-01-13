@@ -16,6 +16,7 @@
 .logoSvg{
     width: 50px;
     margin-top:10px;
+    text-decoration: none;
    }
 
 .listNav{
@@ -35,3 +36,4 @@
     justify-content: center;
     gap: 10px;
 }
+
