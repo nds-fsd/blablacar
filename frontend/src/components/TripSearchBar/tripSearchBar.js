@@ -33,7 +33,7 @@ const TripSearchBar = () => {
     body.seats=seats
 
 
-  let trips = await Request (`trips/find/`,"POST",body);
+  let trips = await Request (`/trips/find/`,"POST",body);
   let foundTrips
   console.log("tripsHome",trips)
     if(trips?.error){
@@ -57,7 +57,7 @@ return(
      <input type="text" id={styles.origen} placeholder="Origen" value = {origin} onChange ={handleOrigin} />
      <input type="text" id={styles.destino} placeholder="Destino" value = {destination} onChange ={handleDestination}/>
      <input type="date" id={styles.date} value = {originDate} onChange ={handleOriginDate} />
-     <input type="number" id={styles.number}  value = {seats} onChange ={handleSeats} /><ConfigIcon><RiUser3Fill /></ConfigIcon>
+     <input type="number" min={1} max={10} id={styles.number}  value = {seats} onChange ={handleSeats} /><ConfigIcon><RiUser3Fill /></ConfigIcon>
      <button id={styles.buscar} onClick={handleSubmit}>Buscar</button>
 
     </div>

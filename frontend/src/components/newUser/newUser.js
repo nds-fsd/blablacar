@@ -49,7 +49,7 @@ export const NewUser = () => {
                             password
                         }
 
-                    let res = await Request("users","POST",body)
+                    let res = await Request("/users","POST",body)
 
                     if(res?.error){
                         alert(res.message)

@@ -9,7 +9,7 @@ export const UsersList = () => {
     let ignore=false
     const getUsers = async () => {
       try {
-        let response = await Request("users");
+        let response = await Request("/users");
         console.log(response);
         !ignore && SetUsers(response);
         console.log(users);

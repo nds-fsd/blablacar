@@ -1,5 +1,5 @@
 import userLogo from "../assets/user.png"
-import {changeToShortDate} from "../../utils/apiWrapper"
+import {changeToShortDate} from "../../utils/shortdate"
 import styles from "./trip.module.css";
 import {Modal} from "../modal/modal";
 import {useState} from "react";
@@ -19,11 +19,19 @@ const Trip = (props) =>{
             </div>     
         </div>
         <div className={styles.body}>
-        {tripsFind.map(trip =>{return (
-            <div className={styles.trip} onClick ={() => props.updateTrip(trip._id)} >
+        {tripsFind.map(trip =>{
+            console.log(trip.originDate)
+            let tripDate
+            let showDate
+            if(trip.originDate!==null){
+            tripDate=trip.originDate.toString()
+            showDate=tripDate.slice(0,10)}   
+            return (
+            <div key={trip._id} className={styles.trip} onClick ={() => props.updateTrip(trip._id)} >
                 <div className={styles.dateDate}>
                     <div className={styles.dateText}>
-                        <span>{changeToShortDate(trip.originDate)}</span>
+                        
+                       {showDate && <span>{showDate}</span>}
                     </div>
                     <div className={styles.cross}>
                         <button className={styles.crossText} onClick ={() =>props.deleteTrip(trip._id)}>X</button>

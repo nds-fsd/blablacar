@@ -18,7 +18,6 @@ function App() {
           <Route path="login" element={<Login />}/>
           <Route path="trips" element={<NewTrip />}/>
           <Route path="trips/searchresults" element={<FindTrip  />}/>
-          <Route path="users/list" element={<FindUser/>}/>
           <Route path="error" element={<ErrorForm />}/>
           <Route path="users/list" element={<UsersList />} />
           <Route path="*" element={<ErrorForm />} />

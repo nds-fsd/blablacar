@@ -85,7 +85,7 @@ const findTrip = async(req,res) =>{
            queryCond.destination={$regex:req.body.destination,$options:"i"};
         }
         if(req.body.seats){
-            queryCond.seats=req.body.seats;
+            queryCond.seats={$gte:req.body.seats};
          }
          const trip = await Trip.find(queryCond);
          console.log(trip);

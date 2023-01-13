@@ -1,10 +1,9 @@
 
-import { Link,useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "./home.module.css";
 import React from "react";
 import TripSearchBar from "../TripSearchBar/tripSearchBar";
 const Home = () => {
-  const navigate = useNavigate();
   return (
     <>
       <div className={styles.navigationBar}></div>
@@ -48,9 +47,6 @@ const Home = () => {
           aplicación y a su potente tecnología, podrás reservar un viaje cerca
           de ti en minutos.
         </p>
-      </div>
-      <div className={styles.userButton}>
-          <button onClick ={handleSubmitUser}>Users</button>
       </div>
     </>
   );

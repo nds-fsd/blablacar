@@ -37,7 +37,7 @@ function Modal(props){
                     seats,
                     price             
         }
-        let res = await Request("trips/"+id,"put",body)
+        let res = await Request("/trips/"+id,"put",body)
         if(res?.error){
             alert(res.message)
         }else{
