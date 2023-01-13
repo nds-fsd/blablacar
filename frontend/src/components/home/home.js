@@ -6,7 +6,6 @@ import TripSearchBar from "../TripSearchBar/tripSearchBar";
 const Home = () => {
   return (
     <>
-      <div className={styles.navigationBar}></div>
       <div className={styles.foto}>
         <p className={styles.titulo}>Viaja a donde quieras a buen precio</p>
         <div className={styles.buttons}>
