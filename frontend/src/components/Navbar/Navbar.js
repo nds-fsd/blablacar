@@ -3,7 +3,7 @@ import IconLogo from '../../components/svgIcons/iconLogo'
 const Navbar = ( ) => {
 
   
-   handleClic = () =>{
+   const handleClick = () =>{
     // tendras que ejecutar el ... useNavigate
     console.log('he clicado')
 

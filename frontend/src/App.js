@@ -1,19 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-import Home from './components/home/home'
-import './App.css';
-
-
-function App() {
-  return (
-    <div>
-      <BrowserRouter>
-  <Routes>
-    <Route path="/home" element={<Home />} />
-  </Routes>
-</BrowserRouter>
-
-=======
 import './App.css';
 import Home from './components/home/home';
 import { NewUser } from './components/newUser/newUser';
@@ -24,10 +8,12 @@ import {ErrorForm} from './components/ErrorForm/ErrorForm';
 import {FindTrip} from './components/findTrip/findTrip';
 import { TripList } from "./components/ListTrips/ListTrips";
 import { UsersList } from "./components/ListUsers/ListUsers";
+import Navbar from './components/Navbar/Navbar';
 function App(props) {
   console.log(props)
   return (
     <div>
+      <Navbar/>
       <Routes>
           <Route path="/" element={<Home />}/>
           <Route path="users" element={<NewUser />}/>
@@ -40,7 +26,6 @@ function App(props) {
           <Route path="*" element={<ErrorForm />} />
       </Routes>
       <Outlet />
->>>>>>> Sprint1
     </div>
   );
 }

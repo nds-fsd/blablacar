@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-import "./home.css";
-import Navbar from "../Navbar/Navbar"
-=======
 
 import { Link,useNavigate } from "react-router-dom";
 import styles from "./home.module.css";
@@ -9,7 +5,6 @@ import React, {useState} from "react";
 import { Request } from "../../utils/apiWrapper";
 import { FindTrip } from "../findTrip/findTrip";
 
->>>>>>> Sprint1
 const Home = () => {
   const navigate = useNavigate();
   const [origin,setOrigin] = useState("");
@@ -53,22 +48,12 @@ const Home = () => {
   }
   return (
     <>
-<<<<<<< HEAD
-      <div className="navigationBar">
-        <Navbar/>
-      </div>
-      <div className="foto">
-        <p className="titulo">Viaja a donde quieras a buen precio</p>
-        <div className="buttons">
-          <button id="register" name="register">
-=======
       <div className={styles.navigationBar}></div>
       <div className={styles.foto}>
         <p className={styles.titulo}>Viaja a donde quieras a buen precio</p>
         <div className={styles.buttons}>
         <Link to="/users">
           <button id={styles.register} name="register">
->>>>>>> Sprint1
             Registrarse
           </button>
           </Link>
