@@ -17,11 +17,8 @@ function App() {
           <Route path="users" element={<NewUser />}/>
           <Route path="login" element={<Login />}/>
           <Route path="trips" element={<NewTrip />}/>
-          <Route path="trips/find/:origen/:originDate/:destination/:seats" element={<FindTrip/>}/>
-          <Route path="trips/list" element={<FindTrip/>}/>
-          <Route path="users/list" element={<FindUser/>}/>
+          <Route path="trips/searchresults" element={<FindTrip  />}/>
           <Route path="error" element={<ErrorForm />}/>
-          <Route path="trip/list" element={<TripList />} />
           <Route path="users/list" element={<UsersList />} />
           <Route path="*" element={<ErrorForm />} />
       </Routes>

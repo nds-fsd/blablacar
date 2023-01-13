@@ -1,15 +1,14 @@
+import styles from "./findTrip.module.css";
 import { useLocation } from "react-router-dom";
-import styles from "./finTrip.module.css";
-import {changeToShortDate} from "../../utils/shortdate.js"
-import userLogo from "../assets/user.png"
-import {useState,useEffect } from "react";
+import {useState } from "react";
 import { Request } from "../../utils/apiWrapper";
 import {Trip} from "../trip/trip"
 
 
 const FindTrip = () => {
-    const location = useLocation();
-    console.log(location)
+    const location=useLocation()
+    const trips = location.state
+    console.log("findtrip",trips)
     const [tripsFind,setTripsFind] =useState([])
     const [reload,setReload] = useState(false)
     const [openModal,setModal] = useState(false);
@@ -32,16 +31,16 @@ const FindTrip = () => {
         console.log(tripsFind)
     }
        
-   useEffect(() => {
-    if(location.pathname  === "/trips/list"){
-        apiList();
-    }else{
-        apiFilter()   
-    }
+//    useEffect(() => {
+//     if(location.pathname  === "/trips/list"){
+//         apiList();
+//     }else{
+//         apiFilter()   
+//     }
 
  
 
-   },[reload])
+//    },[reload])
 
 
     const deleteTrip = async (id) =>{
@@ -60,7 +59,7 @@ const FindTrip = () => {
         reloadPage();
     }
     return(
-        <Trip deleteTrip ={deleteTrip} tripsFind ={tripsFind} updateTrip = {updateTrip} openModal = {openModal} />
+        <Trip deleteTrip ={deleteTrip} tripsFind ={trips} updateTrip = {updateTrip} openModal = {openModal} />
     )
 }
 
