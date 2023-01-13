@@ -40,7 +40,7 @@ import { Link } from "react-router-dom";
                          </label>
                     <div className={styles.bttnLogin}>
                         <button>Log in</button>
-                        <Link to="/users">recuperar contraseña</Link>
+                        <Link to="/users/list">User List</Link>
                     </div>
                     <div className={styles.signup}>
                         <Link to="/users">Sign up</Link>

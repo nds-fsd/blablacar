@@ -1,8 +1,8 @@
 import { useState } from "react";
-import styles from "./newTrip.module.css";
+import styles from "./modal.module.css";
 import { Request } from "../../utils/apiWrapper";
-
-export const NewTrip = () =>{
+function Modal(props){
+    console.log(props)
     const [origin,SetOrigin] =useState("");
     const [originDate,SetOriginDate] =useState("");
     const [destination,SetDestination] =useState("");
@@ -28,28 +28,26 @@ export const NewTrip = () =>{
     const handlePrice = (event) =>{
         SetPrice(event.target.value)
     }
-    const handleSubmit = async() => {
+    const handleSubmit = async(id) => {
         const body = {
                     origin,
                     originDate,
                     destination,
                     destinationDate,
                     seats,
-                    price
+                    price             
         }
-        let res = await Request ("/trips","POST",body)
+        let res = await Request("/trips/"+id,"put",body)
         if(res?.error){
             alert(res.message)
-          }else{
-            alert(`viaje creado con destino a ${body.origin}`)
-          }
-        
-
-    } 
-    return(
-        <div className={styles.main}>
+        }else{
+          alert("usuario creado con exito")
+        } 
+    }
+    if(props.open){
+        return (<div className={styles.main}>
             <div className={styles.formTrip}>
-                <h3>Crear Viaje</h3>
+                <h3>modificar Viaje</h3>
                 <label for="Origin" className={styles.textbox}>
                 <input
                     required
@@ -104,8 +102,15 @@ export const NewTrip = () =>{
                     onChange={handlePrice}
                 />
                 </label>
-                <button onClick={handleSubmit}>enviar</button>
+                <button onClick={() =>handleSubmit(props.id)}>enviar</button>
             </div>
-        </div>
-    );
+        </div>);
+    }else{
+        return null;
+    }
+   
+
+    
 }
+
+export  {Modal};

@@ -9,7 +9,8 @@ tripRouter.get("/trips/:id",tripControllers.getTripById)
 tripRouter.delete("/trips/:id",tripControllers.deleteTrip)
 tripRouter.put("/trips/:id",tripControllers.updatedTrip)
 tripRouter.get("/trips/origin/:origin",tripControllers.getTripByOrigin)
-tripRouter.get("/trips/find/:origin/:originDate/:destination/:seats",tripControllers.findTrip)
+//tripRouter.get("/trips/find/:origin/:originDate/:destination/:seats",tripControllers.findTrip)
+tripRouter.post("/trips/find", tripControllers.findTrip)
 
 
 /*tripRouter.get('/trip', async (req, res) => {

@@ -2,6 +2,7 @@ import Users from "../mongo/schemas/user.js";
 
 const usrGetAll=async (req, res) => {
     const usuarios = await Users.find();
+    console.log(usuarios);
     res.json(usuarios);
     //devolver todos los usuarios que hay en el schema users de MongoDB en formato JSON.
 };
@@ -10,18 +11,20 @@ const usrGetAll=async (req, res) => {
 //TODO:añadir middlewares, hablar con Paulo
 const usrPost= async (req, res) => {
     const body=(req.body);
+    console.log(body)
 
     //TODO:comprobar con antonio campos de user y con Alex para formulario creacion
     const receivedUser={
         name:body.name,
         surname:body.surname,
-        dateOfBirth: body.dateOfBirth,
+        Birthday: body.Birthday.toString(),
         email:body.email,
         treatment:body.treatment,
         password:body.password
         //hola
     };
   try{
+    console.log(receivedUser)
     const newUser= new Users(receivedUser);
     await newUser.save()
   

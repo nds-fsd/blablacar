@@ -17,7 +17,7 @@ const validateUserInput = (req, res, next) => {
         console.log("Email is missing");
         return;
     }
-    else if(newUser.dateOfBirth === undefined || newUser.dateOfBirth.length === 0){
+    else if(newUser.Birthday === undefined || newUser.Birthday.length === 0){
         res.status(400).send({message: "Date of birth is missing"});
         console.log("Date of birth is missing");
         return;
