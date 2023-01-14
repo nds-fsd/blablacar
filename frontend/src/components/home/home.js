@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import styles from "./home.module.css";
 import React from "react";
@@ -40,6 +39,7 @@ const Home = () => {
         </p>
         <p className={styles.p3}>
           <span className={styles.importantP}>¡Busca, elige y a viajar!</span>
+
           <br />
           <br />
           ¡Reservar un viaje es más fácil que nunca! Gracias a nuestra sencilla
@@ -52,5 +52,3 @@ const Home = () => {
 };
 
 export default Home;
-
-
