@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose';
+import bcrypt from "bcrypt";
 
 const userSchema = new Schema({
     name:{type : String},
@@ -18,5 +19,24 @@ const userSchema = new Schema({
     password:{type: String},
 });
 
+userSchema.pre('save',  function(next) {
+	const user = this;
+	if (!user.isModified('password')) return next();
+
+	bcrypt.genSalt(10, function(err, salt) {
+		if (err) return next(err);
+
+		bcrypt.hash(user.password, salt, function(err, hash) {
+			if (err) return next(err);
+			user.password = hash;
+			next();
+		});
+	});
+});
+
+userSchema.methods.comparePassword = (password)=> {
+    return bcrypt.compareSync(password,this.password);
+};
+
 const Users = model('Users', userSchema);
-export default Users;
+export {Users};

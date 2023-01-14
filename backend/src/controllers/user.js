@@ -1,4 +1,4 @@
-import Users from "../mongo/schemas/user.js";
+import {Users} from "../mongo/schemas/user.js";
 
 const usrGetAll=async (req, res) => {
     const usuarios = await Users.find();
@@ -29,7 +29,8 @@ const usrPost= async (req, res) => {
     await newUser.save()
   
     res.status(201).json("El usuario "+newUser.name + " ha sido creada correctamente");
-}catch{res.status(400).send({message:"Email already exists"})}
+}catch{
+    res.status(400).send({message:"Email already exists"})}
 };
   
 //TODO:añadir middlewares, hablar con Paulo
