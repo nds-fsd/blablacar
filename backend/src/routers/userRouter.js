@@ -5,7 +5,6 @@ import validateUserInput from "../Middleware/userMiddleware.js";
 import UsrControllers from '../controllers/user.js';
 //de momento suponemos que el schema de users de MongoDB
 //se llamará Users
-
 userRouter.get('/users',UsrControllers.usrGetAll);
 userRouter.post('/users', validateUserInput, UsrControllers.usrPost);
 userRouter.get('/users/:id', UsrControllers.usrGetOne);
