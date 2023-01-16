@@ -19,7 +19,7 @@ app.use(cors({origin:'*'}));
 app.use(express.json());
 
 //Login router
-app.use('/auth/login', require('./routers/authRouter'));
+//app.use('/auth/login', require('./routers/authRouter'));
 
 // Adding Error Handling Middleware as per Best Practice. Must be last middleware before app.listen. Will capture any error.
 // There is an OS Middleware in Express called error-handling but we chose the hard way :)
