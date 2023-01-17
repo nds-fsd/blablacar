@@ -30,7 +30,8 @@ const usrPost= async (req, res) => {
     await newUser.save()
   
     res.status(201).json("El usuario "+newUser.name + " ha sido creada correctamente");
-}catch{res.status(400).send({message:"Email already exists"})}
+}catch{
+    res.status(400).send({message:"Email already exists"})}
 };
   
 //TODO:añadir middlewares, hablar con Paulo
