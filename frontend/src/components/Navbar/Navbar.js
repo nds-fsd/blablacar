@@ -1,33 +1,38 @@
 import "./Navbar.css";
 import IconLogo from '../../components/svgIcons/iconLogo'
+import userLogo from "../assets/user.png"
 import { Link } from "react-router-dom";
 const Navbar = ( ) => {
 
-  
-   const handleClick = () =>{
-    // tendras que ejecutar el ... useNavigate
-    console.log('he clicado')
-
-  }
     return(
-
-        <div className="navBarWrapper">
-          {/*  en este div hay que utilizar un onClick que utilize el useNavigate para ir al Home */}
-        
-        <div className="logo ml" onClick={() => handleClick()}>
+<div className="navBarWrapper">
+        <div className="logo ml">
         <Link to="/"><IconLogo className="logoSvg"/></Link>
         <Link to="/"><p className="brand">PimPamBuga</p></Link>
         </div>
-        
+     
         <nav>
             <ul className="listNav" >
                 {/* Dentro de cada li debe haber un componente Link de react router  */}
+                <Link to="trips/searchresults">
                 <li>Buscador</li>
-                <li>Publicar un viaje</li>
-                <li>UserIcon</li>
+                </Link>
+                <Link to ="/trips">
+                <li>Publicar un viaje</li> 
+                </Link>
+                <li>
+                <div className="dropdown">
+                  <img src={userLogo} alt="usuario" className= "userLogo"/>
+                  <div class="dropdown-content">
+                  <Link to="/login"><p>Login</p></Link>
+                  <Link to="/users"><p>Registrarse</p></Link>
+                  </div>
+                </div>
+                </li>
             </ul>
         </nav>
-      </div> 
+      </div>
+        
     )
     
 }
