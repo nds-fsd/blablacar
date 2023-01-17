@@ -59,7 +59,7 @@ const validateAuthPassword = (req, res, next) => {
       .then((user) => {
         const dbPwd = Bcrypt.compareSync(req.body.password, user.password);
         if (!dbPwd) {
-          throw new Error("Password does not match (1)");
+          throw new Error("Password does not match");
         }
 
          return next();
@@ -71,10 +71,11 @@ const validateAuthPassword = (req, res, next) => {
   };
   const dbPwd = Bcrypt.compareSync(req.body.password, req.user.password);
   if (!dbPwd) {
-    let err = new Error("Password does not match (2)");
+    let err = new Error("Password does not match");
     err.status = 403;
     return next(err);
   }
+  next();
 };
 
 export { formalEmailValidation, validateAuthEmail, validateAuthPassword };
