@@ -21,7 +21,7 @@ const usrPost= async (req, res) => {
         Birthday: body.Birthday.toString(),
         email:body.email,
         treatment:body.treatment,
-        password: Bcrypt.hashSync(body.password, 10)
+        password: body.password
         //hola
     };
   try{
