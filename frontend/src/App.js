@@ -11,7 +11,6 @@ import { TripList } from "./components/ListTrips/ListTrips";
 import { UsersList } from "./components/ListUsers/ListUsers";
 import Navbar from './components/Navbar/Navbar';
 function App(props) {
-  console.log(props)
   return (
     <div>
       <Navbar/>
