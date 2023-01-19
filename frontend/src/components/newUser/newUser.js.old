@@ -92,7 +92,7 @@ export const NewUser = () => {
                     placeholder="Nombre"
                     onChange={handleName}
                 />
-                {emtpyField==="name"&&<div className="emptyField">Este campo es obligatorio</div>}
+                {emtpyField==="name"&&<div className={styles.emptyfield}>Este campo es obligatorio</div>}
             </label>
             <br />
             <label for="surname" className={styles.textbox}>
@@ -103,7 +103,7 @@ export const NewUser = () => {
                     placeholder="Apellido"
                     onChange={handleSurname}
                 />
-                {emtpyField==="surname"&&<div className="emptyField">Este campo es obligatorio</div>}
+                {emtpyField==="surname"&&<div className={styles.emptyfield}>Este campo es obligatorio</div>}
             </label>
             <br />
             <label for="email" className={styles.textbox}>
@@ -114,7 +114,7 @@ export const NewUser = () => {
                     placeholder="Email"
                     onChange={handleEmail}
                 />
-                {emtpyField==="email"&&<div className="emptyField">Este campo es obligatorio</div>}
+                {emtpyField==="email"&&<div className={styles.emptyfield}>Este campo es obligatorio</div>}
             </label>
             <br />
             <label for="Birthday" className={styles.textbox}>
@@ -125,7 +125,7 @@ export const NewUser = () => {
                     placeholder="DD/MM/YYYY"
                     onChange={handleBirthday}
                 />
-                {emtpyField==="Birthday"&&<div className="emptyField">Este campo es obligatorio</div>}
+                {emtpyField==="Birthday"&&<div className={styles.emptyfield}>Este campo es obligatorio</div>}
             </label>
             <br />
             <label for="treatment" className={styles.textbox}>
@@ -137,7 +137,7 @@ export const NewUser = () => {
                     <option value="NotSay">Prefiero no decirlo</option>
                 </select>
             </label>
-            {emtpyField==="treatment"&&<div className="emptyField">Este campo es obligatorio</div>}
+            {emtpyField==="treatment"&&<div className={styles.emptyfield}>Este campo es obligatorio</div>}
             <br />
             <label for="password" className={styles.textbox}>
                 <input 
@@ -147,7 +147,7 @@ export const NewUser = () => {
                     placeholder="Contraseña"
                     onChange={handlePassword}
                 />
-                {emtpyField==="password"&&<div className="emptyField">Este campo es obligatorio</div>}
+                {emtpyField==="password"&&<div className={styles.emptyfield}>Este campo es obligatorio</div>}
             </label>
             <button onClick={handleSubmit}>Registrar</button>
         </div>

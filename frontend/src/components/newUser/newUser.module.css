@@ -26,7 +26,35 @@ h3{
     justify-content: center;
     align-items: center;
 }
+.icon{
+        height: 1.5rem;
+        width: 1.5rem;
+        background-color: red;
+        padding: 4px;
+        position: absolute;
+        box-sizing:border-box;
+        top:50%;
+        left:2px;
+        transform: translateY(-50%);
+}
 
+.wrapper{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.password{
+    width: 57%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.emptyfield{
+    height: 1em;
+    font-family: 'Raleway', sans-serif;
+    color: red;
+}
 input, select{
     height:50px;
     width:100%;
@@ -38,7 +66,7 @@ input, select{
   }
 
 
-button{
+.submit{
     color: white;
     height: 50px;
     width: 100px;
@@ -50,11 +78,8 @@ button{
     margin: 10px 0px 10px 0px;
 }
 
-button:hover{
+.submit:hover{
     background-color: rgb(249, 218, 187);
     cursor: pointer;
 }
 
-.error{
-    color: red;
-}
