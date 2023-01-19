@@ -1,4 +1,5 @@
-import {Users} from "../mongo/schemas/user.js";
+import Users from "../mongo/schemas/user.js";
+import Bcrypt from 'bcryptjs';
 
 const usrGetAll=async (req, res) => {
     const usuarios = await Users.find();
@@ -20,7 +21,7 @@ const usrPost= async (req, res) => {
         Birthday: body.Birthday.toString(),
         email:body.email,
         treatment:body.treatment,
-        password:body.password
+        password: body.password
         //hola
     };
   try{
