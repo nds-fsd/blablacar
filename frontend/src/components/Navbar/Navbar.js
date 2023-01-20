@@ -1,10 +1,12 @@
 import "./Navbar.css";
+import { useNavigate } from "react-router-dom";
 import IconLogo from '../../components/svgIcons/iconLogo'
 import { Link } from "react-router-dom";
 const Navbar = ( ) => {
-
+const navigate=useNavigate()
   
    const handleClick = () =>{
+    navigate("/")
     // tendras que ejecutar el ... useNavigate
     console.log('he clicado')
 
@@ -15,8 +17,8 @@ const Navbar = ( ) => {
           {/*  en este div hay que utilizar un onClick que utilize el useNavigate para ir al Home */}
         
         <div className="logo ml" onClick={() => handleClick()}>
-        <Link to="/"><IconLogo className="logoSvg"/></Link>
-        <Link to="/"><p className="brand">PimPamBuga</p></Link>
+        <IconLogo className="logoSvg"/>
+        <p className="brand">PimPamBuga</p>
         </div>
         
         <nav>
