@@ -40,4 +40,4 @@ userSchema.methods.comparePassword = (password)=> {
 };
 
 const Users = model('Users', userSchema);
-export {Users};
+export default Users;

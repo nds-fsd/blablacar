@@ -1,6 +1,7 @@
 import express from 'express';
 import {userRouter} from './routers/userRouter.js';
 import {tripRouter} from './routers/tripRouter.js';
+import {authRouter} from './routers/authRouter.js';
 import errorLogging from './Middleware/errorsMiddleware.js';
 import dotenv from 'dotenv';
 const mongo = import('./mongo/index.js');
@@ -18,8 +19,11 @@ app.use(morgan('dev'));
 app.use(cors({origin:'*'}));
 app.use(express.json());
 
+//Routers 
+app.use(userRouter)
+app.use(tripRouter)
 //Login router
-//app.use('/auth/login', require('./routers/authRouter'));
+app.use('/auth', authRouter);
 
 // Adding Error Handling Middleware as per Best Practice. Must be last middleware before app.listen. Will capture any error.
 // There is an OS Middleware in Express called error-handling but we chose the hard way :)
