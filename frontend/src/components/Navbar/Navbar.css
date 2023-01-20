@@ -60,9 +60,10 @@
     display: block;
   }
 
-  li:hover{
+  .navbardiv:hover{
     background-color: rgb(249, 218, 187);
     cursor: pointer;
+    text-decoration: none;
   }
   .dropdown-content p:hover {
     background-color: rgb(249, 218, 187);

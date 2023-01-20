@@ -1,8 +1,9 @@
 import "./Navbar.css";
 import IconLogo from '../../components/svgIcons/iconLogo'
 import userLogo from "../assets/user.png"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const Navbar = ( ) => {
+const navigate = useNavigate();
 
     return(
 <div className="navBarWrapper">
@@ -14,16 +15,14 @@ const Navbar = ( ) => {
         <nav>
             <ul className="listNav" >
                 {/* Dentro de cada li debe haber un componente Link de react router  */}
-                <Link to="trips/searchresults">
-                <li>Buscador</li>
-                </Link>
+                <div className="navbardiv" onClick={() => navigate("/search")}>Buscador</div>
                 <Link to ="/trips">
-                <li>Publicar un viaje</li> 
+                <div className="navbardiv">Publicar un viaje</div> 
                 </Link>
                 <li>
                 <div className="dropdown">
                   <img src={userLogo} alt="usuario" className= "userLogo"/>
-                  <div class="dropdown-content">
+                  <div className="dropdown-content">
                   <Link to="/login"><p>Login</p></Link>
                   <Link to="/users"><p>Registrarse</p></Link>
                   </div>
