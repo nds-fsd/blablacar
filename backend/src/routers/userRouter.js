@@ -1,9 +1,11 @@
 
-import express from 'express';
+const express = require('express');
 const userRouter = express.Router();
-import validateUserInput from "../Middleware/userMiddleware.js";
-import UsrControllers from '../controllers/user.js';
-import {body, check} from 'express-validator';
+
+const validateUserInput = require("../Middleware/userMiddleware.js");
+const UsrControllers = require('../controllers/user.js');
+const {body, check} = require('express-validator');
+
 //de momento suponemos que el schema de users de MongoDB
 //se llamará Users
 userRouter.get('/users',UsrControllers.usrGetAll);
@@ -12,5 +14,5 @@ userRouter.get('/users/:id', UsrControllers.usrGetOne);
 userRouter.put('/users/:id', body('email').normalizeEmail().trim(), check('email').isEmail(), UsrControllers.usrPut);
 userRouter.delete('/users/:id', UsrControllers.usrDelete);
 
-export {userRouter};
+module.exports = {userRouter};
   

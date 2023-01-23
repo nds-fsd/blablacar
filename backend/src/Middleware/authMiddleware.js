@@ -1,6 +1,8 @@
-import Users from "../mongo/schemas/user.js";
-import { validationResult } from "express-validator";
-import Bcrypt from "bcrypt";
+
+const Users = require ("../mongo/schemas/user.js");
+const { validationResult } = require ("express-validator");
+const Bcrypt = require ("bcryptjs");
+
 
 // Envía el error al middleware de captura de errores, si express-validator retorna un error
 const formalEmailValidation = (req, res, next) => {
@@ -78,4 +80,4 @@ const validateAuthPassword = (req, res, next) => {
   next();
 };
 
-export { formalEmailValidation, validateAuthEmail, validateAuthPassword };
+module.exports = { formalEmailValidation, validateAuthEmail, validateAuthPassword };

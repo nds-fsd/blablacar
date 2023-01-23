@@ -1,5 +1,5 @@
 // import Users from "../mongo/schemas/user.js";
-import JsonWebToken from 'jsonwebtoken';
+const JsonWebToken =require('jsonwebtoken');
 
 const jwtTokenSign = (req, res, next) => {
 // User registration or login: return a new token
@@ -15,4 +15,4 @@ const jwtTokenVerify = (req, res, next) => {
     next();
 };
 
-export{ jwtTokenSign, jwtTokenVerify }
+module.exports= { jwtTokenSign, jwtTokenVerify }

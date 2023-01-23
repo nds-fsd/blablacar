@@ -1,5 +1,5 @@
-import Users from "../mongo/schemas/user.js";
-import Bcrypt from 'bcryptjs';
+const Users = require ("../mongo/schemas/user.js");
+const Bcrypt = require ('bcryptjs');
 
 const usrGetAll=async (req, res) => {
     const usuarios = await Users.find();
@@ -55,4 +55,4 @@ const usrDelete=async(req, res) => {
     res.json(delUsr)    
 };
 
-export default{usrDelete,usrGetAll,usrGetOne,usrPost,usrPut}
+module.exports={usrDelete,usrGetAll,usrGetOne,usrPost,usrPut}
