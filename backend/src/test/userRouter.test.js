@@ -1,6 +1,6 @@
-import supertest from 'supertest';
-import {app, server} from '../../index';
-import {connectDB, disconnectDB} from './mongo/index.js';
+const supertest = require('supertest');
+const {app, server} = require('../index');
+const  {connectDB, disconnectDB} = require('../mongo/index.js');
 
 const fakeRequest = supertest(app);
 
@@ -16,6 +16,7 @@ describe('Company router TEST', () => {
         await disconnectDB();
         server.close();
     });
+
 
 
     let company;
