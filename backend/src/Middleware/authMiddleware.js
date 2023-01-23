@@ -1,6 +1,6 @@
 import Users from "../mongo/schemas/user.js";
 import { validationResult } from "express-validator";
-import Bcrypt from "bcryptjs";
+import Bcrypt from "bcrypt";
 
 // Envía el error al middleware de captura de errores, si express-validator retorna un error
 const formalEmailValidation = (req, res, next) => {
