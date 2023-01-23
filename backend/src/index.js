@@ -1,17 +1,17 @@
-import express from 'express';
-import {userRouter} from './routers/userRouter.js';
-import {tripRouter} from './routers/tripRouter.js';
-import {authRouter} from './routers/authRouter.js';
-import errorLogging from './Middleware/errorsMiddleware.js';
-import dotenv from 'dotenv';
-import {connectDB} from './mongo/index.js';
-import cors from 'cors';
+const express = require ('express');
+const {userRouter} = require('./routers/userRouter.js');
+const {tripRouter} = require('./routers/tripRouter.js');
+const {authRouter} = require('./routers/authRouter.js');
+const errorLogging = require('./Middleware/errorsMiddleware.js');
+const dotenv = require('dotenv');
+const {connectDB} = require ('./mongo/index.js');
+const cors = require('cors');
 //Adding morgan middleware for better logs >> npm install morgan at first use
-import morgan from 'morgan';
+const morgan= require ('morgan');
 
 dotenv.config();
 const app = express();
-const port = process.env.PORT;
+let port = process.env.PORT;
 
 if(process.env.NODE_ENV !== 'test'){
     connectDB().then((error) => {
@@ -41,8 +41,9 @@ app.use('/auth', authRouter);
 // There is an OS Middleware in Express called error-handling but we chose the hard way :)
 app.use(errorLogging);
 
-export const server = app.listen(port, () => {
+const server = app.listen(port, () => {
     console.log(`Server is up and running at port ${port} ⚡`)
 })
 
 
+module.exports = (server,app)

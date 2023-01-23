@@ -1,7 +1,7 @@
 
-import dotenv from 'dotenv';
-import mongoose from 'mongoose';
-import {MongoMemoryServer} from "mongodb-memory-server";
+const dotenv =require ('dotenv');
+const mongoose =require ('mongoose');
+const {MongoMemoryServer} = require ('mongodb-memory-server')
 dotenv.config();
 
 const connectDB = async () =>{
@@ -9,13 +9,15 @@ const connectDB = async () =>{
     let dbUrl = process.env.MONGOURL;
   if (process.env.NODE_ENV === 'test') {
       mongod = await MongoMemoryServer.create();
+      console.log("created");
       dbUrl = mongod.getUri();
+      console.log(dbUrl);
   }
 
   mongoose.set("strictQuery", false);
 
   try {
-    await   mongoose.connect(dbUrl);
+    await  mongoose.connect(dbUrl);
 
     const mongo = mongoose.connection;
     mongo.on("error", (error) => console.error(error));
@@ -40,5 +42,5 @@ const disconnectDB = async () => {
     }
 };
 
-export { connectDB, disconnectDB };
+module.exports= { connectDB, disconnectDB };
 

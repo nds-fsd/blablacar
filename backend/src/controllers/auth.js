@@ -11,4 +11,4 @@ const authUser = (req, res) => {
     res.status(200).json({success: true, jwtToken: req.jwtToken, expirationHours: expirationTime, userObj: userObj});
 }
 
-export default{authUser}
+module.exports={authUser}

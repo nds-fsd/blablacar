@@ -1,4 +1,4 @@
-import Trip from "../mongo/schemas/trip.js";
+const Trip = require ("../mongo/schemas/trip.js");
 
 const getAll = async (req, res) => {
    const allTrips = await Trip.find();
@@ -98,4 +98,4 @@ const findTrip = async(req,res) =>{
     }
 }
 
-export default {getAll,createTrip,getTripById,deleteTrip,updatedTrip,getTripByOrigin,findTrip};
+module.exports={getAll,createTrip,getTripById,deleteTrip,updatedTrip,getTripByOrigin,findTrip};

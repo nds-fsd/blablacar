@@ -10,4 +10,4 @@ const errorLogging = (err, req, res, next) => {
   return;
 };
 
-export default errorLogging;
+module.exports=(errorLogging);
