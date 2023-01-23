@@ -1,6 +1,8 @@
+
 const Users = require ("../mongo/schemas/user.js");
 const { validationResult } = require ("express-validator");
 const Bcrypt = require ("bcryptjs");
+
 
 // Envía el error al middleware de captura de errores, si express-validator retorna un error
 const formalEmailValidation = (req, res, next) => {
