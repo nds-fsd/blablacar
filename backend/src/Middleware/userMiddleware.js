@@ -35,4 +35,4 @@ const validateUserInput = (req, res, next) => {
     next();
 };
 
-export default validateUserInput;
+module.exports=(validateUserInput);

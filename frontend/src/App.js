@@ -12,7 +12,6 @@ import { UsersList } from "./components/ListUsers/ListUsers";
 import Navbar from './components/Navbar/Navbar';
 import TripSearchBar from './components/TripSearchBar/tripSearchBar';
 function App(props) {
-  console.log(props)
   return (
     <div>
       <Navbar/>

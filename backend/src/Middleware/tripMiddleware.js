@@ -39,4 +39,4 @@ const validateTripInput = (req, res, next) => {
     next();
 };
 
-export default validateTripInput;
+module.exports=(validateTripInput);

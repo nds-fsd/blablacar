@@ -1,7 +1,7 @@
-import express from 'express';
+const express = require ('express');
 const tripRouter = express.Router();
-import tripControllers from "../controllers/trip.js"
-import validateTripInput from '../Middleware/tripMiddleware.js';
+const tripControllers = require ("../controllers/trip.js");
+const validateTripInput = require ('../Middleware/tripMiddleware.js');
 
 tripRouter.get("/trips", tripControllers.getAll)
 tripRouter.post("/trips",validateTripInput, tripControllers.createTrip)
@@ -60,4 +60,4 @@ tripRouter.get('/trip/origin/:origin',  async(req, res) => {
 });*/
 
 
-export {tripRouter};
+module.exports = {tripRouter};

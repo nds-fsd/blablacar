@@ -1,0 +1,156 @@
+/* eslint-disable no-unused-expressions */
+
+import styles from "./newUser.module.css";
+import { Request } from "../../utils/apiWrapper";
+import React, {useState} from "react";
+
+
+export const NewUser = () => {
+
+    const [name, setName] = useState("");
+    const [surname, setSurname] = useState("");
+    const [email, setEmail] = useState("");
+    const [Birthday, setBirthday] = useState("");
+    const [treatment, setTreatment] = useState("");
+    const [password, setPassword] = useState("");
+    const [emtpyField,setEmptyField] = useState([])
+
+    const handleName = (event) => {
+        setName(event.target.value);
+    }
+
+    const handleSurname = (event) => {
+        setSurname(event.target.value);
+    }
+
+    const handleEmail = (event) => {
+        setEmail(event.target.value);
+    }
+
+    const handleBirthday = (event) => {
+        setBirthday(event.target.value);
+    }
+
+    const handleTreatment = (event) => {
+        setTreatment(event.target.value);
+    }
+
+    const handlePassword = (event) => {
+        setPassword(event.target.value);
+    }
+
+    const handleSubmit = async() => {
+        setEmptyField("")
+        if (!name){
+            setEmptyField("name")
+            console.log(emtpyField)
+            return}
+        if (!surname){
+            setEmptyField("surname")
+            return }
+        if (!email){
+            setEmptyField("email")
+            return}
+        if (!Birthday){
+            setEmptyField("Birthday")
+            return}
+        if (!treatment){
+            setEmptyField("treatment")
+            return}
+        if (!password){setEmptyField("password")}
+        if (emtpyField){
+            return
+        }
+             const body = {
+                            name,
+                            surname,
+                            email,
+                            Birthday,
+                            treatment,
+                            password
+                        }
+
+                    let res = await Request("/users","POST",body)
+
+                    if(res?.error){
+                        alert(res.message)
+                    }else{
+                      alert("usuario creado con exito")
+                    }         
+
+                }        
+    
+
+    return(
+        <div className={styles.newInput}>
+            <h3 className={styles.newUserTitle}>Crea tu cuenta</h3>
+            <label for="name" className={styles.textbox}>
+                <input
+                    required
+                    type="text"
+                    value={name}
+                    placeholder="Nombre"
+                    onChange={handleName}
+                />
+                {emtpyField==="name"&&<div className={styles.emptyfield}>Este campo es obligatorio</div>}
+            </label>
+            <br />
+            <label for="surname" className={styles.textbox}>
+                <input 
+                    required
+                    type="text"
+                    value={surname}
+                    placeholder="Apellido"
+                    onChange={handleSurname}
+                />
+                {emtpyField==="surname"&&<div className={styles.emptyfield}>Este campo es obligatorio</div>}
+            </label>
+            <br />
+            <label for="email" className={styles.textbox}>
+                <input 
+                    required
+                    type="email"
+                    value={email}
+                    placeholder="Email"
+                    onChange={handleEmail}
+                />
+                {emtpyField==="email"&&<div className={styles.emptyfield}>Este campo es obligatorio</div>}
+            </label>
+            <br />
+            <label for="Birthday" className={styles.textbox}>
+                <input
+                    required
+                    type="date"
+                    value={Birthday}
+                    placeholder="DD/MM/YYYY"
+                    onChange={handleBirthday}
+                />
+                {emtpyField==="Birthday"&&<div className={styles.emptyfield}>Este campo es obligatorio</div>}
+            </label>
+            <br />
+            <label for="treatment" className={styles.textbox}>
+                <select required id="treatment" name="treatment" onChange={handleTreatment}>
+                    <option value="">Tratamiento</option>
+                    <option value="Sra.">Sra.</option>
+                    <option value="Sr.">Sr.</option>
+                    <option value="Srta.">Srta.</option>
+                    <option value="NotSay">Prefiero no decirlo</option>
+                </select>
+            </label>
+            {emtpyField==="treatment"&&<div className={styles.emptyfield}>Este campo es obligatorio</div>}
+            <br />
+            <label for="password" className={styles.textbox}>
+                <input 
+                    required
+                    type="password"
+                    value={password}
+                    placeholder="Contraseña"
+                    onChange={handlePassword}
+                />
+                {emtpyField==="password"&&<div className={styles.emptyfield}>Este campo es obligatorio</div>}
+            </label>
+            <button onClick={handleSubmit}>Registrar</button>
+        </div>
+    )
+}
+

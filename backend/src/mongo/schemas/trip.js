@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+const { Schema, model } = require('mongoose');
 
 const tripSchema = new Schema({
     origin:  {type: String},
@@ -10,4 +10,4 @@ const tripSchema = new Schema({
 });
 
 const Trip = model('Trip', tripSchema);
-export default Trip;
+module.exports=(Trip);
