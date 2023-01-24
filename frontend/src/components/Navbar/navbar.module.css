@@ -1,5 +1,6 @@
 .navBarWrapper{
     width: 100vw;
+    height: 70px;
     display: flex;
     flex-direction: row;
     background-color: rgb(255, 255, 255);
