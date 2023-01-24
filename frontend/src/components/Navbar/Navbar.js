@@ -1,4 +1,4 @@
-import "./Navbar.css";
+import styles from "./navbar.module.css";
 import IconLogo from '../../components/svgIcons/iconLogo'
 import userLogo from "../assets/user.png"
 import { Link, useNavigate } from "react-router-dom";
@@ -6,29 +6,25 @@ const Navbar = ( ) => {
 const navigate = useNavigate();
 
     return(
-<div className="navBarWrapper">
-        <div className="logo ml">
-        <Link to="/"><IconLogo className="logoSvg"/></Link>
-        <Link to="/"><p className="brand">PimPamBuga</p></Link>
+<div className={styles.navBarWrapper}>
+        <div className={`${styles.logo} ${styles.ml}`}>
+        <IconLogo className={styles.logoSvg} onClick={() => navigate("/")}/>
+        <p className={styles.brand} onClick={() => navigate("/")}>PimPamBuga</p>
         </div>
      
         <nav>
-            <ul className="listNav" >
+            <div className={styles.listNav} >
                 {/* Dentro de cada li debe haber un componente Link de react router  */}
-                <div className="navbardiv" onClick={() => navigate("/search")}>Buscador</div>
-                <Link to ="/trips">
-                <div className="navbardiv">Publicar un viaje</div> 
-                </Link>
-                <li>
-                <div className="dropdown">
-                  <img src={userLogo} alt="usuario" className= "userLogo"/>
-                  <div className="dropdown-content">
-                  <Link to="/login"><p>Login</p></Link>
-                  <Link to="/users"><p>Registrarse</p></Link>
+                <div className={styles.navbardiv} onClick={() => navigate("/search")}>Buscar</div>
+                <div className={styles.navbardiv} onClick={() => navigate("/trips")}>Publicar un viaje</div> 
+                <div className={styles.dropdown}>
+                  <img src={userLogo} alt="usuario" className= {styles.userLogo}/>
+                  <div className={styles.dropdownContent}>
+                  <p onClick={() => navigate("/login")}>Login</p>
+                  <p onClick={() => navigate("/users")}>Registrarse</p>
                   </div>
                 </div>
-                </li>
-            </ul>
+            </div>
         </nav>
       </div>
         

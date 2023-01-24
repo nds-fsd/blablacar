@@ -2,7 +2,7 @@
     width: 100vw;
     display: flex;
     flex-direction: row;
-    background-color: rgb(240, 191, 158);
+    background-color: rgb(255, 255, 255);
 }
 
 .logo{
@@ -12,10 +12,22 @@
     color: rgb(255, 162, 0);
 }
 
+.brand{
+  cursor:pointer
+}
+
 .logoSvg{
     height:3rem;
     width: 3rem;
     text-decoration: none;
+    cursor:pointer
+}
+
+nav{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .listNav{
@@ -37,18 +49,27 @@
 .userLogo{
     height:3rem;
     width: 3rem;
+    cursor: pointer;
 }
-.dropdown-content {
+
+.navbardiv{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 25px;
+  color: rgb(255, 162, 0);
+  padding-left: 20px;
+}
+
+.dropdownContent {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    background-color: #ffffff;
     min-width: 160px;
     margin-left:-50px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);  
     z-index: 1;
   }
 
-  .dropdown-content p {
+  .dropdownContent p {
     float: none;
     color: black;
     padding: 12px 16px;
@@ -56,15 +77,16 @@
     display: block;
     text-align: left;
   }
-  .dropdown:hover .dropdown-content {
+  .dropdown:hover .dropdownContent {
     display: block;
+    background-color: rgb(255, 255, 255);
   }
 
   .navbardiv:hover{
-    background-color: rgb(249, 218, 187);
     cursor: pointer;
     text-decoration: none;
   }
-  .dropdown-content p:hover {
-    background-color: rgb(249, 218, 187);
+  .dropdownContent p:hover {
+    background-color: rgb(255, 227, 176);
+    cursor:pointer;
   }
