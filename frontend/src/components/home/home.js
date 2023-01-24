@@ -2,11 +2,12 @@ import { Link } from "react-router-dom";
 import styles from "./home.module.css";
 import React from "react";
 import TripSearchBar from "../TripSearchBar/tripSearchBar";
+import {removeUserToken} from "../../utils/storage"
 const Home = () => {
   return (
     <>
       <div className={styles.foto}>
-        <p className={styles.titulo}>Viaja a donde quieras a buen precio</p>
+        <p className={styles.titulo} onClick={removeUserToken}>Viaja a donde quieras a buen precio</p>
         <div className={styles.buttons}>
         <Link to="/users">
           <button id={styles.register} name="register">
