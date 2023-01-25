@@ -35,12 +35,21 @@ import { Request } from "../../utils/apiWrapper";
                                 password:data.password
                             }
                             console.log(body)
-                        let res = await Request("/auth/login","POST",body)
+                            const getJWT = () => {
+                                return localStorage.getItem("jwtToken");
+                              };
+                          
+                              let headers = {
+                                Authorization: `Bearer ${getJWT()}`,
+                              };
+                        let res = await Request("/auth/login","POST",body, { headers })
         
                         if(res?.error){
                             alert(res.message)
                         }else{
                           alert("estas dentro")
+                          localStorage.setItem("Token", res.jwtToken);
+      console.log(res.jwtToken);
                           navigate("/")
                         }       
     }
@@ -48,7 +57,7 @@ import { Request } from "../../utils/apiWrapper";
     <div className= "h-screen bg-carretera bg-contain bg-no-repeat bg-[length:100%_100%]">
         <div className="h-screen flex items-center justify-center lg:h-screen flex items-center ml-7">
         <form onSubmit={handleSubmit(LoginSubmit)} className="shadow-lg border-solid border-black bg-white flex flex-col flex items-center justify-center h-80 w-1/4 rounded-2xl bg-cover">
-        <h3 className="mt-2">Login</h3>
+        <h3 className="mt-2" onClick={LoginSubmit}>Login</h3>
             <input {...register("email", {required: true,validate:{invalid: v=> isValidEmail(v)===true}})} placeholder="Email" className="w-9/12 flex  items-center justify-center"/>
             {errors.email && errors.email.type==="invalid" && "Email no válido"}
             {errors.email?.type === "required" && "Email es obligatorio"}
