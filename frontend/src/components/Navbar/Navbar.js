@@ -32,7 +32,7 @@ const navigate=useNavigate()
                       </div>
                     </div>)}
                     {getUserToken() && (   <div className={styles.dropdown}>
-                      <div className={styles.imgRedonda}>Hola</div>
+                      <div className={styles.imgRedonda}>{getUserToken().charAt(0).toUpperCase()}</div>
                       <div className={styles.dropdownContent}>
                       <p onClick={logOut}>Logout</p>
                       </div>
