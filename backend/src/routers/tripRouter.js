@@ -1,13 +1,14 @@
 const express = require ('express');
 const tripRouter = express.Router();
 const tripControllers = require ("../controllers/trip.js");
+const { jwtTokenVerify } = require('../Middleware/jwtMiddleware.js');
 const validateTripInput = require ('../Middleware/tripMiddleware.js');
 
-tripRouter.get("/trips", tripControllers.getAll)
-tripRouter.post("/trips",validateTripInput, tripControllers.createTrip)
-tripRouter.get("/trips/:id",tripControllers.getTripById)
-tripRouter.delete("/trips/:id",tripControllers.deleteTrip)
-tripRouter.put("/trips/:id",tripControllers.updatedTrip)
+tripRouter.get("/trips", jwtTokenVerify, tripControllers.getAll)
+tripRouter.post("/trips",jwtTokenVerify, validateTripInput, tripControllers.createTrip)
+tripRouter.get("/trips/:id",jwtTokenVerify, tripControllers.getTripById)
+tripRouter.delete("/trips/:id",jwtTokenVerify, tripControllers.deleteTrip)
+tripRouter.put("/trips/:id",jwtTokenVerify, tripControllers.updatedTrip)
 tripRouter.get("/trips/origin/:origin",tripControllers.getTripByOrigin)
 //tripRouter.get("/trips/find/:origin/:originDate/:destination/:seats",tripControllers.findTrip)
 tripRouter.post("/trips/find", tripControllers.findTrip)

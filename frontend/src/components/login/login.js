@@ -1,12 +1,15 @@
 
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import { Link,useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import ConfigIcon from "../IconConfig/iconsize_small";
 import { AiOutlineEye} from "react-icons/ai"
 import { Request } from "../../utils/apiWrapper";
+import { AuthContext } from "../../context/AuthContext";
+import { setStorageObject } from "../../utils/storage";
 
- export const Login = () =>{
+ export const Login = (props) =>{
+    const { token, saveToken}=useContext(AuthContext)
     const navigate = useNavigate();
     const { register, handleSubmit,formState: { errors }} = useForm();
     const [passview,setPassview]=useState(false)
@@ -48,6 +51,13 @@ import { Request } from "../../utils/apiWrapper";
                         if(res?.error){
                             alert(res.message)
                         }else{
+                          if (res.jwtToken){
+                            console.log(res);
+                            setStorageObject("user-session",res);    
+                            saveToken(res.jwtToken)
+                            console.log(res.jwtToken);
+                            console.log(token);
+                          }  
                           alert("estas dentro")
                           localStorage.setItem("Token", res.jwtToken);
       console.log(res.jwtToken);

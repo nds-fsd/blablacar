@@ -1,9 +1,23 @@
 import { Link } from "react-router-dom";
 import styles from "./home.module.css";
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import TripSearchBar from "../TripSearchBar/tripSearchBar";
+import { AuthContext } from "../../context/AuthContext";
+import { getStorageObject } from "../../utils/storage";
 import {removeUserToken} from "../../utils/storage"
 const Home = () => {
+  const {token, saveToken}=useContext(AuthContext)
+useEffect(()=>{
+  console.log(token);
+  if (!token){
+const sessiontoken = getStorageObject("user-session")
+if (sessiontoken){
+  saveToken(sessiontoken.jwtToken)
+  console.log(token);
+}
+}
+})
+
   return (
     <>
       <div className={styles.foto}>
