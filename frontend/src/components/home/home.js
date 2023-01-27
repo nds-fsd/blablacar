@@ -4,6 +4,7 @@ import React, { useContext, useEffect } from "react";
 import TripSearchBar from "../TripSearchBar/tripSearchBar";
 import { AuthContext } from "../../context/AuthContext";
 import { getStorageObject } from "../../utils/storage";
+import {removeUserToken} from "../../utils/storage"
 const Home = () => {
   const {token, saveToken}=useContext(AuthContext)
 useEffect(()=>{
@@ -20,7 +21,7 @@ if (sessiontoken){
   return (
     <>
       <div className={styles.foto}>
-        <p className={styles.titulo}>Viaja a donde quieras a buen precio</p>
+        <p className={styles.titulo} onClick={removeUserToken}>Viaja a donde quieras a buen precio</p>
         <div className={styles.buttons}>
         <Link to="/users">
           <button id={styles.register} name="register">

@@ -38,7 +38,15 @@ import { setStorageObject } from "../../utils/storage";
                                 password:data.password
                             }
                             console.log(body)
-                        let res = await Request("/auth/login","POST",body)
+
+                            const getJWT = () => {
+                                return localStorage.getItem("jwtToken");
+                              };
+                          
+                              let headers = {
+                                Authorization: `Bearer ${getJWT()}`,
+                              };
+                        let res = await Request("/auth/login","POST",body, { headers })
         
                         if(res?.error){
                             alert(res.message)
@@ -51,6 +59,8 @@ import { setStorageObject } from "../../utils/storage";
                             console.log(token);
                           }  
                           alert("estas dentro")
+                          localStorage.setItem("Token", res.jwtToken);
+      console.log(res.jwtToken);
                           navigate("/")
                         }       
     }
@@ -58,17 +68,17 @@ import { setStorageObject } from "../../utils/storage";
     <div className= "h-screen bg-carretera bg-contain bg-no-repeat bg-[length:100%_100%]">
         <div className="h-screen flex items-center justify-center lg:h-screen flex items-center ml-7">
         <form onSubmit={handleSubmit(LoginSubmit)} className="shadow-lg border-solid border-black bg-white flex flex-col flex items-center justify-center h-80 w-1/4 rounded-2xl bg-cover">
-        <h3 className="mt-2">Login</h3>
+        <h3 className="mt-2" onClick={LoginSubmit}>Login</h3>
             <input {...register("email", {required: true,validate:{invalid: v=> isValidEmail(v)===true}})} placeholder="Email" className="w-9/12 flex  items-center justify-center"/>
             {errors.email && errors.email.type==="invalid" && "Email no válido"}
             {errors.email?.type === "required" && "Email es obligatorio"}
-            <div className="w-full flex  items-center justify-center">
+            <div className="w-full flex  items-center justify-center w-9/12">
             <input {...register("password", {required: true,validate:{invalid: v=> isValidPassword(v)===true} })} placeholder="password"  className="w-9/12 ml-8 flex  items-center justify-center  " type={passview?"text":"password"}/>
             <ConfigIcon><AiOutlineEye className="ml-2" onClick={changePassview}/></ConfigIcon>
             </div>
             {errors.password && errors.password.type==="invalid" && "Password debe contener 1 mayúscula, 1 dígito y un carácter especial"}
             {errors.password?.type === "required" && "la password es obligatoria"}
-            <div className="flex justify-end w-72 mb-4">
+            <div className="w-full flex justify-end w-1/4 mb-4 mr-12">
                         <Link to="/users">Registrarse</Link>
             </div>
             <input type="submit" className="w-1/4 bg-orange text-white hover:bg-orangeHover" />

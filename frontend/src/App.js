@@ -14,7 +14,7 @@ import Navbar from './components/Navbar/Navbar';
 import { AuthContextProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import React from 'react';
-
+import TripSearchBar from './components/TripSearchBar/tripSearchBar';
 function App(props) {
   return (
     <div>
@@ -32,6 +32,8 @@ function App(props) {
           <Route path="users/list" element={<ProtectedRoute/>}>
             <Route path="" element={<UsersList />}/>
           </Route>
+          <Route path="users/list" element={<UsersList />} />
+          <Route path="search" element={<TripSearchBar />} />
           <Route path="*" element={<ErrorForm />} />
           
       </Routes>
