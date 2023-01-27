@@ -10,6 +10,7 @@ import {FindUser} from './components/findUser/findUser';
 import { TripList } from "./components/ListTrips/ListTrips";
 import { UsersList } from "./components/ListUsers/ListUsers";
 import Navbar from './components/Navbar/Navbar';
+import TripSearchBar from './components/TripSearchBar/tripSearchBar';
 function App(props) {
   return (
     <div>
@@ -22,7 +23,9 @@ function App(props) {
           <Route path="trips/searchresults" element={<FindTrip  />}/>
           <Route path="error" element={<ErrorForm />}/>
           <Route path="users/list" element={<UsersList />} />
+          <Route path="search" element={<TripSearchBar />} />
           <Route path="*" element={<ErrorForm />} />
+          
       </Routes>
       <Outlet />
     </div>
