@@ -12,7 +12,9 @@ export const ProtectedRoute = () => {
         
     const sessiontoken = getStorageObject("user-session")
     if (!sessiontoken){
-        navigate("/login")}
+        navigate("/login")
+        return
+      }
       saveToken(sessiontoken.jwtToken)
       
       console.log(token);
