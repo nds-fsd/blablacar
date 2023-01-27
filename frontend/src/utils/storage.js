@@ -1,3 +1,4 @@
+import { json } from "react-router-dom";
 
 export const getStorageObject = (key) => {
 	 const item = localStorage.getItem(key);
@@ -13,8 +14,7 @@ export const setStorageObject = (key, object) => {
 
 export const deleteStorageObject = (key) => {
 	localStorage.removeItem(key);
-=======
-import { json } from "react-router-dom";
+}
 
 export const getUserToken = () => {
     const session = localStorage.getItem('userToken');
