@@ -35,6 +35,7 @@ import { Request } from "../../utils/apiWrapper";
                                 password:data.password
                             }
                             console.log(body)
+
                             const getJWT = () => {
                                 return localStorage.getItem("jwtToken");
                               };
@@ -61,13 +62,13 @@ import { Request } from "../../utils/apiWrapper";
             <input {...register("email", {required: true,validate:{invalid: v=> isValidEmail(v)===true}})} placeholder="Email" className="w-9/12 flex  items-center justify-center"/>
             {errors.email && errors.email.type==="invalid" && "Email no válido"}
             {errors.email?.type === "required" && "Email es obligatorio"}
-            <div className="w-full flex  items-center justify-center">
+            <div className="w-full flex  items-center justify-center w-9/12">
             <input {...register("password", {required: true,validate:{invalid: v=> isValidPassword(v)===true} })} placeholder="password"  className="w-9/12 ml-8 flex  items-center justify-center  " type={passview?"text":"password"}/>
             <ConfigIcon><AiOutlineEye className="ml-2" onClick={changePassview}/></ConfigIcon>
             </div>
             {errors.password && errors.password.type==="invalid" && "Password debe contener 1 mayúscula, 1 dígito y un carácter especial"}
             {errors.password?.type === "required" && "la password es obligatoria"}
-            <div className="flex justify-end w-72 mb-4">
+            <div className="w-full flex justify-end w-1/4 mb-4 mr-12">
                         <Link to="/users">Registrarse</Link>
             </div>
             <input type="submit" className="w-1/4 bg-orange text-white hover:bg-orangeHover" />

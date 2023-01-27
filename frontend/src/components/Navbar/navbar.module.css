@@ -91,3 +91,16 @@ nav{
     background-color: rgb(255, 227, 176);
     cursor:pointer;
   }
+.imgRedonda {
+    width:3rem;
+    height:3rem;
+    border-radius:150px;
+    background-color: rgb(255, 162, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    font-weight: bold;
+    
+}
+
