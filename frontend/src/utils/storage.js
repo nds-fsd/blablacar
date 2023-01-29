@@ -1,5 +1,3 @@
-import { json } from "react-router-dom";
-
 export const getStorageObject = (key) => {
 	 const item = localStorage.getItem(key);
 	if(item !== "undefined"){
@@ -15,15 +13,10 @@ export const setStorageObject = (key, object) => {
 export const deleteStorageObject = (key) => {
 	localStorage.removeItem(key);
 }
-
 export const getUserToken = () => {
-    const session = localStorage.getItem('userToken');
+    const session = getStorageObject('user-session');
     if (session) {
-        const data = JSON.parse(session)
-        return data.userObj.name
+		return session; 
     }
     return null;
 };
-export const removeUserToken = () =>{
-    localStorage.removeItem("userToken")
-}

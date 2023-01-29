@@ -37,12 +37,10 @@ import { setStorageObject } from "../../utils/storage";
                                 email:data.email,
                                 password:data.password
                             }
-                            console.log(body)
 
                             const getJWT = () => {
                                 return localStorage.getItem("jwtToken");
                               };
-                          
                               let headers = {
                                 Authorization: `Bearer ${getJWT()}`,
                               };
@@ -57,12 +55,14 @@ import { setStorageObject } from "../../utils/storage";
                             saveToken(res.jwtToken)
                             console.log(res.jwtToken);
                             console.log(token);
-                          }  
-                          alert("estas dentro")
-                          localStorage.setItem("Token", res.jwtToken);
-      console.log(res.jwtToken);
-                          navigate("/")
-                        }       
+                            navigate("/")
+                            alert("estas dentro")
+                            navigate("/") 
+                        }  
+                         
+                          
+                  
+        }       
     }
     return(
     <div className= "h-screen bg-carretera bg-contain bg-no-repeat bg-[length:100%_100%]">

@@ -2,14 +2,14 @@ import styles from "./navbar.module.css";
 import userLogo from "../assets/user.png"
 import { useNavigate } from "react-router-dom";
 import IconLogo from '../../components/svgIcons/iconLogo'
-import {getUserToken, removeUserToken} from "../../utils/storage"
+import {getUserToken,deleteStorageObject} from "../../utils/storage"
 
 const Navbar = ( ) => {
 const navigate=useNavigate()
   
    const logOut = () =>{
-    removeUserToken()
     navigate("/login")
+    deleteStorageObject("user-session")
   }
   return(
     
@@ -32,9 +32,10 @@ const navigate=useNavigate()
                       </div>
                     </div>)}
                     {getUserToken() && (   <div className={styles.dropdown}>
-                      <div className={styles.imgRedonda}>{getUserToken().charAt(0).toUpperCase()}</div>
+                      <div className={styles.imgRedonda}>{getUserToken().userObj.name.charAt(0).toUpperCase()}</div>
                       <div className={styles.dropdownContent}>
                       <p onClick={logOut}>Logout</p>
+                      <p>Perfil</p>
                       </div>
                     </div>)}
 
