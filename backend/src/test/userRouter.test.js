@@ -21,18 +21,21 @@ describe('Company router TEST', () => {
 
 
 
-    let company;
+    let user;
     describe('POST /users', () => {
         it('Can create company', async () => {
             const res = await fakeRequest.post('/users').send( {
                 name: 'Paulo',
                 surname: 'Dutra',
-                email: 'paulodutra@gmail.com'
+                email: 'paulodutra@gmail.com',
+                Birthday: new Date(),
+                treatment: 'Mr',
+                password: 'blablacar',
             });
             expect(res.status).toBe(201);
             expect(res.body.name).toBe('Paulo');
             expect(res.body.surname).toBe('Dutra');
-            company = res.body;
+            user = res.body;
         });
     });
 });

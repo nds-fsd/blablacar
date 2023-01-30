@@ -29,7 +29,7 @@ const usrPost= async (req, res) => {
     const newUser= new Users(receivedUser);
     await newUser.save()
   
-    res.status(201).json("El usuario "+newUser.name + " ha sido creada correctamente");
+    res.status(201).json(newUser);
 }catch{
     res.status(400).send({message:"Email already exists"})}
 };
