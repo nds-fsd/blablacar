@@ -56,9 +56,7 @@ import { setStorageObject } from "../../utils/storage";
                             console.log(res.jwtToken);
                             console.log(token);
                             navigate("/")
-                            alert("estas dentro")
-                            navigate("/") 
-                        }  
+                            }  
                          
                           
                   
