@@ -20,11 +20,13 @@ if (req.user) {
 };
 
 const jwtTokenVerify = async(req, res, next) => {
-  const authHeader = req.headers["authorization"];
+  //const authHeader = req.headers["authorization"];
+  const authHeader = req.headers.authorization
   const secret = process.env.JWT_SECRET
   console.log(authHeader);
   //if (!authHeader) return res.status(401).json({error: "Unauthorized"});
-  let header = authHeader.split(" ")
+  let header = authHeader.split(" ")[1]
+  
   console.log(header);
   // Sin token, devolvemos 401
   let token=header[1]

@@ -36,7 +36,7 @@ const usrPost= async (req, res) => {
   
 //TODO:añadir middlewares, hablar con Paulo
  const usrGetOne=async(req, res) => {
-    const getUsr=await Users.findById(req.params.id)
+    const getUsr=await Users.findById(req.params.id).populate("idTrips")
     res.json(getUsr);
 };
 
@@ -54,5 +54,19 @@ const usrDelete=async(req, res) => {
     //o mejor crear campo "inactive" para borrar temporalmente
     res.json(delUsr)    
 };
+const addTripUser = async (req, res) => {
+    const trip = req.body._id;
+    const id = req.params.id
+    try {
+        if (!id) return res.status(404).json();
+        const user = await Users.findById(id)
+        if (user.idTrips.includes(trip)) return res.status(400).json({ message: "ya existe el viaje" })
+        user.idTrips.push(trip)
+        await user.save()
+        return res.status(200).json(user)
+    } catch (e) {
+        res.status(500).json({ message: e })
+    }
+}
 
-module.exports={usrDelete,usrGetAll,usrGetOne,usrPost,usrPut}
+module.exports={usrDelete,usrGetAll,usrGetOne,usrPost,usrPut, addTripUser}

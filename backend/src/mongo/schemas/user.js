@@ -17,6 +17,10 @@ const userSchema = new Schema({
     ValidatedID:{type:Number, min:1, max:3, default:1},
     RGPDaccepted:Boolean,
     password:{type: String},
+    idTrips: [{
+        type: Schema.Types.ObjectId,
+        ref: "Trip"
+     }]
 });
 
 userSchema.pre('save',  function(next) {
