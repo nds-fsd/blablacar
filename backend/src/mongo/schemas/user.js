@@ -20,6 +20,10 @@ const userSchema = new Schema({
     idTrips: [{
         type: Schema.Types.ObjectId,
         ref: "Trip"
+     }],
+    bookedTrips: [{
+        type: Schema.Types.ObjectId,
+        ref: "Booking"
      }]
 });
 

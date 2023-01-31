@@ -1,5 +1,6 @@
 const Users = require ("../mongo/schemas/user.js");
 const Bcrypt = require ('bcryptjs');
+const Booking = require("../mongo/schemas/booking.js");
 
 const usrGetAll=async (req, res) => {
     const usuarios = await Users.find();
@@ -69,4 +70,23 @@ const addTripUser = async (req, res) => {
     }
 }
 
-module.exports={usrDelete,usrGetAll,usrGetOne,usrPost,usrPut, addTripUser}
+const bookTrip = async(req,res) =>{
+    const {idUser, idTrip} = req.params;
+    // return res.status(201).json({message: `${idUser},${idTrip}`});
+    try{
+        if(!idUser) return res.status(400).json({message: "No hay usuario establecido"});
+        if(!idTrip) return res.status(400).json({message: "No hay viaje establecido"});
+        const user = await Users.findById(idUser);
+        const trip = await Trip.findById(idTrip);
+        if (Booking.passenger.includes(idUser) || Booking.bookedtrip.includes(idTrip)) return res.status(400).json({ message: "Ya tienes reservado el asiento" });
+        
+        const getBooking = await Booking.save().populate(["idTrips","bookedTrips"])
+        
+    }
+    catch (e){
+        res.status(500).json({ message: e })
+    }
+
+}
+
+module.exports={usrDelete,usrGetAll,usrGetOne,usrPost,usrPut, addTripUser, bookTrip}
