@@ -1,6 +1,8 @@
 const Users = require ("../mongo/schemas/user.js");
 const Bcrypt = require ('bcryptjs');
-const Booking = require("../mongo/schemas/booking.js");
+const Booking  =  require("../mongo/schemas/booking.js");
+const Trip  =  require("../mongo/schemas/trip.js");
+
 
 const usrGetAll=async (req, res) => {
     const usuarios = await Users.find();
@@ -37,7 +39,8 @@ const usrPost= async (req, res) => {
   
 //TODO:añadir middlewares, hablar con Paulo
  const usrGetOne=async(req, res) => {
-    const getUsr=await Users.findById(req.params.id).populate("idTrips")
+    const getUsr=await Users.findById(req.params.id).populate("idTrips bookedTrips")
+    //.populate("bookedTrips")
     res.json(getUsr);
 };
 
@@ -71,16 +74,23 @@ const addTripUser = async (req, res) => {
 }
 
 const bookTrip = async(req,res) =>{
-    const {idUser, idTrip} = req.params;
+    const {idUser,idTrip} = req.params
     // return res.status(201).json({message: `${idUser},${idTrip}`});
     try{
         if(!idUser) return res.status(400).json({message: "No hay usuario establecido"});
+        console.log("idUser",idUser)
         if(!idTrip) return res.status(400).json({message: "No hay viaje establecido"});
+        console.log("idTrip",idTrip)
         const user = await Users.findById(idUser);
         const trip = await Trip.findById(idTrip);
-        if (Booking.passenger.includes(idUser) || Booking.bookedtrip.includes(idTrip)) return res.status(400).json({ message: "Ya tienes reservado el asiento" });
-        
-        const getBooking = await Booking.save().populate(["idTrips","bookedTrips"])
+            const book = new Booking({
+                passenger: user,
+                bookedTrip: trip,
+            });
+            user.bookedTrips.push(book)
+            await book.save()
+            await user.save()
+            return res.status(200).json(user)
         
     }
     catch (e){
@@ -88,5 +98,12 @@ const bookTrip = async(req,res) =>{
     }
 
 }
+const bookGetAll=async (req, res) => {
+    const book = await Booking.find();
+    console.log(book);
+    res.json(book);
+    //devolver todos los usuarios que hay en el schema users de MongoDB en formato JSON.
+};
 
-module.exports={usrDelete,usrGetAll,usrGetOne,usrPost,usrPut, addTripUser, bookTrip}
+
+module.exports={usrDelete,usrGetAll,usrGetOne,usrPost,usrPut, addTripUser, bookTrip,bookGetAll}
