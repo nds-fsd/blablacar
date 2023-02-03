@@ -29,13 +29,19 @@ const navigate=useNavigate()
                       <div className={styles.dropdownContent}>
                       <p onClick={() => navigate("/login")}>Login</p>
                       <p onClick={() => navigate("/users")}>Registrarse</p>
+
                       </div>
                     </div>)}
                     {getUserToken() && (   <div className={styles.dropdown}>
                       <div className={styles.imgRedonda}>{getUserToken().userObj.name.charAt(0).toUpperCase()}</div>
                       <div className={styles.dropdownContent}>
-                      <p onClick={logOut}>Logout</p>
+                     
+                      
+                      <p>Tus Viajes</p>
+                      <p>Mensajes</p>
                       <p>Perfil</p>
+                      <p onClick={logOut}>Logout</p>
+
                       </div>
                     </div>)}
 
