@@ -65,20 +65,6 @@ const usrDelete=async(req, res) => {
     //o mejor crear campo "inactive" para borrar temporalmente
     res.json(delUsr)    
 };
-const addTripUser = async (req, res) => {
-    const trip = req.body._id;
-    const id = req.params.id
-    try {
-        if (!id) return res.status(404).json();
-        const user = await Users.findById(id)
-        if (user.idTrips.includes(trip)) return res.status(400).json({ message: "ya existe el viaje" })
-        user.idTrips.push(trip)
-        await user.save()
-        return res.status(200).json(user)
-    } catch (e) {
-        res.status(500).json({ message: e })
-    }
-}
 
 const bookTrip = async(req,res) =>{
     const {idUser,idTrip} = req.params
@@ -113,4 +99,4 @@ const bookGetAll=async (req, res) => {
 };
 
 
-module.exports={usrDelete,usrGetAll,usrGetOne,usrPost,usrPut, addTripUser, bookTrip,bookGetAll}
+module.exports={usrDelete,usrGetAll,usrGetOne,usrPost,usrPut, bookTrip,bookGetAll}

@@ -1,4 +1,5 @@
 const Trip = require ("../mongo/schemas/trip.js");
+const Users = require ("../mongo/schemas/user");
 
 const getAll = async (req, res) => {
    const allTrips = await Trip.find();
@@ -10,8 +11,22 @@ const createTrip = async(req,res) =>{
     req.body.originDate = new Date().toLocaleDateString('es-ES');
     req.body.destinationDate = new Date().toLocaleDateString('es-ES');
     await newTrip.save();
-    res.status(201).json(newTrip);
+    res.locals.body = newTrip;
+    const trip = res.locals.body;
+    const id = req.params.id
+    console.log(trip)
+    try {
+        if (!id) return res.status(404).json();
+        const user = await Users.findById(id)
+        if (user.idTrips.includes(trip)) return res.status(400).json({ message: "ya existe el viaje" })
+        user.idTrips.push(trip)
+        await user.save()
+        return res.status(200).json(user)
+    } catch (e) {
+        res.status(500).json({ message: e })
+    }
 }
+
 
 const getTripById = async(req,res) =>{
     try{

@@ -14,7 +14,6 @@ userRouter.post('/users', body('email').normalizeEmail().trim(), check('email').
 userRouter.get('/users/:id', UsrControllers.usrGetOne);
 userRouter.get('/users/:idUser/booking/:idTrip', UsrControllers.bookTrip);
 userRouter.get('/booking', UsrControllers.bookGetAll);
-userRouter.post('/users/:id/newtrip',UsrControllers.addTripUser);
 userRouter.put('/users/:id', body('email').normalizeEmail().trim(), check('email').isEmail(), UsrControllers.usrPut);
 userRouter.delete('/users/:id', UsrControllers.usrDelete);
 
