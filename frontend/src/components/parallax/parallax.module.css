@@ -1,0 +1,357 @@
+.navigationBar{
+    height: 70px;
+    width: 100%;
+    background-color: white;
+    font-family: 'Raleway', sans-serif;
+    font-size: 25px;
+    color: rgb(255, 94, 0);
+}
+
+.cabecera{
+    align-self: center;
+
+}
+
+#goButton{
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+    display: flex;
+}
+
+.ParallaxImage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-attachment: fixed;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 50px;
+}
+
+.ParallaxImage h1{
+    color:rgb(255, 94, 0);
+}
+.ParallaxImage h3 {
+  font-weight: 700;
+  font-size: 76px;
+  text-align: center;
+  text-transform: uppercase;
+  color:rgb(255, 94, 0);
+}
+
+
+.ParallaxImage_2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-attachment: fixed;
+    background-position: 53% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: 3em;
+    margin-bottom: 3em;
+    
+}
+
+
+.ParallaxImage_2 h3 {
+  font-weight: 700;
+  font-size: 76px;
+  text-align: center;
+  text-transform: uppercase;
+  color:rgb(255, 94, 0);
+}
+
+.bg1 {
+    background-position: 90% 50%;
+  background-image: url("../assets/nature-road.jpg");
+  
+}
+.bg2 {
+  background-color: #FFF;
+}
+.bg3 {
+  background-image: url("../assets/road-trip.jpg");
+  
+}
+
+
+/* Content Parallax Section*/
+.ParallaxContent {
+    
+    background: none repeat scroll 0 0 ;
+    padding-top: 42px;
+    padding-bottom: 42px;
+    color:#FFF;	
+} 
+.ParallaxContent h3{
+	color:rgb(255, 94, 0);	
+	text-align:center;
+}
+
+
+/* Video Parallax Section*/
+.ParallaxVideo{ 
+    height: 60px;
+	padding-bottom: 50px;
+    padding-top: 50px; 
+}
+.ParallaxVideo video{ 
+    width: 100%;
+    min-height: 100%;
+    position: fixed;
+	top:0;
+	z-index: -9999;
+    opacity:0.7
+}
+.container h3 {
+    color: #fff;
+    font-size: 3em;
+    font-weight:500;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.wrapper{
+	margin:0 auto;	
+}
+
+.foto{
+
+    width: 100%;
+    height: 400px;
+    background-image: url(../assets/coches-conduciendo-carretera-montanas-rocosas-dibujos-animados_107791-14614.webp); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid black;
+    
+}
+
+
+.buttons{
+    display: flex;
+    flex-wrap: wrap; 
+    margin-top: 320px; 
+    width: 100%;
+    height: 70px;
+    justify-content: center;
+
+}
+#register{
+    width: 200px;
+    height: 60px;
+    /* background-color:coral; */
+    background-color:white;
+    border-radius: 15px;
+    /* border:2px solid rgb(255, 94, 0); */
+    /* color: white; */
+    border: 0px;
+    color: rgb(41, 1, 1);
+    font-size: 18px;
+    /* letter-spacing: 3px; */
+    font-family: 'Raleway', sans-serif;
+
+}
+#log_in{
+    width: 200px;
+    height: 60px;
+    /* background-color:coral; */
+    background-color:white;
+    border-radius: 15px;
+    /* border:2px solid rgb(255, 94, 0); */
+    margin-left: 50px; 
+    /* color: white; */
+    border: 0px;
+    color: rgb(41, 1, 1);
+    font-size: 18px;
+    /* letter-spacing: 3px; */
+    font-family: 'Raleway', sans-serif;
+    
+    
+}
+#log_in:hover{
+    background-color: rgb(249, 218, 187);
+    cursor: pointer;
+}
+#register:hover{
+    background-color: rgb(249, 218, 187);
+    cursor: pointer;
+}
+
+.titulo{
+    position: absolute;
+    width: 100%;
+    color: hsl(0, 100%, 100%);
+    font-size: 55px;
+    font-family: 'Raleway', sans-serif;
+    margin-top: 60px;
+    text-align: center;
+    letter-spacing: 3px;
+    /* -webkit-text-stroke: 1px rgb(189, 186, 185);  */
+}
+
+.buscarViajeOut{
+    display: flex;
+    flex-wrap: wrap; 
+    /* border: 1px solid black;  */
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.buscarViajeIn{
+    display: flex;
+    width:fit-content;
+    width: fit-content;
+    height:fit-content;
+    justify-content: center;
+    border-radius: 15px;
+    border:2px solid rgb(255, 94, 0);
+    margin-top: 5px;
+
+}
+
+#origen{
+    height: 50px;
+    font-size: 15px;
+    font-family: 'Raleway', sans-serif;
+    border: 0px ;
+    color: rgb(41, 1, 1);
+    border-radius: 12px 0px 0px 12px;
+    margin: 0px;
+
+}
+
+#destino{
+    height: 50px;
+    font-size: 15px;
+    font-family: 'Raleway', sans-serif;
+    border: 0px;
+    margin: 0px;
+    border-radius: 0px 0px 0px 0px;
+}
+#date{
+    width: 100%;
+    height: 50px;
+    font-size: 15px;
+    font-family: 'Raleway', sans-serif;
+    border: 0px;
+    margin: 0px;
+    border-radius: 0px 12px 12px 0px;
+}
+#number{
+    width: 75px;
+    height: 50px;
+    font-size: 20px;
+    font-family: 'Raleway', sans-serif;
+    /* border: 0px; */
+    border:1.5px solid rgb(255, 94, 0);
+    border-radius: 12px 0px 0px 12px;
+    margin: 0px;
+}
+#buscar{
+    height: 50px;
+    width: 100px;
+    font-size: 20px;
+    font-family: 'Raleway', sans-serif;
+    border: 0px;
+    border-radius: 0px 12px 12px 0px;
+    background-color: rgb(255, 94, 0);
+    margin: 0px;
+}
+#buscar:hover{
+    background-color: rgb(249, 218, 187);
+    cursor: pointer;
+}
+
+.ventajas{
+    display: flex;
+    justify-content: center;
+    font-family: 'Raleway', sans-serif;
+    font-size: 15px;
+    margin-top: 40px;
+    scroll-behavior: auto;
+}
+.p1{
+    width: 30%;
+    color: black;
+    margin-left: 3em;
+
+}
+.p2{
+    width: 30%;
+    color: black;
+    margin-left: 3em;
+
+}
+.p3{
+    width: 30%;
+    color: black;
+    margin-left: 3em;
+
+    /* margin-right: 50px; */
+
+}
+.importantP{
+    color: rgb(255, 94, 0);
+    font-size: 18px;
+}
+#date:hover{
+    cursor: pointer;
+}
+
+.titulo1{
+    font-family: 'Raleway', sans-serif;
+    align-self: center;
+    font-size: x-large;
+    color: black;
+}
+
+.userButton{
+    display:flex;
+    width: 100%;
+    height:10%;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .container {
+      width: 750px; 
+    }
+   
+  }
+  @media (min-width: 992px) {
+    .container {
+      width: 970px;
+    }
+  }
+  @media (min-width: 1200px) {
+    .container {
+      width: 1024px;
+    }
+  }
+  
+  .pfooter{
+    font-size: medium;
+    width: 100%;
+    background-color: rgb(250, 230, 185);
+    border-top: 1px solid rgb(255, 94, 0);
+    height: auto; 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:space-around;
+    justify-items: center;
+  }
+
+  .subFooter{
+    color: rgb(255, 94, 0);
+    width: 30%;
+    padding-top: 3em;
+  }

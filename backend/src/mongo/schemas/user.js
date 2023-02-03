@@ -17,6 +17,7 @@ const userSchema = new Schema({
     ValidatedID:{type:Number, min:1, max:3, default:1},
     RGPDaccepted:Boolean,
     password:{type: String},
+    picUrl:{type: String},
 });
 
 userSchema.pre('save',  function(next) {
