@@ -1,0 +1,17 @@
+.userLogo{
+    height:3rem;
+    width: 3rem;
+    cursor: pointer;
+}
+.imgRedonda {
+    width:2em;
+    height:2em;
+    border-radius:150px;
+    background-color: rgb(255, 162, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    font-weight: bold;
+    
+}

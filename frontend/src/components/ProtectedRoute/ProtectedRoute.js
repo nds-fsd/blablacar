@@ -1,13 +1,13 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import { useContext, useEffect } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import { useContext, useEffect, useState } from "react";
 import { getStorageObject } from "../../utils/storage";
 
 export const ProtectedRoute = () => {
+    const [token,setToken]=useState()
     const navigate=useNavigate()
-    const {token, saveToken}=useContext(AuthContext)
+    
     useEffect(()=>{
-      console.log(token);
+      
       if (!token){
         
     const sessiontoken = getStorageObject("user-session")
@@ -15,7 +15,7 @@ export const ProtectedRoute = () => {
         navigate("/login")
         return
       }
-      saveToken(sessiontoken.jwtToken)
+      setToken(sessiontoken.jwtToken)
       
       console.log(token);
     }
