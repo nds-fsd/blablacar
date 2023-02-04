@@ -2,10 +2,9 @@ import { Link } from "react-router-dom";
 import styles from "./home.module.css";
 import React, { useContext, useEffect } from "react";
 import TripSearchBar from "../TripSearchBar/tripSearchBar";
-import { AuthContext } from "../../context/AuthContext";
+
 import { getStorageObject } from "../../utils/storage";
 const Home = () => {
-  const {token, saveToken}=useContext(AuthContext)
 useEffect(()=>{
   console.log(token);
   if (!token){

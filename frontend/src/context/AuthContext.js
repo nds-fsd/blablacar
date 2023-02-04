@@ -1,15 +1,15 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useRef, useState } from 'react';
 
 export const AuthContext = createContext();
 
 const initialStateUser = {};
-const inistialStateToken = undefined;
+const initialStateToken = undefined;
 
 
 export const AuthContextProvider = ({ children }) => {
-  const [token, setToken] = useState(inistialStateToken);
+  const [token, setToken] = useState(initialStateToken);
   const [user, setUser] = useState(initialStateUser);
-
+  
   const saveToken = (token) => {
     setToken(token);
   };
@@ -18,9 +18,12 @@ export const AuthContextProvider = ({ children }) => {
     setUser(user);
   };
 
+  
+
   const resetAuth = () => {
       setUser(initialStateUser);
-      setToken(inistialStateToken);
+      setToken(initialStateToken);
+     
   };
 
   
@@ -31,7 +34,7 @@ export const AuthContextProvider = ({ children }) => {
     user,
     saveToken,
     saveUser,
-    resetAuth
+    resetAuth,
   };
 
   return (
