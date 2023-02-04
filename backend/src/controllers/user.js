@@ -77,7 +77,7 @@ const bookTrip = async(req,res) =>{
         const user = await Users.findById(idUser);
         const trip = await Trip.findById(idTrip);
         if(idUser == trip.owner) return res.status(400).json({message: "No puedes reservar en tu propio viaje!"})
-
+        if(trip.availableSeats === 0) return res.status(400).json({message: "No hay plazas en este viaje!"})
             const book = new Booking({
                 passenger: idUser,
                 bookedTrip: idTrip,
@@ -93,9 +93,7 @@ const bookTrip = async(req,res) =>{
             updatedTrip.availableSeats = updatedTrip.seats - updatedTrip.bookings.length;
             await updatedTrip.save()
 
-            res.status(201).json(book)
-
-        
+            res.status(201).json(book)   
     }
     catch (e){
         res.status(500).json({ message: e })

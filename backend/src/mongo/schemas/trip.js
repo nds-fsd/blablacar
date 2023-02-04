@@ -1,7 +1,10 @@
 const { Schema, model } = require('mongoose');
 
 const tripSchema = new Schema({
-    owner: {type: String},
+    owner:[{
+        type: Schema.Types.ObjectId,
+        ref: "User"
+     }],
     origin:  {type: String},
     originDate: {type:Date},
     destination:  {type: String},

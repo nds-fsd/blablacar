@@ -2,7 +2,10 @@ const Trip = require ("../mongo/schemas/trip.js");
 const Users = require ("../mongo/schemas/user");
 
 const getAll = async (req, res) => {
-   const allTrips = await Trip.find()
+   const allTrips = await Trip.find().populate([{
+    path: 'owner',select: 'name treatment surname email',
+    model: 'Users',
+}])
     res.status(200).json(allTrips)
 }
 
@@ -31,7 +34,10 @@ const createTrip = async(req,res) =>{
 
 const getTripById = async(req,res) =>{
     try{
-        const trip = await Trip.findById(req.params.id)
+        const trip = await Trip.findById(req.params.id).populate([{
+            path: 'owner',select: 'name treatment surname email',
+            model: 'Users',
+        }])
         .populate([{
             path: 'bookings',
             model: 'Booking',
