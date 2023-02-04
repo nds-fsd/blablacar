@@ -76,14 +76,24 @@ const bookTrip = async(req,res) =>{
         console.log("idTrip",idTrip)
         const user = await Users.findById(idUser);
         const trip = await Trip.findById(idTrip);
+        console.log("paso 1")
             const book = new Booking({
                 passenger: idUser,
                 bookedTrip: idTrip,
             });
             user.bookedTrips.push(book)
+            trip.bookings.push(book)
+
             await book.save()
             await user.save()
-            return res.status(200).json(user)
+            await trip.save()
+
+            const updatedTrip = await Trip.findById(idTrip);
+            updatedTrip.availableSeats = updatedTrip.seats - updatedTrip.bookings.length;
+            await updatedTrip.save()
+
+            res.status(201).json(book)
+
         
     }
     catch (e){
