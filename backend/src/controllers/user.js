@@ -76,7 +76,8 @@ const bookTrip = async(req,res) =>{
         console.log("idTrip",idTrip)
         const user = await Users.findById(idUser);
         const trip = await Trip.findById(idTrip);
-        console.log("paso 1")
+        if(idUser == trip.owner) return res.status(400).json({message: "No puedes reservar en tu propio viaje!"})
+
             const book = new Booking({
                 passenger: idUser,
                 bookedTrip: idTrip,
