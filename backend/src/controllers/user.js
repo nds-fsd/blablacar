@@ -39,7 +39,19 @@ const usrPost= async (req, res) => {
   
 //TODO:añadir middlewares, hablar con Paulo
  const usrGetOne=async(req, res) => {
-    const getUsr=await Users.findById(req.params.id) .populate("idTrips")
+    const getUsr=await Users.findById(req.params.id) 
+    .populate([{
+        path: 'idTrips',
+        model: 'Trip',
+        populate:  [
+            { path: 'bookings',
+              populate:  [
+                { path: 'passenger', select: 'name surname email'},
+              ],
+           
+            }
+          ],
+    }])
     .populate([{
         path: 'bookedTrips',
         model: 'Booking',
