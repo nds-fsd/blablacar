@@ -19,7 +19,6 @@ const createTrip = async(req,res) =>{
     await newTrip.save();
     res.locals.body = newTrip;
     const trip = res.locals.body;
-    console.log(trip)
     try {
         if (!id) return res.status(404).json();
         const user = await Users.findById(id);

@@ -56,7 +56,7 @@ const usrPost= async (req, res) => {
         path: 'bookedTrips',
         model: 'Booking',
         populate:  [
-            { path: 'passenger', select: 'name surname email'},
+            //{ path: 'passenger', select: 'name surname email'},
             { path: 'bookedTrip'},
           ],
     }])
@@ -78,46 +78,7 @@ const usrDelete=async(req, res) => {
     res.json(delUsr)    
 };
 
-const bookTrip = async(req,res) =>{
-    const {idUser,idTrip} = req.params
-    // return res.status(201).json({message: `${idUser},${idTrip}`});
-    try{
-        if(!idUser) return res.status(400).json({message: "No hay usuario establecido"});
-        console.log("idUser",idUser)
-        if(!idTrip) return res.status(400).json({message: "No hay viaje establecido"});
-        console.log("idTrip",idTrip)
-        const user = await Users.findById(idUser);
-        const trip = await Trip.findById(idTrip);
-        if(idUser == trip.owner) return res.status(400).json({message: "No puedes reservar en tu propio viaje!"})
-        if(trip.availableSeats === 0) return res.status(400).json({message: "No hay plazas en este viaje!"})
-            const book = new Booking({
-                passenger: idUser,
-                bookedTrip: idTrip,
-            });
-            user.bookedTrips.push(book)
-            trip.bookings.push(book)
-
-            await book.save()
-            await user.save()
-            await trip.save()
-
-            const updatedTrip = await Trip.findById(idTrip);
-            updatedTrip.availableSeats = updatedTrip.seats - updatedTrip.bookings.length;
-            await updatedTrip.save()
-
-            res.status(201).json(book)   
-    }
-    catch (e){
-        res.status(500).json({ message: e })
-    }
-
-}
-const bookGetAll=async (req, res) => {
-    const book = await Booking.find();
-    console.log(book);
-    res.json(book);
-    //devolver todos los usuarios que hay en el schema users de MongoDB en formato JSON.
-};
 
 
-module.exports={usrDelete,usrGetAll,usrGetOne,usrPost,usrPut, bookTrip,bookGetAll}
+
+module.exports={usrDelete,usrGetAll,usrGetOne,usrPost,usrPut}
