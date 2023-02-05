@@ -60,7 +60,7 @@ useEffect(()=>{
             <NavDropdown.Item href="/users">Regístrate</NavDropdown.Item></>)
             :
             (<>            
-            <NavDropdown.Item href={`/users/${userNameRef.current.userID}`}>Perfil</NavDropdown.Item>
+            <NavDropdown.Item href={`/profile`}>Perfil</NavDropdown.Item>
             <NavDropdown.Item onClick={logOut}>Cerrar Sesión</NavDropdown.Item>
             </>)
           }

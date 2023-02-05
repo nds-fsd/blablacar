@@ -13,6 +13,7 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import React from 'react';
 import TripSearchBar from './components/TripSearchBar/tripSearchBar';
 import Parallax from './components/parallax/parallax';
+import ProfileAccount from './components/ProfileAccount/ProfileAccount';
 
 
 function App(props) {
@@ -34,6 +35,9 @@ function App(props) {
           </Route>
           <Route path="users/list" element={<UsersList />} />
           <Route path="search" element={<TripSearchBar />} />
+          <Route path="profile" element={<ProtectedRoute/>}>
+            <Route path="" element={<ProfileAccount />}/>
+          </Route>
           <Route path="*" element={<ErrorForm />} />
       </Routes>
     </div>
