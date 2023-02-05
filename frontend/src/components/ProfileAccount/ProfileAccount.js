@@ -5,17 +5,59 @@ import styles from "./ProfileAccount.module.css";
 
 const LINKS = [
   {
-    text: 'Cambiar contraseña',
-    link: '/recovery'
-  },
-  {
     text: 'Opiniones dejadas',
     link: '/feedback'
   },
   {
-    text: 'Notificaciones',
+    text: 'Notificaciones, Correos electrónicos y SMS',
     link: '/notifications'
   },
+  {
+    text: 'Contraseña',
+    link: '/password'
+  },
+
+  {
+    text: 'Dirección postal',
+    link: '/direction'
+  },
+  {
+    text: 'Transferencias',
+    link: '/transfers'
+  },
+
+  {
+    text: 'Preferencias de cobro',
+    link: '/billingpreferences'
+  },
+
+  {
+    text: 'Pagos y reembolsos',
+    link: '/payments'
+  },
+  {
+    text: 'Mis promociones',
+    link: '/promotions'
+  },
+
+  {
+    text: 'Protección de datos',
+    link: '/dataprotection'
+  },
+
+  {
+    text: 'Protección de datos',
+    link: '/dataprotection'
+  },
+
+  {
+    text: 'Cerrar sessión',
+    link: '/logout'
+  },
+
+
+
+
 ]
 
 
