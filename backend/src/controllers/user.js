@@ -1,5 +1,8 @@
 const Users = require ("../mongo/schemas/user.js");
 const Bcrypt = require ('bcryptjs');
+const Booking  =  require("../mongo/schemas/booking.js");
+const Trip  =  require("../mongo/schemas/trip.js");
+
 
 const usrGetAll=async (req, res) => {
     const usuarios = await Users.find();
@@ -36,7 +39,27 @@ const usrPost= async (req, res) => {
   
 //TODO:añadir middlewares, hablar con Paulo
  const usrGetOne=async(req, res) => {
-    const getUsr=await Users.findById(req.params.id)
+    const getUsr=await Users.findById(req.params.id) 
+    .populate([{
+        path: 'idTrips',
+        model: 'Trip',
+        populate:  [
+            { path: 'bookings',
+              populate:  [
+                { path: 'passenger', select: 'name surname email'},
+              ],
+           
+            }
+          ],
+    }])
+    .populate([{
+        path: 'bookedTrips',
+        model: 'Booking',
+        populate:  [
+            //{ path: 'passenger', select: 'name surname email'},
+            { path: 'bookedTrip'},
+          ],
+    }])
     res.json(getUsr);
 };
 
@@ -54,5 +77,8 @@ const usrDelete=async(req, res) => {
     //o mejor crear campo "inactive" para borrar temporalmente
     res.json(delUsr)    
 };
+
+
+
 
 module.exports={usrDelete,usrGetAll,usrGetOne,usrPost,usrPut}

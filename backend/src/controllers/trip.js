@@ -1,22 +1,49 @@
 const Trip = require ("../mongo/schemas/trip.js");
+const Users = require ("../mongo/schemas/user");
 
 const getAll = async (req, res) => {
-   const allTrips = await Trip.find();
+   const allTrips = await Trip.find().populate([{
+    path: 'owner',select: 'name treatment surname email',
+    model: 'Users',
+}])
     res.status(200).json(allTrips)
 }
 
 const createTrip = async(req,res) =>{
+    const id = req.params.id
     const newTrip = new Trip(req.body);
     req.body.originDate = new Date().toLocaleDateString('es-ES');
     req.body.destinationDate = new Date().toLocaleDateString('es-ES');
+    newTrip.owner = id;
+    newTrip.availableSeats = newTrip.seats;
     await newTrip.save();
-    res.status(201).json(newTrip);
+    res.locals.body = newTrip;
+    const trip = res.locals.body;
+    try {
+        if (!id) return res.status(404).json();
+        const user = await Users.findById(id);
+        if (user.idTrips.includes(trip)) return res.status(400).json({ message: "ya existe el viaje" })
+        user.idTrips.push(trip)
+        await user.save()
+        return res.status(200).json(trip)
+    } catch (e) {
+        res.status(500).json({ message: e })
+    }
 }
 
 const getTripById = async(req,res) =>{
     try{
-
-        const trip = await Trip.findById(req.params.id);
+        const trip = await Trip.findById(req.params.id).populate([{
+            path: 'owner',select: 'name treatment surname email',
+            model: 'Users',
+        }])
+        .populate([{
+            path: 'bookings',
+            model: 'Booking',
+            populate:  [
+                { path: 'passenger', select: 'name surname email'},
+            ],
+        }])
         if(trip.length === 0){
             res.status(404).send({message : "id not found"})
         }

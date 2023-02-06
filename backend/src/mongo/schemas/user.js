@@ -18,6 +18,14 @@ const userSchema = new Schema({
     RGPDaccepted:Boolean,
     password:{type: String},
     picUrl:{type: String},
+    idTrips: [{
+        type: Schema.Types.ObjectId,
+        ref: "Trip"
+     }],
+    bookedTrips: [{
+        type: Schema.Types.ObjectId,
+        ref: "Booking"
+     }]
 });
 
 userSchema.pre('save',  function(next) {
