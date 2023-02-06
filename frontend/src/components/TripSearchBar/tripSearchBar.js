@@ -44,6 +44,7 @@ const TripSearchBar = () => {
       }    
     }else{
          foundTrips = trips
+         console.log(trips);
          navigate("/trips/searchresults", {state:foundTrips})
       }
      
