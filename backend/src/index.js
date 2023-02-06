@@ -41,6 +41,7 @@ app.use('/auth', authRouter);
 // There is an OS Middleware in Express called error-handling but we chose the hard way :)
 app.use(errorLogging);
 
+
 const server = app.listen(port, () => {
     console.log(`Server is up and running at port ${port} ⚡`)
 })
