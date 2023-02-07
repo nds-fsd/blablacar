@@ -25,7 +25,7 @@ function App(props) {
           <Route path="users" element={<NewUser />}/>
           <Route path="login" element={<Login />}/>
           <Route path="trips" element={<ProtectedRoute/>}>
-            <Route path="" element={<ChoseModal openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}/>
+            {/* <Route path="" element={<ChoseModal openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}/> */}
           </Route>
           <Route path="trips/searchresults" element={<FindTrip/>}/>
           <Route path="error" element={<ErrorForm />}/>

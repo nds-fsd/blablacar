@@ -1,0 +1,41 @@
+.viaje{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    border-radius: 25%;
+    border: 1px 
+
+}
+
+.cardTop{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 60%;
+}
+.timeTable{
+    display: flex;
+    flex-direction: column;
+    width:13% ;
+}
+
+.locations{
+    display: flex;
+    width: 13%;
+}
+
+.location_graph{
+    display: flex;
+    width: 25%;
+    flex-direction: column;
+}
+
+.location_text{
+    display: flex;
+    flex-direction: column;
+}
+.pricing{
+    display: flex;
+    width: 25%;
+    align-self: flex-end;
+}

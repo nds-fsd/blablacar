@@ -19,7 +19,7 @@ const usrPost= async (req, res) => {
 
     //TODO:comprobar con antonio campos de user y con Alex para formulario creacion
     const receivedUser={
-        name:body.name,
+        name:body.firstName,
         surname:body.surname,
         Birthday: body.Birthday.toString(),
         email:body.email,
@@ -46,7 +46,7 @@ const usrPost= async (req, res) => {
         populate:  [
             { path: 'bookings',
               populate:  [
-                { path: 'passenger', select: 'name surname email'},
+                { path: 'passenger', select: 'firstName surname email'},
               ],
            
             }
@@ -62,6 +62,7 @@ const usrPost= async (req, res) => {
     }])
     res.json(getUsr);
 };
+
 
 //TODO:añadir middlewares, hablar con Paulo
 const usrPut=async(req, res) => {

@@ -15,10 +15,10 @@ const changePassview=()=>{
 const userSubmit=async(data)=>{
 console.log(data)
          const body = {
-                        name:data.name,
+                        firstName:data.name,
                         surname:data.surname,
                         email:data.email,
-                        Birthday:data.Birthday,
+                        birthday:data.Birthday,
                         treatment:data.treatment,
                         password:data.password
                     }

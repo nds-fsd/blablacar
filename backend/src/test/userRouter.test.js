@@ -25,7 +25,7 @@ describe('Company router TEST', () => {
     describe('POST /users', () => {
         it('Can create company', async () => {
             const res = await fakeRequest.post('/users').send( {
-                name: 'Paulo',
+                firstName: 'Paulo',
                 surname: 'Dutra',
                 email: 'paulodutra@gmail.com',
                 Birthday: new Date(),

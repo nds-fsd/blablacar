@@ -42,7 +42,7 @@ const getSpecificBooking = async  (req,res) =>{
     try{
         const book =  await Booking.findById(id).populate([{
             path: 'passenger',
-            select: 'name surname email',
+            select: 'firstname surname email',
         }])
 
         res.status(200).json(book)

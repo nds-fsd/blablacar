@@ -33,7 +33,7 @@ const TripSearchBar = () => {
     body.seats=seats
 
 
-  let trips = await Request (`/trips/find/`,"POST",body);
+  let trips = await Request (`/trips/`,"POST",body);
   let foundTrips
   console.log("tripsHome",trips)
     if(trips?.error){
@@ -44,7 +44,7 @@ const TripSearchBar = () => {
       }    
     }else{
          foundTrips = trips
-         console.log(trips);
+         console.log(foundTrips);
          navigate("/trips/searchresults", {state:foundTrips})
       }
      
