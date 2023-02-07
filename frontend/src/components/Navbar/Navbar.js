@@ -25,12 +25,12 @@ const Navbar = (props) => {
                 <div className={styles.listNav} >
                     {/* Dentro de cada li debe haber un componente Link de react router  */}
                     <div className={styles.navbardiv} onClick={() => navigate("/search")}>Buscar</div>
-                    <div className={styles.navbardiv} onClick={() => {navigate("/trips"); setOpenModal(true); setWhatModal("newUser")}}>Publicar un viaje</div>
+                    <div className={styles.navbardiv} onClick={() => {navigate("/trips"); setOpenModal(true); setWhatModal("newTrip")}}>Publicar un viaje</div>
                     {!getUserToken() && (   <div className={styles.dropdown}>
                       <img src={userLogo} alt="usuario" className= {styles.userLogo}/>
                       <div className={styles.dropdownContent}>
                       <p onClick={() => navigate("/login")}>Login</p>
-                      <p onClick={() => {navigate("/users"); setOpenModal(true); setWhatModal("newTrip")}}>Registrarse</p>
+                      <p onClick={() => {navigate("/users"); setOpenModal(true); setWhatModal("newUser")}}>Registrarse</p>
                       </div>
                     </div>)}
                     {getUserToken() && (   <div className={styles.dropdown}>

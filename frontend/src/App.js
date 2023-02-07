@@ -19,8 +19,6 @@ import Modal from './modal/modal';
 import ChoseModal from './modal/choseModal';
 function App(props) {
 
-  const location = useLocation();
-  const background = location.state && location.state.background;
   
   const [openModal, setOpenModal] = useState(false);
   const {whatModal, setWhatModal} = useState('');
