@@ -10,8 +10,8 @@ const secret = process.env.JWT_SECRET
 const expires = process.env.JWT_EXPIRATION_TIME
 console.log(secret);
 if (req.user) {
-    console.log(secret);
-    const jwtToken = JsonWebToken.sign({id: req.user._id, email: req.user.email}, secret, { expiresIn: expires });
+    console.log(req.user);
+    const jwtToken = JsonWebToken.sign({id: req.user._id, email: req.user.email }, secret, { expiresIn: expires });
     console.log(jwtToken);
     req.jwtToken = jwtToken;
     next();

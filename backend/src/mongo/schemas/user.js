@@ -25,6 +25,7 @@ const userSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Booking"
      }]
+    picUrl:{type: String},
 });
 
 userSchema.pre('save',  function(next) {

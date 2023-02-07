@@ -1,6 +1,4 @@
 import './App.css';
-
-import Home from './components/home/home';
 import { NewUser } from './components/newUser/newUser';
 import {NewTrip} from './components/newTrip/newTrip'
 import {Login} from './components/login/login';
@@ -10,25 +8,27 @@ import {FindTrip} from './components/findTrip/findTrip';
 import {FindUser} from './components/findUser/findUser';
 import { TripList } from "./components/ListTrips/ListTrips";
 import { UsersList } from "./components/ListUsers/ListUsers";
-import Navbar from './components/Navbar/Navbar';
-import { AuthContextProvider } from './context/AuthContext';
+import Navigation from './components/Navbar/Navigation';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import React, { useState } from 'react';
 import TripSearchBar from './components/TripSearchBar/tripSearchBar';
 import Modal from './modal/modal';
 import ChoseModal from './modal/choseModal';
+import Parallax from './components/parallax/parallax';
+
+
 function App(props) {
+  
 
   
   const [openModal, setOpenModal] = useState(false);
   const {whatModal, setWhatModal} = useState('');
   return (
     <div>
-      <AuthContextProvider>
-      <Navbar setOpenModal={setOpenModal} setWhatModal={setWhatModal}/>
+      <Navigation setOpenModal={setOpenModal} setWhatModal={setWhatModal}/>
       <ChoseModal openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>
       <Routes>
-          <Route path="/" element={<Home />}/>
+          <Route path="/" element={<Parallax />}/>
           <Route path="users" element={<ChoseModal openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}/>
           <Route path="login" element={<Login />}/>
           <Route path="trips" element={<ProtectedRoute/>}>
@@ -41,9 +41,8 @@ function App(props) {
           </Route>
           <Route path="users/list" element={<UsersList />} />
           <Route path="search" element={<TripSearchBar />} />
-          <Route path="*" element={<ErrorForm />} />    
+          <Route path="*" element={<ErrorForm />} />
       </Routes>
-      </AuthContextProvider>
     </div>
   );
 }
