@@ -11,33 +11,34 @@ function TripSummary(props) {
   console.log(owner);
     return (
       
-        <Card border="primary">
+        <Card bsPrefix="tripSummary">
               <div className={styles.cardTop}>
-                    
-                    <div className={styles.timeTable}>
-                      <p>00:00</p>
-                      <p>12:00</p>
-                    </div>  
-                <div className={styles.locations}>
-                  <div className={styles.location_graph}>
-                   <BsCircle></BsCircle>
-                    <BsArrowDown></BsArrowDown>
-                    <BsCircle></BsCircle>
+                <div className={styles.leftwrapper}>  
+                  <div className={styles.timeTable}>
+                    <p>00:00</p>
+                    <p>12:00</p>
+                  </div>  
+                  <div className={styles.locations}>
+                    <div className={styles.location_graph}>
+                      <BsCircle></BsCircle>
+                      <BsArrowDown></BsArrowDown>
+                      <BsCircle></BsCircle>
+                    </div>
+                    <div className={styles.location_text}>
+                    {trip&&<p>{trip.origin}</p>}
+                    {trip&&<p>{trip.destination}</p>}  
+                    </div>
                   </div>
-                  <div className={styles.location_text}>
-                    {trip&&<p>{trip.origin} <br/> {trip.destination}</p>}  
-                  </div>
-                </div>
+                </div>  
                 <div className={styles.pricing}>
-                  {trip&&<h1>{trip.price}</h1>}
+                  {trip&&<h1>{trip.price}€</h1>}
                 </div>
               </div>
-            <div className={styles.cardbottom}>
-              {owner&&<UserAvatar user={owner.firstName} picUrl={owner.picUrl}/>}          
-              {owner&&<h1>{owner.firstName}</h1>}
-              <div className={styles.usericons}>
+            <div className={styles.cardBottom}>
+              {owner&&<UserAvatar user={owner.firstName} picUrl={owner.picUrl} showName="true"/>}          
+              <div className={styles.userIcons}>
                 {console.log('quedan '+trip.availableSeats)}
-                {trip.availableSeats&&<h2>¡Quedan  <b>{trip.availableSeats}</b> plazas!</h2>}
+                {trip.availableSeats&&<p>¡Quedan  <b>{trip.availableSeats}</b> plazas!</p>}
               </div>
             </div>            
         </Card>
