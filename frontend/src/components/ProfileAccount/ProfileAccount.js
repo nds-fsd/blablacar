@@ -5,6 +5,10 @@ import styles from "./ProfileAccount.module.css";
 
 const LINKS = [
   {
+    text: 'Datos personales',
+    link: '/profilemenu'
+  },
+  {
     text: 'Opiniones dejadas',
     link: '/feedback'
   },
@@ -15,11 +19,6 @@ const LINKS = [
   {
     text: 'Contraseña',
     link: '/password'
-  },
-
-  {
-    text: 'Dirección postal',
-    link: '/direction'
   },
   {
     text: 'Transferencias',
