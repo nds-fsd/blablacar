@@ -19,19 +19,21 @@ import Parallax from './components/parallax/parallax';
 
 function App(props) {
   
-
+  const location = useLocation();
+  const background = location.state && location.state.background;
   
   const [openModal, setOpenModal] = useState(false);
-  const {whatModal, setWhatModal} = useState('');
+  const [whatModal, setWhatModal] = useState('');
+console.log("openModal", openModal)
+console.log("whatModal", whatModal)
   return (
     <div>
       <Navigation setOpenModal={setOpenModal} setWhatModal={setWhatModal}/>
-      <ChoseModal openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>
       <Routes>
           <Route path="/" element={<Parallax />}/>
           <Route path="users" element={<ChoseModal openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}/>
           <Route path="login" element={<Login />}/>
-          <Route path="trips" element={<ProtectedRoute/>}>
+          <Route path="trips" element={<ProtectedRoute openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}>
             <Route path="" element={<ChoseModal openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}/>
           </Route>
           <Route path="trips/searchresults" element={<FindTrip/>}/>

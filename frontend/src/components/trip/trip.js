@@ -1,7 +1,6 @@
 import userLogo from "../assets/user.png"
 import {changeToShortDate} from "../../utils/shortdate"
 import styles from "./trip.module.css";
-import {Modal} from "../modal/modal";
 import {useState} from "react";
 
 const Trip = (props) =>{
@@ -70,7 +69,6 @@ const Trip = (props) =>{
             </div>
         )})}
         </div>
-        <div><Modal open={props.openModal} id = {id}/></div>
         
 </div>
 )}

@@ -24,7 +24,7 @@ const userSchema = new Schema({
     bookedTrips: [{
         type: Schema.Types.ObjectId,
         ref: "Booking"
-     }]
+     }],
     picUrl:{type: String},
 });
 

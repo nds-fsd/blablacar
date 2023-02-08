@@ -8,7 +8,7 @@ import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
 import {HiMagnifyingGlass, HiOutlinePlusCircle} from 'react-icons/hi2'
 import { getStorageObject } from "../../utils/storage";
 import UserAvatar from "../userAvatar/UserAvatar";
-const Navigation = ( ) => {
+const Navigation = ({setOpenModal, setWhatModal} ) => {
 const navigate=useNavigate()
 let tokenRef=useRef()
 let userNameRef=useRef()
@@ -24,12 +24,11 @@ useEffect(()=>{
   setToken(sessiontoken.jwtToken)
   console.log(tokenRef.current);
   console.log(userNameRef.current)
+  console.log("usr.Obj", sessiontoken.userObj)
   }
   }
   
 })
-
-
 
    const logOut = () =>{
     deleteStorageObject("user-session")
@@ -50,14 +49,14 @@ useEffect(()=>{
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
         <Nav className="justify-content-end">
         <Nav.Link href="/search"><HiMagnifyingGlass size={38} className={` mr-auto ${styles.glass}`}/></Nav.Link>
-        <Nav.Link href="/Trips"><HiOutlinePlusCircle size={38} className={` mr-auto ${styles.glass}`}/></Nav.Link>
+        <Nav.Link onClick={()=>{navigate("/trips");setOpenModal(true); setWhatModal("newTrip")}}><HiOutlinePlusCircle size={38} className={` mr-auto ${styles.glass}`}/></Nav.Link>
         <NavDropdown id="basic-nav-dropdown" title={<UserAvatar user={userNameRef.current} picUrl={userPicRef.current} className="mr-auto"/>}>
           {console.log(tokenRef.current)}
-          {console.log(userNameRef.current)}
+          {console.log("queEs", userNameRef.current)}
           {!tokenRef.current?
             (<><NavDropdown.Item href="/login" onClick={logOut}>Inicia Sesión</NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item href="/users">Regístrate</NavDropdown.Item></>)
+            <NavDropdown.Item onClick={()=>{navigate("/users");setOpenModal(true); setWhatModal("newUser")}}>Regístrate</NavDropdown.Item></>)
             :
             (<>            
             <NavDropdown.Item href={`/users/${userNameRef.current.userID}`}>Perfil</NavDropdown.Item>
