@@ -1,0 +1,129 @@
+.parappa{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    color: rgb(255, 94, 0);
+}
+
+.cardTop{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    position: relative;
+}
+.timeTable{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width:13% ;
+}
+
+.leftwrapper{
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    width: 70%;
+}
+
+.locations{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    align-items: baseline;
+    justify-content: start;
+    margin-left: 2em;
+}
+
+.location_graph_top{
+    display: flex;
+    align-items: baseline;
+    width: 100%;
+    flex-direction: row;
+    padding-left: 0.5em;
+    justify-content: flex-start;
+}
+.location_graph_top p{
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 0px;
+
+}
+.location_graph_bottom{
+    display: flex;
+    align-items: baseline;
+    width: 100%;
+    flex-direction: row;
+    padding-left: 0.5em;
+    justify-content: flex-start;
+}
+.location_graph_bottom p{
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 0px;
+}
+.location_graph_mid{
+    display: flex;
+    align-items: baseline;
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-left: 4.5em;
+}
+.location_text{
+    display: flex;
+    flex-direction: column;
+}
+
+.onClickTop{
+    position: absolute;
+    height: 50%;
+    z-index:10;
+    width: 50%;
+}
+.onClickBottom{
+    position: absolute;
+    height: 50%;
+    z-index:10;
+    width: 50%;
+    top:50%
+}
+
+.onClickTop:hover{
+    background-color: antiquewhite;
+    opacity: 0.5;
+}
+.onClickBottom:hover{
+    background-color: antiquewhite;
+    opacity: 0.5;
+}
+
+
+.barra{
+    background-color: rgb(255, 94, 0);
+    margin: 1em;
+    height: 0.5em;
+    width: 30%;
+    line-height: 1;
+    color: rgb(255, 94, 0);
+    opacity: 0.8;
+    border-radius: 16px;
+    box-shadow:rgb(0 0 0 / 16%) 3px 2pt 3pt, rgb(0 0 0 / 8%) 0px 7pt 10pt;
+    
+}
+
+.userSection{
+    width: 100%;
+    height: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.userSection:hover{
+    background-color: antiquewhite;   
+}
