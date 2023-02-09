@@ -3,7 +3,7 @@ import { Card, Button } from "react-bootstrap";
 import UserAvatar from "../userAvatar/UserAvatar";
 import styles from "./TripSummary.module.css"
 import {BsCircle, BsArrowDown } from "react-icons/bs"
-
+import ConfigIcon from "../IconConfig/iconsize_small"
 function TripSummary(props) {
   let trip=props.trip
   let owner=props.trip.owner[0]
@@ -19,14 +19,15 @@ function TripSummary(props) {
                     <p>12:00</p>
                   </div>  
                   <div className={styles.locations}>
-                    <div className={styles.location_graph}>
-                      <BsCircle></BsCircle>
-                      <BsArrowDown></BsArrowDown>
-                      <BsCircle></BsCircle>
+                    <div className={styles.location_graph_top}>
+                      <BsCircle></BsCircle>{trip&&<p>{trip.origin}</p>}
                     </div>
-                    <div className={styles.location_text}>
-                    {trip&&<p>{trip.origin}</p>}
-                    {trip&&<p>{trip.destination}</p>}  
+                    <div className={styles.location_graph_mid}>
+                      <ConfigIcon> <BsArrowDown></BsArrowDown></ConfigIcon>
+                    </div>
+                    <div className={styles.location_graph_bottom}>
+                      <BsCircle></BsCircle>
+                      {trip&&<p>{trip.destination}</p>}  
                     </div>
                   </div>
                 </div>  

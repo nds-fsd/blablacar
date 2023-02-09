@@ -49,19 +49,45 @@
 
 .locations{
     display: flex;
+    flex-direction: column;
     width: 60%;
     align-items: baseline;
     justify-content: start;
+    margin-left: 2em;
 }
 
-.location_graph{
+.location_graph_top{
     display: flex;
-    align-items: center;
-    justify-content: space-around;
-    width: 25%;
-    flex-direction: column;
+    align-items: baseline;
+    width: 100%;
+    flex-direction: row;
+    padding-left: 0.5em;
+    justify-content: flex-start;
 }
+.location_graph_top p{
+    margin-left: 1em;
+    margin-bottom: 0px;
 
+}
+.location_graph_bottom{
+    display: flex;
+    align-items: baseline;
+    width: 100%;
+    flex-direction: row;
+    padding-left: 0.5em;
+    justify-content: flex-start;
+}
+.location_graph_bottom p{
+    margin-left: 1em;
+    margin-bottom: 0px;
+}
+.location_graph_mid{
+    display: flex;
+    align-items: baseline;
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-start
+}
 .location_text{
     display: flex;
     flex-direction: column;
