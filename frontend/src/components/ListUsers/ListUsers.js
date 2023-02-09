@@ -31,7 +31,7 @@ export const UsersList = () => {
     <div className={styles.listWrap}>
       <div className={styles.itemWrap}><p>Nombre</p><p>Apellido</p><p>Correo electrónico</p></div>
       {users && users.map((e)=>(
-        <div key={e._id} className={styles.itemWrap}><p>{e.name}</p><p>{e.surname}</p><p>{e.email}</p></div>
+        <div key={e._id} className={styles.itemWrap}><p>{e.firstName}</p><p>{e.surname}</p><p>{e.email}</p></div>
       ))}
       
       

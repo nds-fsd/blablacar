@@ -34,6 +34,7 @@ const Modal = ({ children, onClose, openModal }) => {
       > 
         {children}
         {console.log('children',children)}
+
       </div>
     </div>
   );

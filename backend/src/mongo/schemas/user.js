@@ -3,8 +3,9 @@ const bcrypt = require ("bcrypt");
 
 const userSchema = new Schema({
     name:{type : String},
+    firstName:{type : String},
     surname:{type : String},
-    Birthday:Date,
+    birthday:Date,
     email:{type: String, unique: true},
     role:{type: String},
     status:{type:Number, min:1, max:5},
@@ -26,6 +27,14 @@ const userSchema = new Schema({
         ref: "Booking"
      }],
     picUrl:{type: String},
+    idTrips: [{
+        type: Schema.Types.ObjectId,
+        ref: "Trip"
+     }],
+    bookedTrips: [{
+        type: Schema.Types.ObjectId,
+        ref: "Booking"
+     }]
 });
 
 userSchema.pre('save',  function(next) {

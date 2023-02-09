@@ -15,6 +15,7 @@ import TripSearchBar from './components/TripSearchBar/tripSearchBar';
 import Modal from './modal/modal';
 import ChoseModal from './modal/choseModal';
 import Parallax from './components/parallax/parallax';
+import ProfileAccount from './components/ProfileAccount/ProfileAccount';
 
 
 function App(props) {
@@ -43,6 +44,9 @@ console.log("whatModal", whatModal)
           </Route>
           <Route path="users/list" element={<UsersList />} />
           <Route path="search" element={<TripSearchBar />} />
+          <Route path="profile" element={<ProtectedRoute/>}>
+            <Route path="" element={<ProfileAccount />}/>
+          </Route>
           <Route path="*" element={<ErrorForm />} />
       </Routes>
     </div>

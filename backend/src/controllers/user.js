@@ -1,7 +1,7 @@
 const Users = require ("../mongo/schemas/user.js");
 const Bcrypt = require ('bcryptjs');
-const Booking = require("../mongo/schemas/booking.js");
-
+const Booking  =  require("../mongo/schemas/booking.js");
+const Trip  =  require("../mongo/schemas/trip.js");
 const usrGetAll=async (req, res) => {
     const usuarios = await Users.find();
     console.log(usuarios);
@@ -17,7 +17,7 @@ const usrPost= async (req, res) => {
 
     //TODO:comprobar con antonio campos de user y con Alex para formulario creacion
     const receivedUser={
-        name:body.name,
+        name:body.firstName,
         surname:body.surname,
         Birthday: body.Birthday.toString(),
         email:body.email,
@@ -37,9 +37,31 @@ const usrPost= async (req, res) => {
   
 //TODO:añadir middlewares, hablar con Paulo
  const usrGetOne=async(req, res) => {
-    const getUsr=await Users.findById(req.params.id).populate("idTrips")
+    const getUsr=await Users.findById(req.params.id) 
+    .populate([{
+        path: 'idTrips',
+        model: 'Trip',
+        populate:  [
+            { path: 'bookings',
+              populate:  [
+                { path: 'passenger', select: 'firstName surname email'},
+              ],
+           
+            }
+          ],
+    }])
+    .populate([{
+        path: 'bookedTrips',
+        model: 'Booking',
+        populate:  [
+            //{ path: 'passenger', select: 'name surname email'},
+            { path: 'bookedTrip'},
+          ],
+    }])
+
     res.json(getUsr);
 };
+
 
 //TODO:añadir middlewares, hablar con Paulo
 const usrPut=async(req, res) => {
@@ -68,25 +90,6 @@ const addTripUser = async (req, res) => {
     } catch (e) {
         res.status(500).json({ message: e })
     }
-}
-
-const bookTrip = async(req,res) =>{
-    const {idUser, idTrip} = req.params;
-    // return res.status(201).json({message: `${idUser},${idTrip}`});
-    try{
-        if(!idUser) return res.status(400).json({message: "No hay usuario establecido"});
-        if(!idTrip) return res.status(400).json({message: "No hay viaje establecido"});
-        const user = await Users.findById(idUser);
-        const trip = await Trip.findById(idTrip);
-        if (Booking.passenger.includes(idUser) || Booking.bookedtrip.includes(idTrip)) return res.status(400).json({ message: "Ya tienes reservado el asiento" });
-        
-        const getBooking = await Booking.save().populate(["idTrips","bookedTrips"])
-        
-    }
-    catch (e){
-        res.status(500).json({ message: e })
-    }
-
 }
 
 module.exports={usrDelete,usrGetAll,usrGetOne,usrPost,usrPut, addTripUser, bookTrip}

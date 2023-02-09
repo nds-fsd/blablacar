@@ -1,5 +1,4 @@
 import styles from "./navigation.module.css";
-import {BsDistributeVertical} from 'react-icons/bs'
 import { useNavigate } from "react-router-dom";
 import IconLogo from '../svgIcons/iconLogo'
 import {deleteStorageObject} from "../../utils/storage"
@@ -59,7 +58,11 @@ useEffect(()=>{
             <NavDropdown.Item onClick={()=>{navigate("/users");setOpenModal(true); setWhatModal("newUser")}}>Regístrate</NavDropdown.Item></>)
             :
             (<>            
-            <NavDropdown.Item href={`/users/${userNameRef.current.userID}`}>Perfil</NavDropdown.Item>
+            <NavDropdown.Item href={`/rides`}>Tus viajes</NavDropdown.Item>
+            <NavDropdown.Item href={`/messages`}>Mensajes</NavDropdown.Item>
+            <NavDropdown.Item href={`/profile`}>Perfil</NavDropdown.Item>
+            <NavDropdown.Item href={`/money-available`}>Transferencias</NavDropdown.Item>
+            <NavDropdown.Item href={`/payments-history`}>Pagos y reembolsos</NavDropdown.Item>
             <NavDropdown.Item onClick={logOut}>Cerrar Sesión</NavDropdown.Item>
             </>)
           }

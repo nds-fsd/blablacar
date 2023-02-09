@@ -11,6 +11,7 @@ const ChoseModal = ({whatModal, openModal, setOpenModal}) =>{
             </Modal>
         )
     }
+
     else if(whatModal === "newTrip"){
         return(
             <Modal openModal={openModal} onClose={()=> setOpenModal(false)}>
