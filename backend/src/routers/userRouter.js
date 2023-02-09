@@ -15,5 +15,6 @@ userRouter.get('/users/:id', UsrControllers.usrGetOne);
 userRouter.put('/users/:id', body('email').normalizeEmail().trim(), check('email').isEmail(), UsrControllers.usrPut);
 userRouter.delete('/users/:id', UsrControllers.usrDelete);
 
+
 module.exports = {userRouter};
   

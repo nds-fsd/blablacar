@@ -2,7 +2,7 @@
 const validateUserInput = (req, res, next) => {
     console.log("Request Type:", req.method);
     const newUser = req.body;
-    if(newUser.name === undefined || newUser.name.length === 0){
+    if(newUser.fisrtName === undefined || newUser.firstName.length === 0){
         res.status(400).send({message: "Name is missing"});
         console.log("Name is missing");
         return;

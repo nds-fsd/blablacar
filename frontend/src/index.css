@@ -63,3 +63,33 @@ code {
   #basic-nav-dropdown::after{
     display: none; 
  }
+
+ .tripSummary{
+  width: 50%;
+  margin: 1.5em;
+  border: solid 1px;
+  border-color: rgb(255, 94, 0)!important;
+  border-width: 1px;
+  box-shadow:1px ;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: #fff;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-clip: border-box;
+  border-radius: 1em;
+  border-radius: 16px;
+    box-shadow:rgb(0 0 0 / 16%) 3px 2pt 3pt, rgb(0 0 0 / 8%) 0px 7pt 10pt;
+    list-style-type: none;
+    transition: box-shadow 200ms ease-in 0s;
+}*, ::after, ::before {
+    box-sizing: border-box;
+}
+.tripSummary:hover{
+background-color: antiquewhite;
+}

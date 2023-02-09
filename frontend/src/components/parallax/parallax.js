@@ -25,16 +25,17 @@ const Parallax = ()=>{
           <TripSearchBar/>
        
       </div>
-      <div className={styles.container}>        
-        <div className={styles.ventajas}>
-          <p className={styles.p1}>
-            <span className={styles.importantP}>Miles de viajes baratos</span>
-            <br/>
-            Vayas donde vayas, encuentra tu viaje ideal a un precio muy bajo.</p>
+      <div className={styles.ParallaxImage_2}>
+        <div className={styles.container}>        
+          <div className={styles.ventajas}>
+            <p className={styles.p1}>
+              <span className={styles.importantP}>Miles de viajes baratos</span>
+              <br/>
+              Vayas donde vayas, encuentra tu viaje ideal a un precio muy bajo.</p>
           
-          <p className={styles.p2}>
+            <p className={styles.p2}>
             <span className={styles.importantP}>Viaja seguro y tranquilo</span>
-            <br/>
+              <br/>
                Para nosotros es muy importante conocer a nuestros usuarios. Por eso,
                examinamos atentamente las opiniones y los perfiles de nuestros
                usuarios para que sepas con quién vas a viajar. Puedes reservar tu
@@ -47,9 +48,9 @@ const Parallax = ()=>{
               aplicación y a su potente tecnología, podrás reservar un viaje cerca
               de ti en minutos.
           </p>
-        </div>                           
-      </div>              
-      
+          </div>                           
+        </div>              
+      </div>
       <div className={`${styles.ParallaxImage_2} ${styles.bg3}`}>
         <div className={styles.container}>
           <h3>WE'LL TAKE YOU THERE</h3>

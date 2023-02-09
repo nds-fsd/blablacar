@@ -5,14 +5,14 @@ const { jwtTokenVerify } = require('../Middleware/jwtMiddleware.js');
 const validateTripInput = require ('../Middleware/tripMiddleware.js');
 
 tripRouter.get("/trips", tripControllers.getAll)
-tripRouter.post("/trips",jwtTokenVerify, validateTripInput, tripControllers.createTrip)
+tripRouter.post("/trips", tripControllers.findTrip)
 tripRouter.get("/trips/:id", tripControllers.getTripById)
-tripRouter.post('/users/:id/newtrip', tripControllers.createTrip);
+tripRouter.post('/users/:id/newtrip', jwtTokenVerify, tripControllers.createTrip);
 tripRouter.delete("/trips/:id",jwtTokenVerify, tripControllers.deleteTrip)
 tripRouter.put("/trips/:id",jwtTokenVerify, tripControllers.updatedTrip)
 tripRouter.get("/trips/origin/:origin",tripControllers.getTripByOrigin)
 //tripRouter.get("/trips/find/:origin/:originDate/:destination/:seats",tripControllers.findTrip)
-tripRouter.post("/trips/find", tripControllers.findTrip)
+
 
 
 /*tripRouter.get('/trip', async (req, res) => {

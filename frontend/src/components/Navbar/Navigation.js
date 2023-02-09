@@ -1,5 +1,4 @@
 import styles from "./navigation.module.css";
-import {BsDistributeVertical} from 'react-icons/bs'
 import { useNavigate } from "react-router-dom";
 import IconLogo from '../svgIcons/iconLogo'
 import {deleteStorageObject} from "../../utils/storage"

@@ -3,7 +3,7 @@ const authUser = (req, res) => {
      const expirationTime = Number(process.env.JWT_EXPIRATION_TIME)/3600;
      const userObj = {
         userID : req.user._id,
-        userName: req.user.name,
+        userName: req.user.firstName,
         surname: req.user.surname,
         birthday: req.user.birthday,
         treatment: req.user.treatment,
