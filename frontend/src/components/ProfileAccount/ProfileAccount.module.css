@@ -16,4 +16,9 @@
         }
     .listItem {
         padding: 0;
-        }        
+        }     
+        
+    .logoutbtn {
+    border:none;
+    background:transparent;
+    }
