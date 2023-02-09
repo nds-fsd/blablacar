@@ -1,10 +1,10 @@
-import styles from "./Navbar_old.module.css";
+import styles from "./navbar.module.css";
 import userLogo from "../assets/user.png"
 import { useNavigate } from "react-router-dom";
-import IconLogo from '../svgIcons/iconLogo'
+import IconLogo from '../../components/svgIcons/iconLogo'
 import {getUserToken,deleteStorageObject} from "../../utils/storage"
 
-const Navbar_old = ( ) => {
+const Navbar = ( ) => {
 const navigate=useNavigate()
   
    const logOut = () =>{
@@ -29,19 +29,13 @@ const navigate=useNavigate()
                       <div className={styles.dropdownContent}>
                       <p onClick={() => navigate("/login")}>Login</p>
                       <p onClick={() => navigate("/users")}>Registrarse</p>
-
                       </div>
                     </div>)}
                     {getUserToken() && (   <div className={styles.dropdown}>
                       <div className={styles.imgRedonda}>{getUserToken().userObj.name.charAt(0).toUpperCase()}</div>
                       <div className={styles.dropdownContent}>
-                     
-                      
-                      <p>Tus Viajes</p>
-                      <p>Mensajes</p>
-                      <p>Perfil</p>
                       <p onClick={logOut}>Logout</p>
-
+                      <p>Perfil</p>
                       </div>
                     </div>)}
 
@@ -53,5 +47,5 @@ const navigate=useNavigate()
         
     }
     
-    export default Navbar_old 
+    export default Navbar 
 
