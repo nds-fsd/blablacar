@@ -25,3 +25,17 @@
     justify-content: center;
     align-items: center;
 }
+
+
+[class*="ResultsAttribution"] {
+    display:none;
+}
+
+form {
+    width: 80%;
+
+}
+
+.gray {
+    background-color: lightgray;
+}

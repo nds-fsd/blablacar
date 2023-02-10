@@ -5,8 +5,10 @@ const tripSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "User"
      }],
+    originAddress:  {type: String},
     origin:  {type: String},
     originDate: {type:Date},
+    destinationAddress:  {type: String},
     destination:  {type: String},
     destinationDate: {type:Date},
     seats:{type: Number},

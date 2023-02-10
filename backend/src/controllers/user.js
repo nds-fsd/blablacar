@@ -92,4 +92,4 @@ const addTripUser = async (req, res) => {
     }
 }
 
-module.exports={usrDelete,usrGetAll,usrGetOne,usrPost,usrPut, addTripUser, bookTrip}
+module.exports={usrDelete,usrGetAll,usrGetOne,usrPost,usrPut, addTripUser}
