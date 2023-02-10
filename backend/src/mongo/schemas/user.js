@@ -5,9 +5,9 @@ const userSchema = new Schema({
     name:{type : String},
     firstName:{type : String},
     surname:{type : String},
-    birthday:Date,
+    birthday:{type : Date},
     email:{type: String, unique: true},
-    role:{type: String},
+    role:{type: String}, // esto no esta bien asi tienes que usar un enum 
     status:{type:Number, min:1, max:5},
     treatment:{type: String},
     genero:{type: String},

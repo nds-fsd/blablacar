@@ -16,6 +16,7 @@ import Modal from './modal/modal';
 import ChoseModal from './modal/choseModal';
 import Parallax from './components/parallax/parallax';
 import ProfileAccount from './components/ProfileAccount/ProfileAccount';
+import { Mytrips } from './components/mytrips/mytrips';
 
 
 function App(props) {
@@ -48,6 +49,9 @@ console.log("whatModal", whatModal)
             <Route path="" element={<ProfileAccount />}/>
           </Route>
           <Route path="*" element={<ErrorForm />} />
+          <Route path="rides" element={<ProtectedRoute/>}>
+            <Route path="" element={<Mytrips/>}/>
+          </Route>
       </Routes>
     </div>
   );

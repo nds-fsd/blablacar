@@ -1,8 +1,10 @@
 import { useState } from "react";
 import styles from "./newTrip.module.css";
 import { Request } from "../../utils/apiWrapper";
+import { getUserToken } from "../../utils/storage";
 
 export const NewTrip = () =>{
+    const userId = getUserToken().userObj.userID
     const [origin,SetOrigin] =useState("");
     const [originDate,SetOriginDate] =useState("");
     const [destination,SetDestination] =useState("");
@@ -37,14 +39,16 @@ export const NewTrip = () =>{
                     seats,
                     price
         }
-        let res = await Request ("/trips","POST",body)
+        const userSession = getUserToken()
+          let headers = {
+            Authorization: `Bearer ${userSession.jwtToken}`,
+          };
+        let res = await Request ("/users/"+userId+"/newtrip","POST",body,headers)
         if(res?.error){
             alert(res.message)
-          }else{
+        }else{
             alert(`viaje creado con destino a ${body.origin}`)
-          }
-        
-
+        }
     } 
     return(
         <div className={styles.main}>

@@ -6,7 +6,18 @@ import {BsCircle, BsArrowDown } from "react-icons/bs"
 import ConfigIcon from "../IconConfig/iconsize_small"
 function TripSummary(props) {
   let trip=props.trip
-  let owner=props.trip.owner[0]
+  let owner;
+
+  // tienes que hacer una comprobacion sobre el owner y si no hay owner meter uno en plan dummy 
+  if(props.trip.owner){
+     owner = props.trip.owner[0]
+  }else{
+     owner = {
+      firstName : '',
+      picUrl : ''
+    }
+  }
+  // let owner=props.trip.owner[0] || null
   console.log(trip);
   console.log(owner);
     return (
