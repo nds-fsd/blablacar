@@ -58,11 +58,11 @@ const FindTrip = () => {
     //     console.log(id)
     //     setModal(!openModal)
     //     reloadPage();
-    // }
+    // })
     return(
         <div className={styles.parappa}>
           {trips&&trips.map((e)=>(
-            <TripSummary trip={e} id={e._id} />))}
+            <TripSummary trip={e} id={e._id} />))} 
         </div>
     )
 }
