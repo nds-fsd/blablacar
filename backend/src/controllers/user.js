@@ -77,6 +77,4 @@ const usrDelete=async(req, res) => {
     //o mejor crear campo "inactive" para borrar temporalmente
     res.json(delUsr)    
 };
-
-
 module.exports={usrDelete,usrGetAll,usrGetOne,usrPost,usrPut}
