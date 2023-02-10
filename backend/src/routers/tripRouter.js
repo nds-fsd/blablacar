@@ -8,6 +8,9 @@ tripRouter.get("/trips", tripControllers.getAll)
 tripRouter.post("/trips", tripControllers.findTrip)
 tripRouter.get("/trips/:id", tripControllers.getTripById)
 tripRouter.post('/users/:id/newtrip', jwtTokenVerify, tripControllers.createTrip);
+// para borrar despues
+tripRouter.post('/users/:id/testnewtrip', jwtTokenVerify, tripControllers.testCreateTrip)
+//_____________________
 tripRouter.delete("/trips/:id",jwtTokenVerify, tripControllers.deleteTrip)
 tripRouter.put("/trips/:id",jwtTokenVerify, tripControllers.updatedTrip)
 tripRouter.get("/trips/origin/:origin",tripControllers.getTripByOrigin)

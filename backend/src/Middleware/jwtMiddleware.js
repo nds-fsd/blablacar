@@ -1,5 +1,6 @@
 // import Users from "../mongo/schemas/user.js";
 const JsonWebToken = require('jsonwebtoken');
+const jwt = require('jsonwebtoken')
 
 
 
@@ -19,41 +20,58 @@ if (req.user) {
 // Verify token expiration and return a new token;
 };
 
-const jwtTokenVerify = async(req, res, next) => {
-  //const authHeader = req.headers["authorization"];
-  const authHeader = req.headers.authorization
+
+const jwtTokenSingTest = (req, res, next) => {
   const secret = process.env.JWT_SECRET
-  console.log(authHeader);
-  //if (!authHeader) return res.status(401).json({error: "Unauthorized"});
-  let header = authHeader.split(" ")[1]
-  
-  console.log(header);
+  const today = new Date()
+  const expirationDate = new Date()
+  expirationDate.setDate(today.getDate() + 60)
+
+  let payload = {
+    id: req.user._id,
+    email: req.user.email
+  }
+
+  req.jwtToken = jwt.sign(payload, secret ,{
+    expiresIn: parseInt(expirationDate.getTime() / 1000, 10)
+  })
+  next()
+}
+
+const jwtTokenVerify = (req, res, next) => {
+  //const authHeader = req.headers["authorization"];
+  const secret = process.env.JWT_SECRET
+  const token =  req.headers.authorization.split(' ')[1]
   // Sin token, devolvemos 401
-  let token=header[1]
-  console.log(token);
-  if (!token) return res.status(401).json({error: "Unauthorized"});
-
-  let tokenPayload;
-  
-
-  
+  if (!token) return res.status(401).json({error: "No token provided"});
     // Si funciona, devolverá el payload 
     console.log("entro a verificar");
-    console.log(token);
-    console.log(secret);
-    try{
-    tokenPayload = JsonWebToken.verify(token, secret)
-    console.log(tokenPayload);}
-    catch
-    {return res.status(401).json({error: "Unauthorized"});}
-
-    
+    // try{
+    //   const tokenPayload = JsonWebToken.verify(token, secret)
+    // console.log('payload',tokenPayload);
+    // }catch
+    // {return res.status(401).json({error: "Unauthorized"});}
+    jwt.verify(token, secret, (err, payload) => {
+      if(err){
+        console.log(err)
+        return res.status(403).json({error: 'Invalid Token'})
+      }else{
+        req.payload = payload
+        next()
+      }
+    }
+    )}
+  
+    // try{
+    //   const tokenVerify  = JsonWebToken.verify(token, secret)
+    //   console.log(tokenVerify)
+    // }catch(e){
+    //  return res.status(401).json({error: "Unauthorized"})
+    // }
   
 
   // Guardamos los datos del token en la request y pasamos a next
-  req.jwtPayload = tokenPayload;
 
-  next();
-};
 
-module.exports= { jwtTokenSign, jwtTokenVerify }
+
+module.exports= { jwtTokenSign, jwtTokenVerify, jwtTokenSingTest}
