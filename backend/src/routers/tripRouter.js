@@ -7,6 +7,7 @@ const validateTripInput = require ('../Middleware/tripMiddleware.js');
 tripRouter.get("/trips", tripControllers.getAll)
 tripRouter.post("/trips", tripControllers.findTrip)
 tripRouter.get("/trips/:id", tripControllers.getTripById)
+//este se tendria que borrar, luego miramos bien.
 tripRouter.post('/users/:id/newtrip', jwtTokenVerify, tripControllers.createTrip);
 // para borrar despues
 tripRouter.post('/users/:id/testnewtrip', jwtTokenVerify, tripControllers.testCreateTrip)
