@@ -30,6 +30,7 @@ export const NewTrip = () =>{
     const handlePrice = (event) =>{
         SetPrice(event.target.value)
     }
+    console.log("ownerID",userId)
     const handleSubmit = async() => {
         const body = {
                     origin,

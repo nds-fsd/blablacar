@@ -18,7 +18,7 @@ console.log(data)
                         firstName:data.name,
                         surname:data.surname,
                         email:data.email,
-                        birthday:data.Birthday,
+                        Birthday:data.Birthday,
                         treatment:data.treatment,
                         password:data.password
                     }

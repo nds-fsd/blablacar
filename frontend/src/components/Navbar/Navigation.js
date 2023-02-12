@@ -18,7 +18,7 @@ useEffect(()=>{
   const sessiontoken = getStorageObject("user-session")
   if (sessiontoken){
   tokenRef.current = sessiontoken.jwtToken
-  userNameRef.current = sessiontoken.userObj.userName
+  userNameRef.current = sessiontoken.userObj.surname
   userPicRef.current = sessiontoken.userObj.picUrl
   setToken(sessiontoken.jwtToken)
   console.log(tokenRef.current);
