@@ -19,6 +19,7 @@ import ProfileAccount from './components/ProfileAccount/ProfileAccount';
 import { Mytrips } from './components/mytrips/mytrips';
 import  Notification  from './components/Notification/notification';
 
+import {PersonalData} from './components/personalData/PersonalData';
 
 
 function App(props) {
@@ -54,9 +55,6 @@ console.log("whatModal", whatModal)
           <Route path="rides" element={<ProtectedRoute/>}>
             <Route path="" element={<Mytrips/>}/>
           </Route>
-          <Route path="notifications" element={<ProtectedRoute/>}>
-   <Route path="" element={<Notification />}/>
- </Route>
       </Routes>
     </div>
   );

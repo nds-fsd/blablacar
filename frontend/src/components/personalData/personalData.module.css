@@ -1,0 +1,78 @@
+.title{
+    margin: auto;
+    height: 100%;
+    width: 50rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 8px 10px -12px rgb(148, 148, 148);
+    padding: 10px;
+    font-size: 30px;
+    color: rgb(54, 52, 50);
+}
+
+.datawrapper{
+    margin: auto;
+    height: 100%;
+    width: 50rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.fotoWrapper{
+    margin-right: 2.5rem;
+}
+
+.foto{
+    height: 10rem;
+    width: 10rem;
+    border: 2px solid black;
+    border-radius: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.fotoButtons{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+strong, .userData{
+    color: rgb(124, 124, 124);
+    font-size: 20px;
+}
+.userData{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-left: 2.5rem;
+    font-size: 20px;
+    color: orange
+}
+
+.editButton{
+    border-style: none;
+    background-color: rgba(255, 255, 255, 0);
+    color: orange;
+    border-radius: 5px;
+}
+
+.editButton:hover{
+    background-color: rgb(255, 193, 78);
+    color: white;
+    cursor: pointer;
+}
+
+.additionalData{
+    padding: 30px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
