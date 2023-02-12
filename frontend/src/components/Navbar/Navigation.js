@@ -84,15 +84,13 @@ console.log({hasNotifications})
           <div className={styles.wrapperUserAvatar}>
     
           {!!hasNotifications &&  <HiBell className={styles.bellIcon}/>}
-<UserAvatar user={userNameRef.current} picUrl={userPicRef.current} className="mr-auto"/>
+<UserAvatar localization="navBar" user={userNameRef.current} picUrl={userPicRef.current} className="mr-auto"/>
 
 
           </div>
           
         
         }>
-          {console.log(tokenRef.current)}
-          {console.log("queEs", userNameRef.current)}
           {!tokenRef.current?
             (<><NavDropdown.Item href="/login" onClick={logOut}>Inicia Sesión</NavDropdown.Item>
             <NavDropdown.Divider />

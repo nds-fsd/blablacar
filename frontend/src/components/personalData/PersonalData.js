@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Request } from "../../utils/apiWrapper";
 import { getUserToken } from "../../utils/storage";
 import styles from "./personalData.module.css";
 import {CiEdit, CiEraser} from 'react-icons/ci'
+import UserAvatar from "../userAvatar/UserAvatar";
+import { getStorageObject } from "../../utils/storage";
 
 export const PersonalData  = () =>{
     const [myData, setMyData] = useState("")
@@ -15,6 +17,27 @@ export const PersonalData  = () =>{
         }
         getMyData()
     },[])   
+
+
+let tokenRef=useRef()
+let userNameRef=useRef()
+let userPicRef=useRef()
+const [token,setToken]=useState("")
+useEffect(()=>{
+  if(!token){
+  const sessiontoken = getStorageObject("user-session")
+  if (sessiontoken){
+  tokenRef.current = sessiontoken.jwtToken
+  userNameRef.current = sessiontoken.userObj.surname
+  userPicRef.current = sessiontoken.userObj.picUrl
+  setToken(sessiontoken.jwtToken)
+  console.log(tokenRef.current);
+  console.log(userNameRef.current)
+  console.log("usr.Obj", sessiontoken.userObj)
+  }
+  }
+  
+})
 
     const firstName = myData.name;
     const surname = myData.surname;
@@ -37,7 +60,7 @@ export const PersonalData  = () =>{
                 </div>
                 <div className={styles.datawrapper}>
                     <div className={styles.fotoWrapper}>
-                        <div className={styles.foto}>FOTO</div>
+                        <div><UserAvatar user={userNameRef.current} picUrl={userPicRef.current} className='mr-auto'/></div>
                         <div className={styles.fotoButtons}>
                             <div><CiEdit size={37} className={styles.editButton}/></div>
                             <div><CiEraser size={37} className={styles.editButton}/></div>

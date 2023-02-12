@@ -25,17 +25,6 @@
     margin-right: 2.5rem;
 }
 
-.foto{
-    height: 10rem;
-    width: 10rem;
-    border: 2px solid black;
-    border-radius: 10rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1rem;
-}
-
 .fotoButtons{
     display:flex;
     justify-content: space-around;
@@ -64,7 +53,7 @@ strong, .userData{
 }
 
 .editButton:hover{
-    background-color: rgb(255, 193, 78);
+    background-color: rgb(255, 164, 78);
     color: white;
     cursor: pointer;
 }
@@ -75,4 +64,17 @@ strong, .userData{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.imgRedonda {
+    width:5em;
+    height:2em;
+    border-radius:150px;
+    background-color: rgb(255, 162, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    font-weight: bold;
+    
 }
