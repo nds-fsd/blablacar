@@ -6,7 +6,7 @@ import styles from "./ProfileAccount.module.css";
 const LINKS = [
   {
     text: 'Datos personales',
-    link: '/profilemenu'
+    link: '/personaldata'
   },
   {
     text: 'Opiniones dejadas',

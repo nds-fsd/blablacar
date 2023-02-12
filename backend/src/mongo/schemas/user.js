@@ -12,12 +12,15 @@ const userSchema = new Schema({
     treatment:{type: String},
     genero:{type: String},
     fumador:Boolean,
-    hablador:{type:Number, min:1, max:3},
-    musica:{type:Number, min:1, max:3},
+    hablador:{type:Boolean},
+    musica:{type:String},
     ID:String,
     ValidatedID:{type:Number, min:1, max:3, default:1},
     RGPDaccepted:Boolean,
     password:{type: String},
+    car:{numberPlate: {type:String},
+        model: {type:String}
+    },
     idTrips: [{
         type: Schema.Types.ObjectId,
         ref: "Trip"
