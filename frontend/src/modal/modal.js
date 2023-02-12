@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { NewTrip } from '../components/newTrip/newTrip';
 import styles from './modal.module.css';
 
-const Modal = ({ children, onClose, openModal }) => {
+const Modal = ({ children, onClose, openModal, whatModal }) => {
   const modalReference = useRef(null);
   const navigate=useNavigate()
   useEffect(() => {
@@ -13,9 +13,12 @@ const Modal = ({ children, onClose, openModal }) => {
         !modalReference.current.contains(e.target) &&
         openModal
       ) {
+        if(whatModal !== "tripDetail"){
         onClose();
         navigate(-1);
-      }
+      }else onClose()
+        }
+
     };
 
     document.addEventListener('click', handleClickOutside, true);
@@ -25,6 +28,8 @@ const Modal = ({ children, onClose, openModal }) => {
       
     };
   }, [modalReference, openModal]);
+
+  if(!openModal) return null
 
   return (
     <div className={`${styles.backdrop} ${openModal && styles.openModal}`}>

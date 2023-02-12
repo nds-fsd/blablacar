@@ -38,7 +38,7 @@ console.log("whatModal", whatModal)
           <Route path="trips" element={<ProtectedRoute openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}>
             <Route path="" element={<ChoseModal openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}/>
           </Route>
-          <Route path="trips/searchresults" element={<FindTrip/>}/>
+          <Route path="trips/searchresults" element={<FindTrip setOpenModal={setOpenModal} setWhatModal={setWhatModal}/>}/>
           <Route path="error" element={<ErrorForm />}/>
           <Route path="users/list" element={<ProtectedRoute/>}>
             <Route path="" element={<UsersList />}/>
@@ -52,6 +52,9 @@ console.log("whatModal", whatModal)
           <Route path="rides" element={<ProtectedRoute/>}>
             <Route path="" element={<Mytrips/>}/>
           </Route>
+      </Routes>
+      <Routes>
+        <Route path="trips/searchresults" element={<ChoseModal openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}/>
       </Routes>
     </div>
   );

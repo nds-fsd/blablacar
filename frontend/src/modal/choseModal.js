@@ -6,7 +6,7 @@ import Modal from "./modal";
 const ChoseModal = ({whatModal, openModal, setOpenModal}) =>{
     if(whatModal === "newUser"){
         return(
-            <Modal openModal={openModal} onClose={()=> setOpenModal(false)}>
+            <Modal whatModal={whatModal} openModal={openModal} onClose={()=> setOpenModal(false)}>
                 <NewUser />
             </Modal>
         )
@@ -14,15 +14,15 @@ const ChoseModal = ({whatModal, openModal, setOpenModal}) =>{
 
     else if(whatModal === "newTrip"){
         return(
-            <Modal openModal={openModal} onClose={()=> setOpenModal(false)}>
+            <Modal whatModal={whatModal} openModal={openModal} onClose={()=> setOpenModal(false)}>
                 <NewTrip />
             </Modal>
         )
     }
-    else if(whatModal=== "Trip"){
+    else if(whatModal=== "tripDetail"){
         return(
-            <Modal openModal={openModal} onClose={()=> setOpenModal(false)}>
-                <newTrip />
+            <Modal whatModal={whatModal} openModal={openModal} onClose={()=> setOpenModal(false)}>
+                <NewTrip />
             </Modal>
         )
     }

@@ -6,7 +6,7 @@ import {Trip} from "../trip/trip"
 import TripSummary from "../TripSummary/TripSummary";
 
 
-const FindTrip = () => {
+const FindTrip = ({setOpenModal, setWhatModal}) => {
     const location=useLocation()
     const trips = location.state
     console.log("findtrip",trips)
@@ -62,7 +62,7 @@ const FindTrip = () => {
     return(
         <div className={styles.parappa}>
           {trips&&trips.map((e)=>(
-            <TripSummary trip={e} id={e._id} />))} 
+            <TripSummary trip={e} id={e._id} setOpenModal={setOpenModal} setWhatModal={setWhatModal}/>))} 
         </div>
     )
 }

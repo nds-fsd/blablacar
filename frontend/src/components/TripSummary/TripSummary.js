@@ -4,9 +4,15 @@ import UserAvatar from "../userAvatar/UserAvatar";
 import styles from "./TripSummary.module.css"
 import {BsCircle, BsArrowDown } from "react-icons/bs"
 import ConfigIcon from "../IconConfig/iconsize_small"
+import { useNavigate } from "react-router-dom";
 function TripSummary(props) {
-  let trip=props.trip
+  const navigate = useNavigate();
+  let trip=props.trip;
+  let id=props.id;
   let owner;
+
+  const setOpenModal = props.setOpenModal;
+  const setWhatModal = props.setWhatModal;
 
   // tienes que hacer una comprobacion sobre el owner y si no hay owner meter uno en plan dummy 
   if(props.trip.owner){
@@ -22,7 +28,7 @@ function TripSummary(props) {
   console.log(owner);
     return (
       
-        <Card bsPrefix="tripSummary">
+        <Card bsPrefix="tripSummary" onClick={() =>{setOpenModal(true); setWhatModal("tripDetail")}}>
               <div className={styles.cardTop}>
                 <div className={styles.leftwrapper}>  
                   <div className={styles.timeTable}>
