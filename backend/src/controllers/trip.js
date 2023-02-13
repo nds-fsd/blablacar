@@ -31,6 +31,32 @@ const createTrip = async(req,res) =>{
     }
 }
 
+// test create trip
+
+const testCreateTrip = async(req, res) => {
+    const idUser = req.params.id // recogemos la id del usuario
+    const bodyTrip = req.body
+
+try{
+    const user = await Users.findById(idUser)
+    if(!user) return res.json({error: 'No User Found'})
+    if(user){
+        const newTrip = new Trip(bodyTrip)
+        newTrip.originDate = new Date().toLocaleDateString('es-ES');
+        newTrip.destinationDate = new Date().toLocaleDateString('es-ES');
+        newTrip.owner = idUser;
+        newTrip.availableSeats = newTrip.seats;
+        const trip = await newTrip.save();
+        console.log('este es el viaje creado'+ trip)
+        res.status(201).json(trip)  
+    }
+}catch(e){
+    console.log('error creando el trip' + e)
+}
+
+
+}
+
 const getTripById = async(req,res) =>{
     try{
         const trip = await Trip.findById(req.params.id).populate([{
@@ -135,4 +161,4 @@ const findTrip = async(req,res) =>{
     }
 }
 
-module.exports={getAll,createTrip,getTripById,deleteTrip,updatedTrip,getTripByOrigin,findTrip};
+module.exports={getAll,createTrip,getTripById,deleteTrip,updatedTrip,getTripByOrigin,findTrip, testCreateTrip};

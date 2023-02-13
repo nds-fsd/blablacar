@@ -60,12 +60,12 @@ const FindTrip = () => {
     //     console.log(id)
     //     setModal(!openModal)
     //     reloadPage();
-    // }
+    // })
     return(
         <div className={styles.parappa}>
           {trips&&trips.map((e)=>(
-            // <TripSummary trip={e} id={e._id} />))}
-            <TripExtended trip={e} id={e.id} user={getStorageObject("user-session")}/>))}
+            <TripSummary trip={e} id={e._id} />))} 
+
         </div>
     )
 }
