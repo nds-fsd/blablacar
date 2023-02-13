@@ -4,6 +4,8 @@ import {useState } from "react";
 import { Request } from "../../utils/apiWrapper";
 import {Trip} from "../trip/trip"
 import TripSummary from "../TripSummary/TripSummary";
+import TripExtended from "../TripExtended/TripExtended";
+import { getStorageObject } from "../../utils/storage";
 
 
 const FindTrip = () => {
@@ -63,6 +65,7 @@ const FindTrip = () => {
         <div className={styles.parappa}>
           {trips&&trips.map((e)=>(
             <TripSummary trip={e} id={e._id} />))} 
+
         </div>
     )
 }
