@@ -5,11 +5,10 @@ import { useForm } from "react-hook-form";
 import ConfigIcon from "../IconConfig/iconsize_small";
 import { AiOutlineEye} from "react-icons/ai"
 import { Request } from "../../utils/apiWrapper";
-import { AuthContext } from "../../context/AuthContext";
+
 import { setStorageObject } from "../../utils/storage";
 
  export const Login = (props) =>{
-    const { token, saveToken}=useContext(AuthContext)
     const navigate = useNavigate();
     const { register, handleSubmit,formState: { errors }} = useForm();
     const [passview,setPassview]=useState(false)
@@ -51,14 +50,9 @@ import { setStorageObject } from "../../utils/storage";
                         }else{
                           if (res.jwtToken){
                             console.log(res);
-                            setStorageObject("user-session",res);    
-                            saveToken(res.jwtToken)
-                            console.log(res.jwtToken);
-                            console.log(token);
+                            setStorageObject("user-session",res);
                             navigate("/")
-                            alert("estas dentro")
-                            navigate("/") 
-                        }  
+                            }  
                          
                           
                   

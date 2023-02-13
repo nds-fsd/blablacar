@@ -1,4 +1,5 @@
 const express = require ('express');
+const {bookingRouter} = require('./routers/bookingRouter.js')
 const {userRouter} = require('./routers/userRouter.js');
 const {tripRouter} = require('./routers/tripRouter.js');
 const {authRouter} = require('./routers/authRouter.js');
@@ -34,6 +35,7 @@ app.use(express.json());
 //Routers 
 app.use(userRouter)
 app.use(tripRouter)
+app.use(bookingRouter)
 //Login router
 app.use('/auth', authRouter);
 

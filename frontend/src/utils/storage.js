@@ -7,6 +7,7 @@ export const getStorageObject = (key) => {
 };
 
 export const setStorageObject = (key, object) => {
+	console.log(key,object);
 	localStorage.setItem(key, JSON.stringify(object));
 }
 
@@ -20,3 +21,4 @@ export const getUserToken = () => {
     }
     return null;
 };
+
