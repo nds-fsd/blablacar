@@ -16,8 +16,6 @@ export const ProtectedRoute = () => {
         return
       }
       setToken(sessiontoken.jwtToken)
-      
-      console.log(token);
     }
     })
     return <Outlet/>
