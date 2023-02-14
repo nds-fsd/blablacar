@@ -13,7 +13,6 @@ const changePassview=()=>{
 }
 
 const userSubmit=async(data)=>{
-console.log(data)
          const body = {
                         firstName:data.name,
                         surname:data.surname,
@@ -38,21 +37,16 @@ console.log(data)
             
 }
 const usrError=(data)=>{
-  console.log(data)
 }
 // creo una función con un regexp para ver que es una string tipo mail
 const isValidEmail = (email) =>{  
-  console.log(email);
    // eslint-disable-next-line
   let checkEmail=/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)
-  console.log(checkEmail);
   return checkEmail
 };
 const isValidPassword = (passw) =>{  
-  console.log(passw);
    // eslint-disable-next-line
   let checkPassw=/^(?=.*([A-Z]){1,})(?=.*[!@#$&*]{1,})(?=.*[0-9]{1,})(?=.*[a-z]{1,}).{3,100}$/.test(passw)
-  console.log(checkPassw);
   return checkPassw
 }
 

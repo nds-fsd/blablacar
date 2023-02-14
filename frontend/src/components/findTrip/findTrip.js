@@ -11,7 +11,6 @@ import { getStorageObject } from "../../utils/storage";
 const FindTrip = () => {
     const location=useLocation()
     const trips = location.state
-    console.log("findtrip",trips)
     // const [tripsFind,setTripsFind] =useState([])
     // const [reload,setReload] = useState(false)
     // const [openModal,setModal] = useState(false);

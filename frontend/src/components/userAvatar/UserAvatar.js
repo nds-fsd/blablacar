@@ -2,7 +2,6 @@ import React, { Children } from "react";
 import userLogo from "../assets/user.png"
 import styles from './UserAvatar.module.css'
 const UserAvatar = (props) =>{
-console.log(props);
 const localization = props.localization
 if (props.user && props.picUrl){
     return (
