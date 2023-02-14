@@ -35,7 +35,6 @@ const TripSearchBar = () => {
 
   let trips = await Request (`/trips/`,"POST",body);
   let foundTrips
-  console.log("tripsHome",trips)
     if(trips?.error){
       if(trips.status !== 404 || trips.status !== 500){
         alert(trips.message)  
@@ -44,7 +43,6 @@ const TripSearchBar = () => {
       }    
     }else{
          foundTrips = trips
-         console.log(foundTrips);
          navigate("/trips/searchresults", {state:foundTrips})
       }
      
