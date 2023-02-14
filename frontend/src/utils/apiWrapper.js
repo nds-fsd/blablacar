@@ -1,6 +1,11 @@
+const API_URL = 
+window.location.hostname === "pimpambug.netlify.app"
+?'https://pimpambuga.up.railway.app/'
+:"http://localhost:3001"
+
 const Request = async (route, method = "GET", body = undefined,headers={}) =>{
  
-    let useUrl = "http://localhost:3001" + route;
+    let useUrl = API_URL + route;
     let ops = {
       method: method,
       mode: "cors",

@@ -2,6 +2,8 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Container from 'react-bootstrap/Container';
 import { BsChevronRight } from "react-icons/bs";
 import styles from "./ProfileAccount.module.css";
+import {deleteStorageObject} from "../../utils/storage"
+import { useNavigate } from "react-router-dom";
 
 const LINKS = [
   {
@@ -49,18 +51,16 @@ const LINKS = [
     link: '/dataprotection'
   },
 
-  {
-    text: 'Cerrar sessión',
-    link: '/logout'
-  },
-
-
-
-
 ]
 
 
 const ProfileAccount = () => {
+  const navigate = useNavigate()
+  const logOut = () =>{
+    deleteStorageObject("user-session")
+    navigate("/")
+   }
+  
   return (
     <Container>
       <ListGroup>
@@ -69,7 +69,12 @@ const ProfileAccount = () => {
             <a href={link}className={styles.link}>
             <span>{text}</span><BsChevronRight/> </a>
 
+         
           </ListGroup.Item>)}
+          <ListGroup.Item className={styles.listItem}>
+          <button className={`${styles.link} ${styles.logoutbtn}`} onClick={logOut}>Cerrar sessión <BsChevronRight/> </button>
+          </ListGroup.Item>
+
       </ListGroup>
     </Container>
   )
