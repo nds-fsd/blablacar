@@ -1,0 +1,21 @@
+
+.textbox{
+    height: 100%;
+    font-size: 15px;
+    border: 1px solid rgb(255, 162, 0);
+    margin: 0;
+}
+
+.submit{
+    background-color: orange;
+    margin-top: 10px;
+    height: 100%;
+    width: 35%;
+    color: white;
+    border-style: none;
+    margin-left: 30%;
+}
+
+.submit:hover{
+    background-color: rgb(255, 223, 163);
+}

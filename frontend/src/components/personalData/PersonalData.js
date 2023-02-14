@@ -5,8 +5,10 @@ import styles from "./personalData.module.css";
 import {CiEdit, CiEraser} from 'react-icons/ci'
 import UserAvatar from "../userAvatar/UserAvatar";
 import { getStorageObject } from "../../utils/storage";
+import { useForm} from "react-hook-form";
+import { EditExtraDataForm, EditMainDataFrom } from "./EditDataForms";
 
-export const PersonalData  = () =>{
+export const PersonalData  = () =>{ 
     const [myData, setMyData] = useState("")
     const userId = getUserToken().userObj.userID
     useEffect(()=>{
@@ -51,12 +53,17 @@ useEffect(()=>{
     const numberPlate = undefined;
     const model = undefined;
 
+    const [editData, setEditData] = useState(false);
+    const [editExtraData, setEditExtraData] = useState(false);
+    const [editVehicle, setEditVehicle] = useState(false);
+
+
     return (
         <>
             <div>
                 <div className={styles.title}>
                     <div><strong>Datos Personales</strong></div>
-                    <div><CiEdit size={37} className={styles.editButton}/></div>
+                    <div><CiEdit size={37} className={styles.editButton} onClick={() =>{!editData ? setEditData(true) : setEditData(false)}}/></div>
                 </div>
                 <div className={styles.datawrapper}>
                     <div className={styles.fotoWrapper}>
@@ -66,24 +73,30 @@ useEffect(()=>{
                             <div><CiEraser size={37} className={styles.editButton}/></div>
                         </div>
                     </div>
-                    <div className={styles.userData}>
+                    {!editData ?
+                    (<div className={styles.userData}>
                         <p><strong>Nombre:</strong></p>
                         <p>{firstName}</p>
                         <p><strong>Apellido:</strong></p>
                         <p>{surname}</p>
-                        <p><strong>Corro electrónico:</strong></p>
+                        <p><strong>Correo electrónico:</strong></p>
                         <p>{email}</p>
                         <p><strong>Tratamiento:</strong></p>
                         <p>{treatment}</p>
                         <p><strong>Día de nacimiento:</strong></p>
                         <p>{birthday}</p>
-                    </div>
+                    </div>)
+                    :
+                    (<EditMainDataFrom setEditData={setEditData} userId={userId}/>)
+                    }
+
                 </div>
                 <div className={styles.title}>
                     <div><strong>¡Que te conozcan tus compañeros!</strong></div>
-                    <div><CiEdit size={37} className={styles.editButton}/></div>
+                    <div><CiEdit size={37} className={styles.editButton} onClick={()=>{!editExtraData ? setEditExtraData(true) : setEditExtraData(false)}}/></div>
                 </div>
-                <div className={styles.additionalData}>
+                {!editExtraData ? 
+                (<div className={styles.additionalData}>
                         <p><strong>Hablador:</strong></p>
                         <p>{talker}</p>
                         <p><strong>Música:</strong></p>
@@ -92,7 +105,9 @@ useEffect(()=>{
                         <p>{smoker}</p>
                         <p><strong>Mascotas:</strong></p>
                         <p>{pets}</p>
-                </div>
+                </div>)
+                :
+                (<EditExtraDataForm setEditExtraData={setEditExtraData} userId={userId}/>)}
                 <div className={styles.title}>
                     <div><strong>¡Añade tu coche!</strong></div>
                     <div><CiEdit size={37} className={styles.editButton}/></div>

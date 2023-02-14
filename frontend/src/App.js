@@ -31,7 +31,7 @@ console.log("openModal", openModal)
 console.log("whatModal", whatModal)
   return (
     <div>
-      <Navigation setOpenModal={setOpenModal} setWhatModal={setWhatModal}/>
+      <Navigation setOpenModal={setOpenModal} setWhatModal={setWhatModal} className="NavBar"/>
       <Routes>
           <Route path="/" element={<Parallax />}/>
           <Route path="users" element={<ChoseModal openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}/>
