@@ -64,10 +64,11 @@ const usrPost= async (req, res) => {
 
 
 //TODO:añadir middlewares, hablar con Paulo
-const usrPut=async(req, res) => {
+const usrPatch=async(req, res) => {
     const updateUsr=await Users.findByIdAndUpdate(req.params.id,req.body)
     const updatedUsr=await Users.findById(req.params.id)
-    res.json(updatedUsr);
+    console.log(updateUsr)
+    res.json(updateUsr);
 };
   
 //TODO:añadir middlewares, hablar con Paulo
@@ -77,4 +78,4 @@ const usrDelete=async(req, res) => {
     //o mejor crear campo "inactive" para borrar temporalmente
     res.json(delUsr)    
 };
-module.exports={usrDelete,usrGetAll,usrGetOne,usrPost,usrPut}
+module.exports={usrDelete,usrGetAll,usrGetOne,usrPost,usrPatch}
