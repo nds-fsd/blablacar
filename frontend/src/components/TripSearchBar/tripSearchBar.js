@@ -10,7 +10,7 @@ const TripSearchBar = () => {
   const [destination,setdestination] = useState("");
   const [originDate,setOriginDate] = useState("");
   const [seats,setSeats] = useState("");
-  //const [trip,setTrip] = useState([{}]);
+  
 
   const handleOrigin = (event)=>{
     setOrigin(event.target.value)
@@ -25,30 +25,33 @@ const TripSearchBar = () => {
     setSeats(event.target.value)
   }
 
-  const handleSubmit = async () =>{
-    let body={}
-    body.origin=origin
-    body.originDate=originDate
-    body.destination=destination
-    body.seats=seats
+  const handleSubmit = async () =>{navigate(`/trips/searchresults/?origin=${origin}&destination=${destination}&originDate=${originDate}&seats=${seats}`)}
 
 
-  let trips = await Request (`/trips/`,"POST",body);
-  let foundTrips
-  console.log("tripsHome",trips)
-    if(trips?.error){
-      if(trips.status !== 404 || trips.status !== 500){
-        alert(trips.message)  
-      }else{
-        navigate("error");
-      }    
-    }else{
-         foundTrips = trips
-         console.log(foundTrips);
-         navigate("/trips/searchresults", {state:foundTrips})
-      }
+
+  //   let body={}
+  //   body.origin=origin
+  //   body.originDate=originDate
+  //   body.destination=destination
+  //   body.seats=seats
+
+
+  // let trips = await Request 
+  // let foundTrips
+  // console.log("tripsHome",trips)
+  //   if(trips?.error){
+  //     if(trips.status !== 404 || trips.status !== 500){
+  //       alert(trips.message)  
+  //     }else{
+  //       navigate("error");
+  //     }    
+  //   }else{
+  //        foundTrips = trips
+  //        console.log(foundTrips);
+  //        navigate("/trips/searchresults", {state:foundTrips})
+  //     }
      
-    }
+  //   }
 
 
 return(

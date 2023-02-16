@@ -6,11 +6,12 @@ import ConfigIcon from "../IconConfig/iconsize_small"
 import UserAvatar from "../userAvatar/UserAvatar";
 import { getStorageObject } from "../../utils/storage";
 import { Button } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
 
-
-const TripExtended = (props)=>{
-    console.log(props);
-    let trip=props.trip;
+const TripExtended = ()=>{
+    const location=useLocation()
+    let trip=location.state;
+    console.log(trip);
     let originDate=new Date(trip.originDate);
     let destinationDate=new Date(trip.destinationDate);
     let diaSalida=diaSemana(originDate);
@@ -24,6 +25,18 @@ const TripExtended = (props)=>{
     const googleMapDestination=()=>{
         window.open(`https://www.google.es/maps/search/${trip.destination}`, '_blank', 'noreferrer');
     }
+
+    const ownerCheck=(id)=>{
+        console.log(id);
+        let session=getStorageObject('user-session')
+        console.log("compar con");
+        console.log(session);
+        return(
+            session.userObj.userID===id
+        )
+    }
+    console.log(ownerCheck(trip.owner[0]._id))
+
 return(
 
     <div className={styles.parappa}>
@@ -34,7 +47,7 @@ return(
                     <p>{fechaHora(originDate)}</p><BsCircle></BsCircle>{trip&&<p>{trip.origin}</p>}
                     </div>
                     <div className={styles.location_graph_mid}>
-                    <ConfigIcon> <BsArrowDown></BsArrowDown></ConfigIcon>
+                    
                     </div>
                     <div className={styles.location_graph_bottom}>
                     <p>{fechaHora(destinationDate)}</p><BsCircle></BsCircle>{trip&&<p>{trip.destination}</p>}  
@@ -54,7 +67,7 @@ return(
             </div>
             
 
-            {props.user.userObj.userID&&trip.owner[0]&&props.user.userObj.userID===trip.owner[0]._id&&<Button>Editar</Button>}
+            {ownerCheck(trip.owner[0]._id)?<Button>Editar</Button>:<Button>Reservar</Button>}
 
     </div>
 )

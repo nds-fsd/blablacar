@@ -2,6 +2,14 @@ const Users = require ("../mongo/schemas/user.js");
 const Bcrypt = require ('bcryptjs');
 const Booking  =  require("../mongo/schemas/booking.js");
 const Trip  =  require("../mongo/schemas/trip.js");
+const dotenv=require('dotenv')
+dotenv.config()
+const secret = process.env.JWT_SECRET
+const expires = process.env.JWT_EXPIRATION_TIME
+const expirationTime = Number(process.env.JWT_EXPIRATION_TIME)/3600;
+const JsonWebToken = require('jsonwebtoken');
+
+
 const usrGetAll=async (req, res) => {
     const usuarios = await Users.find();
     console.log(usuarios);
@@ -23,14 +31,26 @@ const usrPost= async (req, res) => {
         email:body.email,
         treatment:body.treatment,
         password: body.password
-        //hola
+        
     };
+    
   try{
     console.log(receivedUser)
     const newUser= new Users(receivedUser);
+    console.log(newUser);
     await newUser.save()
-  
-    res.status(201).json(newUser);
+    const userObj = {
+        userID : newUser._id,
+        userName: newUser.firstName,
+        surname: newUser.surname,
+        birthday: newUser.birthday,
+        treatment: newUser.treatment,
+        picUrl:newUser.picUrl
+        
+     }
+     const newJwtToken = JsonWebToken.sign({id: newUser._id, email: newUser.email }, secret, { expiresIn: expires });
+     console.log(newJwtToken);
+    res.status(201).json({success: true, jwtToken: newJwtToken, expirationHours: expirationTime, userObj: userObj});
 }catch{
     res.status(400).send({message:"Email already exists"})}
 };
@@ -65,7 +85,7 @@ const usrPost= async (req, res) => {
 
 //TODO:añadir middlewares, hablar con Paulo
 const usrPut=async(req, res) => {
-    const updateUsr=await Users.findByIdAndUpdate(req.params.id,req.body)
+    const updateUsr=await Users.findByIdAndUpdate(req.params.id,newUser)
     const updatedUsr=await Users.findById(req.params.id)
     res.json(updatedUsr);
 };

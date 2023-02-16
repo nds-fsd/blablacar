@@ -17,6 +17,7 @@ import ChoseModal from './modal/choseModal';
 import Parallax from './components/parallax/parallax';
 import ProfileAccount from './components/ProfileAccount/ProfileAccount';
 import { Mytrips } from './components/mytrips/mytrips';
+import TripExtended from './components/TripExtended/TripExtended';
 
 
 function App(props) {
@@ -32,18 +33,18 @@ console.log("whatModal", whatModal)
     <div>
       <Navigation setOpenModal={setOpenModal} setWhatModal={setWhatModal}/>
       <Routes>
-          <Route path="/" element={<Parallax />}/>
+          <Route path="/" element={<Parallax openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal} />}/>
           <Route path="users" element={<ChoseModal openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}/>
-          <Route path="login" element={<Login />}/>
+          <Route path="login" element={<ChoseModal openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}/>
           <Route path="trips" element={<ProtectedRoute openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}>
             <Route path="" element={<ChoseModal openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}/>
-          </Route>
-          <Route path="trips/searchresults" element={<FindTrip/>}/>
+          </Route>  
+          <Route path="trips/:id" element={<TripExtended/>}></Route>  
+          <Route path="trips/searchresults" element={<FindTrip openModal={openModal} whatModal={whatModal} setWhatModal={setWhatModal} setOpenModal={setOpenModal}/>}/>
           <Route path="error" element={<ErrorForm />}/>
           <Route path="users/list" element={<ProtectedRoute/>}>
             <Route path="" element={<UsersList />}/>
           </Route>
-          <Route path="users/list" element={<UsersList />} />
           <Route path="search" element={<TripSearchBar />} />
           <Route path="profile" element={<ProtectedRoute/>}>
             <Route path="" element={<ProfileAccount />}/>

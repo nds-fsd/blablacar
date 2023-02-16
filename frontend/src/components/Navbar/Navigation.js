@@ -48,14 +48,14 @@ useEffect(()=>{
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
         <Nav className="justify-content-end">
         <Nav.Link href="/search"><HiMagnifyingGlass size={38} className={` mr-auto ${styles.glass}`}/></Nav.Link>
-        <Nav.Link onClick={()=>{navigate("/trips");setOpenModal(true); setWhatModal("newTrip")}}><HiOutlinePlusCircle size={38} className={` mr-auto ${styles.glass}`}/></Nav.Link>
+        {tokenRef.current&&<Nav.Link onClick={()=>{navigate("/trips");setOpenModal(true); setWhatModal("NewTrip")}}><HiOutlinePlusCircle size={38} className={` mr-auto ${styles.glass}`}/></Nav.Link>}
         <NavDropdown id="basic-nav-dropdown" title={<UserAvatar user={userNameRef.current} picUrl={userPicRef.current} className="mr-auto"/>}>
           {console.log(tokenRef.current)}
           {console.log("queEs", userNameRef.current)}
           {!tokenRef.current?
-            (<><NavDropdown.Item href="/login" onClick={logOut}>Inicia Sesión</NavDropdown.Item>
+            (<><NavDropdown.Item onClick={()=>{navigate("/login");setOpenModal(true); setWhatModal("Login")}} >Inicia Sesión</NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item onClick={()=>{navigate("/users");setOpenModal(true); setWhatModal("newUser")}}>Regístrate</NavDropdown.Item></>)
+            <NavDropdown.Item onClick={()=>{navigate("/users");setOpenModal(true); setWhatModal("NewUser")}}>Regístrate</NavDropdown.Item></>)
             :
             (<>            
             <NavDropdown.Item href={`/rides`}>Tus viajes</NavDropdown.Item>

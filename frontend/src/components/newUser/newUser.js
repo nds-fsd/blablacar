@@ -4,6 +4,9 @@ import { Request } from "../../utils/apiWrapper";
 import styles from "./newUser.module.css"
 import ConfigIcon from "../IconConfig/iconsize_small";
 import { AiOutlineEye} from "react-icons/ai"
+import { setStorageObject } from "../../utils/storage";
+import { useNavigate } from "react-router-dom";
+
 
 export const NewUser=()=>{
 const {register, handleSubmit,formState:{errors}} = useForm();   
@@ -11,7 +14,7 @@ const [passview,setPassview]=useState(false)
 const changePassview=()=>{
   setPassview(!passview)
 }
-
+const navigate=useNavigate()
 const userSubmit=async(data)=>{
 console.log(data)
          const body = {
@@ -28,7 +31,11 @@ console.log(data)
                 if(res?.error){
                     alert(res.message)
                 }else{
-                  alert("usuario creado con exito")
+                  if (res.jwtToken){
+                    console.log(res);
+                    setStorageObject("user-session",res);
+                    navigate("/")
+                    }  
                 }         
 
             
