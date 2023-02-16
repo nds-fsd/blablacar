@@ -1,69 +1,44 @@
 import styles from "./findTrip.module.css";
-import { useLocation } from "react-router-dom";
-import {useState } from "react";
-import { Request } from "../../utils/apiWrapper";
-import {Trip} from "../trip/trip"
+import {  useSearchParams } from "react-router-dom";
 import TripSummary from "../TripSummary/TripSummary";
-import TripExtended from "../TripExtended/TripExtended";
-import { getStorageObject } from "../../utils/storage";
+import { useEffect, useRef, useState} from "react";
+import { Request } from "../../utils/apiWrapper";
+import { useNavigate } from "react-router-dom";
 
+const FindTrip = (props) => {
+  console.log(props);
+    
+    const navigate=useNavigate()
 
-const FindTrip = () => {
-    const location=useLocation()
-    const trips = location.state
-    // const [tripsFind,setTripsFind] =useState([])
-    // const [reload,setReload] = useState(false)
-    // const [openModal,setModal] = useState(false);
-    // const reloadPage = () =>{
-    //     setReload(!reload)
-    // }
+    const [trips,setTrips]=useState()
+  useEffect(() => {
+    // Obtener los query params de la URL
+    const searchParams = new URLSearchParams(window.location.search);
+    const queryParams = Object.fromEntries(searchParams.entries());
+    const getTrips=async()=>{
+    // Realizar la petición HTTP con los query params en el cuerpo
+    let getTrips = await Request("/trips","POST", queryParams)
+    console.log(queryParams);
+    console.log(trips);
+    setTrips(getTrips)
+    }
+    !trips&&getTrips()
+    
+  }, []);
+      
+      
+           
 
-    // const updateModal = () =>{
-    //     setModal(!reload)
-    // }
+    
 
-    // const apiFilter = async () =>{
-    //         const api1 = await Request(`${location.pathname}`)
-    //         setTripsFind(api1)
-    //         console.log(tripsFind)
-    // }
-    // const apiList = async () =>{
-    //     const api1 = await Request(`/trips`)
-    //     setTripsFind(api1)
-    //     console.log(tripsFind)
-    // }
-       
-//    useEffect(() => {
-//     if(location.pathname  === "/trips/list"){
-//         apiList();
-//     }else{
-//         apiFilter()   
-//     }
-
- 
-
-//    },[reload])
-
-
-    // const deleteTrip = async (id) =>{
-    //     let res = await Request("/trips/"+id,"delete")
-    //                 if(res?.error){
-    //                     alert(res.message)
-    //                 }else{
-    //                   alert("viaje eliminado con exito")
-    //                   reloadPage();
-    //                 }                  
-    // }
-
-    // const updateTrip = (id) =>{
-    //     console.log(id)
-    //     setModal(!openModal)
-    //     reloadPage();
-    // })
+    
+    
     return(
         <div className={styles.parappa}>
-          {trips&&trips.map((e)=>(
-            <TripSummary trip={e} id={e._id} />))} 
+          {console.log(trips)}
+            {trips&&trips.map(e=>
+             <TripSummary trip={e} id={e._id} setWhatModal={props.setWhatModal} setOpenModal={props.setOpenModal}></TripSummary>)
+            }
 
         </div>
     )

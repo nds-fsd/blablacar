@@ -6,7 +6,7 @@ import {ChatList} from '../chat/chatList'
 
 
 
-const Parallax = ()=>{
+const Parallax = ({setOpenModal, setWhatModal, openModal, whatModal})=>{
  
     
   return (
@@ -23,7 +23,7 @@ const Parallax = ()=>{
       <div className={`${styles.ParallaxImage} ${styles.bg2}`}>  
       <h1>Los mejores destinos, al mejor precio.</h1>
        
-          <TripSearchBar/>
+          <TripSearchBar openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>
        
       </div>
       <div className={styles.ParallaxImage_2}>
