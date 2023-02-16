@@ -20,7 +20,11 @@ console.log(data)
                         email:data.email,
                         Birthday:data.Birthday,
                         treatment:data.treatment,
-                        password:data.password
+                        password:data.password,
+                        talker:undefined,
+                        music:undefined,
+                        smoker:undefined,
+                        pets:undefined
                     }
 
                 let res = await Request("/users","POST",body)
