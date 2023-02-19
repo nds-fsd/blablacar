@@ -60,7 +60,7 @@ try{
 const getTripById = async(req,res) =>{
     try{
         const trip = await Trip.findById(req.params.id).populate([{
-            path: 'owner',select: 'fisrtName treatment surname email picUrl',
+            path: 'owner',select: 'firstName treatment surname email picUrl',
             model: 'Users',
         }])
         .populate([{

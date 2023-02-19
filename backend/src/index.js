@@ -2,7 +2,9 @@ const express = require ('express');
 const {bookingRouter} = require('./routers/bookingRouter.js')
 const {userRouter} = require('./routers/userRouter.js');
 const {tripRouter} = require('./routers/tripRouter.js');
+const {chatRouter} = require('./routers/chatRouter');
 const {authRouter} = require('./routers/authRouter.js');
+const {messageRouter} = require('./routers/messageRouter.js');
 const errorLogging = require('./Middleware/errorsMiddleware.js');
 const dotenv = require('dotenv');
 const {connectDB} = require ('./mongo/index.js');
@@ -36,6 +38,8 @@ app.use(express.json());
 app.use(userRouter)
 app.use(tripRouter)
 app.use(bookingRouter)
+app.use(chatRouter)
+app.use(messageRouter)
 //Login router
 app.use('/auth', authRouter);
 
