@@ -44,7 +44,7 @@ useEffect(()=>{
 
     const firstName = myData.name;
     const surname = myData.surname;
-    const birthday = myData.Birthday;
+    const birthday = myData.birthday;
     const email = myData.email;
     const treatment = myData.treatment;
     const talker = myData.talker;
@@ -81,11 +81,11 @@ useEffect(()=>{
                         <p><strong>Apellido:</strong></p>
                         <p>{surname}</p>
                         <p><strong>Correo electrónico:</strong></p> {/*QUITAR EMAIL DE PAGINA TERCROS*/}
-                        <p>{email}</p>
-                        <p><strong>Tratamiento:</strong></p>
-                        <p>{treatment}</p>
+                        <p>{email}</p>                        
                         <p><strong>Día de nacimiento:</strong></p> {/*QUITAR EMAIL DE PAGINA TERCROS*/}
                         <p>{birthday}</p>
+                        <p><strong>Tratamiento:</strong></p>
+                        <p>{treatment}</p>
                     </div>)
                     :
                     (<EditMainDataFrom setEditData={setEditData} userId={userId} setChange={setChange} change={change} myData={myData}/>)
