@@ -19,12 +19,9 @@ const Request = async (route, method = "GET", body = undefined,headers={}) =>{
       ops.body = JSON.stringify(body)
     }
   try{
-    console.log(useUrl);
-    console.log(ops);
     const response = await fetch(useUrl,ops);
     let json = await response.json()
       if (response.ok){
-        console.log(json)
         return json
       } else {
 

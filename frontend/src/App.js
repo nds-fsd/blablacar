@@ -26,8 +26,6 @@ function App(props) {
   
   const [openModal, setOpenModal] = useState(false);
   const [whatModal, setWhatModal] = useState('');
-console.log("openModal", openModal)
-console.log("whatModal", whatModal)
   return (
     <div>
       <Navigation setOpenModal={setOpenModal} setWhatModal={setWhatModal}/>

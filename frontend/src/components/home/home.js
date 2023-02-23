@@ -6,12 +6,10 @@ import TripSearchBar from "../TripSearchBar/tripSearchBar";
 import { getStorageObject } from "../../utils/storage";
 const Home = () => {
 useEffect(()=>{
-  console.log(token);
   if (!token){
 const sessiontoken = getStorageObject("user-session")
 if (sessiontoken){
   saveToken(sessiontoken.jwtToken)
-  console.log(token);
 }
 }
 })

@@ -10,9 +10,7 @@ export const UsersList = () => {
     const getUsers = async () => {
       try {
         let response = await Request("/users");
-        console.log(response);
         !ignore && SetUsers(response);
-        console.log(users);
       } catch (error) {
         alert(error)
       ;

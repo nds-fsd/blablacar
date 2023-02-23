@@ -18,8 +18,6 @@ function TripSummary(props) {
     }
   }
   // let owner=props.trip.owner[0] || null
-  console.log(trip);
-  console.log(owner);
     return (
       
         <Card bsPrefix="tripSummary">
@@ -49,7 +47,6 @@ function TripSummary(props) {
             <div className={styles.cardBottom}>
               {owner&&<UserAvatar user={owner.firstName} picUrl={owner.picUrl} showName="true"/>}          
               <div className={styles.userIcons}>
-                {console.log('quedan '+trip.availableSeats)}
                 {trip.availableSeats&&<p>¡Quedan  <b>{trip.availableSeats}</b> plazas!</p>}
               </div>
             </div>            

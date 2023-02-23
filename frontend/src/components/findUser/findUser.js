@@ -34,8 +34,6 @@ const FindUser = () =>{
                     }                  
         }
         const updateUser = (id) =>{
-            console.log("la id del user es ",id)
-            console.log("el modal esta ", openModal)
             setModal(!openModal)
 
             reloadPage();
