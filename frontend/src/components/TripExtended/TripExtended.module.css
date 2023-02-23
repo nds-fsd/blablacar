@@ -5,7 +5,9 @@
     align-items: center;
     justify-content: space-around;
     color: rgb(255, 94, 0);
-    margin-right: 0px;
+    align-self: center;
+    margin: auto;
+
 }
 
 .cardTop{

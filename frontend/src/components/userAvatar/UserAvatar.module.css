@@ -19,7 +19,15 @@
 .userAvatar{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     
+}
+
+.nameText{
+font-size: medium;
+
+
 }
 
 .imgProfile {

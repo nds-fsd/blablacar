@@ -6,9 +6,10 @@ const tripSchema = new Schema({
         ref: "User"
      }],
     origin:  {type: String},
-    originDate: {type:Date},
+    originDate: {type:String},
     destination:  {type: String},
-    destinationDate: {type:Date},
+    departureTime: {type:String},
+    arrivalTime: {type:String},
     seats:{type: Number},
     price:{type: Number},
     availableSeats:{type: Number},

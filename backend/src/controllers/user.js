@@ -25,7 +25,7 @@ const usrPost= async (req, res) => {
 
     //TODO:comprobar con antonio campos de user y con Alex para formulario creacion
     const receivedUser={
-        name:body.firstName,
+        firstName:body.firstName,
         surname:body.surname,
         Birthday: body.Birthday.toString(),
         email:body.email,
