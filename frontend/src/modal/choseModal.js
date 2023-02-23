@@ -15,7 +15,7 @@ const ChoseModal = ({whatModal, openModal, setOpenModal}) =>{
     console.log(whatModal);
  const JsxRender=jsxelement[whatModal]   
     return(
-                            <Modal openModal={openModal} onClose={()=> setOpenModal(false)}>
+                            <Modal openModal={openModal} whatModal={whatModal} onClose={()=> setOpenModal(false)}>
                                 <JsxRender/> ;
                             </Modal>
                             )

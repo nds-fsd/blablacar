@@ -41,7 +41,7 @@ return(
 
     <div className={styles.parappa}>
         <h1>{diaSalida},{originDate.getDate()} de {mesSalida}</h1>   
-            < div className={styles.cardTop}>
+            <div className={styles.cardTop}>
                 <div className={styles.locations}>
                     <div className={styles.location_graph_top}>
                     <p>{fechaHora(originDate)}</p><BsCircle></BsCircle>{trip&&<p>{trip.origin}</p>}
@@ -62,12 +62,12 @@ return(
             </div>
             <div className={styles.barra}/>
             <div className={styles.userSection}>
-             {trip.owner[0]&&<h1>{trip.owner[0].firstName}</h1>}
+             {trip.owner[0]&&<h2>{trip.owner[0].firstName}  {trip.owner[0].surname}</h2>}
              {trip.owner[0]&&<UserAvatar user={trip.owner[0].firstName} picUrl={trip.owner[0].picUrl} showName={false}/>}
             </div>
             
 
-            {ownerCheck(trip.owner[0]._id)?<Button>Editar</Button>:<Button>Reservar</Button>}
+            {ownerCheck(trip.owner[0]._id)?<Button bsPrefix="goTrip" >Editar</Button>:<Button bsPrefix="goTrip" >Reservar</Button>}
 
     </div>
 )

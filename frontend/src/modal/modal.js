@@ -3,16 +3,18 @@ import { useNavigate } from 'react-router-dom';
 import { NewTrip } from '../components/newTrip/newTrip';
 import styles from './modal.module.css';
 
-const Modal = ({ children, onClose, openModal }) => {
+const Modal = ({ children, onClose, openModal, whatModal }) => {
   const modalReference = useRef(null);
   const navigate=useNavigate()
   useEffect(() => {
     const handleClickOutside = (e) => {
+      console.log(e);
       if (
-        modalReference.current &&
-        !modalReference.current.contains(e.target) &&
+        e.target.contains(modalReference.current) &&
         openModal
       ) {
+        console.log(e);
+        console.log(modalReference);
         onClose();
         navigate(-1);
       }
@@ -27,17 +29,17 @@ const Modal = ({ children, onClose, openModal }) => {
   }, [modalReference, openModal]);
 
   return (
-    <div className={`${styles.backdrop} ${openModal && styles.openModal}`}>
+    <div className={`${styles.backdrop} ${openModal && styles.openModal}`} ref={modalReference}>
       <div
         className={`${styles.modal} ${openModal && styles.openModal}`}
-        ref={modalReference}
+        
       > 
         {children}
-        {console.log('children',children)}
+        
 
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default Modal;

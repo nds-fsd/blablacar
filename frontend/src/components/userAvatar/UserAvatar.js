@@ -14,7 +14,7 @@ if (props.user && props.picUrl){
     return (
     <div className={styles.userAvatar}>
     <div className={styles.imgRedonda}>{props.user.charAt(0).toUpperCase()}</div>
-    {props.showName?<h3>{props.user}</h3>:""}
+    {props.showName?<h4 className={styles.nameText}>{props.user}</h4>:""}
     </div>    
     )
 }else{

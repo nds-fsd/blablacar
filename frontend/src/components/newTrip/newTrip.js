@@ -1,44 +1,35 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { TextField } from "@mui/material";
 import styles from "./newTrip.module.css";
 import { Request } from "../../utils/apiWrapper";
 import { getUserToken } from "../../utils/storage";
-
+import { LocalizationProvider, TimePicker } from "@mui/x-date-pickers";
+import { esES } from "@mui/x-date-pickers";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DatePicker } from "@mui/x-date-pickers";
+import { useForm , Controller } from "react-hook-form";
+import dayjs from "dayjs";
+import 'dayjs/locale/es';
+import { Button } from "react-bootstrap";
+import utc from "dayjs/plugin/utc"
+import timezone from "dayjs/plugin/timezone"
 export const NewTrip = () =>{
+    dayjs.extend(utc)
+    dayjs.extend(timezone)
+    const [fechaSalida,setFechaSalida]=useState(dayjs())
+    const [horaSalida,setHoraSalida]=useState(dayjs())
+    const [horaLlegada,setHoraLlegada]=useState(dayjs())
+    const {register, control, handleSubmit,formState:{errors}} = useForm();   
     const userId = getUserToken().userObj.userID
-    const [origin,SetOrigin] =useState("");
-    const [originDate,SetOriginDate] =useState("");
-    const [destination,SetDestination] =useState("");
-    const [destinationDate,SetDestinationDate] =useState("");
-    const [seats,SetSeats] =useState("");
-    const [price,SetPrice] =useState("");
-    
-    const handleOrigin = (event) =>{
-        SetOrigin(event.target.value)
-    }
-    const handleOriginDate = (event) =>{
-        SetOriginDate(event.target.value)
-    }
-    const handleDestination = (event) =>{
-        SetDestination(event.target.value)
-    }
-    const handleDestinationDate = (event) =>{
-        SetDestinationDate(event.target.value)
-    }
-    const handleSeats = (event) =>{
-        SetSeats(event.target.value)
-    }
-    const handlePrice = (event) =>{
-        SetPrice(event.target.value)
-    }
-    console.log("ownerID",userId)
-    const handleSubmit = async() => {
+    const tripSubmit = async(data) => {
         const body = {
-                    origin,
-                    originDate,
-                    destination,
-                    destinationDate,
-                    seats,
-                    price
+                origin: data.origin,         
+                originDate: data.originDate,
+                destination: data.destination,    
+                departureTime: data.departureTime,
+                arrivalTime:data.arrivalTime,
+                seat:data.seats,           
+                price:data.price               
         }
         const userSession = getUserToken()
           let headers = {
@@ -48,69 +39,100 @@ export const NewTrip = () =>{
         if(res?.error){
             alert(res.message)
         }else{
-            alert(`viaje creado con destino a ${body.origin}`)
+            alert(`viaje creado con destino a ${body.destination}`)
         }
     } 
+    const tripError=(data)=>{
+        console.log(data);
+    }
+    
     return(
-        <div className={styles.main}>
-            <div className={styles.formTrip}>
-                <h3>Crear Viaje</h3>
-                <label for="Origin" className={styles.textbox}>
-                <input
-                    required
-                    type="text"
-                    value={origin}
-                    placeholder="Origen"
-                    onChange={handleOrigin}
-                />
-                </label>
-                <label for="OriginDate" className={styles.textbox}>
-                <input
-                    required
-                    type="date"
-                    value={originDate}
-                    placeholder="DD/MM/YYYY"
-                    onChange={handleOriginDate}
-                />
-                </label>
-                <label for="Destination" className={styles.textbox}>
-                <input
-                    required
-                    type="text"
-                    value={destination}
-                    placeholder="Destination"
-                    onChange={handleDestination}
-                />
-                </label>
-                <label for="DestinationDate" className={styles.textbox}>
-                <input
-                    required
-                    type="date"
-                    value={destinationDate}
-                    placeholder="DD/MM/YYYY"
-                    onChange={handleDestinationDate}
-                />
-                </label>
-                <label for="Seats" className={styles.textbox}>
-                <input
-                    required
-                    type="number"
-                    value={seats}
-                    placeholder="seats"
-                    onChange={handleSeats}
-                />
-                </label>
-                <label for="Price" className={styles.textbox}>
-                <input
-                    required
-                    type="number"
-                    value={price}
-                    placeholder="Price"
-                    onChange={handlePrice}
-                />
-                </label>
-                <button onClick={handleSubmit}>enviar</button>
-            </div>
-        </div>
-    );
-}
+        <div className={styles.parappa}>
+        
+        <form onSubmit={handleSubmit(tripSubmit, tripError)} className={styles.newInput}>
+            <h3 className={styles.newUserTitle}>Crea tu viaje</h3>
+                    <input placeholder="Origen" className={styles.textbox}{...(register("origin", {required:true,minLength:3,maxLength:20}))}/>
+                    {errors.origin && errors.origin.type==="required" && <p className={styles.emptyfield}>Este campo es obligatorio</p>}
+                    {errors.origin && errors.origin.type==="minLength" && <p className={styles.emptyfield}>El mínimo  número de caracteres es 3</p>}
+                    {errors.origin && errors.origin.type==="maxLength" && <p className={styles.emptyfield}>El campo no puede exceder de 20 caracteres</p>}
+                    <input placeholder="Destino" className={styles.textbox}{...(register("destination", {required:true,minLength:3,maxLength:20}))}/>
+                    {errors.destination && errors.destination.type==="minLength" && <p className={styles.emptyfield}>El mínimo  número de caracteres es 3</p>}
+                    {errors.destination && errors.destination.type==="required" && <p className={styles.emptyfield}>Este campo es obligatorio</p>}
+                    {errors.destination && errors.destination.type==="maxLength" && <p className={styles.emptyfield}>El campo no puede exceder de 20 caracteres</p>}
+                    <input placeholder="Plazas" type="number" min={1} max={6} {...register("seats", {required: true, })} />
+                    {errors.seats && errors.seats.type==="required" && <p className={styles.emptyfield}>Este campo es obligatorio</p>}
+                    <div className={styles.price}>
+                    <input placeholder="Precio" type="number" min={1} max={1000} {...register("precio", {required: true, })} />
+                    <h2>€</h2>
+                    </div>
+                    {errors.seats && errors.seats.type==="required" && <p className={styles.emptyfield}>Este campo es obligatorio</p>}
+
+                    <div className={styles.horarios}>
+                    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="es" >
+                    <Controller
+                    control={control}
+                    defaultValue={fechaSalida}
+                    name="originDate"
+                    rules={{required:true}}
+                    render={
+                        ({ field: { onChange, onBlur, value, ref } }) => (
+                    <DatePicker
+                        className={styles.fechas}
+                        label="DD/MM/AAAA"
+                        onChange={(e) => {onChange(e);setFechaSalida(e);}}
+                        value={fechaSalida}
+                        renderInput={(params) => <TextField {...params}/>} />)}/>
+                   {errors.originDate && errors.originDate.type==="required" && <p className={styles.emptyfield}>Este campo es obligatorio</p>}
+                   <Controller
+                    control={control}
+                    name="departureTime"
+                    defaultValue={horaSalida}
+                    rules={{required:true}}
+                    render={
+                        ({ field: { onChange, onBlur, value, ref } }) => (
+                    <TimePicker
+                        className={styles.fechas}    
+                        value={horaSalida}
+                        label="Salida"
+                        onChange={(e) => {onChange(e);setHoraSalida(e)}}
+                        selected={value}
+                        renderInput={(params) => <TextField {...params}/>} />)}/>
+                   
+                   {errors.departureTime && errors.departureTime.type==="required" && <p className={styles.emptyfield}>Este campo es obligatorio</p>}   
+                   <Controller
+                    control={control}
+                    name="arrivalTime"
+                    defaultValue={horaLlegada}
+                    rules={{required:true}}
+                    render={
+                        ({ field: { onChange, onBlur, value, ref } }) => (
+                    <TimePicker
+                        className={styles.fechas}    
+                        label="Llegada"
+                        value={horaLlegada}
+                        rules={{required:true}}
+                        onChange={(e) => {onChange(e); setHoraLlegada(e)}}
+                        selected={value}
+                        renderInput={(params) => <TextField {...params}/>} />)}/>
+                    {errors.arrivalTime && errors.arrivalTime.type==="required" && <p className={styles.emptyfield}>Este campo es obligatorio</p>}            
+                    
+                    
+        </LocalizationProvider>            
+            
+                    <Button  type='submit' bsPrefix="goTrip">Guardar</Button>
+                    </div>                  
+            
+        </form>
+        </div>        
+
+    )
+     }
+    
+
+
+
+
+
+
+
+

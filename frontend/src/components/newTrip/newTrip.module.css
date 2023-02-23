@@ -1,9 +1,26 @@
-.main{
+.parappa{
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100%;
+    margin: 0;
+    background-color: white;
+    border: solid 1px;
+    border-color: rgb(255, 94, 0)!important;
+    border-width: 1px;
+    box-shadow:rgb(0 0 0 / 40%) 6px 3pt 23pt, rgb(0 0 0 / 23%) 10px 7pt 12pt;
+    border-radius: 1em; 
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
+
+.emptyfield{
+    height: 1em;
+    font-family: 'Raleway', sans-serif;
+    color: red;}
 .formTrip{
     
         display: flex;
@@ -20,8 +37,35 @@
         gap: 15px;
 }
 .textbox{
-    width: 60%;
+    width: 100%;
     display:flex;
     justify-content: center;
     align-items: center;
 }
+.horarios{
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.price{
+    display: flex;
+    align-items: center;
+    justify-content: baseline;
+    
+}
+
+input, select{
+    height:50px;
+    width:100%;
+    border-radius:12px;
+    border:rgba(0,0,0,.3) 2px solid;
+    box-sizing:border-box;
+    padding:10px;
+    margin-bottom:5px;
+  }
+
+  .fechas{
+    margin:0.5em !important;
+  }
