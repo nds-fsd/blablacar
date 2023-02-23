@@ -21,9 +21,6 @@ useEffect(()=>{
   userNameRef.current = sessiontoken.userObj.surname
   userPicRef.current = sessiontoken.userObj.picUrl
   setToken(sessiontoken.jwtToken)
-  console.log(tokenRef.current);
-  console.log(userNameRef.current)
-  console.log("usr.Obj", sessiontoken.userObj)
   }
   }
   
