@@ -58,7 +58,7 @@ const usrPost= async (req, res) => {
             { path: 'bookedTrip'},
           ],
     }])
-
+    console.log("User is", getUsr)
     res.json(getUsr);
 };
 
@@ -67,9 +67,10 @@ const usrPost= async (req, res) => {
 const usrPatch=async(req, res) => {
     const updateUsr=await Users.findByIdAndUpdate(req.params.id,req.body)
     const updatedUsr=await Users.findById(req.params.id)
-    console.log(updateUsr)
+    console.log("UpdateUser: ",updateUsr)
     res.json(updateUsr);
 };
+
   
 //TODO:añadir middlewares, hablar con Paulo
 const usrDelete=async(req, res) => {
@@ -78,4 +79,4 @@ const usrDelete=async(req, res) => {
     //o mejor crear campo "inactive" para borrar temporalmente
     res.json(delUsr)    
 };
-module.exports={usrDelete,usrGetAll,usrGetOne,usrPost,usrPatch}
+module.exports={usrDelete,usrGetAll,usrGetOne,usrPost,usrPatch, usrPost}
