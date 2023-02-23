@@ -4,9 +4,10 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "node src/index.js",
+        "start": "nodemon src/index.js",
         "start:dev": "nodemon src/index.js",
-        "test": "cross-env NODE_ENV=test ./node_modules/.bin/jest --testTimeout=10000 --coverage"
+        "test": "cross-env NODE_ENV=test ./node_modules/.bin/jest --testTimeout=10000 --coverage",
+        "dev": "nodemon src/index.js"
     },
     "author": "",
     "license": "ISC",
@@ -22,7 +23,9 @@
         "jsonwebtoken": "^9.0.0",
         "mongodb": "^4.13.0",
         "mongoose": "^6.8.0",
-        "morgan": "^1.10.0"
+        "morgan": "^1.10.0",
+        "node-fetch": "^2.6.9",
+        "socket.io": "^4.6.1"
     },
     "devDependencies": {
         "@types/jest": "^29.2.6",
