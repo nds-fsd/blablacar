@@ -2,13 +2,19 @@
     display:flex;
     height: 100vh;
 }
+
 .imgMain{
-    width: 70%;
-    position:relative;
-    background-image: url(../assets/CocheEnPlaya.png);
+    width: 100%;
+    position: relative;
+    height: 100vh;
+    background-image: url(../assets/carretera.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
 .formMain{
-    width:30%;
     display:flex;
     justify-content: center;
     align-items: center;
@@ -24,20 +30,34 @@
     box-shadow: 0px 0px 7px rgb(0, 0, 0, 0.5);
     background-size: cover;
     font-family: 'Raleway', sans-serif;
-    background-color:rgba(128, 128, 128, 0.603);
+    background-color:white;
 }
 .bttnLogin{
     display:flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-.signUp{
-    display:flex;
     justify-content: center;
     align-items: center;
+    background-color: rgb(255, 94, 0);
+   
+}   
+.signUp{
+    display:flex;
+    justify-content: flex-end;
+    align-items: flex-end;
 }
-
+.password{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    
+}
+input{
+    width: 80%;
+}
+.passwordInput{
+    margin-left: 25px;
+}
 .bttnLogin:hover{
     cursor: pointer;
+    background-color: rgb(255, 162, 0)
 }
 
