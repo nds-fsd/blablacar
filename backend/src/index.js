@@ -5,6 +5,7 @@ const {tripRouter} = require('./routers/tripRouter.js');
 const {chatRouter} = require('./routers/chatRouter');
 const {authRouter} = require('./routers/authRouter.js');
 const {messageRouter} = require('./routers/messageRouter.js');
+const {notificationRouter} = require('./routers/notificationRouter.js');
 const errorLogging = require('./Middleware/errorsMiddleware.js');
 const dotenv = require('dotenv');
 const {connectDB} = require ('./mongo/index.js');
@@ -38,6 +39,7 @@ app.use(tripRouter)
 app.use(bookingRouter)
 app.use(chatRouter)
 app.use(messageRouter)
+app.use(notificationRouter)
 //Login router
 app.use('/auth', authRouter);
 

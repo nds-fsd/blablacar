@@ -11,13 +11,17 @@ const userSchema = new Schema({
     status:{type:Number, min:1, max:5},
     treatment:{type: String},
     genero:{type: String},
-    fumador:Boolean,
-    hablador:{type:Number, min:1, max:3},
-    musica:{type:Number, min:1, max:3},
+    smoker:{type: String},
+    talker:{type: String},
+    music:{type:String},
+    pets:{type: String},
     ID:String,
     ValidatedID:{type:Number, min:1, max:3, default:1},
     RGPDaccepted:Boolean,
     password:{type: String},
+    car:{numberPlate: {type:String},
+        model: {type:String}
+    },
     idTrips: [{
         type: Schema.Types.ObjectId,
         ref: "Trip"
@@ -26,15 +30,7 @@ const userSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Booking"
      }],
-    picUrl:{type: String},
-    idTrips: [{
-        type: Schema.Types.ObjectId,
-        ref: "Trip"
-     }],
-    bookedTrips: [{
-        type: Schema.Types.ObjectId,
-        ref: "Booking"
-     }]
+    picUrl:{type: String}
 });
 
 userSchema.pre('save',  function(next) {
