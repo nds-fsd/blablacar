@@ -2,7 +2,9 @@ const express = require ('express');
 const {bookingRouter} = require('./routers/bookingRouter.js')
 const {userRouter} = require('./routers/userRouter.js');
 const {tripRouter} = require('./routers/tripRouter.js');
+const {chatRouter} = require('./routers/chatRouter');
 const {authRouter} = require('./routers/authRouter.js');
+const {messageRouter} = require('./routers/messageRouter.js');
 const {notificationRouter} = require('./routers/notificationRouter.js');
 const errorLogging = require('./Middleware/errorsMiddleware.js');
 const dotenv = require('dotenv');
@@ -10,11 +12,9 @@ const {connectDB} = require ('./mongo/index.js');
 const cors = require('cors');
 //Adding morgan middleware for better logs >> npm install morgan at first use
 const morgan= require ('morgan');
-
 dotenv.config();
 const app = express();
 let port = process.env.PORT;
-
 if(process.env.NODE_ENV !== 'test'){
     connectDB().then((error) => {
         if(error){
@@ -37,6 +37,8 @@ app.use(express.json());
 app.use(userRouter)
 app.use(tripRouter)
 app.use(bookingRouter)
+app.use(chatRouter)
+app.use(messageRouter)
 app.use(notificationRouter)
 //Login router
 app.use('/auth', authRouter);
@@ -49,6 +51,6 @@ app.use(errorLogging);
 const server = app.listen(port, () => {
     console.log(`Server is up and running at port ${port} ⚡`)
 })
-
-
-module.exports = {server,app}
+const {privateSocket} =require('./socket/socket.js');
+const ioPrivate  = privateSocket(server)
+module.exports = {server,app,ioPrivate}
