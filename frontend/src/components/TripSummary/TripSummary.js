@@ -4,10 +4,15 @@ import UserAvatar from "../userAvatar/UserAvatar";
 import styles from "./TripSummary.module.css"
 import {BsCircle, BsArrowDown } from "react-icons/bs"
 import ConfigIcon from "../IconConfig/iconsize_small"
+import { useNavigate } from "react-router-dom";
 function TripSummary(props) {
+  const navigate=useNavigate()
   let trip=props.trip
   let owner;
+  let showSeats;
+  let showAvatar;
 
+  console.log(trip);
   // tienes que hacer una comprobacion sobre el owner y si no hay owner meter uno en plan dummy 
   if(props.trip.owner){
      owner = props.trip.owner[0]
@@ -20,7 +25,9 @@ function TripSummary(props) {
   // let owner=props.trip.owner[0] || null
     return (
       
-        <Card bsPrefix="tripSummary">
+        <Card bsPrefix="tripSummary" onClick={()=>{props.setOpenModal(true); props.setWhatModal("TripExtended");navigate(`/trips/${props.id}`,{state:props.trip})}}>
+              {showSeats=props.showSeats??true}
+              {showAvatar=props.showAvatar??true}
               <div className={styles.cardTop}>
                 <div className={styles.leftwrapper}>  
                   <div className={styles.timeTable}>
@@ -45,9 +52,9 @@ function TripSummary(props) {
                 </div>
               </div>
             <div className={styles.cardBottom}>
-              {owner&&<UserAvatar user={owner.firstName} picUrl={owner.picUrl} showName="true"/>}          
+              {showAvatar&&owner&&<UserAvatar user={owner.firstName} picUrl={owner.picUrl} showName="true"/>}          
               <div className={styles.userIcons}>
-                {trip.availableSeats&&<p>¡Quedan  <b>{trip.availableSeats}</b> plazas!</p>}
+                {showSeats && trip.availableSeats&&<p>¡Quedan  <b>{trip.availableSeats}</b> plazas!</p>}
               </div>
             </div>            
         </Card>

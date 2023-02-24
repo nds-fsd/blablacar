@@ -2,6 +2,25 @@
     display:flex;
     height: 100vh;
 }
+.parappa{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20rem;
+    width: 35rem;
+    margin: 0;
+    background-color: white;
+    border: solid 1px;
+    border-color: rgb(255, 94, 0)!important;
+    border-width: 1px;
+    box-shadow:rgb(0 0 0 / 40%) 6px 3pt 23pt, rgb(0 0 0 / 23%) 10px 7pt 12pt;
+    border-radius: 1em; 
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
 
 .imgMain{
     width: 100%;
@@ -16,21 +35,20 @@
 }
 .formMain{
     display:flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 }
 .formLogin{
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 20rem;
-    width: 30rem;
-    border-radius: 20px;
-    border:2px solid black;
-    box-shadow: 0px 0px 7px rgb(0, 0, 0, 0.5);
-    background-size: cover;
-    font-family: 'Raleway', sans-serif;
-    background-color:white;
+}
+
+
+
+.formMail{
+    margin-right: auto;
+    margin-left: auto;
 }
 .bttnLogin{
     display:flex;
@@ -41,21 +59,25 @@
 }   
 .signUp{
     display:flex;
-    justify-content: flex-end;
-    align-items: flex-end;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    align-self: center;
 }
 .password{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     width: 100%;
+    align-items: center;
+    margin-left: 3em;
+    margin-right: auto;
     
 }
 input{
     width: 80%;
 }
-.passwordInput{
-    margin-left: 25px;
-}
+
+
 .bttnLogin:hover{
     cursor: pointer;
     background-color: rgb(255, 162, 0)

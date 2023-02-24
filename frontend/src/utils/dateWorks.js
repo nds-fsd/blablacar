@@ -1,3 +1,6 @@
+import dayjs from "dayjs";
+
+
 export const diaSemana=(date)=>{
     let fecha=new Date(date);
     const dia = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"];

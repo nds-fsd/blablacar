@@ -10,10 +10,13 @@ const getAll = async (req, res) => {
 }
 
 const createTrip = async(req,res) =>{
+    console.log(req.body);
     const id = req.params.id
     const newTrip = new Trip(req.body);
+    console.log(newTrip);
     req.body.originDate = new Date().toLocaleDateString('es-ES');
     req.body.destinationDate = new Date().toLocaleDateString('es-ES');
+
     newTrip.owner = id;
     newTrip.availableSeats = newTrip.seats;
     await newTrip.save();
