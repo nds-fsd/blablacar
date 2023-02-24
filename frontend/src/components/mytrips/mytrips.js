@@ -6,9 +6,7 @@ import styles from "./mytrips.module.css";
 
  export const Mytrips  = () =>{
     const [mytrips,setMytrips] = useState("")
-    const userSession = getUserToken()
-    const userId = userSession.userObj.userID
-    console.log(userId)
+    const userId = getUserToken().userObj.userID
     useEffect(()=>{
         const getMyTrips = async() =>
         {

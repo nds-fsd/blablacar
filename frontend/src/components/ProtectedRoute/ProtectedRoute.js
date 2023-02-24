@@ -18,8 +18,6 @@ export const ProtectedRoute = (props) => {
         return
       }
       setToken(sessiontoken.jwtToken)
-      
-      console.log(token);
     }
     })
     const jsxElement={

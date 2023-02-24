@@ -1,7 +1,7 @@
 // import Users from "../mongo/schemas/user.js";
 const JsonWebToken = require('jsonwebtoken');
 const jwt = require('jsonwebtoken')
-
+const secret = process.env.JWT_SECRET
 
 
 
@@ -29,7 +29,8 @@ const jwtTokenSingTest = (req, res, next) => {
 
   let payload = {
     id: req.user._id,
-    email: req.user.email
+    email: req.user.email,
+    firstName: req.user.firstName
   }
 
   req.jwtToken = jwt.sign(payload, secret ,{
@@ -61,6 +62,10 @@ const jwtTokenVerify = (req, res, next) => {
       }
     }
     )}
+    const jwtVerifier = (token,callback) => {
+      const secret = process.env.JWT_SECRET
+      jwt.verify(token, secret, callback);
+    }
   
     // try{
     //   const tokenVerify  = JsonWebToken.verify(token, secret)
@@ -74,4 +79,4 @@ const jwtTokenVerify = (req, res, next) => {
 
 
 
-module.exports= { jwtTokenSign, jwtTokenVerify, jwtTokenSingTest}
+module.exports= { jwtTokenSign, jwtTokenVerify, jwtTokenSingTest, jwtVerifier}

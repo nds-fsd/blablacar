@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const LINKS = [
   {
     text: 'Datos personales',
-    link: '/profilemenu'
+    link: '/personaldata'
   },
   {
     text: 'Opiniones dejadas',

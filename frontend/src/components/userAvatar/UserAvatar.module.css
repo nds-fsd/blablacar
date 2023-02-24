@@ -26,6 +26,20 @@
 
 .nameText{
 font-size: medium;
+}
 
 
+
+.imgProfile {
+    width:5em;
+    height:5em;
+    border-radius:150px;
+    background-color: rgb(255, 162, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    font-weight: bold;
+    font-size: 40px;
+    margin-bottom: 1rem;
 }

@@ -23,8 +23,6 @@ function TripSummary(props) {
     }
   }
   // let owner=props.trip.owner[0] || null
-  console.log(trip);
-  console.log(owner);
     return (
       
         <Card bsPrefix="tripSummary" onClick={()=>{props.setOpenModal(true); props.setWhatModal("TripExtended");navigate(`/trips/${props.id}`,{state:props.trip})}}>
@@ -56,7 +54,6 @@ function TripSummary(props) {
             <div className={styles.cardBottom}>
               {showAvatar&&owner&&<UserAvatar user={owner.firstName} picUrl={owner.picUrl} showName="true"/>}          
               <div className={styles.userIcons}>
-                {console.log('quedan '+trip.availableSeats)}
                 {showSeats && trip.availableSeats&&<p>¡Quedan  <b>{trip.availableSeats}</b> plazas!</p>}
               </div>
             </div>            
