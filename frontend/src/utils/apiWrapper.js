@@ -34,7 +34,7 @@ const Request = async (route, method = "GET", body = undefined,headers={}) =>{
     }
     //TODO:ver qué error devolvemos en backend para esto
   catch(res){console.log(res);
-    throw new Error(res.error)}
+    throw new Error(res.message)}
 }
 
   export {Request}
