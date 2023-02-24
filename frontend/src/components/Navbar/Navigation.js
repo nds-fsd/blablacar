@@ -46,7 +46,7 @@ useEffect(()=>{
         <Nav className="justify-content-end">
         <Nav.Link href="/search"><HiMagnifyingGlass size={38} className={` mr-auto ${styles.glass}`}/></Nav.Link>
         <Nav.Link onClick={()=>{navigate("/trips");setOpenModal(true); setWhatModal("newTrip")}}><HiOutlinePlusCircle size={38} className={` mr-auto ${styles.glass}`}/></Nav.Link>
-        <NavDropdown id="basic-nav-dropdown" title={<UserAvatar user={userNameRef.current} picUrl={userPicRef.current} className="mr-auto"/>}>
+        <NavDropdown id="basic-nav-dropdown" title={<UserAvatar localization="navBar" user={userNameRef.current} picUrl={userPicRef.current} className="mr-auto"/>}>
           {!tokenRef.current?
             (<><NavDropdown.Item href="/login" onClick={logOut}>Inicia Sesión</NavDropdown.Item>
             <NavDropdown.Divider />

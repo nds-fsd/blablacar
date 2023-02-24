@@ -17,6 +17,7 @@ import ChoseModal from './modal/choseModal';
 import Parallax from './components/parallax/parallax';
 import ProfileAccount from './components/ProfileAccount/ProfileAccount';
 import { Mytrips } from './components/mytrips/mytrips';
+import {PersonalData} from './components/personalData/PersonalData';
 
 
 function App(props) {
@@ -28,7 +29,7 @@ function App(props) {
   const [whatModal, setWhatModal] = useState('');
   return (
     <div>
-      <Navigation setOpenModal={setOpenModal} setWhatModal={setWhatModal}/>
+      <Navigation setOpenModal={setOpenModal} setWhatModal={setWhatModal} className="NavBar"/>
       <Routes>
           <Route path="/" element={<Parallax />}/>
           <Route path="users" element={<ChoseModal openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}/>
@@ -49,6 +50,9 @@ function App(props) {
           <Route path="*" element={<ErrorForm />} />
           <Route path="rides" element={<ProtectedRoute/>}>
             <Route path="" element={<Mytrips/>}/>
+          </Route>
+          <Route path="personaldata" element={<ProtectedRoute/>}>
+            <Route path="" element={<PersonalData/>}/>
           </Route>
       </Routes>
     </div>
