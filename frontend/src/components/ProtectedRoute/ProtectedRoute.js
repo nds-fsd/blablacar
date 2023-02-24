@@ -1,8 +1,10 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getStorageObject } from "../../utils/storage";
+import { NewTrip } from "../newTrip/newTrip";
+import ChoseModal from "../../modal/choseModal";
 
-export const ProtectedRoute = () => {
+export const ProtectedRoute = (props) => {
     const [token,setToken]=useState()
     const navigate=useNavigate()
     
@@ -12,15 +14,24 @@ export const ProtectedRoute = () => {
         
     const sessiontoken = getStorageObject("user-session")
     if (!sessiontoken){
-        navigate("/login")
+        navigate("/")
         return
       }
       setToken(sessiontoken.jwtToken)
-      
-      console.log(token);
     }
     })
-    return <Outlet/>
+    const jsxElement={
+      whatModal:props.whatModal??"",
+      setWhatModal:props.setWhatModal??"",
+      openModal:props.openModal??""
+    }
+    
+    return (
+
+      <Outlet whatModal={jsxElement.whatModal} setWhatModal={jsxElement.setWhatModal} openModal={jsxElement.openModal}/>
+      
+    )
+    
 }
       
     

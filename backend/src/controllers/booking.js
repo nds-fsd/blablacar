@@ -1,6 +1,7 @@
 const Booking  =  require("../mongo/schemas/booking.js");
 const Trip  =  require("../mongo/schemas/trip.js");
 const Users = require ("../mongo/schemas/user.js");
+const Notification = require ("../mongo/schemas/notification.js")
 
 const bookGetAll=async (req, res) => {
     const book = await Booking.find();
@@ -20,12 +21,20 @@ const bookTrip = async(req,res) =>{
                 passenger: idUser,
                 bookedTrip: idTrip,
             });
+
+            const notification = new Notification({
+                owner: trip.owner,
+                passenger: idUser,
+                messege: "Tienes una nueva reserva",
+    
+            });
             user.bookedTrips.push(book)
             trip.bookings.push(book)
 
             await book.save()
             await user.save()
             await trip.save()
+            await notification.save()
 
             const updatedTrip = await Trip.findById(idTrip);
             updatedTrip.availableSeats = updatedTrip.seats - updatedTrip.bookings.length;

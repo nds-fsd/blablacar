@@ -10,10 +10,13 @@ const getAll = async (req, res) => {
 }
 
 const createTrip = async(req,res) =>{
+    console.log(req.body);
     const id = req.params.id
     const newTrip = new Trip(req.body);
+    console.log(newTrip);
     req.body.originDate = new Date().toLocaleDateString('es-ES');
     req.body.destinationDate = new Date().toLocaleDateString('es-ES');
+
     newTrip.owner = id;
     newTrip.availableSeats = newTrip.seats;
     await newTrip.save();
@@ -60,7 +63,7 @@ try{
 const getTripById = async(req,res) =>{
     try{
         const trip = await Trip.findById(req.params.id).populate([{
-            path: 'owner',select: 'fisrtName treatment surname email picUrl',
+            path: 'owner',select: 'firstName treatment surname email picUrl',
             model: 'Users',
         }])
         .populate([{

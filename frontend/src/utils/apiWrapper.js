@@ -19,12 +19,10 @@ const Request = async (route, method = "GET", body = undefined,headers={}) =>{
       ops.body = JSON.stringify(body)
     }
   try{
-    console.log(useUrl);
-    console.log(ops);
     const response = await fetch(useUrl,ops);
+    console.log("response", response)
     let json = await response.json()
       if (response.ok){
-        console.log(json)
         return json
       } else {
 
@@ -36,7 +34,7 @@ const Request = async (route, method = "GET", body = undefined,headers={}) =>{
     }
     //TODO:ver qué error devolvemos en backend para esto
   catch(res){console.log(res);
-    throw new Error(res.error)}
+    throw new Error(res.message)}
 }
 
   export {Request}

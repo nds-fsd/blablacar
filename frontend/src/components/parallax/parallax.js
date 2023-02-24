@@ -2,10 +2,11 @@
 import styles from './parallax.module.css'
 import TripSearchBar from "../TripSearchBar/tripSearchBar";
 import TripSearchGo from "../TripSearchGo/TripSearchGo";
+import {ChatList} from '../chat/chatList'
 
 
 
-const Parallax = ()=>{
+const Parallax = ({setOpenModal, setWhatModal, openModal, whatModal})=>{
  
     
   return (
@@ -22,7 +23,7 @@ const Parallax = ()=>{
       <div className={`${styles.ParallaxImage} ${styles.bg2}`}>  
       <h1>Los mejores destinos, al mejor precio.</h1>
        
-          <TripSearchBar/>
+          <TripSearchBar openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>
        
       </div>
       <div className={styles.ParallaxImage_2}>
@@ -48,6 +49,7 @@ const Parallax = ()=>{
               aplicación y a su potente tecnología, podrás reservar un viaje cerca
               de ti en minutos.
           </p>
+
           </div>                           
         </div>              
       </div>
@@ -72,6 +74,10 @@ const Parallax = ()=>{
                 Me encanta llevar a gente en mi coche antes de descuartizarla y entrerrarla
                 en el bosque. ¡No hay nada igual!
               </p>
+              <div>
+              <ChatList/> 
+              </div>
+
             </div>
         </div>
       </div> 

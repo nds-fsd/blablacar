@@ -17,6 +17,8 @@ import ChoseModal from './modal/choseModal';
 import Parallax from './components/parallax/parallax';
 import ProfileAccount from './components/ProfileAccount/ProfileAccount';
 import { Mytrips } from './components/mytrips/mytrips';
+import TripExtended from './components/TripExtended/TripExtended';
+import {PersonalData} from './components/personalData/PersonalData';
 
 
 function App(props) {
@@ -26,31 +28,32 @@ function App(props) {
   
   const [openModal, setOpenModal] = useState(false);
   const [whatModal, setWhatModal] = useState('');
-console.log("openModal", openModal)
-console.log("whatModal", whatModal)
   return (
     <div>
-      <Navigation setOpenModal={setOpenModal} setWhatModal={setWhatModal}/>
+      <Navigation setOpenModal={setOpenModal} setWhatModal={setWhatModal} className="NavBar"/>
       <Routes>
-          <Route path="/" element={<Parallax />}/>
+          <Route path="/" element={<Parallax openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal} />}/>
           <Route path="users" element={<ChoseModal openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}/>
-          <Route path="login" element={<Login />}/>
+          <Route path="login" element={<ChoseModal openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}/>
           <Route path="trips" element={<ProtectedRoute openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}>
             <Route path="" element={<ChoseModal openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}/>
-          </Route>
-          <Route path="trips/searchresults" element={<FindTrip/>}/>
+          </Route>  
+          <Route path="trips/:id" element={<TripExtended/>}></Route>  
+          <Route path="trips/searchresults" element={<FindTrip openModal={openModal} whatModal={whatModal} setWhatModal={setWhatModal} setOpenModal={setOpenModal}/>}/>
           <Route path="error" element={<ErrorForm />}/>
           <Route path="users/list" element={<ProtectedRoute/>}>
             <Route path="" element={<UsersList />}/>
           </Route>
-          <Route path="users/list" element={<UsersList />} />
           <Route path="search" element={<TripSearchBar />} />
           <Route path="profile" element={<ProtectedRoute/>}>
             <Route path="" element={<ProfileAccount />}/>
           </Route>
           <Route path="*" element={<ErrorForm />} />
           <Route path="rides" element={<ProtectedRoute/>}>
-            <Route path="" element={<Mytrips/>}/>
+            <Route path="" element={<Mytrips openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal} />}/>
+          </Route>
+          <Route path="personaldata" element={<ProtectedRoute/>}>
+            <Route path="" element={<PersonalData/>}/>
           </Route>
       </Routes>
     </div>
