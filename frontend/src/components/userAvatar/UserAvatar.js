@@ -13,7 +13,7 @@ if (props.user && props.picUrl){
 }else if (props.user){
     return (
     <div className={styles.userAvatar}>
-    <div className={localization !== "profile" ? styles.imgRedonda : styles.userAvatar}>{props.user.charAt(0).toUpperCase()}</div>
+    <div className={localization === "profile" ? styles.imgProfile : styles.imgRedonda}>{props.user.charAt(0).toUpperCase()}</div>
     {props.showName?<h4 className={styles.nameText}>{props.user}</h4>:""}
     </div>    
     )

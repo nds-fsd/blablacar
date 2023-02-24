@@ -38,7 +38,7 @@ const userSubmit=async(data)=>{
                         smoker:undefined,
                         pets:undefined
                     }
-
+                console.log(body);        
                 let res = await Request("/users","POST",body)
 
                 if(res?.error){
