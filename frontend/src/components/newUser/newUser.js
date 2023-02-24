@@ -1,20 +1,30 @@
 import React, { useState } from "react";
-import { useForm} from "react-hook-form";
+import { useForm , Controller} from "react-hook-form";
 import { Request } from "../../utils/apiWrapper";
 import styles from "./newUser.module.css"
 import ConfigIcon from "../IconConfig/iconsize_small";
 import { AiOutlineEye} from "react-icons/ai"
 import { setStorageObject } from "../../utils/storage";
 import { useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DatePicker } from "@mui/x-date-pickers";
+import { LocalizationProvider} from "@mui/x-date-pickers";
+import { TextField } from "@mui/material";
+import dayjs from "dayjs";
+import 'dayjs/locale/es';
+import utc from "dayjs/plugin/utc"
+import timezone from "dayjs/plugin/timezone"
 
 
 export const NewUser=()=>{
-const {register, handleSubmit,formState:{errors}} = useForm();   
+const {register, control, handleSubmit,formState:{errors}} = useForm();   
 const [passview,setPassview]=useState(false)
 const changePassview=()=>{
   setPassview(!passview)
 }
 const navigate=useNavigate()
+const [fechaNacimiento,setFechaNacimiento]=useState(dayjs())
 const userSubmit=async(data)=>{
          const body = {
                         firstName:data.name,
@@ -58,7 +68,8 @@ const isValidPassword = (passw) =>{
 }
 
 return(
-    <form onSubmit={handleSubmit(userSubmit, usrError)} className={styles.newInput}>
+    <div className={styles.parappa}>
+    <form onSubmit={handleSubmit(userSubmit, usrError)} className={styles.form}>
         <h3 className={styles.newUserTitle}>Crea tu cuenta</h3>
                 <input placeholder="Nombre" className={styles.textbox}{...(register("name", {required:true,minLength:3,maxLength:20}))}/>
                 {errors.name && errors.name.type==="required" && <p className={styles.emptyfield}>Este campo es obligatorio</p>}
@@ -71,8 +82,22 @@ return(
                 <input placeholder="Email" className={styles.textbox}{...(register("email", {required:true, validate:{invalid: v=> isValidEmail(v)===true}}))}/>
                 {errors.email && errors.email.type==="invalid" && <p className={styles.emptyfield}>Email no válido</p>}
                 {errors.email && errors.email.type==="required" && <p className={styles.emptyfield}>Este campo es obligatorio</p>}
-                <input type="date" placeholder="DD/MM/YYYY" className={styles.textbox}{...(register("Birthday", {required:true, valueAsDate:true}))}/>
-                {errors.Birthday && errors.Birthday.type==="required" && <p className={styles.emptyfield}>Este campo es obligatorio</p>}
+                <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="es" >
+                    <Controller
+                    control={control}
+                    defaultValue={fechaNacimiento}
+                    name="Birthday"
+                    rules={{required:true}}
+                    render={
+                        ({ field: { onChange, onBlur, value, ref } }) => (
+                    <DatePicker
+                        className={styles.fechas}
+                        label="DD/MM/AAAA"
+                        onChange={(e) => {onChange(e);setFechaNacimiento(e);}}
+                        value={fechaNacimiento}
+                        renderInput={(params) => <TextField {...params}/>} />)}/>
+                   {errors.originDate && errors.originDate.type==="required" && <p className={styles.emptyfield}>Este campo es obligatorio</p>}
+                   </LocalizationProvider>
                 <select id="treatment" className={styles.textbox} name="Tratamiento" {...(register("treatment", {validate:(e)=>e!==""}))}>
                     <option value="">Tratamiento</option>
                     <option value="Sra.">Sra.</option>
@@ -89,10 +114,11 @@ return(
                 {errors.password && errors.password.type==="maxLength" && <p className={styles.emptyfield}>El password no puede exceder de 20 caracteres</p>}
                 {errors.password && errors.password.type==="invalid" && <p className={styles.emptyfield}>Password debe contener 1 mayúscula, 1 dígito y un carácter especial</p>}
                
-                <input type='submit'className={styles.submit}/>
+                <Button  type='submit' bsPrefix="goTrip">Crea tu cuenta</Button>
                   
         
     </form>
+    </div>
 )
  }
 

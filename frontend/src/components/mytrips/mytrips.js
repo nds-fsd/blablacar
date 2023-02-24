@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { Request } from "../../utils/apiWrapper";
-import { getUserToken } from "../../utils/storage";
+import { getStorageObject, getUserToken } from "../../utils/storage";
 import TripSummary from "../TripSummary/TripSummary";
 import styles from "./mytrips.module.css";
 
- export const Mytrips  = () =>{
+ export const Mytrips  = (props) =>{
     const [mytrips,setMytrips] = useState("")
+    const userSession=getStorageObject('user-session')
     const userId = getUserToken().userObj.userID
     useEffect(()=>{
         const getMyTrips = async() =>
@@ -18,15 +19,16 @@ import styles from "./mytrips.module.css";
             setMytrips(response);
             console.log(mytrips);
         }
-        getMyTrips()
+        if(!mytrips){
+        getMyTrips()}
         
-    },[])
+    })
 
 
     return(
        
-        <div>
-            <div> <h1>Mis viajes</h1>
+        <div className={styles.container}>
+            <div className={styles.half}> <h1>Mis viajes</h1>
                 {mytrips && mytrips.idTrips.map((e)=>(
                     <TripSummary showAvatar={false} showSeats={false} showBookings={e.bookings} trip={e} id={e._id} />))} 
             </div>

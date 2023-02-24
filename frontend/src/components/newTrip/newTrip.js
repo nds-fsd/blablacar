@@ -62,7 +62,7 @@ export const NewTrip = () =>{
                     <input placeholder="Plazas" type="number" min={1} max={6} {...register("seats", {required: true, })} />
                     {errors.seats && errors.seats.type==="required" && <p className={styles.emptyfield}>Este campo es obligatorio</p>}
                     <div className={styles.price}>
-                    <input placeholder="Precio" type="number" min={1} max={1000} {...register("precio", {required: true, })} />
+                    <input placeholder="Precio" type="number" min={1} max={1000} {...register("price", {required: true, })} />
                     <h2>€</h2>
                     </div>
                     {errors.seats && errors.seats.type==="required" && <p className={styles.emptyfield}>Este campo es obligatorio</p>}

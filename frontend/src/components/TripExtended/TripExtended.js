@@ -13,12 +13,11 @@ const TripExtended = ()=>{
     let trip=location.state;
     console.log(trip);
     let originDate=new Date(trip.originDate);
-    let destinationDate=new Date(trip.destinationDate);
+    let departureTime=new Date(trip.departureTime);
+    let arrivalTime=new Date(trip.arrivalTime);
     let diaSalida=diaSemana(originDate);
     let mesSalida=mesFecha(originDate)
-    console.log(diaSalida);
-    console.log(originDate);
-    console.log(destinationDate);
+    
     const googleMapOrigin=()=>{
         window.open(`https://www.google.es/maps/search/${trip.origin}`, '_blank', 'noreferrer');
     }    
@@ -35,7 +34,7 @@ const TripExtended = ()=>{
             session.userObj.userID===id
         )
     }
-    console.log(ownerCheck(trip.owner[0]._id))
+    
 
 return(
 
@@ -44,13 +43,13 @@ return(
             <div className={styles.cardTop}>
                 <div className={styles.locations}>
                     <div className={styles.location_graph_top}>
-                    <p>{fechaHora(originDate)}</p><BsCircle></BsCircle>{trip&&<p>{trip.origin}</p>}
+                    <p>{fechaHora(departureTime)}</p><BsCircle></BsCircle>{trip&&<p>{trip.origin}</p>}
                     </div>
                     <div className={styles.location_graph_mid}>
                     
                     </div>
                     <div className={styles.location_graph_bottom}>
-                    <p>{fechaHora(destinationDate)}</p><BsCircle></BsCircle>{trip&&<p>{trip.destination}</p>}  
+                    <p>{fechaHora(arrivalTime)}</p><BsCircle></BsCircle>{trip&&<p>{trip.destination}</p>}  
                     </div>
                     <div className={styles.onClickTop} onClick={googleMapOrigin}></div>
                     <div className={styles.onClickBottom} onClick={googleMapDestination}></div>

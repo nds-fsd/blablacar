@@ -37,7 +37,8 @@ const FindTrip = (props) => {
         <div className={styles.parappa}>
           {console.log(trips)}
             {trips&&trips.map(e=>
-             <TripSummary trip={e} id={e._id} setWhatModal={props.setWhatModal} setOpenModal={props.setOpenModal}></TripSummary>)
+
+            <div className={styles.wrapTrip}><TripSummary trip={e} id={e._id} setWhatModal={props.setWhatModal} setOpenModal={props.setOpenModal}></TripSummary></div>)
             }
 
         </div>
