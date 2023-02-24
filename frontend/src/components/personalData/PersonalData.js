@@ -16,7 +16,9 @@ export const PersonalData  = () =>{
         const getMyData = async() =>
         {
             const response = await Request(`/users/${userId}`)
-            await setMyData(response)
+            setMyData(response)
+            console.log(response);
+            console.log((myData));
         }
         getMyData();
     },[change])   
@@ -34,17 +36,14 @@ useEffect(()=>{
   userNameRef.current = sessiontoken.userObj.surname
   userPicRef.current = sessiontoken.userObj.picUrl
   setToken(sessiontoken.jwtToken)
-  console.log(tokenRef.current);
-  console.log(userNameRef.current)
-  console.log("usr.Obj", sessiontoken.userObj)
   }
   }
   
 })
 
-    const firstName = myData.name;
+    const firstName = myData.firstName;
     const surname = myData.surname;
-    const birthday = myData.birthday;
+    const birthday = myData.Birthday;
     const email = myData.email;
     const treatment = myData.treatment;
     const talker = myData.talker;
@@ -68,7 +67,7 @@ useEffect(()=>{
                 </div>
                 <div className={styles.datawrapper}>
                     <div className={styles.fotoWrapper}>
-                        <div><UserAvatar user={userNameRef.current} picUrl={userPicRef.current} className='mr-auto'/></div>
+                        <div><UserAvatar localization="profile" user={userNameRef.current} picUrl={userPicRef.current} className='mr-auto'/></div>
                         <div className={styles.fotoButtons}>
                             <div><CiEdit size={37} className={styles.editButton}/></div>
                             <div><CiEraser size={37} className={styles.editButton}/></div>

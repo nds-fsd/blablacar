@@ -27,7 +27,7 @@ const usrPost= async (req, res) => {
     const receivedUser={
         firstName:body.firstName,
         surname:body.surname,
-        Birthday: body.Birthday.toString(),
+        Birthday: body.Birthday,
         email:body.email,
         treatment:body.treatment,
         password: body.password
@@ -43,7 +43,7 @@ const usrPost= async (req, res) => {
         userID : newUser._id,
         userName: newUser.firstName,
         surname: newUser.surname,
-        birthday: newUser.birthday,
+        birthday: newUser.Birthday,
         treatment: newUser.treatment,
         picUrl:newUser.picUrl
         
