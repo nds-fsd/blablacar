@@ -65,8 +65,7 @@ code {
  }
 
  .tripSummary{
-  width: 50%;
-  margin: 1.5em;
+  width: 100%;
   border: solid 1px;
   border-color: rgb(255, 94, 0)!important;
   border-width: 1px;

@@ -52,7 +52,7 @@ function App(props) {
           </Route>
           <Route path="*" element={<ErrorForm />} />
           <Route path="rides" element={<ProtectedRoute/>}>
-            <Route path="" element={<Mytrips/>}/>
+            <Route path="" element={<Mytrips openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal} />}/>
           </Route>
       </Routes>
     </div>

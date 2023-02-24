@@ -1,13 +1,13 @@
 import styles from './login.module.css'
-import React, {useContext, useState} from "react";
-import { Link,useNavigate } from "react-router-dom";
+import React, { useState} from "react";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import ConfigIcon from "../IconConfig/iconsize_small";
 import { AiOutlineEye} from "react-icons/ai"
 import { Request } from "../../utils/apiWrapper";
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
-import Col from 'react-bootstrap/Col'
+import { Button } from 'react-bootstrap';
 
 import { setStorageObject } from "../../utils/storage";
 
@@ -57,35 +57,31 @@ import { setStorageObject } from "../../utils/storage";
         }       
     }
     return(
+        <div className={styles.parappa}>
         <Container fluid>
       <Row>
-        <Col className={styles.imgMain} >
-            <Col className={styles.formMain}>
+        
+            {/* <Col className={styles.formMain}> */}
             <form onSubmit={handleSubmit(LoginSubmit)} className ={styles.formLogin}>
-                <h3 className="mt-2" onClick={LoginSubmit}>Login</h3>
-                <input {...register("email", {required: true,validate:{invalid: v=> isValidEmail(v)===true}})} placeholder="Email"/>
+                <h3>Introduce tus datos</h3>
+                <input className={styles.formMail} {...register("email", {required: true,validate:{invalid: v=> isValidEmail(v)===true}})} placeholder="Email"/>
                     {errors.email && errors.email.type==="invalid" && "Email no válido"}
                     {errors.email?.type === "required" && "Email es obligatorio"}
                 <div className={styles.password}>
-                    <input {...register("password", {required: true,validate:{invalid: v=> isValidPassword(v)===true} })} placeholder="password" className ={styles.passwordInput}  type={passview?"text":"password"}/>
-                    <ConfigIcon><AiOutlineEye className={styles.eye} onClick={changePassview}/></ConfigIcon>
+                    <input {...register("password", {required: true,validate:{invalid: v=> isValidPassword(v)===true} })} placeholder="password"  type={passview?"text":"password"}/>
+                    <ConfigIcon className={styles.loginIcon}><AiOutlineEye className={styles.eye} onClick={changePassview}/></ConfigIcon>
                 </div>
                     {errors.password && errors.password.type==="invalid" && "Password debe contener 1 mayúscula, 1 dígito y un carácter especial"}
                     {errors.password?.type === "required" && "la password es obligatoria"}
-                <div className={styles.signUp}>
-                                    <div>
-                                    <Link to="/users">Registrarse</Link> 
-                                    </div>
-                </div>
-                    <input type="submit" className={styles.bttnLogin} />
-                <div>
-                                <Link to="/users">¿Olvidaste tu contraseña?</Link>
-                </div>
+                
+                    <Button  type='submit' bsPrefix="goTrip">Iniciar</Button>
+                
             </form>
-            </Col>
-        </Col>
+            {/* </Col> */}
+        
       </Row>
     </Container>
+    </div>
     // {/* <div className= "h-screen bg-carretera bg-contain bg-no-repeat bg-[length:100%_100%]">
     //     <div className="h-screen flex items-center justify-center lg:h-screen flex items-center ml-7">
     //     <form onSubmit={handleSubmit(LoginSubmit)} className="shadow-lg border-solid border-black bg-white flex flex-col flex items-center justify-center h-80 w-1/4 rounded-2xl bg-cover">
