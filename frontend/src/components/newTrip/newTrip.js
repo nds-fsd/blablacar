@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { TextField } from "@mui/material";
+import { Autocomplete, TextField } from "@mui/material";
 import styles from "./newTrip.module.css";
-import { Request } from "../../utils/apiWrapper";
+import { Radarrequest, Request } from "../../utils/apiWrapper";
 import { getUserToken } from "../../utils/storage";
 import { LocalizationProvider, TimePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -11,10 +11,12 @@ import dayjs from "dayjs";
 import 'dayjs/locale/es';
 import { Button } from "react-bootstrap";
 import utc from "dayjs/plugin/utc"
-import timezone from "dayjs/plugin/timezone"
+import timezone from "dayjs/plugin/timezone";
 export const NewTrip = () =>{
     dayjs.extend(utc)
     dayjs.extend(timezone)
+    const [origen, setOrigen] = useState("")
+    const [options, setOptions] = useState([])
     const [fechaSalida,setFechaSalida]=useState(dayjs())
     const [horaSalida,setHoraSalida]=useState(dayjs())
     const [horaLlegada,setHoraLlegada]=useState(dayjs())
@@ -44,16 +46,47 @@ export const NewTrip = () =>{
     const tripError=(data)=>{
         console.log(data);
     }
+
+
+    const getOptions = async (value) =>{
+        setOrigen(value);
+        if(value.length < 3) return;
+        const res = await Radarrequest (`/autocomplete?query=${value}`, "GET", undefined);
+        let optionsResults = []
+        res.map((e)=>{
+            optionsResults.push(e);
+        })
+        console.log("ResOptions", optionsResults)
+        return optionsResults;
+    }
     
     return(
         <div className={styles.parappa}>
         
         <form onSubmit={handleSubmit(tripSubmit, tripError)} className={styles.newInput}>
             <h3 className={styles.newUserTitle}>Crea tu viaje</h3>
-                    <input placeholder="Origen" className={styles.textbox}{...(register("origin", {required:true,minLength:3,maxLength:20}))}/>
+
+            <Controller
+                    control={control}
+                    defaultValue={"origen"}
+                    name="origin"
+                    rules={{required:true}}
+                    render={
+                        ({ field: { onChange, onBlur, value, ref } }) => (
+                    <Autocomplete
+                        autocompleteOptions = {options}
+                        className={styles.textbox}
+                        label="Origen"
+                        onChange={(e) => {onChange(e);setOptions(getOptions(e));}}
+                        value={origen}
+                        renderInput={(params) => <TextField {...params}/>} />)}/>
+                   {errors.originDate && errors.originDate.type==="required" && <p className={styles.emptyfield}>Este campo es obligatorio</p>}
+                   
+
+                    {/* <input placeholder="Origen" className={styles.textbox}{...(register("origin", {required:true,minLength:3,maxLength:20}))}/>
                     {errors.origin && errors.origin.type==="required" && <p className={styles.emptyfield}>Este campo es obligatorio</p>}
                     {errors.origin && errors.origin.type==="minLength" && <p className={styles.emptyfield}>El mínimo  número de caracteres es 3</p>}
-                    {errors.origin && errors.origin.type==="maxLength" && <p className={styles.emptyfield}>El campo no puede exceder de 20 caracteres</p>}
+                    {errors.origin && errors.origin.type==="maxLength" && <p className={styles.emptyfield}>El campo no puede exceder de 20 caracteres</p>} */}
                     <input placeholder="Destino" className={styles.textbox}{...(register("destination", {required:true,minLength:3,maxLength:20}))}/>
                     {errors.destination && errors.destination.type==="minLength" && <p className={styles.emptyfield}>El mínimo  número de caracteres es 3</p>}
                     {errors.destination && errors.destination.type==="required" && <p className={styles.emptyfield}>Este campo es obligatorio</p>}
