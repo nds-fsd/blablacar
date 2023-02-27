@@ -4,7 +4,6 @@ import styles from "./newTrip.module.css";
 import { Request } from "../../utils/apiWrapper";
 import { getUserToken } from "../../utils/storage";
 import { LocalizationProvider, TimePicker } from "@mui/x-date-pickers";
-import { esES } from "@mui/x-date-pickers";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from "@mui/x-date-pickers";
 import { useForm , Controller } from "react-hook-form";
