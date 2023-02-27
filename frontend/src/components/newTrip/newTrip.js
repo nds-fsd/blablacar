@@ -49,6 +49,7 @@ export const NewTrip = () =>{
 
 
     const getOptions = async (value) =>{
+        console.log(value)
         setOrigen(value);
         if(value.length < 3) return;
         const res = await Radarrequest (`/autocomplete?query=${value}`, "GET", undefined);
@@ -74,7 +75,8 @@ export const NewTrip = () =>{
                     render={
                         ({ field: { onChange, onBlur, value, ref } }) => (
                     <Autocomplete
-                        autocompleteOptions = {options}
+                        filterOptions={(x) => x}
+                        options = {options}
                         className={styles.textbox}
                         label="Origen"
                         onChange={(e) => {onChange(e);setOptions(getOptions(e));}}
@@ -109,7 +111,7 @@ export const NewTrip = () =>{
                     render={
                         ({ field: { onChange, onBlur, value, ref } }) => (
                     <DatePicker
-                        className={styles.fechas}
+                        className={styles.textbox}
                         label="DD/MM/AAAA"
                         onChange={(e) => {onChange(e);setFechaSalida(e);}}
                         value={fechaSalida}
@@ -123,7 +125,7 @@ export const NewTrip = () =>{
                     render={
                         ({ field: { onChange, onBlur, value, ref } }) => (
                     <TimePicker
-                        className={styles.fechas}    
+                        className={styles.textbox}    
                         value={horaSalida}
                         label="Salida"
                         onChange={(e) => {onChange(e);setHoraSalida(e)}}
@@ -139,7 +141,7 @@ export const NewTrip = () =>{
                     render={
                         ({ field: { onChange, onBlur, value, ref } }) => (
                     <TimePicker
-                        className={styles.fechas}    
+                        className={styles.textbox}    
                         label="Llegada"
                         value={horaLlegada}
                         rules={{required:true}}
@@ -151,7 +153,7 @@ export const NewTrip = () =>{
                     
         </LocalizationProvider>            
             
-                    <Button  type='submit' bsPrefix="goTrip">Guardar</Button>
+                    <Button  type='submit' bsPrefix="goTrip" className={styles.submit}>Guardar</Button>
                     </div>                  
             
         </form>
