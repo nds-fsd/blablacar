@@ -2,7 +2,7 @@ const API_URL =
 window.location.hostname === "pimpambug.netlify.app"
 ?'https://pimpambuga.up.railway.app/'
 :"http://localhost:3001"
-const apiKey = process.env.API_URL
+const apiKey = process.env.REACT_APP_API_KEY
 const Request = async (route, method = "GET", body = undefined,headers={}) =>{
  
     let useUrl = API_URL + route;

@@ -14,27 +14,62 @@ RADAR API
 import {useState, useEffect} from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
-import useDebounce from '../../utils/debounce'
-const apiKey = import.meta?.env?.RADAR_API_KEY;
-const mapApiSearch = "https://api.radar.io/v1/search/autocomplete";
+import { Radarrequest } from '../../utils/apiWrapper';
+import styles from "../newTrip/newTrip.module.css";
+
+const AutocompleteField = ({onChange}) =>{
+  const [autofillValues, setAutofillValues] = useState("")
+  const [autofillOptions, setAutofillOptions] = useState([])
+  
+  useEffect(()=>{
+    const getOptions = async (value) =>{
+        console.log(value)
+        if(value.length > 3) {
+        const res = await Radarrequest (`/autocomplete?query=${value}`, "GET", undefined, undefined);
+        console.log(res);
+        setAutofillOptions([])
+        let optionsResults = []
+        res.addresses.map((e)=>{
+            optionsResults.push(e.formattedAddress)
+        })
+        setAutofillOptions(optionsResults);
+        console.log("ResOptions", optionsResults)}
+        if(value.length === 0) {
+            setAutofillOptions([])
+        }
+    }
+    if (autofillValues){
+        const newOptions=getOptions(autofillValues)
+        console.log(newOptions);
+    }
 
 
-const Autofill = () =>{
-  // const [options, setOptions] = useState([])
-  // const [searchValue, setSearchValue] = useState("")
-  // setOptions(["Barcelona", "Madrid", "Albacete", "CagayVete"])
-
-  const options = ["Barcelona", "Madrid", "Albacete", "CagayVete"]
-
+},[autofillValues])
   return(
     <Autocomplete
-      filterOptions={(x) => x} 
-      options={options}
-      renderInput={(params) => <TextField {...params} label="Origen"/>}
-      fullwidth={true}
-      sx={{width: 385}}
-      />
+                        disableClearable
+                        disableCloseOnSelect
+                        freeSolo
+                        getOptionLabel={(option) => `${option}`}
+                        filterOptions={(x) => x}
+                        options = {autofillOptions}
+                        className={styles.textbox}
+                        autoComplete
+                        includeInputInList
+                        filterSelectedOptions
+                        value={autofillValues || null}
+                        noOptionsText="No locations"
+                        onChange={(e) => {
+                          console.log(e);      
+                          onChange(e.target.value)
+                          setAutofillValues(e.target.value)}
+                          }
+                        onInputChange={(e)=>{
+                            console.log(e);
+                            setAutofillValues(e?.target?.value)}}
+                    
+                        renderInput={(params) => <TextField {...params} label="Origen"/>} />
   )
 }
 
-export {Autofill}
+export {AutocompleteField}

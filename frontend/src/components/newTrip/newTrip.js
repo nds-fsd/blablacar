@@ -7,13 +7,14 @@ import { LocalizationProvider, TimePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from "@mui/x-date-pickers";
 import { useForm , Controller } from "react-hook-form";
-import debounce from "@mui/material";
+
 
 import dayjs from "dayjs";
 import 'dayjs/locale/es';
 import { Button } from "react-bootstrap";
 import utc from "dayjs/plugin/utc"
 import timezone from "dayjs/plugin/timezone";
+import { AutocompleteField } from "../MapsAPI/Autocomplete";
 export const NewTrip = () =>{
     dayjs.extend(utc)
     dayjs.extend(timezone)
@@ -55,8 +56,16 @@ export const NewTrip = () =>{
         if(value.length > 3) {
         const res = await Radarrequest (`/autocomplete?query=${value}`, "GET", undefined, undefined);
         console.log(res);
+        setAutofillOptions([])
         let optionsResults = []
+        res.addresses.map((e)=>{
+            optionsResults.push(e.formattedAddress)
+        })
+        setAutofillOptions(optionsResults);
         console.log("ResOptions", optionsResults)}
+        if(value.length === 0) {
+            setAutofillOptions([])
+        }
     }
     if (autofillValues){
         const newOptions=getOptions(autofillValues)
@@ -78,28 +87,7 @@ export const NewTrip = () =>{
                     rules={{required:true}}
                     render={
                         ({ field: { onChange, onBlur, value, ref } }) => (
-                    <Autocomplete
-                        disableClearable
-                        disableCloseOnSelect
-                        freeSolo
-                        filterOptions={(x) => x}
-                        options = {autofillOptions}
-                        className={styles.textbox}
-                        label="Origen"
-                        autoComplete
-                        includeInputInList
-                        filterSelectedOptions
-                        value={autofillValues}
-                        noOptionsText="No locations"
-                        onChange={(e) => {
-                          console.log(e);      
-                          onChange(e.target.value)
-                          }}
-                        onInputChange={(e)=>{
-                            console.log(e);
-                            setAutofillValues(e.target.value)}}
-                    
-                        renderInput={(params) => <TextField {...params} label="Origen"/>} />)}/>
+                    <AutocompleteField onChange={onChange}/>)}/>
                    {errors.originDate && errors.originDate.type==="required" && <p className={styles.emptyfield}>Este campo es obligatorio</p>}
                    
 
