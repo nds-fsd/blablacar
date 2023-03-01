@@ -53,6 +53,15 @@
     background-color: white;
     border-radius: 10px;
 }
+.textDate{
+    margin-bottom: 15px;
+    width: auto;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+}
 .horarios{
     height: 50%;
     display: flex;

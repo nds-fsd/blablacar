@@ -2,8 +2,7 @@ const API_URL =
 window.location.hostname === "pimpambug.netlify.app"
 ?'https://pimpambuga.up.railway.app/'
 :"http://localhost:3001"
-
-const apiKey = import.meta?.env?.RADAR_API_KEY;
+const apiKey = process.env.API_URL
 const Request = async (route, method = "GET", body = undefined,headers={}) =>{
  
     let useUrl = API_URL + route;
@@ -42,13 +41,14 @@ const Request = async (route, method = "GET", body = undefined,headers={}) =>{
 const Radarrequest = async (route, method = "GET", body = undefined,headers={}) =>{
  
   let useUrl = "https://api.radar.io/v1/search" + route;
+  console.log(apiKey);
   let ops = {
     method: method,
     mode: "cors",
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
-      "Authorization" : `${apiKey}`,
+      "Authorization" : apiKey,
       ...headers,
       }
   }
@@ -56,6 +56,7 @@ const Radarrequest = async (route, method = "GET", body = undefined,headers={}) 
     ops.body = JSON.stringify(body)
   }
 try{
+  console.log(ops);
   const response = await fetch(useUrl,ops);
   console.log("response", response)
   let json = await response.json()

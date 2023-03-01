@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Autocomplete, TextField } from "@mui/material";
 import styles from "./newTrip.module.css";
 import { Radarrequest, Request } from "../../utils/apiWrapper";
@@ -7,6 +7,8 @@ import { LocalizationProvider, TimePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from "@mui/x-date-pickers";
 import { useForm , Controller } from "react-hook-form";
+import debounce from "@mui/material";
+
 import dayjs from "dayjs";
 import 'dayjs/locale/es';
 import { Button } from "react-bootstrap";
@@ -15,8 +17,8 @@ import timezone from "dayjs/plugin/timezone";
 export const NewTrip = () =>{
     dayjs.extend(utc)
     dayjs.extend(timezone)
-    const [origen, setOrigen] = useState("")
-    const [options, setOptions] = useState([])
+    const [autofillValues, setAutofillValues] = useState("")
+    const [autofillOptions, setAutofillOptions] = useState([])
     const [fechaSalida,setFechaSalida]=useState(dayjs())
     const [horaSalida,setHoraSalida]=useState(dayjs())
     const [horaLlegada,setHoraLlegada]=useState(dayjs())
@@ -47,20 +49,22 @@ export const NewTrip = () =>{
         console.log(data);
     }
 
-
+    useEffect(()=>{
     const getOptions = async (value) =>{
         console.log(value)
-        setOrigen(value);
-        if(value.length < 3) return;
-        const res = await Radarrequest (`/autocomplete?query=${value}`, "GET", undefined);
+        if(value.length > 3) {
+        const res = await Radarrequest (`/autocomplete?query=${value}`, "GET", undefined, undefined);
+        console.log(res);
         let optionsResults = []
-        res.map((e)=>{
-            optionsResults.push(e);
-        })
-        console.log("ResOptions", optionsResults)
-        return optionsResults;
+        console.log("ResOptions", optionsResults)}
     }
-    
+    if (autofillValues){
+        const newOptions=getOptions(autofillValues)
+        console.log(newOptions);
+    }
+
+
+},[autofillValues])
     return(
         <div className={styles.parappa}>
         
@@ -69,19 +73,33 @@ export const NewTrip = () =>{
 
             <Controller
                     control={control}
-                    defaultValue={"origen"}
+                    defaultValue={"Origen"}
                     name="origin"
                     rules={{required:true}}
                     render={
                         ({ field: { onChange, onBlur, value, ref } }) => (
                     <Autocomplete
+                        disableClearable
+                        disableCloseOnSelect
+                        freeSolo
                         filterOptions={(x) => x}
-                        options = {options}
+                        options = {autofillOptions}
                         className={styles.textbox}
                         label="Origen"
-                        onChange={(e) => {onChange(e);setOptions(getOptions(e));}}
-                        value={origen}
-                        renderInput={(params) => <TextField {...params}/>} />)}/>
+                        autoComplete
+                        includeInputInList
+                        filterSelectedOptions
+                        value={autofillValues}
+                        noOptionsText="No locations"
+                        onChange={(e) => {
+                          console.log(e);      
+                          onChange(e.target.value)
+                          }}
+                        onInputChange={(e)=>{
+                            console.log(e);
+                            setAutofillValues(e.target.value)}}
+                    
+                        renderInput={(params) => <TextField {...params} label="Origen"/>} />)}/>
                    {errors.originDate && errors.originDate.type==="required" && <p className={styles.emptyfield}>Este campo es obligatorio</p>}
                    
 
@@ -111,7 +129,7 @@ export const NewTrip = () =>{
                     render={
                         ({ field: { onChange, onBlur, value, ref } }) => (
                     <DatePicker
-                        className={styles.textbox}
+                        className={styles.textDate}
                         label="DD/MM/AAAA"
                         onChange={(e) => {onChange(e);setFechaSalida(e);}}
                         value={fechaSalida}
@@ -125,7 +143,7 @@ export const NewTrip = () =>{
                     render={
                         ({ field: { onChange, onBlur, value, ref } }) => (
                     <TimePicker
-                        className={styles.textbox}    
+                        className={styles.textDate}    
                         value={horaSalida}
                         label="Salida"
                         onChange={(e) => {onChange(e);setHoraSalida(e)}}
@@ -141,7 +159,7 @@ export const NewTrip = () =>{
                     render={
                         ({ field: { onChange, onBlur, value, ref } }) => (
                     <TimePicker
-                        className={styles.textbox}    
+                        className={styles.textDate}    
                         label="Llegada"
                         value={horaLlegada}
                         rules={{required:true}}
