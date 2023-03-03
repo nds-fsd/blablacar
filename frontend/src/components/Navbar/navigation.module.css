@@ -115,3 +115,14 @@ nav{
   color: rgb(255, 162, 0);
   
 }
+
+.wrapperUserAvatar{
+  position:relative;
+}
+
+.bellIcon{
+  position:absolute;
+  bottom:0;
+  right:0;
+
+}

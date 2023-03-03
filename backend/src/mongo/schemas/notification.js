@@ -9,7 +9,7 @@ const notificationSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "User"
     },
-    messege: {type: String},
+    message: {type: String},
     
     status: {type: String, default:"unread"},
 

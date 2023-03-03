@@ -4,15 +4,21 @@ import IconLogo from '../svgIcons/iconLogo'
 import {deleteStorageObject} from "../../utils/storage"
 import React, { useEffect, useRef, useState } from "react";
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
-import {HiMagnifyingGlass, HiOutlinePlusCircle} from 'react-icons/hi2'
+import {HiMagnifyingGlass, HiOutlinePlusCircle,HiBell} from 'react-icons/hi2'
 import { getStorageObject } from "../../utils/storage";
 import UserAvatar from "../userAvatar/UserAvatar";
+import { getUserToken } from "../../utils/storage";
+import { Request } from "../../utils/apiWrapper";
+
+
+
 const Navigation = ({setOpenModal, setWhatModal} ) => {
 const navigate=useNavigate()
 let tokenRef=useRef()
 let userNameRef=useRef()
 let userPicRef=useRef()
 const [token,setToken]=useState("")
+
 useEffect(()=>{
   if(!token){
   const sessiontoken = getStorageObject("user-session")
@@ -29,7 +35,30 @@ useEffect(()=>{
   
 })
 
+const [hasNotifications,setHasNotifications] = useState(0)
+const userId = getUserToken()?.userObj?.userID
+
+useEffect(()=>{
+    const getNotifications = async() =>
+    {
+        const response = await Request(`/notification/${userId}`)
+        const numberOfNotifications = response.filter(notification => notification.status === 'unread').length
+        console.log({response,numberOfNotifications})
+
+
+        setHasNotifications(numberOfNotifications)
+    }
+    if (userId) getNotifications();
+},[userId])
+
+
+console.log({hasNotifications})
+
+
+
+
    const logOut = () =>{
+    setHasNotifications(0)
     deleteStorageObject("user-session")
     setToken("")
     userNameRef.current=""
@@ -49,7 +78,19 @@ useEffect(()=>{
         <Nav className="justify-content-end">
         <Nav.Link href="/search"><HiMagnifyingGlass size={38} className={` mr-auto ${styles.glass}`}/></Nav.Link>
         <Nav.Link onClick={()=>{navigate("/trips");setOpenModal(true); setWhatModal("newTrip")}}><HiOutlinePlusCircle size={38} className={` mr-auto ${styles.glass}`}/></Nav.Link>
-        <NavDropdown id="basic-nav-dropdown" title={<UserAvatar user={userNameRef.current} picUrl={userPicRef.current} className="mr-auto"/>}>
+        <NavDropdown id="basic-nav-dropdown" title={
+         
+          
+          <div className={styles.wrapperUserAvatar}>
+    
+          {!!hasNotifications &&  <HiBell className={styles.bellIcon}/>}
+<UserAvatar user={userNameRef.current} picUrl={userPicRef.current} className="mr-auto"/>
+
+
+          </div>
+          
+        
+        }>
           {console.log(tokenRef.current)}
           {console.log("queEs", userNameRef.current)}
           {!tokenRef.current?
@@ -60,6 +101,7 @@ useEffect(()=>{
             (<>            
             <NavDropdown.Item href={`/rides`}>Tus viajes</NavDropdown.Item>
             <NavDropdown.Item href={`/messages`}>Mensajes</NavDropdown.Item>
+            <NavDropdown.Item href={`/notifications`}>Notificaciones</NavDropdown.Item>
             <NavDropdown.Item href={`/profile`}>Perfil</NavDropdown.Item>
             <NavDropdown.Item href={`/money-available`}>Transferencias</NavDropdown.Item>
             <NavDropdown.Item href={`/payments-history`}>Pagos y reembolsos</NavDropdown.Item>
