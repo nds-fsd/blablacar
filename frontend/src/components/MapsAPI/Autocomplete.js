@@ -17,33 +17,34 @@ import TextField from '@mui/material/TextField';
 import { Radarrequest } from '../../utils/apiWrapper';
 import styles from "../newTrip/newTrip.module.css";
 
-const AutocompleteField = ({onChange}) =>{
+const AutocompleteField = ({onChange, labelName, setValue}) =>{
   const [autofillValues, setAutofillValues] = useState("")
   const [autofillOptions, setAutofillOptions] = useState([])
   
+
   useEffect(()=>{
     const getOptions = async (value) =>{
         console.log(value)
         if(value.length > 3) {
-        const res = await Radarrequest (`/autocomplete?query=${value}`, "GET", undefined, undefined);
-        console.log(res);
-        setAutofillOptions([])
-        let optionsResults = []
-        res.addresses.map((e)=>{
-            optionsResults.push(e.formattedAddress)
-        })
-        setAutofillOptions(optionsResults);
-        console.log("ResOptions", optionsResults)}
+          
+          const res = await Radarrequest (`/autocomplete?query=${value}`, "GET", undefined, undefined);
+          console.log(res);
+          let optionsResults = []
+          res.addresses.map((e)=>{
+              optionsResults.push(e.formattedAddress)
+          })
+          setAutofillOptions([]);
+          setAutofillOptions(optionsResults);
+          console.log("ResOptions", optionsResults)}
         if(value.length === 0) {
             setAutofillOptions([])
+            setValue(autofillValues)
         }
     }
     if (autofillValues){
         const newOptions=getOptions(autofillValues)
         console.log(newOptions);
     }
-
-
 },[autofillValues])
   return(
     <Autocomplete
@@ -68,7 +69,7 @@ const AutocompleteField = ({onChange}) =>{
                             console.log(e);
                             setAutofillValues(e?.target?.value)}}
                     
-                        renderInput={(params) => <TextField {...params} label="Origen"/>} />
+                        renderInput={(params) => <TextField {...params} label={labelName}/>} />
   )
 }
 
