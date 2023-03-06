@@ -84,7 +84,7 @@ const usrPost= async (req, res) => {
 
 
 //TODO:añadir middlewares, hablar con Paulo
-const usrPut=async(req, res) => {
+const usrPatch=async(req, res) => {
     const updateUsr=await Users.findByIdAndUpdate(req.params.id,newUser)
     const updatedUsr=await Users.findById(req.params.id)
     console.log("UpdateUser: ",updateUsr)

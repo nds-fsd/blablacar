@@ -14,6 +14,7 @@ useEffect(()=>{
     const getNotifications = async() =>
     {
         const response = await Request(`/notification/${userId}`)
+        console.log("response",response)
         setNotifications(response)
     }
     getNotifications()
