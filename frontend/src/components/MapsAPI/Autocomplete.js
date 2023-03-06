@@ -14,7 +14,7 @@ RADAR API
 import {useState, useEffect} from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
-import { Radarrequest } from '../../utils/apiWrapper';
+import { Request } from '../../utils/apiWrapper';
 import styles from "../newTrip/newTrip.module.css";
 
 const AutocompleteField = ({onChange, labelName, setValue}) =>{
@@ -26,8 +26,10 @@ const AutocompleteField = ({onChange, labelName, setValue}) =>{
     const getOptions = async (value) =>{
         console.log(value)
         if(value.length > 3) {
-          
-          const res = await Radarrequest (`/autocomplete?query=${value}`, "GET", undefined, undefined);
+          let body ={
+            request:value
+          }
+          const res = await Request (`/RadarApi/Autocomplete`, "POST", body, undefined);
           console.log(res);
           let optionsResults = []
           res.addresses.map((e)=>{

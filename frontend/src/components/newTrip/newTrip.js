@@ -32,7 +32,7 @@ export const NewTrip = () =>{
         console.log(data.origin);
         let geocode = Radarrequest (`/geocode/forward?query=${data.origin}`, "GET", undefined, undefined);
         if(geocode?.error){
-            alert(res.message)
+            alert(geocode.error.message)
         }else{
             console.log("geocode" ,geocode);
         }
