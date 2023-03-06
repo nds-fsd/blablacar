@@ -14,7 +14,6 @@ const configurePrivateSocket = (server) =>{
             jwtTokenVerify(socket.handshake.auth.token, (err,user) =>{
                 if (err) return next(new Error("Authentication error"));
                 socket.user = user;
-                console.log(`User: ${user.name}`);
                 next();
             });
         }else{
@@ -25,10 +24,6 @@ const configurePrivateSocket = (server) =>{
     io.on("connection", (client) => {
         client.emit("connection", "You are now connected");
         client.join(`user-${client.user.id}`);
-    
-        console.log(
-          `User: ${client.user.name} has now its session with id ${client.user.id}`
-        );
     
         client.on("join-chat", (chatId) => {
           client.join(`chat-${chatId}`);
