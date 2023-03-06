@@ -4,7 +4,7 @@ import IconLogo from '../svgIcons/iconLogo'
 import {deleteStorageObject} from "../../utils/storage"
 import React, { useEffect, useRef, useState } from "react";
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
-import {HiMagnifyingGlass, HiOutlinePlusCircle,HiBell} from 'react-icons/hi2'
+import {HiMagnifyingGlass, HiOutlinePlusCircle} from 'react-icons/hi2'
 import { getStorageObject } from "../../utils/storage";
 import UserAvatar from "../userAvatar/UserAvatar";
 import { getUserToken } from "../../utils/storage";
@@ -80,8 +80,8 @@ console.log({hasNotifications})
           
           <div className={styles.wrapperUserAvatar}>
     
-          {!!hasNotifications &&  <HiBell className={styles.bellIcon}/>}
-<UserAvatar localization="navBar" user={userNameRef.current} picUrl={userPicRef.current} className="mr-auto"/>
+          
+<UserAvatar hasNotifications={hasNotifications} localization="navBar" user={userNameRef.current} picUrl={userPicRef.current} className="mr-auto"/>
 
 
           </div>

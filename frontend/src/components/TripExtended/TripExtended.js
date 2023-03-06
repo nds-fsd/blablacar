@@ -1,12 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+
 import styles from "./TripExtended.module.css"
 import {diaSemana, mesFecha, fechaHora} from "../../utils/dateWorks"
-import {BsCircle, BsArrowDown } from "react-icons/bs"
-import ConfigIcon from "../IconConfig/iconsize_small"
+import {BsCircle } from "react-icons/bs"
 import UserAvatar from "../userAvatar/UserAvatar";
 import { getStorageObject } from "../../utils/storage";
 import { Button } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
+import { Request } from "../../utils/apiWrapper";
+const session=getStorageObject('user-session');
 
 const TripExtended = ()=>{
     const location=useLocation()
@@ -18,26 +19,34 @@ const TripExtended = ()=>{
     let diaSalida=diaSemana(originDate);
     let mesSalida=mesFecha(originDate)
     
-    const googleMapOrigin=()=>{
+const googleMapOrigin=()=>{
         window.open(`https://www.google.es/maps/search/${trip.origin}`, '_blank', 'noreferrer');
     }    
-    const googleMapDestination=()=>{
+const googleMapDestination=()=>{
         window.open(`https://www.google.es/maps/search/${trip.destination}`, '_blank', 'noreferrer');
     }
 
-    const ownerCheck=(id)=>{
+const ownerCheck=(id)=>{
         console.log(id);
-        let session=getStorageObject('user-session')
         console.log("compar con");
         console.log(session);
         return(
             session.userObj.userID===id
         )
     }
-//const doReservation =(trip.id)=>{
-//    //aqui ponemos el codigo para hacer el post a la BAse de datos indicando que 
-//    //el viaje está reservado
-//}
+
+const editTrip=()=>{
+    console.log("Editar Tripy")
+}
+
+const bookTrip =(id)=>{
+    const user=session.userObj.userID
+    let URLtoPost= "/booking?user="+encodeURIComponent(user)+"&trip="+encodeURIComponent(id)
+    Request(URLtoPost, "POST")
+   //aqui ponemos el codigo para hacer el post a la BAse de datos indicando que 
+   //el viaje está reservado
+   console.log(id);
+}
 
 return(
 
@@ -68,8 +77,8 @@ return(
              {trip.owner[0]&&<UserAvatar user={trip.owner[0].firstName} picUrl={trip.owner[0].picUrl} showName={false}/>}
             </div>
             
-
-            {ownerCheck(trip.owner[0]._id)?<Button bsPrefix="goTrip" >Editar</Button>:<Button  bsPrefix="goTrip" >Reservar</Button>}
+            {/*onClick={(e)=>{editTrip(trip._id)}}*/}
+            {ownerCheck(trip.owner[0]._id)?<Button onClick={(e)=>{bookTrip(trip._id)}} bsPrefix="goTrip" >Editar</Button>:<Button onClick={(e)=>{bookTrip(trip._id)}} bsPrefix="goTrip" >Reservar</Button>}
 
     </div>
 )
