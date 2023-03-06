@@ -27,7 +27,7 @@ const AutocompleteField = ({onChange, labelName, setValue}) =>{
         console.log(value)
         if(value.length > 3) {
           
-          const res = await Radarrequest (`/autocomplete?query=${value}`, "GET", undefined, undefined);
+          const res = await Radarrequest (`search/autocomplete?query=${value}`, "GET", undefined, undefined);
           console.log(res);
           let optionsResults = []
           res.addresses.map((e)=>{
@@ -60,14 +60,14 @@ const AutocompleteField = ({onChange, labelName, setValue}) =>{
                         filterSelectedOptions
                         value={autofillValues || null}
                         noOptionsText="No locations"
-                        onChange={(e) => {
+                        onChange={(e, values) => {
                           console.log(e);      
-                          onChange(e.target.value)
-                          setAutofillValues(e.target.value)}
+                          onChange(values)
+                          setAutofillValues(values)}
                           }
-                        onInputChange={(e)=>{
+                        onInputChange={(e, values)=>{
                             console.log(e);
-                            setAutofillValues(e?.target?.value)}}
+                            setAutofillValues(values)}}
                     
                         renderInput={(params) => <TextField {...params} label={labelName}/>} />
   )
