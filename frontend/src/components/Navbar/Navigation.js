@@ -24,7 +24,7 @@ useEffect(()=>{
   }
   }
   
-})
+},[])
 
    const logOut = () =>{
     deleteStorageObject("user-session")

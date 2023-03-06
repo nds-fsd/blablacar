@@ -25,7 +25,6 @@ const Request = async (route, method = "GET", body = undefined,headers={}) =>{
       if (response.ok){
         return json
       } else {
-
         return {
               error:true, 
               message: json.message,
