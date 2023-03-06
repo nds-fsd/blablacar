@@ -37,6 +37,7 @@ app.use(express.json());
 app.use(userRouter)
 app.use(tripRouter)
 app.use(bookingRouter)
+app.use(notificationRouter)
 //Login router
 app.use('/auth', authRouter);
 

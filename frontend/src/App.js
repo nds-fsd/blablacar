@@ -54,7 +54,9 @@ function App(props) {
           <Route path="rides" element={<ProtectedRoute/>}>
             <Route path="" element={<Mytrips openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal} />}/>
           </Route>
-
+          <Route path="personaldata" element={<ProtectedRoute/>}>
+            <Route path="" element={<PersonalData/>}/>
+          </Route>
           <Route path="notifications" element={<ProtectedRoute/>}>
   <Route path="" element={<Notification />}/>
 </Route>

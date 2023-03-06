@@ -34,7 +34,10 @@ const TripExtended = ()=>{
             session.userObj.userID===id
         )
     }
-    
+//const doReservation =(trip.id)=>{
+//    //aqui ponemos el codigo para hacer el post a la BAse de datos indicando que 
+//    //el viaje está reservado
+//}
 
 return(
 
@@ -66,7 +69,7 @@ return(
             </div>
             
 
-            {ownerCheck(trip.owner[0]._id)?<Button bsPrefix="goTrip" >Editar</Button>:<Button bsPrefix="goTrip" >Reservar</Button>}
+            {ownerCheck(trip.owner[0]._id)?<Button bsPrefix="goTrip" >Editar</Button>:<Button  bsPrefix="goTrip" >Reservar</Button>}
 
     </div>
 )

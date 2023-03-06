@@ -28,6 +28,8 @@ const bookTrip = async(req,res) =>{
                 messege: "Tienes una nueva reserva",
     
             });
+            console.log(trip.owner);
+            console.log(idUser);
             user.bookedTrips.push(book)
             trip.bookings.push(book)
 
