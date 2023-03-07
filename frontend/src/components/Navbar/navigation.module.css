@@ -122,3 +122,8 @@ nav{
   color: rgb(255, 162, 0);
   
 }
+
+.wrapperUserAvatar{
+  position:relative;
+}
+

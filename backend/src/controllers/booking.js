@@ -2,6 +2,7 @@ const Booking  =  require("../mongo/schemas/booking.js");
 const Trip  =  require("../mongo/schemas/trip.js");
 const Users = require ("../mongo/schemas/user.js");
 const Notification = require ("../mongo/schemas/notification.js")
+const dateWorks = require ('../utils/dateWorks.js')
 
 const bookGetAll=async (req, res) => {
     const book = await Booking.find();
@@ -9,39 +10,67 @@ const bookGetAll=async (req, res) => {
     res.json(book);
 };
 const bookTrip = async(req,res) =>{
-    const {idUser,idTrip} = req.params
+    console.log(req.query);
+    const {user,trip}= req.query
     try{
-        if(!idUser) return res.status(400).json({message: "No hay usuario establecido"});
-        if(!idTrip) return res.status(400).json({message: "No hay viaje establecido"});
-        const user = await Users.findById(idUser);
-        const trip = await Trip.findById(idTrip);
-        if(idUser == trip.owner) return res.status(400).json({message: "No puedes reservar en tu propio viaje!"})
-        if(trip.availableSeats === 0) return res.status(400).json({message: "No hay plazas en este viaje!"})
+        if(!user) return res.status(400).json({message: "No hay usuario establecido"});
+        if(!trip) return res.status(400).json({message: "No hay viaje establecido"});
+        const bookUser = await Users.findById(user);
+        const bookTrip = await Trip.findById(trip).populate([{
+            path:"bookings",
+            model:'Booking',
+            populate:[
+                {path:'passenger', select: '_id'}
+            ]
+        }]);
+        console.log(bookTrip.bookings);
+        let foundID=false;
+        bookTrip.bookings.find(e=>{
+        let idToFind=""+e.passenger._id
+        console.log(idToFind);
+        idToFind.includes(user)?foundID=true:""
+        })
+        console.log("foundID es"+ foundID);
+        
+        
+        if (foundID) return res.status(401).json({message:"Usuario ya registrado para ese viaje."})
+        if(bookUser === bookTrip.owner) return res.status(400).json({message: "No puedes reservar en tu propio viaje."})
+
+        if(bookTrip.availableSeats === 0) return res.status(400).json({message: "No hay plazas en este viaje!"})
             const book = new Booking({
-                passenger: idUser,
-                bookedTrip: idTrip,
+                passenger: user,
+                bookedTrip: bookTrip,
             });
 
+            let originDate=new Date(bookTrip.originDate);
+            let diaSalida= dateWorks.diaSemana(originDate);
+            let mesSalida= dateWorks.mesFecha(originDate)
             const notification = new Notification({
-                owner: trip.owner,
-                passenger: idUser,
-                messege: "Tienes una nueva reserva",
+                destinatary: bookTrip.owner,
+                sender: bookUser,
+                title: "Tienes una nueva reserva",
+                body: `El usuario ${bookUser.firstName} ha efectuado una reserva de tu viaje a ${bookTrip.destination} con fecha el ${diaSalida} de ${mesSalida} `
     
             });
-            user.bookedTrips.push(book)
-            trip.bookings.push(book)
+            console.log(bookTrip.owner);
+            console.log(user);
+            bookUser.bookedTrips.push(book)
+            bookTrip.bookings.push(book)
 
             await book.save()
-            await user.save()
-            await trip.save()
+            await bookUser.save()
+            await bookTrip.save()
             await notification.save()
 
-            const updatedTrip = await Trip.findById(idTrip);
+            const updatedTrip = await Trip.findById(trip);
+            console.log("update seats")
+            console.log(updatedTrip);
             updatedTrip.availableSeats = updatedTrip.seats - updatedTrip.bookings.length;
             await updatedTrip.save()
-            res.status(201).json(book)   
+            res.status(201).json({message:"Reserva efectuada con éxito"})   
     }
     catch (e){
+        console.log((e));
         res.status(500).json({ message: e })
     }
 
