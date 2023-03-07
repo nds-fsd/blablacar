@@ -164,4 +164,30 @@ const findTrip = async(req,res) =>{
     }
 }
 
-module.exports={getAll,createTrip,getTripById,deleteTrip,updatedTrip,getTripByOrigin,findTrip, testCreateTrip};
+const getTripCoordinates = async (req, res) =>{
+    const {long, lat} = req.query;
+      
+    const someParamIsMissing = [long, lat].includes(undefined);
+    if (someParamIsMissing) {
+      return res.status(400).json({error: 'Include "long", "lat" as query params'});
+    }
+      
+    try {
+        const results = await Trip.find({
+            originLocation: {
+              $near: {
+                $maxDistance: 100,
+                $geometry: {
+                  type: `Point`,
+                  coordinates: [long, lat]
+                }
+              }
+            }
+        })
+        return res.status(200).json(results);
+    } catch (error) {
+        return res.status(400).send(error);
+    }
+};
+
+module.exports={getAll,createTrip,getTripById,deleteTrip,updatedTrip,getTripByOrigin,findTrip, testCreateTrip, getTripCoordinates};

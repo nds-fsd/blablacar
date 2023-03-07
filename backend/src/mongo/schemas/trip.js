@@ -12,6 +12,14 @@ const tripSchema = new Schema({
     arrivalTime: {type:String},
     seats:{type: Number},
     price:{type: Number},
+    originLocation: {
+        type: {type: String},
+        coordinates: []
+      },
+    destinationLocation: {
+        type: {type: String},
+        coordinates: []
+    },
     availableSeats:{type: Number},
     bookings: [{
         type: Schema.Types.ObjectId,

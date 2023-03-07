@@ -38,8 +38,8 @@ const Request = async (route, method = "GET", body = undefined,headers={}) =>{
 
 
 const Radarrequest = async (route, method = "GET", body = undefined,headers={}) =>{
-  const apiKey = process.env.RADAR_API_KEY;
-  let useUrl = "http://localhost:3001/" + route;
+  const apiKey = process.env.REACT_APP_API_KEY;
+  let useUrl = "https://api.radar.io/v1/" + route;
   console.log("apikey",apiKey);
   let ops = {
     method: method,
@@ -47,7 +47,7 @@ const Radarrequest = async (route, method = "GET", body = undefined,headers={}) 
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
-      "Authorization" : apiKey,
+      "Authorization" : "prj_test_pk_0583e8ab4b18eacb42f5567b721867632cf51b8d",
       ...headers,
       }
   }

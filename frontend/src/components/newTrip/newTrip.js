@@ -7,6 +7,7 @@ import { LocalizationProvider, TimePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from "@mui/x-date-pickers";
 import { useForm , Controller } from "react-hook-form";
+import { forwardGeolocate } from "../MapsAPI/GeolocateForward";
 
 
 import dayjs from "dayjs";
@@ -28,22 +29,31 @@ export const NewTrip = () =>{
     const {register, control, handleSubmit,formState:{errors}} = useForm();   
     const userId = getUserToken().userObj.userID;
 
+
+    
     const tripSubmit = async(data) => {
-        console.log(data.origin);
-        let geocode = Radarrequest (`/geocode/forward?query=${data.origin}`, "GET", undefined, undefined);
-        if(geocode?.error){
-            alert(geocode.error.message)
-        }else{
-            console.log("geocode" ,geocode);
+        const originCoordinates = await forwardGeolocate(data.origin);
+        const destinationCoordinates = await forwardGeolocate(data.destination);
+
+        let originLocation = {
+            type : "Point",
+            coordinates : originCoordinates
         }
+        let destinationLocation = {
+            type : "Point",
+            coordinates : destinationCoordinates
+        }
+        console.log("originCoordinates",originCoordinates);
         const body = {
                 origin: data.origin,         
                 originDate: data.originDate,
                 destination: data.destination,    
                 departureTime: data.departureTime,
                 arrivalTime:data.arrivalTime,
-                seat:data.seats,           
-                price:data.price               
+                seat:data.seats,
+                price:data.price,
+                originLocation: originLocation,
+                destinationLocation: destinationLocation         
         }
         console.log("BODY",body);
         const userSession = getUserToken()
@@ -54,7 +64,6 @@ export const NewTrip = () =>{
         if(res?.error){
             alert(res.message)
         }else{
-            alert(`viaje creado con destino a ${body.destination}`)
             navigate("/");
         }
     } 
