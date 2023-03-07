@@ -3,11 +3,11 @@ import styles from './parallax.module.css'
 import TripSearchBar from "../TripSearchBar/tripSearchBar";
 import TripSearchGo from "../TripSearchGo/TripSearchGo";
 import {ChatList} from '../chat/chatList'
-
+import { getUserToken } from "../../utils/storage";
 
 
 const Parallax = ({setOpenModal, setWhatModal, openModal, whatModal})=>{
- 
+
     
   return (
   <div className={styles.wrapper}>		
@@ -75,7 +75,8 @@ const Parallax = ({setOpenModal, setWhatModal, openModal, whatModal})=>{
                 en el bosque. ¡No hay nada igual!
               </p>
               <div>
-              <ChatList/> 
+                {getUserToken()?.jwtToken ?<ChatList/> : "" }
+              
               </div>
 
             </div>
