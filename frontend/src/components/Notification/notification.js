@@ -13,10 +13,12 @@ const userId = getUserToken().userObj.userID
 useEffect(()=>{
     const getNotifications = async() =>
     {
-        const response = await Request(`/notification/${userId}`)
+        //const response = await Request(`/notification/${userId}`)
+        const [response, _] = await Promise.all([Request(`/notification/${userId}`), Request(`/notification-read/${userId}`)]);
         console.log("response",response)
         setNotifications(response)
     }
+
     getNotifications()
 },[])
 

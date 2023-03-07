@@ -17,7 +17,12 @@ if (props.user && props.picUrl){
     <div className={styles.userAvatar}>
     <div className={localization === "profile" ? styles.imgProfile : styles.imgRedonda}>{props.user.charAt(0).toUpperCase()}</div>
     {props.showName?<h4 className={styles.nameText}>{props.user}</h4>:""}
+<<<<<<< Updated upstream
     {props.hasNotifications &&  <HiBell className={styles.bellIcon}/>}
+=======
+    {!!props.hasNotifications &&  <HiBell className={styles.bellIcon}/>}
+
+>>>>>>> Stashed changes
     </div>    
     )
 }else{

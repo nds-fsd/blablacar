@@ -9,6 +9,19 @@ const getAllNotifications = async(req,res) =>{
         }catch (e){
                 res.status(500).json({ message: e })
             }};
+
+const readAllNotifications = async(req,res) =>{
+
+    try {
+        const notifications = await Notification.updateMany({destinatary: req.params.id, status:"unread"},{status:"read"})
+        res.json(notifications);
+
+    } catch (e) {
+        res.status(500).json({ message: e })
+        
+        
+    }
+}
             
-    module.exports={getAllNotifications};
+    module.exports={getAllNotifications,readAllNotifications}; 
 
