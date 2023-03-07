@@ -8,7 +8,6 @@ import { Button } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import { Request } from "../../utils/apiWrapper";
 const session=getStorageObject('user-session');
-
 const TripExtended = ()=>{
     const location=useLocation()
     let trip=location.state;
@@ -19,17 +18,15 @@ const TripExtended = ()=>{
     let diaSalida=diaSemana(originDate);
     let mesSalida=mesFecha(originDate)
     
-const googleMapOrigin=()=>{
-        window.open(`https://www.google.es/maps/search/${trip.origin}`, '_blank', 'noreferrer');
+    const googleMapOrigin=()=>{
+    window.open(`https://www.google.es/maps/search/${trip.origin}`, '_blank', 'noreferrer');
     }    
 const googleMapDestination=()=>{
         window.open(`https://www.google.es/maps/search/${trip.destination}`, '_blank', 'noreferrer');
     }
 
-const ownerCheck=(id)=>{
-        console.log(id);
-        console.log("compar con");
-        console.log(session);
+    const ownerCheck=(id)=>{
+        let session=getStorageObject('user-session')
         return(
             session.userObj.userID===id
         )
@@ -77,8 +74,7 @@ return(
              {trip.owner[0]&&<UserAvatar user={trip.owner[0].firstName} picUrl={trip.owner[0].picUrl} showName={false}/>}
             </div>
             
-            {/*onClick={(e)=>{editTrip(trip._id)}}*/}
-            {ownerCheck(trip.owner[0]._id)?<Button onClick={(e)=>{bookTrip(trip._id)}} bsPrefix="goTrip" >Editar</Button>:<Button onClick={(e)=>{bookTrip(trip._id)}} bsPrefix="goTrip" >Reservar</Button>}
+            {ownerCheck(trip.owner[0]._id)?<Button onClick={(e)=>{editTrip(trip._id)}} bsPrefix="goTrip" >Editar</Button>:<Button onClick={(e)=>{bookTrip(trip._id)}} bsPrefix="goTrip" >Reservar</Button>}
 
     </div>
 )

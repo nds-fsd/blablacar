@@ -10,8 +10,6 @@ const authUser = (req, res) => {
         picUrl:req.user.picUrl
         
      }
-     console.log("res es");
-     console.log(userObj);
 
     res.status(200).json({success: true, jwtToken: req.jwtToken, expirationHours: expirationTime, userObj: userObj});
 }
