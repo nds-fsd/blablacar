@@ -18,7 +18,6 @@ import Parallax from './components/parallax/parallax';
 import ProfileAccount from './components/ProfileAccount/ProfileAccount';
 import { Mytrips } from './components/mytrips/mytrips';
 import  Notification  from './components/Notification/notification';
-
 import {PersonalData} from './components/personalData/PersonalData';
 import TripExtended from './components/TripExtended/TripExtended';
 

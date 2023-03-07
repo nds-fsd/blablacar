@@ -75,19 +75,11 @@ console.log({hasNotifications})
         <Nav className="justify-content-end">
         <Nav.Link href="/search"><HiMagnifyingGlass size={38} className={` mr-auto ${styles.glass}`}/></Nav.Link>
         {tokenRef.current&&<Nav.Link onClick={()=>{navigate("/trips");setOpenModal(true); setWhatModal("NewTrip")}}><HiOutlinePlusCircle size={38} className={` mr-auto ${styles.glass}`}/></Nav.Link>}
-        <NavDropdown id="basic-nav-dropdown" title={
-         
-          
+        <NavDropdown id="basic-nav-dropdown" title={     
           <div className={styles.wrapperUserAvatar}>
-    
-          
-<UserAvatar hasNotifications={hasNotifications} localization="navBar" user={userNameRef.current} picUrl={userPicRef.current} className="mr-auto"/>
-
-
+          <UserAvatar hasNotifications={hasNotifications} localization="navBar" user={userNameRef.current} picUrl={userPicRef.current} className="mr-auto"/>
           </div>
-          
-        
-        }>
+          }>
           {!tokenRef.current?
             (<><NavDropdown.Item onClick={()=>{navigate("/login");setOpenModal(true); setWhatModal("Login")}} >Inicia Sesión</NavDropdown.Item>
             <NavDropdown.Divider />

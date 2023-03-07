@@ -3,6 +3,7 @@ import {HiBell} from 'react-icons/hi2'
 import userLogo from "../assets/user.png"
 import styles from './UserAvatar.module.css'
 const UserAvatar = (props) =>{
+
 const localization = props.localization
 if (props.user && props.picUrl){
     return (
@@ -17,12 +18,10 @@ if (props.user && props.picUrl){
     <div className={styles.userAvatar}>
     <div className={localization === "profile" ? styles.imgProfile : styles.imgRedonda}>{props.user.charAt(0).toUpperCase()}</div>
     {props.showName?<h4 className={styles.nameText}>{props.user}</h4>:""}
-<<<<<<< Updated upstream
-    {props.hasNotifications &&  <HiBell className={styles.bellIcon}/>}
-=======
+    
     {!!props.hasNotifications &&  <HiBell className={styles.bellIcon}/>}
 
->>>>>>> Stashed changes
+
     </div>    
     )
 }else{

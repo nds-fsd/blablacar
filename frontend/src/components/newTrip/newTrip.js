@@ -49,7 +49,7 @@ export const NewTrip = () =>{
     return(
         <div className={styles.parappa}>
         
-            <form onSubmit={handleSubmit(tripSubmit, tripError)} className={styles.newInput}>
+        <form onSubmit={handleSubmit(tripSubmit, tripError)} className={styles.newInput}>
             <h3 className={styles.newUserTitle}>Crea tu viaje</h3>
                     <input placeholder="Origen" className={styles.textbox}{...(register("origin", {required:true,minLength:3,maxLength:20}))}/>
                     {errors.origin && errors.origin.type==="required" && <p className={styles.emptyfield}>Este campo es obligatorio</p>}
@@ -65,6 +65,7 @@ export const NewTrip = () =>{
                     <input placeholder="Precio" type="number" min={1} max={1000} {...register("price", {required: true, })} />
                     <h2>€</h2>
                     </div>
+                    {errors.price && errors.price.type==="required" && <p className={styles.emptyfield}>Este campo es obligatorio</p>}
                     <div className={styles.horarios}>
                     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="es" >
                     <Controller
