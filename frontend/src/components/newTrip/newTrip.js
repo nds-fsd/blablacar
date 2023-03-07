@@ -28,7 +28,7 @@ export const NewTrip = () =>{
                 destination: data.destination,    
                 departureTime: data.departureTime,
                 arrivalTime:data.arrivalTime,
-                seat:data.seats,           
+                seats:data.seats,           
                 price:data.price               
         }
         const userSession = getUserToken()
@@ -65,8 +65,7 @@ export const NewTrip = () =>{
                     <input placeholder="Precio" type="number" min={1} max={1000} {...register("price", {required: true, })} />
                     <h2>€</h2>
                     </div>
-                    {errors.seats && errors.seats.type==="required" && <p className={styles.emptyfield}>Este campo es obligatorio</p>}
-
+                    {errors.price && errors.price.type==="required" && <p className={styles.emptyfield}>Este campo es obligatorio</p>}
                     <div className={styles.horarios}>
                     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="es" >
                     <Controller

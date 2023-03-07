@@ -17,8 +17,9 @@ import ChoseModal from './modal/choseModal';
 import Parallax from './components/parallax/parallax';
 import ProfileAccount from './components/ProfileAccount/ProfileAccount';
 import { Mytrips } from './components/mytrips/mytrips';
-import TripExtended from './components/TripExtended/TripExtended';
+import  Notification  from './components/Notification/notification';
 import {PersonalData} from './components/personalData/PersonalData';
+import TripExtended from './components/TripExtended/TripExtended';
 
 
 function App(props) {
@@ -55,6 +56,10 @@ function App(props) {
           <Route path="personaldata" element={<ProtectedRoute/>}>
             <Route path="" element={<PersonalData/>}/>
           </Route>
+          <Route path="notifications" element={<ProtectedRoute/>}>
+  <Route path="" element={<Notification />}/>
+</Route>
+          
       </Routes>
     </div>
   );
