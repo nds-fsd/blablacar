@@ -7,7 +7,6 @@ const {authRouter} = require('./routers/authRouter.js');
 const {RadarRouter} = require ('./routers/radarRouter.js');
 const {messageRouter} = require('./routers/messageRouter.js');
 const {notificationRouter} = require('./routers/notificationRouter.js');
-const {messageRouter} = require('./routers/messageRouter.js');
 const errorLogging = require('./Middleware/errorsMiddleware.js');
 const dotenv = require('dotenv');
 const {connectDB} = require ('./mongo/index.js');

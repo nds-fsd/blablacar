@@ -16,13 +16,15 @@ import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import { Request } from '../../utils/apiWrapper';
 import styles from "../newTrip/newTrip.module.css";
+import { useDebounce  } from './Debounce';
 
 const AutocompleteField = ({onChange, labelName, setValue}) =>{
   const [autofillValues, setAutofillValues] = useState("")
   const [autofillOptions, setAutofillOptions] = useState([])
-  
+  const debouncedSearchTerm = useDebounce(autofillValues, 400);
 
   useEffect(()=>{
+    if(debouncedSearchTerm){
     const getOptions = async (value) =>{
         console.log(value)
         if(value.length > 3) {
@@ -39,8 +41,8 @@ const AutocompleteField = ({onChange, labelName, setValue}) =>{
     if (autofillValues){
         const newOptions=getOptions(autofillValues)
         console.log(newOptions);
-    }
-},[autofillValues])
+    }}
+},[debouncedSearchTerm])
   return(
     <Autocomplete
                         disableClearable
