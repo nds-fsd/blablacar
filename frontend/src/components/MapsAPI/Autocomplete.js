@@ -26,15 +26,11 @@ const AutocompleteField = ({onChange, labelName, setValue}) =>{
     const getOptions = async (value) =>{
         console.log(value)
         if(value.length > 3) {
-          const res = await Radarrequest (`search/autocomplete?query=${value}`, "GET", undefined, undefined);
+          const res = await Request (`/autocomplete?query=${value}`, "GET", undefined, undefined);
           console.log(res);
-          let optionsResults = []
-          res.addresses.map((e)=>{
-              optionsResults.push(e.formattedAddress)
-          })
           setAutofillOptions([]);
-          setAutofillOptions(optionsResults);
-          console.log("ResOptions", optionsResults)}
+          setAutofillOptions(res.addresses);
+          console.log("ResOptions",res.addresses)}
         if(value.length === 0) {
             setAutofillOptions([])
             setValue(autofillValues)
