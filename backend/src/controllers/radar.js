@@ -3,9 +3,7 @@ const createAddress=require('../Middleware/createAdress')
 
 const sendAutoComplete = async (req, res) => {
 const params = req.query.query;
-console.log(params);
 const data = await Radarrequest.Radarrequest(`search/autocomplete?query=${params}`);
-console.log(data);
 let addresses=[]
 let showAddress=""
 data.addresses.map((e)=>{

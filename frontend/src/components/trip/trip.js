@@ -19,7 +19,6 @@ const Trip = (props) =>{
         </div>
         <div className={styles.body}>
         {tripsFind.map(trip =>{
-            console.log(trip.originDate)
             let tripDate
             let showDate
             if(trip.originDate!==null){

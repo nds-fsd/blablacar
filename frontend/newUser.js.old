@@ -43,7 +43,6 @@ export const NewUser = () => {
         setEmptyField("")
         if (!name){
             setEmptyField("name")
-            console.log(emtpyField)
             return}
         if (!surname){
             setEmptyField("surname")

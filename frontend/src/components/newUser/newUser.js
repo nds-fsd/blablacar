@@ -37,15 +37,13 @@ const userSubmit=async(data)=>{
                         music:undefined,
                         smoker:undefined,
                         pets:undefined
-                    }
-                console.log(body);        
+                    }       
                 let res = await Request("/users","POST",body)
 
                 if(res?.error){
                     alert(res.message)
                 }else{
                   if (res.jwtToken){
-                    console.log(res);
                     setStorageObject("user-session",res);
                     navigate("/")
                     

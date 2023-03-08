@@ -43,7 +43,6 @@ export const NewTrip = () =>{
             type : "Point",
             coordinates : destinationCoordinates
         }
-        console.log("originCoordinates",originCoordinates);
         const body = {
                 origin: data.origin,         
                 originDate: data.originDate,
@@ -55,7 +54,6 @@ export const NewTrip = () =>{
                 originLocation: originLocation,
                 destinationLocation: destinationLocation         
         }
-        console.log("BODY",body);
         const userSession = getUserToken()
           let headers = {
             Authorization: `Bearer ${userSession.jwtToken}`,

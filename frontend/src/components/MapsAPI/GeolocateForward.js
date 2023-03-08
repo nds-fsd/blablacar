@@ -5,14 +5,12 @@ export const forwardGeolocate = async (address) =>{
         //TRADUCIR DIRECCION A CORDENADAS______________________________________
 
         const tripOrigin = address.split(" ");
-        console.log("tripOrigin", tripOrigin);
 
         let formattedAddress = "";
 
         tripOrigin.map((e)=>{
-            formattedAddress = formattedAddress + "+" + e;
-            console.log(formattedAddress);
-        });
+            formattedAddress = formattedAddress + "+" + e;}
+            );
         let queryParams = formattedAddress.replaceAll(",","").substring(1);
         let geocode = await Radarrequest(`geocode/forward?query=${queryParams}`, "GET", undefined, undefined);
         if(geocode?.error){

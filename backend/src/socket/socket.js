@@ -23,12 +23,10 @@ const privateSocket = (server) =>{
     io.on("connection",(socket)=>{
         socket.emit("connection","you are connected")
         socket.join(socket.id) //  meterlo en una room con su socket.id 
-        console.log(`${socket.id} te has conectado con exito`)
+      
 
         socket.on('message', data => {
           //fetch de tipo post
-          console.log('este es el mensaje del token ', data.token)
-          console.log('esta es la room a la que se manda el mensaje', data.room )
           // esto devuelvemelo del tiron 
            socket.to(data.room).emit('reply', {
               from: data.user,
@@ -47,7 +45,7 @@ const privateSocket = (server) =>{
               "chat": data.room
             })
           }
-          console.log(options)
+          
 
           // asyncronia sin preocupaciones que tarde lo que sea 
            fetch("http://localhost:3001/message", options)

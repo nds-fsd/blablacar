@@ -6,7 +6,6 @@ const today = new Date();
 
 const createAlert = async(req,res)=>{
 const unnotifiedTrips=await Trip.find({scoringNotified:false}).exec()
-console.log(unnotifiedTrips);
 let dueTrips=[]
 for (let i =0;i<unnotifiedTrips.length;i++){
     let tripDate=new Date(unnotifiedTrips[i].originDate)

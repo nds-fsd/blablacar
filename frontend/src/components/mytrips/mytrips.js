@@ -17,7 +17,7 @@ import styles from "./mytrips.module.css";
               };
             const response = await Request(`/users/${userId}`,"GET","",headers)
             setMytrips(response);
-            console.log(mytrips);
+            
         }
         if(!mytrips){
         getMyTrips()}

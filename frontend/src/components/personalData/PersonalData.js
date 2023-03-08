@@ -17,8 +17,6 @@ export const PersonalData  = () =>{
         {
             const response = await Request(`/users/${userId}`)
             setMyData(response)
-            console.log(response);
-            console.log((myData));
         }
         getMyData();
     },[change])   

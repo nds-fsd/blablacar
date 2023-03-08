@@ -5,7 +5,6 @@ import styles from './UserAvatar.module.css'
 const UserAvatar = (props) =>{
 
 const localization = props.localization
-console.log(props);
 if (props.user && props.picUrl){
     return (
     <div className={styles.userAvatar}>

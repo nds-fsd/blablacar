@@ -9,15 +9,11 @@ const jwtTokenSign = (req, res, next) => {
 // User registration or login: return a new token
 const secret = process.env.JWT_SECRET
 const expires = process.env.JWT_EXPIRATION_TIME
-console.log(secret);
 if (req.user) {
-    console.log(req.user);
     const jwtToken = JsonWebToken.sign({id: req.user._id, email: req.user.email }, secret, { expiresIn: expires });
-    console.log(jwtToken);
     req.jwtToken = jwtToken;
     next();
 }  
-// Verify token expiration and return a new token;
 };
 
 
@@ -46,15 +42,12 @@ const jwtTokenVerify = (req, res, next) => {
   // Sin token, devolvemos 401
   if (!token) return res.status(401).json({error: "No token provided"});
     // Si funciona, devolverá el payload 
-    console.log("entro a verificar");
     // try{
     //   const tokenPayload = JsonWebToken.verify(token, secret)
-    // console.log('payload',tokenPayload);
     // }catch
     // {return res.status(401).json({error: "Unauthorized"});}
     jwt.verify(token, secret, (err, payload) => {
       if(err){
-        console.log(err)
         return res.status(403).json({error: 'Invalid Token'})
       }else{
         req.payload = payload
@@ -69,7 +62,6 @@ const jwtTokenVerify = (req, res, next) => {
   
     // try{
     //   const tokenVerify  = JsonWebToken.verify(token, secret)
-    //   console.log(tokenVerify)
     // }catch(e){
     //  return res.status(401).json({error: "Unauthorized"})
     // }

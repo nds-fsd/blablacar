@@ -1,5 +1,4 @@
 const createAddress=(address)=>{
-    console.log(address);
     let showAddress
     if (address.layer==="locality"){
     showAddress=`${address.city}, ${address.state}, ${address.countryCode}`

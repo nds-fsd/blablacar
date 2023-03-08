@@ -10,10 +10,8 @@ const getAll = async (req, res) => {
 }
 
 const createTrip = async(req,res) =>{
-    console.log(req.body);
     const id = req.params.id
     const newTrip = new Trip(req.body);
-    console.log(newTrip);
     req.body.originDate = new Date().toLocaleDateString('es-ES');
     req.body.destinationDate = new Date().toLocaleDateString('es-ES');
 
@@ -50,11 +48,10 @@ try{
         newTrip.owner = idUser;
         newTrip.availableSeats = newTrip.seats;
         const trip = await newTrip.save();
-        console.log('este es el viaje creado'+ trip)
         res.status(201).json(trip)  
     }
 }catch(e){
-    console.log('error creando el trip' + e)
+    res.status(500).json({"message":e})
 }
 
 
@@ -154,7 +151,6 @@ const findTrip = async(req,res) =>{
                 { path: 'passenger', select: 'firstName surname email picUrl'},
             ],
         }]);
-         console.log(trip);
         if(trip.length === 0){
             return res.status(404).send({message : " Trip not found"})
         }
