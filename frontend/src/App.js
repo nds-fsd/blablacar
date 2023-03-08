@@ -26,16 +26,16 @@ function App(props) {
   
   const location = useLocation();
   const background = location.state && location.state.background;
-  
+  const [refresh,setRefresh]=useState(false)
   const [openModal, setOpenModal] = useState(false);
   const [whatModal, setWhatModal] = useState('');
   return (
     <div>
-      <Navigation setOpenModal={setOpenModal} setWhatModal={setWhatModal} className="NavBar"/>
+      <Navigation setOpenModal={setOpenModal} setWhatModal={setWhatModal} refresh={refresh} setRefresh={setRefresh} className="NavBar"/>
       <Routes>
-          <Route path="/" element={<Parallax openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal} />}/>
+          <Route path="/" element={<Parallax refresh={refresh} setRefresh={setRefresh} openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal} />}/>
           <Route path="users" element={<ChoseModal openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}/>
-          <Route path="login" element={<ChoseModal openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}/>
+          <Route path="login" element={<Login refresh={refresh} setRefresh={setRefresh}/>}/>
           <Route path="trips" element={<ProtectedRoute openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}>
             <Route path="" element={<ChoseModal openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}/>
           </Route>  

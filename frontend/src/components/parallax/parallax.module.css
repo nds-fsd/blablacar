@@ -68,17 +68,29 @@
 
 .bg1 {
     background-position: 90% 50%;
-  background-image: url("../assets/nature-road.jpg");
+  background-image:linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("../assets/nature-road.jpg");
+  opacity: 0.8;
   
 }
 .bg2 {
   background-color: #FFF;
 }
 .bg3 {
-  background-image: url("../assets/road-trip.jpg");
-  
+background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("../assets/road-trip.jpg");
+}
+.bg4 {
+    background-color:rgb(255, 94, 0,0.8) ;
+    color: #FFF;
+    }
+    
+
+.whiteText{
+    color: white !important;
 }
 
+.addBottomMargin{
+    margin-bottom: 8rem;
+}
 
 /* Content Parallax Section*/
 .ParallaxContent {
@@ -98,11 +110,11 @@
 .ParallaxVideo{ 
     height: 60px;
 	padding-bottom: 50px;
-    padding-top: 50px; 
+    padding-top: 50px;
 }
 .ParallaxVideo video{ 
     width: 100%;
-    min-height: 100%;
+    height: 100%;
     position: fixed;
 	top:0;
 	z-index: -9999;

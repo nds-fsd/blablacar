@@ -39,4 +39,9 @@ const validateTripInput = (req, res, next) => {
     next();
 };
 
-module.exports=(validateTripInput);
+const forwardGeocode = (req, res, next) =>{
+    const newTrip = req.body;
+
+}
+
+module.exports=(validateTripInput, forwardGeocode);

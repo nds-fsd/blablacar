@@ -3,25 +3,27 @@ const Notification = require ("../mongo/schemas/notification.js")
 
 const getAllNotifications = async(req,res) =>{
         try {
-            const notifications = await Notification.find({destinatary: req.params.id})
-            res.json(notifications);
+            console.log(req.params);
+            const notifications = await Notification.find({destinatary: req.params.id},{deleted:false})
+            res.status(200).json(notifications);
             
         }catch (e){
                 res.status(500).json({ message: e })
             }};
 
-const readAllNotifications = async(req,res) =>{
 
-    try {
-        const notifications = await Notification.updateMany({destinatary: req.params.id, status:"unread"},{status:"read"})
-        res.json(notifications);
+const patchNotifications=async(req, res) => {
+                const updateNoti=await Notification.findByIdAndUpdate(req.params.id,req.body)
+                const updatedNoti=await Notification.findById(req.params.id)
+                console.log("UpdateNoti: ",updatedNoti)
+                res.status(200).json(updatedNoti);
+            };
 
-    } catch (e) {
-        res.status(500).json({ message: e })
-        
-        
-    }
-}
-            
-    module.exports={getAllNotifications,readAllNotifications}; 
+const delNotifications=async(req, res) => {
+                const updateNoti=await Notification.findByIdAndDelete(req.params.id,req.body)
+                
+                res.status(200).json({"message":"Notification deleted"});
+            };
+
+    module.exports={getAllNotifications , patchNotifications , delNotifications};
 

@@ -25,6 +25,11 @@ const fechaHora=(date)=>{
     
     return `${hora}:${minuto}`
     
+}
+const datePassed = (today,tripDate)=>{
+let past=false;
+
 
 }
-module.exports = {fechaHora , diaSemana , mesFecha}
+
+module.exports = {fechaHora , diaSemana , mesFecha , datePassed}
