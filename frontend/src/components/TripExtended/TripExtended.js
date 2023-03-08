@@ -112,16 +112,11 @@ return(
             <div className={styles.cardTop}>
                 <div className={styles.locations}>
                     <div className={styles.location_graph_top}>
-                    <p>{fechaHora(departureTime)}</p><BsCircle></BsCircle>{trip&&<p>{trip.origin}</p>}
-                    </div>
-                    <div className={styles.location_graph_mid}>
-                    
+                    <p>{fechaHora(departureTime)}</p><BsCircle></BsCircle>{trip&&<p className={styles.clickText} onClick={googleMapOrigin}>{trip.origin}</p>}
                     </div>
                     <div className={styles.location_graph_bottom}>
-                    <p>{fechaHora(arrivalTime)}</p><BsCircle></BsCircle>{trip&&<p>{trip.destination}</p>}  
+                    <p>{fechaHora(arrivalTime)}</p><BsCircle></BsCircle>{trip&&<p className={styles.clickText} onClick={googleMapDestination}>{trip.destination}</p>}  
                     </div>
-                    <div className={styles.onClickTop} onClick={googleMapOrigin}></div>
-                    <div className={styles.onClickBottom} onClick={googleMapDestination}></div>
                 </div>  
             </div>
             <div className={styles.barra}/>

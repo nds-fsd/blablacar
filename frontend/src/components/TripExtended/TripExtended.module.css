@@ -55,7 +55,7 @@
 .locations{
     display: flex;
     flex-direction: column;
-    width: 90%;
+    width: 100%;
     align-items: baseline;
     justify-content: flex-start;
     margin-left: 2em;
@@ -105,20 +105,19 @@
 
 .onClickTop{
     position: absolute;
-    height: 50%;
+    height: 100%;
     z-index:10;
-    width: 70%;
+    width: 100%;
 }
 .onClickBottom{
     position: absolute;
-    height: 50%;
+    height: 100%;
     z-index:10;
-    width: 70%;
+    width: 100%;
     top:50%
 }
-
-.onClickTop:hover{
-    background-color: antiquewhite;
+.clickText:hover{
+    color: red;
     opacity: 0.5;
 }
 .onClickBottom:hover{
