@@ -48,7 +48,8 @@ const userSubmit=async(data)=>{
                     console.log(res);
                     setStorageObject("user-session",res);
                     navigate("/")
-                    setRefresh(!refresh)
+                    
+                    
                     }  
                 }         
 

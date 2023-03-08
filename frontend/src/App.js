@@ -26,20 +26,19 @@ function App(props) {
   
   const location = useLocation();
   const background = location.state && location.state.background;
-  const [refresh,setRefresh]=useState(false)
   const [openModal, setOpenModal] = useState(false);
   const [whatModal, setWhatModal] = useState('');
   return (
     <div>
-      <Navigation setOpenModal={setOpenModal} setWhatModal={setWhatModal} refresh={refresh} setRefresh={setRefresh} className="NavBar"/>
+      <Navigation setOpenModal={setOpenModal} setWhatModal={setWhatModal} className="NavBar"/>
       <Routes>
-          <Route path="/" element={<Parallax refresh={refresh} setRefresh={setRefresh} openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal} />}/>
-          <Route path="users" element={<ChoseModal refresh={refresh} setRefresh={setRefresh} openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}/>
-          <Route path="login" element={<Login refresh={refresh} setRefresh={setRefresh}/>}/>
+          <Route path="/" element={<Parallax openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal} />}/>
+          <Route path="users" element={<ChoseModal openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}/>
+          <Route path="login" element={<ChoseModal openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}/>
           <Route path="trips" element={<ProtectedRoute openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}>
-            <Route path="" element={<ChoseModal openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}/>
+          <Route path="" element={<ChoseModal openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}/>
           </Route>  
-          <Route path="trips/:id" element={<TripExtended/>}></Route>  
+          <Route path="trips/:id" element={<ChoseModal openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}/>
           <Route path="trips/searchresults" element={<FindTrip openModal={openModal} whatModal={whatModal} setWhatModal={setWhatModal} setOpenModal={setOpenModal}/>}/>
           <Route path="error" element={<ErrorForm />}/>
           <Route path="users/list" element={<ProtectedRoute/>}>
