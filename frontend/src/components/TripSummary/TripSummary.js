@@ -13,24 +13,14 @@ function TripSummary(props) {
   let showSeats;
   let showAvatar;
   let id=useRef()
-  console.log("id es",id.current);
   useEffect(()=>{
     
     const session=getStorageObject('user-session')
     if(session){id.current=session.userObj.userID}
-    console.log("ahora ID es", id.current);
   })
 
-  console.log(trip);
   // tienes que hacer una comprobacion sobre el owner y si no hay owner meter uno en plan dummy 
-  if(props.trip.owner){
-     owner = props.trip.owner[0]
-  }else{
-     owner = {
-      firstName : '',
-      picUrl : ''
-    }
-  }
+  
   // let owner=props.trip.owner[0] || null
     return (
       

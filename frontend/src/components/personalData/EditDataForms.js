@@ -10,7 +10,6 @@ const EditMainDataFrom = ({setEditData, userId, setChange, change, myData}) =>{
     const dataSubmit=async(data)=>{
         setEditData(false);
         
-        console.log("data",data)
                  const body = {
                                 firstName:data.name,
                                 surname:data.surname,
@@ -33,10 +32,8 @@ const EditMainDataFrom = ({setEditData, userId, setChange, change, myData}) =>{
         }
         // creo una función con un regexp para ver que es una string tipo mail
         const isValidEmail = (email) =>{  
-          console.log(email);
            // eslint-disable-next-line
           let checkEmail=/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)
-          console.log(checkEmail);
           return checkEmail
         };
         return(
@@ -77,7 +74,6 @@ const EditExtraDataForm = ({setEditExtraData, userId, setChange, change, myData}
     const {register, handleSubmit, formState:{errors}} = useForm({defaultValues:myData}); 
     const extraDataSubmit=async(data)=>{
         setEditExtraData(false);
-        console.log("data",data)
                  const body = {
                                 talker:data.talker,
                                 music:data.music,
@@ -86,7 +82,6 @@ const EditExtraDataForm = ({setEditExtraData, userId, setChange, change, myData}
                             }
         
                         let res = await Request(`/users/${userId}`,"PATCH",body)
-                        console.log("res", res)
                         if(res?.error){
                             alert(res.message)
                         }else{
@@ -140,7 +135,6 @@ const EditCarForm = ({setEditCar, userId, setChange, change, myData}) =>{
     const {register, handleSubmit, formState:{errors}} = useForm({defaultValues:myData}); 
     const carSubmit=async(data)=>{
         setEditCar(false);
-        console.log("data",data)
                  const body = {
                                 car:{numberPlate:data.numberPlate,
                                 model:data.model}
@@ -148,7 +142,6 @@ const EditCarForm = ({setEditCar, userId, setChange, change, myData}) =>{
                             }
         
                         let res = await Request(`/users/${userId}`,"PATCH",body)
-                        console.log("res", res)
                         if(res?.error){
                             alert(res.message)
                         }else{

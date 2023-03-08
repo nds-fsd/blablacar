@@ -27,7 +27,6 @@ const configurePrivateSocket = (server) =>{
     
         client.on("join-chat", (chatId) => {
           client.join(`chat-${chatId}`);
-          console.log(`User: ${client.user.name} joined chat ${chatId}`);
         });
       });
 

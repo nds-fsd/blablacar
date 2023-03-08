@@ -25,7 +25,7 @@ const TripSearchBar = () => {
     setSeats(event.target.value)
   }
 
-  const handleSubmit = async () =>{navigate(`/trips/searchresults/?origin=${origin}&destination=${destination}&originDate=${originDate}&seats=${seats}`)}
+  const handleSubmit = async () =>{navigate(`/trips/searchresults/?origin=${decodeURIComponent(origin)}&destination=${decodeURIComponent(destination)}&originDate=${decodeURIComponent(originDate)}&seats=${decodeURIComponent(seats)}`)}
 
 
 

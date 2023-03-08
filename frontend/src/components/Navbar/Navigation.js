@@ -27,7 +27,7 @@ const getNotifications = async() =>
         const session = getStorageObject("user-session")
         const response = await Request(`/notification/${session.userObj.userID}`)
         const numberOfNotifications = response.filter(notification => notification.read === false).length
-        console.log({response,numberOfNotifications})
+        
 
         if (numberOfNotifications!==0){
         setHasNotifications(true)
@@ -35,8 +35,6 @@ const getNotifications = async() =>
         }
     }
 useEffect(()=>{
-  console.log("render Nav");
-  
   if(!token){ 
   const sessiontoken = getStorageObject("user-session")
   if (sessiontoken){

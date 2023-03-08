@@ -12,7 +12,6 @@ const userId = getUserToken().userObj.userID
 const getNotifications = async() =>{   
         const response = await Request(`/notification/${userId}`)
         response.reverse();
-        console.log("response",response)
         setNotifications(response)
 }
     

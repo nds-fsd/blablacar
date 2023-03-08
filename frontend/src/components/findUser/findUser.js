@@ -5,7 +5,6 @@ import {useState,useEffect } from "react";
 import { Request } from "../../utils/apiWrapper";
 const FindUser = () =>{
     const location = useLocation()
-    console.log(location.state.user)
     const [reload,setReload] = useState(false)
     const [usersFind,setUsersFind] =useState([])
     const [openModal,setModal] = useState(false)
@@ -18,7 +17,6 @@ const FindUser = () =>{
     const apiList = async () =>{
         const api1 = await Request(`/users`)
         setUsersFind(api1)
-        console.log(usersFind)
     }
     useEffect(() => {    
         apiList()
@@ -30,7 +28,6 @@ const FindUser = () =>{
                     }else{
                       alert("Usuario Eliminado")
                       reloadPage();
-                      console.log(reload)
                     }                  
         }
         const updateUser = (id) =>{

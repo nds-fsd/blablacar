@@ -24,13 +24,11 @@ const AutocompleteField = ({onChange, labelName, setValue}) =>{
 
   useEffect(()=>{
     const getOptions = async (value) =>{
-        console.log(value)
         if(value.length > 3) {
           const res = await Request (`/autocomplete?query=${value}`, "GET", undefined, undefined);
-          console.log(res);
           setAutofillOptions([]);
           setAutofillOptions(res.addresses);
-          console.log("ResOptions",res.addresses)}
+        }
         if(value.length === 0) {
             setAutofillOptions([])
             setValue(autofillValues)

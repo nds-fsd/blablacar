@@ -12,7 +12,6 @@ const JsonWebToken = require('jsonwebtoken');
 
 const usrGetAll=async (req, res) => {
     const usuarios = await Users.find();
-    console.log(usuarios);
     res.json(usuarios);
     //devolver todos los usuarios que hay en el schema users de MongoDB en formato JSON.
 };
@@ -21,9 +20,6 @@ const usrGetAll=async (req, res) => {
 //TODO:añadir middlewares, hablar con Paulo
 const usrPost= async (req, res) => {
     const body=(req.body);
-    console.log(body)
-
-    //TODO:comprobar con antonio campos de user y con Alex para formulario creacion
     const receivedUser={
         firstName:body.firstName,
         surname:body.surname,
@@ -35,9 +31,7 @@ const usrPost= async (req, res) => {
     };
     
   try{
-    console.log(receivedUser)
     const newUser= new Users(receivedUser);
-    console.log(newUser);
     await newUser.save()
     const userObj = {
         userID : newUser._id,
@@ -48,8 +42,7 @@ const usrPost= async (req, res) => {
         picUrl:newUser.picUrl
         
      }
-     const newJwtToken = JsonWebToken.sign({id: newUser._id, email: newUser.email }, secret, { expiresIn: expires });
-     console.log(newJwtToken);
+     const newJwtToken = JsonWebToken.sign({id: newUser._id, email: newUser.email }, secret, { expiresIn: expirationTime });
     res.status(201).json({success: true, jwtToken: newJwtToken, expirationHours: expirationTime, userObj: userObj});
 }catch{
     res.status(400).send({message:"Email already exists"})}
@@ -78,7 +71,6 @@ const usrPost= async (req, res) => {
             { path: 'bookedTrip'},
           ],
     }])
-    console.log("User is", getUsr)
     res.json(getUsr);
 };
 
@@ -87,7 +79,6 @@ const usrPost= async (req, res) => {
 const usrPatch=async(req, res) => {
     const updateUsr=await Users.findByIdAndUpdate(req.params.id,req.body)
     const updatedUsr=await Users.findById(req.params.id)
-    console.log("UpdateUser: ",updateUsr)
     res.json(updateUsr);
 };
 

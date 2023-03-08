@@ -15,11 +15,9 @@ export const NotificationCard = (props)=>{
         width:"1rem",
         height:"1rem"
     }
-    console.log("FECHA",fecha)
+    
     const delMessage=async()=>{
-        console.log(props);
-        const notiReadUpdate=await Request(`/notification/${props.id}`,"DELETE")
-        console.log(notiReadUpdate);
+        const delNotification=await Request(`/notification/${props.id}`,"DELETE")
         props.setRefresh(!props.refresh)
     }
     
@@ -29,9 +27,7 @@ useEffect(()=>{
         const body={
             read:status
         }
-        console.log(props);
         const notiReadUpdate=await Request(`/notification/${props.id}`,"PATCH",body)
-        console.log(notiReadUpdate);
     }
     setNotificationStatus(read)
 },[read])

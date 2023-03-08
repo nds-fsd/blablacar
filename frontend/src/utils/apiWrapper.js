@@ -1,5 +1,5 @@
 const API_URL = 
-window.location.hostname === "pimpambuga.netlify.app"
+window.location.hostname === 'pimpambuga.netlify.app'
 ?'https://pimpambuga.up.railway.app'
 :"http://localhost:3001";
 
@@ -20,7 +20,6 @@ const Request = async (route, method = "GET", body = undefined,headers={}) =>{
     }
   try{
     const response = await fetch(useUrl,ops);
-    console.log("response", response)
     let json = await response.json()
       if (response.ok){
         return json
@@ -32,15 +31,14 @@ const Request = async (route, method = "GET", body = undefined,headers={}) =>{
             }}
     }
     //TODO:ver qué error devolvemos en backend para esto
-  catch(res){console.log(res);
-    throw new Error(res.message)}
-}
+  catch(res){
+  throw new Error(res.message)}
+  }
 
 
 const Radarrequest = async (route, method = "GET", body = undefined,headers={}) =>{
   const apiKey = process.env.REACT_APP_API_KEY;
   let useUrl = "https://api.radar.io/v1/" + route;
-  console.log("apikey",apiKey);
   let ops = {
     method: method,
     mode: "cors",
@@ -55,9 +53,7 @@ const Radarrequest = async (route, method = "GET", body = undefined,headers={}) 
     ops.body = JSON.stringify(body)
   }
 try{
-  console.log(ops);
   const response = await fetch(useUrl,ops);
-  console.log("response", response)
   let json = await response.json()
     if (response.ok){
       return json
@@ -70,8 +66,8 @@ try{
           }}
   }
   //TODO:ver qué error devolvemos en backend para esto
-catch(res){console.log(res);
+catch(res){
   throw new Error(res.message)}
 }
 
-  export {Request, Radarrequest}
+export {Request, Radarrequest}

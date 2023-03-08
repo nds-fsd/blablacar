@@ -120,7 +120,7 @@ const Parallax = ({setOpenModal, setWhatModal, openModal, whatModal})=>{
         <div id={styles.goButton}>
           <TripSearchGo origin="Barcelona" destination="Madrid"/>
           <TripSearchGo origin="Almeria" destination="Badajoz"/>
-          <TripSearchGo origin="Tu posicion" destination="A la mierda"/> 
+          <TripSearchGo origin="Madrid" destination="Valencia"/> 
         </div>
       </div>  
 

@@ -12,7 +12,6 @@ import { Button } from 'react-bootstrap';
 import { setStorageObject } from "../../utils/storage";
 
  export const Login = (props) =>{
-    console.log(JSON.stringify(props));
     const navigate = useNavigate();
     const { register, handleSubmit,formState: { errors }} = useForm();
     const [passview,setPassview]=useState(false)

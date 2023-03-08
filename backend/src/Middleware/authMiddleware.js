@@ -35,7 +35,6 @@ const validateAuthEmail = (req, res, next) => {
         err.status = 400;
         return next(err);
       }
-      console.log(user)
       req.user = user;
       next();
     })

@@ -7,13 +7,12 @@ const Modal = ({ children, onClose, openModal, whatModal }) => {
   const navigate=useNavigate()
   useEffect(() => {
     const handleClickOutside = (e) => {
-      console.log(e);
+      
       if (
         e.target.contains(modalReference.current) &&
         openModal
       ) {
-        console.log(e);
-        console.log(modalReference);
+
         onClose();
         navigate(-1);
       }
