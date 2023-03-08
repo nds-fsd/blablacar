@@ -29,7 +29,9 @@ const userSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Booking"
      }],
-    picUrl:{type: String}
+    picUrl:{type: String},
+    scores:{type:Number},
+    averageScore:{type:Number, min:1, max:5}
 });
 
 userSchema.pre('save',  function(next) {

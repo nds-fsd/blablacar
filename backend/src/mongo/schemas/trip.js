@@ -24,7 +24,8 @@ const tripSchema = new Schema({
     bookings: [{
         type: Schema.Types.ObjectId,
         ref: "Booking"
-     }]
+     }],
+    scoringNotified:{type:Boolean, default:false}
 });
 
 const Trip = model('Trip', tripSchema);

@@ -1,13 +1,12 @@
 const { Schema, model } = require('mongoose');
-
 const notificationSchema = new Schema({
     destinatary:{
         type: Schema.Types.ObjectId,
-        ref: "User"
+        ref: "destUser"
      },
     sender: {
         type: Schema.Types.ObjectId,
-        ref: "User"
+        ref: "sendUser"
     },
     title: {type: String},
     body: {type: String},
@@ -19,4 +18,5 @@ const notificationSchema = new Schema({
 });
 
 const Notification = model('Notification', notificationSchema);
-module.exports=(Notification);
+module.exports={Notification}
+
