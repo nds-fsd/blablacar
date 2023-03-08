@@ -1,16 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 import { Request } from "../../utils/apiWrapper";
-import { getUserToken } from "../../utils/storage";
+import { getUserToken, setSessionObject } from "../../utils/storage";
 import styles from "./personalData.module.css";
 import {CiEdit, CiEraser} from 'react-icons/ci'
 import UserAvatar from "../userAvatar/UserAvatar";
 import { getStorageObject } from "../../utils/storage";
 import { useForm} from "react-hook-form";
 import { EditCarForm, EditExtraDataForm, EditMainDataFrom } from "./EditDataForms";
+import cloudinary from "cloudinary-core";
+
 
 export const PersonalData  = () =>{ 
     const [change, setChange] = useState(false)
     const [myData, setMyData] = useState("")
+    const [imageUrl, setImageUrl]= useState('')
     const userId = getUserToken().userObj.userID
     useEffect(()=>{
         const getMyData = async() =>
@@ -20,6 +23,57 @@ export const PersonalData  = () =>{
         }
         getMyData();
     },[change])   
+
+    const UploadImage = async (event) => {
+        const urlCloudinary =
+          "https://api.cloudinary.com/v1_1/dwyvktp3k/image/upload";
+        const uploadPreset = "pimpamBuga";
+        const cloudinaryFolder = "";
+    
+        const formData = new FormData();
+        formData.append("file", event.target.files[0]);
+        formData.append("upload_preset", uploadPreset);
+        formData.append("folder", cloudinaryFolder);
+        formData.append("userPicRef", userPicRef.current)
+    
+        const options = { method: "POST", body: formData };
+        try {
+                  const responseCloudinary = await fetch(urlCloudinary, options);
+                  
+                  const json = await responseCloudinary.json();
+                  const cloudinaryCore = new cloudinary.Cloudinary({
+                    cloud_name: "dwyvktp3k",
+                  });
+                  const imgUrl = json.secure_url
+                  console.log("RESPONSE", imgUrl);
+                  setImageUrl(imgUrl);
+                  userPicRef.current = imgUrl;
+                  setImageUrl(userPicRef.current)
+                //   setSessionObject("picUrl", userPicRef.current);
+                  console.log(userPicRef.current);
+                  setChange(!change)
+                } catch (error) {
+                  console.error(error);
+                }
+        try {
+
+            const body = {
+                picUrl: imageUrl
+            }
+        console.log("Body", body)
+        let res = await Request(`/users/${userId}`,"PATCH",body)
+        if(res?.error){
+            alert(res.message)
+        }else{
+          alert("Datos editados con exito")
+          setChange(!change)
+        }         
+
+            } catch (error) {
+                console.error(error);
+            };
+                    
+    }
 
 
 let tokenRef=useRef()
@@ -70,6 +124,8 @@ useEffect(()=>{
                             <div><CiEdit size={37} className={styles.editButton}/></div>
                             <div><CiEraser size={37} className={styles.editButton}/></div>
                         </div>
+                        <input type="file" onChange={UploadImage}></input>
+
                     </div>
                     {!editData ?
                     (<div className={styles.userData}>
