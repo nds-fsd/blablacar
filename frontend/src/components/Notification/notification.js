@@ -17,7 +17,6 @@ const getNotifications = async() =>{
     
 useEffect(()=>{
     getNotifications()
-    console.log("notifications es", notifications);
 },[refresh])
 
   return (

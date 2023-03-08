@@ -11,6 +11,7 @@ const getAllNotifications = async(req,res) =>{
                 res.status(500).json({ message: e })
             }};
 
+
 const patchNotifications=async(req, res) => {
                 const updateNoti=await Notification.findByIdAndUpdate(req.params.id,req.body)
                 const updatedNoti=await Notification.findById(req.params.id)

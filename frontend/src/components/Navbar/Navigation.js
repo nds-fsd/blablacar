@@ -94,7 +94,6 @@ console.log({hasNotifications})
             <NavDropdown.Item href={`/notifications`}>Notificaciones ({notifications})</NavDropdown.Item>
             :
             <NavDropdown.Item href={`/notifications`}>Notificaciones</NavDropdown.Item>}
-
             <NavDropdown.Item href={`/profile`}>Perfil</NavDropdown.Item>
             <NavDropdown.Item href={`/money-available`}>Transferencias</NavDropdown.Item>
             <NavDropdown.Item href={`/payments-history`}>Pagos y reembolsos</NavDropdown.Item>
