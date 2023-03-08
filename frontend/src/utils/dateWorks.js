@@ -1,6 +1,6 @@
 export const diaSemana=(date)=>{
     let fecha=new Date(date);
-    const dia = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"];
+    const dia = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
     return dia[fecha.getDay()]
 }
 
