@@ -34,7 +34,7 @@ function App(props) {
       <Navigation setOpenModal={setOpenModal} setWhatModal={setWhatModal} refresh={refresh} setRefresh={setRefresh} className="NavBar"/>
       <Routes>
           <Route path="/" element={<Parallax refresh={refresh} setRefresh={setRefresh} openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal} />}/>
-          <Route path="users" element={<ChoseModal openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}/>
+          <Route path="users" element={<ChoseModal refresh={refresh} setRefresh={setRefresh} openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}/>
           <Route path="login" element={<Login refresh={refresh} setRefresh={setRefresh}/>}/>
           <Route path="trips" element={<ProtectedRoute openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}>
             <Route path="" element={<ChoseModal openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}/>
