@@ -46,8 +46,8 @@ const bookTrip = async(req,res) =>{
             let diaSalida= dateWorks.diaSemana(originDate);
             let mesSalida= dateWorks.mesFecha(originDate)
             const notification = new Notification({
-                destinatary: bookTrip.owner,
-                sender: bookUser,
+                destinatary: bookTrip.owner._id,
+                sender: bookUser._id,
                 title: "Tienes una nueva reserva",
                 body: `El usuario ${bookUser.firstName} ha efectuado una reserva de tu viaje a ${bookTrip.destination} con fecha el ${diaSalida} de ${mesSalida} `
     

@@ -2,21 +2,23 @@ const { Schema, model } = require('mongoose');
 const notificationSchema = new Schema({
     destinatary:{
         type: Schema.Types.ObjectId,
-        ref: "destUser"
+        ref: "User"
      },
     sender: {
         type: Schema.Types.ObjectId,
-        ref: "sendUser"
+        ref: "User"
     },
     title: {type: String},
     body: {type: String},
     
-    status: {type: String, default:"unread"},
+    read: {type: Boolean, default:false},
+
+    deleted:{type: Boolean, default:false},
 
     date: { type: Date, default: Date.now }
     
 });
 
 const Notification = model('Notification', notificationSchema);
-module.exports={Notification}
+module.exports=(Notification)
 
