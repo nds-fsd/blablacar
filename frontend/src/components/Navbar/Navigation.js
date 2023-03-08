@@ -39,12 +39,11 @@ useEffect(()=>{
   const sessiontoken = getStorageObject("user-session")
   if (sessiontoken){
   tokenRef.current = sessiontoken.jwtToken
-  userNameRef.current = sessiontoken.userObj.surname
+  userNameRef.current = sessiontoken.userObj.userName
   userPicRef.current = sessiontoken.userObj.picUrl
   setToken(sessiontoken.jwtToken)
   setID(sessiontoken.userObj.userID)
   getNotifications()
-  console.log(tokenRef.current,userNameRef.current);
   }
   }
   

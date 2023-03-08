@@ -79,7 +79,7 @@ const ChatList =()=>{
             <div className={styles.dropupContent}>
                 {chats && chats.map((chats,i)=>(              
                             <div key={i}>
-                            {chats.participants.map((user) =>
+                            {user&&chats.participants.map((user) =>
                                 <a>
                             
                                 {user._id !== userSession.userObj.userID ?
