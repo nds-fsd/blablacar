@@ -9,7 +9,7 @@ import { getStorageObject } from "../../utils/storage";
 function TripSummary(props) {
   const navigate=useNavigate()
   let trip=props.trip
-  let owner;
+  let owner=props.trip.owner[0]
   let showSeats;
   let showAvatar;
   let id=useRef()
