@@ -13,13 +13,21 @@
     align-items: center;
     color:white;
     font-weight: bold;
+    align-self: flex-end;
     
 }
+
+.bellIcon{
+    position:absolute;
+    bottom:0;
+    right:0;
+  
+  }
 
 .userAvatar{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     
 }
@@ -27,8 +35,6 @@
 .nameText{
 font-size: medium;
 }
-
-
 
 .imgProfile {
     width:5em;

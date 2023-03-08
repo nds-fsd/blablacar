@@ -15,6 +15,7 @@ tripRouter.post('/users/:id/testnewtrip', jwtTokenVerify, tripControllers.testCr
 tripRouter.delete("/trips/:id",jwtTokenVerify, tripControllers.deleteTrip)
 tripRouter.put("/trips/:id",jwtTokenVerify, tripControllers.updatedTrip)
 tripRouter.get("/trips/origin/:origin",tripControllers.getTripByOrigin)
+tripRouter.get("/findtrips", tripControllers.getTripCoordinates)
 
 
 

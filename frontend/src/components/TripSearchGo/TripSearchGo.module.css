@@ -1,6 +1,6 @@
 #tripGo{
-    --bs-btn-color: rgb(255, 94, 0);
-    --bs-btn-border-color: rgb(255, 94, 0);
-    
+    --bs-btn-color:white;
+    --bs-btn-border-color: white;
+    color: rgb(255, 94, 0);
     
 }

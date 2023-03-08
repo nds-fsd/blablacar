@@ -29,7 +29,7 @@ const TripSearchGo=(props)=>{
 
     return(
     <>
-        <Button onClick={handleClick}  bsPrefix="goTrip">{props.origin}----{props.destination}</Button>{''}
+        <Button onClick={handleClick}  bsPrefix="goTripReverse">{props.origin}----{props.destination}</Button>{''}
     
     </>    
 

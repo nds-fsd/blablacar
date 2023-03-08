@@ -3,20 +3,28 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: 40rem;
+    width: 40rem;
     margin: 0;
     background-color: white;
-    border: solid 1px;
-    border-color: rgb(255, 94, 0)!important;
-    border-width: 1px;
     box-shadow:rgb(0 0 0 / 40%) 6px 3pt 23pt, rgb(0 0 0 / 23%) 10px 7pt 12pt;
     border-radius: 1em; 
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     padding-left: 1rem;
     padding-right: 1rem;
+    background-image: url(../assets/fondoNEWTRIP.webp);
+    background-size: cover;
 }
-
+.newInput{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.newUserTitle{
+    font-size: 35px;
+}
 .emptyfield{
     height: 1em;
     font-family: 'Raleway', sans-serif;
@@ -25,22 +33,34 @@
     
         display: flex;
         flex-direction: column;
+        justify-content: center;
         align-items: center;
         height: 40rem;
         width: 40rem;
         border-radius: 20px;
         box-shadow: 0px 0px 7px rgb(0, 0, 0, 0.5);
         margin: 50px auto auto auto;
-        background-image: 
-        url(../assets/coches-conduciendo-carretera-montanas-rocosas-dibujos-animados_107791-14614.webp);
+        background-image: url(../assets/fondoNEWTRIP.webp);
         background-size: cover;
         gap: 15px;
 }
 .textbox{
-    width: 100%;
+    margin-bottom: 15px;
+    width: 25rem;
     display:flex;
     justify-content: center;
     align-items: center;
+    background-color: white;
+    border-radius: 10px;
+}
+.textDate{
+    margin-bottom: 15px;
+    width: auto;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
 }
 .horarios{
     height: 50%;
@@ -69,3 +89,20 @@ input, select{
   .fechas{
     margin:0.5em !important;
   }
+
+  .submit{
+    color: white;
+    height: 50px;
+    width: 100px;
+    font-size: 20px;
+    font-family: 'Raleway', sans-serif;
+    border: 0px;
+    border-radius: 12px;
+    background-color: rgb(255, 94, 0);
+    margin: 10px 0px 10px 0px;
+}
+
+.submit:hover{
+    background-color: rgb(249, 218, 187);
+    cursor: pointer;
+}

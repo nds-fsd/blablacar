@@ -1,6 +1,5 @@
 import { useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { NewTrip } from '../components/newTrip/newTrip';
 import styles from './modal.module.css';
 
 const Modal = ({ children, onClose, openModal, whatModal }) => {

@@ -21,7 +21,6 @@ const privateSocket = (server) =>{
         }
       });
     io.on("connection",(socket)=>{
-        console.log("que tiene el socket",socket.id) // socket del cliente
         socket.emit("connection","you are connected")
         socket.join(socket.id) //  meterlo en una room con su socket.id 
         console.log(`${socket.id} te has conectado con exito`)
@@ -30,7 +29,13 @@ const privateSocket = (server) =>{
           //fetch de tipo post
           console.log('este es el mensaje del token ', data.token)
           console.log('esta es la room a la que se manda el mensaje', data.room )
-
+          // esto devuelvemelo del tiron 
+           socket.to(data.room).emit('reply', {
+              from: data.user,
+              content: data.message,
+              room: data.room
+           })
+           
           const options = {
               method : 'POST',
               headers: {
@@ -49,13 +54,7 @@ const privateSocket = (server) =>{
            .then(response => response.json())
           .then(dataEndpoint => console.log(dataEndpoint))
 
-           console.log('PAASAMOS POR AQUIIIIIIIIIIIII ')
-           // esto devuelvemelo del tiron 
-           socket.to(data.room).emit('reply', {
-              from: data.user,
-              content: data.message,
-              room: data.room
-           })
+           
         })
 
         socket.on('disconnect', () => {
