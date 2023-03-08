@@ -17,7 +17,7 @@ import utc from "dayjs/plugin/utc"
 import timezone from "dayjs/plugin/timezone"
 
 
-export const NewUser=()=>{
+export const NewUser=({refresh , setRefresh})=>{
 const {register, control, handleSubmit,formState:{errors}} = useForm();   
 const [passview,setPassview]=useState(false)
 const changePassview=()=>{
@@ -48,6 +48,7 @@ const userSubmit=async(data)=>{
                     console.log(res);
                     setStorageObject("user-session",res);
                     navigate("/")
+                    setRefresh(!refresh)
                     }  
                 }         
 

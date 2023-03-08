@@ -50,7 +50,7 @@ export const NewTrip = () =>{
                 destination: data.destination,    
                 departureTime: data.departureTime,
                 arrivalTime:data.arrivalTime,
-                seat:data.seats,
+                seats:data.seats,
                 price:data.price,
                 originLocation: originLocation,
                 destinationLocation: destinationLocation         
