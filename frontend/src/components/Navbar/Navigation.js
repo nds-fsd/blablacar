@@ -24,7 +24,8 @@ const [hasNotifications,setHasNotifications]=useState(false)
 
 const getNotifications = async() =>
     {
-        const response = await Request(`/notification/${ID}`)
+        const session = getStorageObject("user-session")
+        const response = await Request(`/notification/${session.userObj.userID}`)
         const numberOfNotifications = response.filter(notification => notification.read === false).length
         console.log({response,numberOfNotifications})
 
@@ -41,7 +42,7 @@ useEffect(()=>{
   userNameRef.current = sessiontoken.userObj.surname
   userPicRef.current = sessiontoken.userObj.picUrl
   setToken(sessiontoken.jwtToken)
-  setID(sessiontoken.userObj._id)
+  setID(sessiontoken.userObj.userID)
   getNotifications()
   }
   }
