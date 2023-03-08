@@ -1,5 +1,5 @@
 const API_URL = 
-window.location.hostname === "pimpambug.netlify.app"
+window.location.hostname === "pimpambuga.netlify.app"
 ?'https://pimpambuga.up.railway.app'
 :"http://localhost:3001";
 

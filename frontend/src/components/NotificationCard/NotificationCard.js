@@ -15,7 +15,7 @@ export const NotificationCard = (props)=>{
         width:"1rem",
         height:"1rem"
     }
-
+    console.log("FECHA",fecha)
     const delMessage=async()=>{
         console.log(props);
         const notiReadUpdate=await Request(`/notification/${props.id}`,"DELETE")
@@ -38,7 +38,7 @@ useEffect(()=>{
 return (
     <Card bsPrefix="notiSummary"  className={`styles.${props.deleted?"":"not"}deleted, styles.${props.read?"read":"unread"}`}>
         <div onClick={(e)=>setShow(!show)} className={styles.cardTop}>
-        <p>{dia},{fecha.getDay()} de {mes}</p>
+        <p>{dia},{fecha.getDate()} de {mes}</p>
         <p>{props.title}</p>
         </div>
         {show && 

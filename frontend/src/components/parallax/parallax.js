@@ -1,5 +1,6 @@
 
 import styles from './parallax.module.css'
+import { useState , useEffect } from 'react';
 import TripSearchBar from "../TripSearchBar/tripSearchBar";
 import TripSearchGo from "../TripSearchGo/TripSearchGo";
 import {ChatList} from '../chat/chatList'
@@ -8,7 +9,15 @@ import { getUserToken } from "../../utils/storage";
 
 const Parallax = ({setOpenModal, setWhatModal, openModal, whatModal})=>{
 
+  const [logged,setLogged]=useState(false)
+  useEffect(()=>{
     
+    const session=getUserToken();
+    if (session&&session.jwtToken){
+      setLogged(true)
+    }
+  },[])
+  
   return (
   <div className={styles.wrapper}>		
         <div className={styles.ParallaxContent}>
@@ -47,7 +56,7 @@ const Parallax = ({setOpenModal, setWhatModal, openModal, whatModal})=>{
                 en el bosque. ¡No hay nada igual!"
               </p>
               <div>
-               {getUserToken()?.jwtToken ?<ChatList/> : "" }
+               {logged && <ChatList/>}
               </div>
 
             </div>

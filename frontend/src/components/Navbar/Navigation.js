@@ -35,7 +35,9 @@ const getNotifications = async() =>
         }
     }
 useEffect(()=>{
-  if(!token){
+  console.log("render Nav");
+  
+  if(!token){ 
   const sessiontoken = getStorageObject("user-session")
   if (sessiontoken){
   tokenRef.current = sessiontoken.jwtToken
@@ -44,11 +46,11 @@ useEffect(()=>{
   setToken(sessiontoken.jwtToken)
   setID(sessiontoken.userObj.userID)
   getNotifications()
+  console.log(tokenRef.current,userNameRef.current);
   }
   }
   
-},[refresh])
-
+})
 
 
 

@@ -1,3 +1,21 @@
+
+.modalBackground{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40rem;
+    width: 40rem;
+    margin: 0;
+    background-color: white;
+    box-shadow:rgb(0 0 0 / 40%) 6px 3pt 23pt, rgb(0 0 0 / 23%) 10px 7pt 12pt;
+    border-radius: 1em; 
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
 .parappa{
     width: 60%;
     display: flex;
@@ -9,6 +27,7 @@
     margin: auto;
 
 }
+
 
 .cardTop{
     display: flex;
@@ -36,7 +55,7 @@
 .locations{
     display: flex;
     flex-direction: column;
-    width: 60%;
+    width: 90%;
     align-items: baseline;
     justify-content: flex-start;
     margin-left: 2em;
@@ -80,19 +99,21 @@
 .location_text{
     display: flex;
     flex-direction: column;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .onClickTop{
     position: absolute;
     height: 50%;
     z-index:10;
-    width: 50%;
+    width: 70%;
 }
 .onClickBottom{
     position: absolute;
     height: 50%;
     z-index:10;
-    width: 50%;
+    width: 70%;
     top:50%
 }
 
@@ -127,6 +148,15 @@
     justify-content: space-between;
 }
 
-.userSection:hover{
-    background-color: antiquewhite;   
+.userIcons{
+    display: flex;
+}
+
+.openChat{
+    margin-right: 1rem;
+    align-self: center;
+}
+
+.warning{
+    color:red
 }

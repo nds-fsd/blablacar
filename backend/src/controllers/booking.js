@@ -4,10 +4,19 @@ const Users = require ("../mongo/schemas/user.js");
 const Notification = require ("../mongo/schemas/notification.js")
 const dateWorks = require ('../utils/dateWorks.js')
 
+const getTripBooking=async(req,res)=>{
+    console.log(req.params);
+    if(!req.params.id){
+        res.status(400).json({"message":"No ID!"})
+    }
+    const bookings=await Booking.find({bookedTrip:req.params.id})
+    res.status(200).json(bookings)
+}
+
 const bookGetAll=async (req, res) => {
     const book = await Booking.find();
     console.log(book);
-    res.json(book);
+    res.status(200).json(book);
 };
 const bookTrip = async(req,res) =>{
     console.log(req.query);
@@ -68,7 +77,7 @@ const bookTrip = async(req,res) =>{
             console.log(updatedTrip);
             updatedTrip.availableSeats = updatedTrip.seats - updatedTrip.bookings.length;
             await updatedTrip.save()
-            res.status(201).json({message:"Reserva efectuada con éxito"})   
+            res.status(201).json({message:"Reserva efectuada con éxito","id":book._id})   
     }
     catch (e){
         console.log((e));
@@ -81,7 +90,7 @@ const getSpecificBooking = async  (req,res) =>{
     try{
         const book =  await Booking.findById(id).populate([{
             path: 'passenger',
-            select: 'firstname surname email',
+            select: 'firstname surname email _id',
         }])
 
         res.status(200).json(book)
@@ -90,14 +99,46 @@ const getSpecificBooking = async  (req,res) =>{
         res.status(500).json({message: error})
     }
 }
-const deleteTrip =  async (req,res) =>{
-    const id = req.params.id
+const deleteBooking =  async (req,res) =>{    
     try{
-        const book  = await Booking.findByIdAndDelete(id)
-        res.status(200).json({message:"booking borrado"})
-    }catch(error){
-        res.status(500).json({message: error})
+        console.log(req.params.id);
+        const id=req.params.id
+        const booking=await Booking.findById(id)
+        console.log(booking);
+        if(!booking) return res.status(400).json({message: "Número de reserva incorrecto"});
+        const bookUser = await Users.findById(booking.passenger);
+        const bookTrip = await Trip.findById(booking.bookedTrip);
+        console.log(bookTrip.bookings);
+        const delBook = await Booking.findByIdAndDelete(booking)
+
+            let originDate=new Date(bookTrip.originDate);
+            let diaSalida= dateWorks.diaSemana(originDate);
+            let mesSalida= dateWorks.mesFecha(originDate)
+            console.log(bookTrip.owner);
+            const notification = new Notification({
+                destinatary: bookTrip.owner,
+                sender: bookUser._id,
+                title: "Reserva Cancelada",
+                body: `El usuario ${bookUser.firstName} ha cancelado la reserva de tu viaje a ${bookTrip.destination} con fecha el ${diaSalida}, ${originDate.getDate()} de ${mesSalida} `
+    
+            });
+            console.log(bookTrip.owner);
+            const index=bookUser.bookedTrips.indexOf(id)
+            console.log(index);
+            bookTrip.bookings.slice(index,1)
+            bookTrip.availableSeats = bookTrip.availableSeats + 1
+            
+            
+            await bookTrip.save()
+            await notification.save()
+
+            res.status(201).json({message:"Reserva eliminada con éxito","id":booking._id})   
     }
+    catch (e){
+        console.log((e));
+        res.status(500).json({ message: e })
+    }
+
 }
 
-module.exports={bookTrip,bookGetAll,getSpecificBooking,deleteTrip}
+module.exports={bookTrip,bookGetAll,getSpecificBooking,deleteBooking,getTripBooking}
