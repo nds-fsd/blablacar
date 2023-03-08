@@ -17,24 +17,25 @@ import ChoseModal from './modal/choseModal';
 import Parallax from './components/parallax/parallax';
 import ProfileAccount from './components/ProfileAccount/ProfileAccount';
 import { Mytrips } from './components/mytrips/mytrips';
-import TripExtended from './components/TripExtended/TripExtended';
+import  Notification  from './components/Notification/notification';
 import {PersonalData} from './components/personalData/PersonalData';
+import TripExtended from './components/TripExtended/TripExtended';
 
 
 function App(props) {
   
   const location = useLocation();
   const background = location.state && location.state.background;
-  
+  const [refresh,setRefresh]=useState(false)
   const [openModal, setOpenModal] = useState(false);
   const [whatModal, setWhatModal] = useState('');
   return (
     <div>
-      <Navigation setOpenModal={setOpenModal} setWhatModal={setWhatModal} className="NavBar"/>
+      <Navigation setOpenModal={setOpenModal} setWhatModal={setWhatModal} refresh={refresh} setRefresh={setRefresh} className="NavBar"/>
       <Routes>
-          <Route path="/" element={<Parallax openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal} />}/>
+          <Route path="/" element={<Parallax refresh={refresh} setRefresh={setRefresh} openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal} />}/>
           <Route path="users" element={<ChoseModal openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}/>
-          <Route path="login" element={<ChoseModal openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}/>
+          <Route path="login" element={<Login refresh={refresh} setRefresh={setRefresh}/>}/>
           <Route path="trips" element={<ProtectedRoute openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}>
             <Route path="" element={<ChoseModal openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>}/>
           </Route>  
@@ -55,6 +56,10 @@ function App(props) {
           <Route path="personaldata" element={<ProtectedRoute/>}>
             <Route path="" element={<PersonalData/>}/>
           </Route>
+          <Route path="notifications" element={<ProtectedRoute/>}>
+  <Route path="" element={<Notification />}/>
+</Route>
+          
       </Routes>
     </div>
   );

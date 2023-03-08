@@ -13,19 +13,46 @@ const Parallax = ({setOpenModal, setWhatModal, openModal, whatModal})=>{
   <div className={styles.wrapper}>		
         <div className={styles.ParallaxContent}>
           <div className={styles.container}>
-            <div className={styles.ParallaxVideo}>
+            {/* <div className={styles.ParallaxVideo}>
               <video autoPlay muted loop>
                 <source src="https://cdn.coverr.co/videos/coverr-hands-on-steering-wheel-6651/1080p.mp4" type="video/mp4"/>
             	</video>        	
-            </div>
+            </div> */}
           </div>           
         </div>  
-      <div className={`${styles.ParallaxImage} ${styles.bg2}`}>  
+      <div className={`${styles.ParallaxImage} ${styles.bg2} ${styles.addBottomMargin}`}>  
       <h1>Los mejores destinos, al mejor precio.</h1>
        
           <TripSearchBar openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal}/>
        
       </div>
+            <div className={`${styles.ParallaxImage_2} ${styles.bg3}`}>
+        <div className={styles.container}>
+            <div className={styles.ventajas}>
+              <p className={styles.p1}>
+                <span className={styles.importantP}>Marta, 23 años, Sevilla.</span>
+                <br/>
+                "Poder ver el perfil del resto de viajeros me da mucha tranquilidad. El táser que llevo en el bolso, aún más."
+              </p>
+              <p className={styles.p2}>
+                <span className={styles.importantP}>Julián, 31 años, Barcelona</span>
+                <br/>
+                "No sólo me permite ahorrar en mis viajes, con PimPamBuga he conocido a 
+                algunos de mis mejores amigos. Aunque siempre dicen que me llamaran y luego nunca lo hacen..."
+              </p>
+              <p className={styles.p3}>
+                <span className={styles.importantP}>Roberto, 45 años, Badajoz.</span>
+                <br/>
+                "Me encanta llevar a gente en mi coche antes de descuartizarla y entrerrarla
+                en el bosque. ¡No hay nada igual!"
+              </p>
+              <div>
+               {getUserToken()?.jwtToken ?<ChatList/> : "" }
+              </div>
+
+            </div>
+        </div>
+      </div> 
       <div className={styles.ParallaxImage_2}>
         <div className={styles.container}>        
           <div className={styles.ventajas}>
@@ -53,35 +80,8 @@ const Parallax = ({setOpenModal, setWhatModal, openModal, whatModal})=>{
           </div>                           
         </div>              
       </div>
-      <div className={`${styles.ParallaxImage_2} ${styles.bg3}`}>
-        <div className={styles.container}>
-          <h3>WE'LL TAKE YOU THERE</h3>
-            <div className={styles.ventajas}>
-              <p className={styles.p1}>
-                <span className={styles.importantP}>Marta, 23 años, Sevilla.</span>
-                <br/>
-                Poder ver el perfil del resto de viajeros me da mucha tranquilidad. El táser que llevo en el bolso, aún más.
-              </p>
-              <p className={styles.p2}>
-                <span className={styles.importantP}>Julián, 31 años, Barcelona</span>
-                <br/>
-                No sólo me permite ahorrar en mis viajes, con PimPamBuga he conocido a 
-                algunos de mis mejores amigos. Aunque siempre dicen que me llamaran y luego nunca lo hacen...
-              </p>
-              <p className={styles.p3}>
-                <span className={styles.importantP}>Roberto, 45 años, Badajoz.</span>
-                <br/>
-                Me encanta llevar a gente en mi coche antes de descuartizarla y entrerrarla
-                en el bosque. ¡No hay nada igual!
-              </p>
-              <div>
-                {getUserToken()?.jwtToken ?<ChatList/> : "" }
-              
-              </div>
 
-            </div>
-        </div>
-      </div> 
+
       <div className={`${styles.ParallaxImage_2} ${styles.bg1}`}>
         <div className={styles.container}>
           <h3>POR UN FUTURO VERDE</h3>
@@ -106,8 +106,8 @@ const Parallax = ({setOpenModal, setWhatModal, openModal, whatModal})=>{
             </div>
         </div>
       </div>
-      <div className={`${styles.ParallaxImage}  ${styles.bg2}`}>  
-        <h1>¿A dónde vas a viajar hoy?</h1>
+      <div className={`${styles.ParallaxImage}  ${styles.bg4}`}>  
+        <h1 className={styles.whiteText}>¿A dónde vas a viajar hoy?</h1>
         <div id={styles.goButton}>
           <TripSearchGo origin="Barcelona" destination="Madrid"/>
           <TripSearchGo origin="Almeria" destination="Badajoz"/>
