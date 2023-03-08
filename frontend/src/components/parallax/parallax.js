@@ -47,7 +47,7 @@ const Parallax = ({setOpenModal, setWhatModal, openModal, whatModal})=>{
                 en el bosque. ¡No hay nada igual!"
               </p>
               <div>
-                {getUserToken()?.jwtToken ?<ChatList/> : "" }
+               {getUserToken()?.jwtToken ?<ChatList/> : "" }
               </div>
 
             </div>
