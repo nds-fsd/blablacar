@@ -8,6 +8,8 @@ import {HiMagnifyingGlass, HiOutlinePlusCircle} from 'react-icons/hi2'
 import { getStorageObject } from "../../utils/storage";
 import UserAvatar from "../userAvatar/UserAvatar";
 import { Request } from "../../utils/apiWrapper";
+import { ChatList } from "../chat/chatList";
+
 
 
 
@@ -65,6 +67,7 @@ console.log({hasNotifications})
     userPicRef.current=""
     tokenRef.current=""
     navigate("/")
+    
    }
   return(
   <Navbar bg="white" expand="lg" id={styles.navbar}>
@@ -104,7 +107,11 @@ console.log({hasNotifications})
         </Nav> 
         </Navbar.Collapse>
     </Container>
+    <div>
+    {tokenRef.current && <ChatList/>}
+    </div>
   </Navbar>    
+  
 )}
 
 export default Navigation

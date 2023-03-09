@@ -16,7 +16,6 @@ export const forwardGeolocate = async (address) =>{
         if(geocode?.error){
             alert(geocode.message);
         }else{
-            console.log("coordinates",geocode.addresses[0].geometry.coordinates);
             const coordinates = geocode.addresses[0].geometry.coordinates;
             return coordinates;
         }
