@@ -1,12 +1,12 @@
 import { useForm} from "react-hook-form";
 import styles from "./editDataForms.module.css";
 import { Request } from "../../utils/apiWrapper";
-
+import { getUserToken } from "../../utils/storage";
 
 const EditMainDataFrom = ({setEditData, userId, setChange, change, myData}) =>{
 
     const {register, handleSubmit,formState:{errors}} = useForm({defaultValues:myData}); 
-
+    const jwtToken = getUserToken().jwtToken;
     const dataSubmit=async(data)=>{
         setEditData(false);
         
@@ -18,7 +18,7 @@ const EditMainDataFrom = ({setEditData, userId, setChange, change, myData}) =>{
                                 treatment:data.treatment
                             }
         
-                        let res = await Request(`/users/${userId}`,"PATCH",body)
+                        let res = await Request(`/users/${userId}`,"PATCH",body, {"authorization" : `bearer ${jwtToken}`})
         
                         if(res?.error){
                             alert(res.message)
@@ -72,6 +72,7 @@ const EditMainDataFrom = ({setEditData, userId, setChange, change, myData}) =>{
 
 const EditExtraDataForm = ({setEditExtraData, userId, setChange, change, myData}) =>{
     const {register, handleSubmit, formState:{errors}} = useForm({defaultValues:myData}); 
+    const jwtToken = getUserToken().jwtToken;
     const extraDataSubmit=async(data)=>{
         setEditExtraData(false);
                  const body = {
@@ -80,8 +81,8 @@ const EditExtraDataForm = ({setEditExtraData, userId, setChange, change, myData}
                                 smoker:data.smoker,
                                 pets:data.pets
                             }
-        
-                        let res = await Request(`/users/${userId}`,"PATCH",body)
+                            console.log("BODY",body)
+                        let res = await Request(`/users/${userId}`,"PATCH",body,{"authorization" : `bearer ${jwtToken}`})
                         if(res?.error){
                             alert(res.message)
                         }else{
@@ -132,7 +133,8 @@ const EditExtraDataForm = ({setEditExtraData, userId, setChange, change, myData}
 }
 
 const EditCarForm = ({setEditCar, userId, setChange, change, myData}) =>{
-    const {register, handleSubmit, formState:{errors}} = useForm({defaultValues:myData}); 
+    const {register, handleSubmit, formState:{errors}} = useForm({defaultValues:myData});
+    const jwtToken = getUserToken().jwtToken; 
     const carSubmit=async(data)=>{
         setEditCar(false);
                  const body = {
@@ -141,7 +143,7 @@ const EditCarForm = ({setEditCar, userId, setChange, change, myData}) =>{
                                 
                             }
         
-                        let res = await Request(`/users/${userId}`,"PATCH",body)
+                        let res = await Request(`/users/${userId}`,"PATCH",body, {"authorization" : `bearer ${jwtToken}`})
                         if(res?.error){
                             alert(res.message)
                         }else{
