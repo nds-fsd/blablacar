@@ -16,10 +16,19 @@ const GetAllChats = async (req,res) =>{
 }
 const createChat = async (req,res) =>{
     const me = req.payload.id;
-    const userMember = req.body.member; 
-    const chat = new Chat({participants: [ userMember,me] })
-    await chat.save()
-    res.status(200).json(chat)
+    const userMember = req.body.member;
+    try{
+        const existsChat = await Chat.findOne({participants : [userMember,me]}) 
+            if(existsChat){
+                return res.status(400).json({message: "this chat it is already declared"})
+            }
+            const chat = new Chat({participants: [ userMember,me] })
+                await chat.save()
+                return res.status(200).json(chat)  
+    }catch(error){
+        res.status(500).json({error : error.message})
+    }
+
 }
 const getOne = async (req,res) =>{
     try{
