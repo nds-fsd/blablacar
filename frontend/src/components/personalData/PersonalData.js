@@ -9,7 +9,7 @@ import { useForm} from "react-hook-form";
 import { EditCarForm, EditExtraDataForm, EditMainDataFrom } from "./EditDataForms";
 import cloudinary from "cloudinary-core";
 import { useNavigate } from "react-router-dom";
-
+import { diaSemana, mesFecha } from "../../utils/dateWorks";
 
 export const PersonalData  = (props) =>{ 
     const navigate=useNavigate()
@@ -105,9 +105,15 @@ useEffect(()=>{
   
 })
 
+const fecha = new Date(myData.birthday) 
+const dia= fecha.getDate();
+const mes= mesFecha(fecha);
+const año= fecha.getFullYear();
+
+
     const firstName = myData.firstName;
     const surname = myData.surname;
-    const birthday = myData.Birthday;
+    const birthday = `${dia} de ${mes} del ${año}`;
     const email = myData.email;
     const treatment = myData.treatment;
     const talker = myData.talker;
