@@ -77,9 +77,19 @@ const usrPost= async (req, res) => {
 
 //TODO:añadir middlewares, hablar con Paulo
 const usrPatch=async(req, res) => {
+    console.log(req);
     const updateUsr=await Users.findByIdAndUpdate(req.params.id,req.body)
     const updatedUsr=await Users.findById(req.params.id)
-    res.json(updateUsr);
+    const expirationTime = Number(process.env.JWT_EXPIRATION_TIME)/3600;
+     const userObj = {
+        userID : updatedUsr._id,
+        userName: updatedUsr.firstName,
+        surname: updatedUsr.surname,
+        birthday: updatedUsr.birthday,
+        treatment: updatedUsr.treatment,
+        picUrl:updatedUsr.picUrl
+     }
+        res.status(200).json({success: true, jwtToken: req.token, expirationHours: expirationTime, userObj: userObj});
 };
 
   
