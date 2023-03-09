@@ -42,7 +42,10 @@ const usrPost= async (req, res) => {
         picUrl:newUser.picUrl
         
      }
-     const newJwtToken = JsonWebToken.sign({id: newUser._id, email: newUser.email }, secret, { expiresIn: expirationTime });
+     const hoy = new Date()
+     const newJwtToken = jwt.sign(payload, secret ,{
+        expiresIn: parseInt(hoy.getTime() / 1000, 10)
+      })
     res.status(201).json({success: true, jwtToken: newJwtToken, expirationHours: expirationTime, userObj: userObj});
 }catch{
     res.status(400).send({message:"Email already exists"})}
