@@ -50,7 +50,6 @@ import { setStorageObject } from "../../utils/storage";
                           if (res.jwtToken){
                             setStorageObject("user-session",res);
                             navigate("/")
-                            props.setRefresh(!props.refresh)
                             }  
                          
                           

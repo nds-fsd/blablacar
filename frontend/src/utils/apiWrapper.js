@@ -19,7 +19,7 @@ const Request = async (route, method = "GET", body = undefined,headers={}) =>{
       ops.body = JSON.stringify(body)
     }
   try{
-    console.log("header", ops);
+    console.log("header", ops.headers);
     const response = await fetch(useUrl,ops);
     let json = await response.json()
       if (response.ok){

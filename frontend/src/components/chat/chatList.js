@@ -2,13 +2,13 @@ import { useEffect,useState } from "react";
 import styles from "./chatList.module.css";
 import { Request } from "../../utils/apiWrapper";
 import { getUserToken } from "../../utils/storage";
-import UserAvatar from "../userAvatar/UserAvatar";
 import io from "socket.io-client";
 import {Chat} from "./chat"
 const token = getUserToken()?.jwtToken
-const userName = getUserToken()?.userObj.surname
-
- export const socket = io("http://localhost:3001", {
+const SOCKET_URL = window.location.hostname === 'pimpambuga.netlify.app'
+?'https://pimpambuga.up.railway.app'
+:"http://localhost:3001";
+ export const socket = io(SOCKET_URL, {
   path: "/private",
   reconnectionDelayMax: 10000,
   auth: {
