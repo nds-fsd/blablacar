@@ -79,8 +79,8 @@ const ChatList =()=>{
             <div className={styles.dropupContent}>
                 {chats && chats.map((chats,i)=>(              
                             <div key={i}>
-                            {user&&chats.participants.map((user) =>
-                                <a>
+                            {chats.participants.map((user) =>
+                                <>
                             
                                 {user._id !== userSession.userObj.userID ?
                                     <div className={styles.diseñoChatUser} onClick={() => join(chats._id)}>
@@ -90,7 +90,7 @@ const ChatList =()=>{
                                     </div>:""
                                 }
                                    
-                                </a>
+                                </>
                                           
                             )} 
                             </div>

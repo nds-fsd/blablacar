@@ -112,6 +112,7 @@ code {
 
  .tripSummary{
   width: 100%;
+  margin:2rem;
   border: solid 1px;
   border-color: rgb(255, 94, 0)!important;
   border-width: 1px;

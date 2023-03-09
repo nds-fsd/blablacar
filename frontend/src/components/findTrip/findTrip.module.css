@@ -142,8 +142,22 @@ img{
    width: 25px;
 }
 
+.notFound1{
+    align-self: center;
+    margin-top: 10%;
+}
+.notFound2{
+    align-self: center;
+    margin-top: 10%;
+}
+.notFound2:hover{
+    color: orange;
+}
+
 .wrapTrip{
     height: 100%;
+    margin: 0;
     width: 100%;
-    margin: 1em;
+    display: flex;
+    align-items: center;
 }
