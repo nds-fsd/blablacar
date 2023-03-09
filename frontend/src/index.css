@@ -171,4 +171,7 @@ background-color: antiquewhite;
   .notiSummary:hover{
   background-color: antiquewhite;
   }
-  
+  .noMargin{
+  width: 90% !important;
+  margin: 0 !important;
+  }
