@@ -97,6 +97,10 @@
     align-items: flex-start;
     margin-left:0.8rem;
 }
-
+.icon{
+    width: 2rem;
+    height: 2rem;
+    margin-right: 12px;
+}
 
 

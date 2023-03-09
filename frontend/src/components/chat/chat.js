@@ -5,6 +5,7 @@ import { getUserToken } from "../../utils/storage";
 import { GoX } from "react-icons/go";
 import { Request } from "../../utils/apiWrapper";
 const Chat = ({socket, userName, token, room, user, msg , closeChat }) => {
+    console.log("===",userName)
     const dataConversations = msg
     const chatContainerRef = useRef(null)
     const [messages, setMessages] = useState([])
@@ -26,6 +27,7 @@ const Chat = ({socket, userName, token, room, user, msg , closeChat }) => {
                 Authorization: `Bearer ${userSession.jwtToken}`,
             };
             let res = await   Request (`/chat/${chatid}`,"get",undefined,headers)
+
                 if(res?.error){
                     alert(res.message)
                 }else{
@@ -70,7 +72,7 @@ const onSubmit = (data) => {
   }, 0)
     reset()
 }
-
+{console.log("estos son los datos que me llegan",messages.content)}
 const handleCloseChat = () => {
     closeChat(false)
 }
@@ -79,16 +81,18 @@ const handleCloseChat = () => {
     <div className={styles.chatContainer}>
         <div className={styles.textContainer}>
             <div className={styles.user}>
-            {user}
+            {user.picUrl && user.picUrl.length !== 0 ? <span>{<img src={user.picUrl} className={styles.icon}/>}{user.surname}</span> : <span>{user.surname}</span> }
             <GoX onClick={handleCloseChat}/>
             </div>
             <div  className={styles.textMsg}>
                 <div ref={chatContainerRef} className={styles.scroller}>
                 {messages.map((line) =>{
+                    
                     if(line.sender[0]._id === myId || line.sender[0].id === myId ){
                         return <div className={styles.me}><span className={styles.chatStart}>{line.content}</span></div>
                     }else{
-                        return <div className={styles.it}><span className={styles.chatEnd}>{line.content}</span></div>
+                        //return <div className={styles.it}><span className={styles.chatEnd}>{line.content}</span></div>
+                        return <div className={styles.it}><span className={styles.chatEnd}>{user.picUrl && user.picUrl.length !== 0 ? <span>{<img src={user.picUrl} className={styles.icon}/>}</span> : "" }{line.content}</span></div>
                     }
                     return <div>{line.content}</div>
                 }
