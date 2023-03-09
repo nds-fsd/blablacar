@@ -8,7 +8,7 @@ const localization = props.localization
 if (props.user && props.picUrl){
     return (
     <div className={styles.userAvatar}>
-    <img src={props.picUrl} alt="usuario" className= {styles.userLogo}/>
+    <img src={props.picUrl} alt="usuario" className= {localization === "profile" ? styles.imgProfile : styles.userLogo}/>
     {props.showName?<h3>{props.user}</h3>:""}
     {props.hasNotifications?<HiBell className={styles.bellIcon}/>:""}
     </div>

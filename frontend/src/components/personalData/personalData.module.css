@@ -23,12 +23,31 @@
 
 .fotoWrapper{
     margin-right: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;margin-right: 2.5rem;
+
+}
+
+.buttonWrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.fileInput{
+    visibility:hidden
 }
 
 .fotoButtons{
-    display:flex;
-    justify-content: space-around;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+    align-items: center;
+    width: 60%;
 }
 
 strong, .userData{

@@ -10,6 +10,11 @@ export const setStorageObject = (key, object) => {
 	localStorage.setItem(key, JSON.stringify(object));
 }
 
+export const setSessionObject = (key, object) => {
+	localStorage['user-session'].userObj.setItem(key, JSON.stringify(object));
+}
+
+
 export const deleteStorageObject = (key) => {
 	localStorage.removeItem(key);
 }

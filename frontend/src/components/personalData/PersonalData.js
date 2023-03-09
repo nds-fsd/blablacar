@@ -1,25 +1,91 @@
 import { useEffect, useRef, useState } from "react";
 import { Request } from "../../utils/apiWrapper";
-import { getUserToken } from "../../utils/storage";
+import { getUserToken, setSessionObject, setStorageObject } from "../../utils/storage";
 import styles from "./personalData.module.css";
 import {CiEdit, CiEraser} from 'react-icons/ci'
 import UserAvatar from "../userAvatar/UserAvatar";
 import { getStorageObject } from "../../utils/storage";
 import { useForm} from "react-hook-form";
 import { EditCarForm, EditExtraDataForm, EditMainDataFrom } from "./EditDataForms";
+import cloudinary from "cloudinary-core";
+import { useNavigate } from "react-router-dom";
 
-export const PersonalData  = () =>{ 
+
+export const PersonalData  = (props) =>{ 
+    const navigate=useNavigate()
     const [change, setChange] = useState(false)
+    const [editPic, setEditPic]=useState(false)
     const [myData, setMyData] = useState("")
+    const [imageUrl, setImageUrl]= useState('')
     const userId = getUserToken().userObj.userID
     useEffect(()=>{
+        const userSession=getStorageObject('user-session')
         const getMyData = async() =>
         {
-            const response = await Request(`/users/${userId}`)
+            const headers={
+                Authorization: `Bearer ${userSession.jwtToken}`
+            }
+            console.log(headers);
+            const response = await Request(`/users/${userId}`, "GET", undefined, headers)
             setMyData(response)
         }
         getMyData();
     },[change])   
+
+    const UploadImage = async (event) => {
+        const userSession=getStorageObject('user-session')
+        const urlCloudinary =
+          "https://api.cloudinary.com/v1_1/dwyvktp3k/image/upload";
+        const uploadPreset = "pimpamBuga";
+        const cloudinaryFolder = "";
+    
+        const formData = new FormData();
+        formData.append("file", event.target.files[0]);
+        formData.append("upload_preset", uploadPreset);
+        formData.append("folder", cloudinaryFolder);
+
+    
+        const options = { method: "POST", body: formData };
+        try {
+                  const responseCloudinary = await fetch(urlCloudinary, options);
+                  
+                  const json = await responseCloudinary.json();
+                  const cloudinaryCore = new cloudinary.Cloudinary({
+                    cloud_name: "dwyvktp3k",
+                  });
+                  const imgUrl = json.secure_url
+                  console.log("RESPONSE", imgUrl);
+                  setImageUrl(imgUrl);
+                  userPicRef.current = imgUrl;
+                  setImageUrl(userPicRef.current)
+                //   setSessionObject("picUrl", userPicRef.current);
+                  console.log(userPicRef.current);
+                  setChange(!change)
+                } catch (error) {
+                  console.error(error);
+                }
+        try {
+            const headers={
+                Authorization: `Bearer ${userSession.jwtToken}`
+            }
+            const body = {
+                picUrl: userPicRef.current
+            }
+        
+        let res = await Request(`/users/${userId}`,"PATCH",body, headers)
+        if(res?.error){
+            alert(res.message)
+        }else{
+          setStorageObject('user-session',res)
+          window.location.reload()
+          
+        }         
+
+            } catch (error) {
+                console.error(error);
+            };
+                    
+    }
 
 
 let tokenRef=useRef()
@@ -67,9 +133,15 @@ useEffect(()=>{
                     <div className={styles.fotoWrapper}>
                         <div><UserAvatar localization="profile" user={userNameRef.current} picUrl={userPicRef.current} className='mr-auto'/></div>
                         <div className={styles.fotoButtons}>
-                            <div><CiEdit size={37} className={styles.editButton}/></div>
-                            <div><CiEraser size={37} className={styles.editButton}/></div>
+                            <CiEdit size={37} onClick={(e)=>setEditPic(!editPic)} className={styles.editButton}/>
+                            {editPic&&
+                            <div className={styles.buttonWrap}>
+                            <label htmlFor="files" className="goTrip">Seleccionar Archivo</label>
+                            <input id="files" className={styles.fileInput} onChange={(e)=>UploadImage(e)} type="file"/>
+                            </div>}
                         </div>
+                
+
                     </div>
                     {!editData ?
                     (<div className={styles.userData}>

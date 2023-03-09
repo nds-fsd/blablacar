@@ -38,6 +38,7 @@ const jwtTokenSingTest = (req, res, next) => {
 const jwtTokenVerify = (req, res, next) => {
   //const authHeader = req.headers["authorization"];
   const secret = process.env.JWT_SECRET
+  console.log(req.headers);
   const token =  req.headers.authorization.split(' ')[1]
   // Sin token, devolvemos 401
   if (!token) return res.status(401).json({error: "No token provided"});
@@ -50,6 +51,7 @@ const jwtTokenVerify = (req, res, next) => {
       if(err){
         return res.status(403).json({error: 'Invalid Token'})
       }else{
+        req.token = token
         req.payload = payload
         next()
       }
