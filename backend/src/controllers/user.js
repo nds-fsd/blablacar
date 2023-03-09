@@ -7,7 +7,7 @@ dotenv.config()
 const secret = process.env.JWT_SECRET
 const expires = process.env.JWT_EXPIRATION_TIME
 const expirationTime = Number(process.env.JWT_EXPIRATION_TIME)/3600;
-const JsonWebToken = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 
 const usrGetAll=async (req, res) => {
@@ -42,10 +42,15 @@ const usrPost= async (req, res) => {
         picUrl:newUser.picUrl
         
      }
-     const hoy = new Date()
-     const newJwtToken = jwt.sign(payload, secret ,{
-        expiresIn: parseInt(hoy.getTime() / 1000, 10)
-      })
+    const hoy = new Date()
+    let payload = {
+        id: newUser._id,
+        email: newUser.email,
+        firstName: newUser.firstName
+      }
+    const newJwtToken = jwt.sign(payload, secret ,{
+       expiresIn: parseInt(hoy.getTime() / 1000, 10)
+     })
     res.status(201).json({success: true, jwtToken: newJwtToken, expirationHours: expirationTime, userObj: userObj});
 }catch{
     res.status(400).send({message:"Email already exists"})}
