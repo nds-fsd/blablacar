@@ -19,7 +19,7 @@ const TripExtended = ()=>{
     const myReservation=useRef("")
     const location=useLocation()
     const [showChat,setShowChat]=useState(false)
-    let trip=location.state.trip;
+    const trip=location.state.trip;
     const refSession=useRef(location.state.id)
     let originDate=new Date(trip.originDate);
     let departureTime=new Date(trip.departureTime);
@@ -41,14 +41,16 @@ const googleMapDestination=()=>{
         )
     }
 const checkReservation=async(id)=>{
-    
+    console.log("trip es", trip)
     const tripReservations=trip.bookings
+    console.log("reservations", tripReservations);
+    if(tripReservations){
     for (let i=0;i<tripReservations.length;i++){
         if(tripReservations[i].passenger._id===id){
         setHasReservation(true)
         myReservation.current=tripReservations[i]._id
-        
         }
+    }
     }
     
 }
@@ -59,7 +61,7 @@ useEffect(()=>{
     let id=session.userObj.userID
     setLogin(true)
     checkReservation(id)
-    
+    console.log(ownerCheck(trip.owner[0]));
     }
     
     

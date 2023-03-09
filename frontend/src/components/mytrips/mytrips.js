@@ -16,6 +16,7 @@ import styles from "./mytrips.module.css";
                 Authorization: `Bearer ${userSession.jwtToken}`,
               };
             const response = await Request(`/users/${userId}`,"GET","",headers)
+            console.log(response);
             setMytrips(response);
             
         }
@@ -30,11 +31,11 @@ import styles from "./mytrips.module.css";
         <div className={styles.container}>
             <div className={styles.half}> <h1>Mis viajes</h1>
                 {mytrips && mytrips.idTrips.map((e)=>(
-                    <TripSummary showAvatar={false} showSeats={false} showBookings={e.bookings} trip={e} key={e._id} />))} 
+                    <TripSummary location="profile" id={e._id}  showSeats={false} showBookings={e.bookings} trip={e} key={e._id} setWhatModal={props.setWhatModal} setOpenModal={props.setOpenModal}/>))} 
             </div>
-            <div> <h1>Mis reservas</h1>
+            <div className={styles.half}> <h1>Mis reservas</h1>
           {mytrips && mytrips.bookedTrips.map((t)=>(
-            <TripSummary trip={t.bookedTrip} key={t._id}/>
+            <TripSummary location="profile" id={t.bookedTrip._id} showSeats={false} trip={t.bookedTrip} setWhatModal={props.setWhatModal} setOpenModal={props.setOpenModal} key={t._id}/>
             ))} 
             </div>
         </div>

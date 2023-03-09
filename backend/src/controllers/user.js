@@ -62,23 +62,28 @@ const usrPost= async (req, res) => {
     .populate([{
         path: 'idTrips',
         model: 'Trip',
-        populate:  [
-            { path: 'bookings',
-              populate:  [
-                { path: 'passenger', select: 'firstName surname email'},
-              ],
-           
-            }
-          ],
-    }])
+        populate:([{
+            path: 'bookings',
+            model: 'Booking',
+            populate:  [
+                { path: 'passenger', select: '_id'},
+    ]}]),
+        populate:([{path:'owner', model: 'Users' , select: 'firstName surname email picUrl'},])
+        }])
     .populate([{
         path: 'bookedTrips',
         model: 'Booking',
-        populate:  [
-            //{ path: 'passenger', select: 'name surname email'},
-            { path: 'bookedTrip'},
-          ],
-    }])
+        populate:([{
+            path: 'bookedTrip',
+            model: 'Trip',
+            populate:([{path:'owner', model: 'Users' , select: 'firstName surname email picUrl'},
+            {path:'bookings' , model:'Booking',
+               populate:({path:'passenger', model:'Users' , select: 'firstName surname email picUrl'})         
+        }])}])
+        }])
+    
+        // populate:([{path:'owner', model: 'Users' , select: 'firstName surname email picUrl'},])
+        // }])
     res.json(getUsr);
 };
 

@@ -7,9 +7,11 @@ import ConfigIcon from "../IconConfig/iconsize_small"
 import { useNavigate } from "react-router-dom";
 import { getStorageObject } from "../../utils/storage";
 function TripSummary(props) {
+  console.log(props);
   const navigate=useNavigate()
   let trip=props.trip
   let owner=props.trip.owner[0]
+  console.log(owner);
   let showSeats;
   let showAvatar;
   let id=useRef()
@@ -24,7 +26,7 @@ function TripSummary(props) {
   // let owner=props.trip.owner[0] || null
     return (
       
-        <Card bsPrefix="tripSummary" onClick={()=>{props.setOpenModal(true); props.setWhatModal("TripExtended");navigate(`/trips/${props.id}`,{state: { trip: trip, id: id.current},})}}>
+        <Card bsPrefix="tripSummary" className={props.location==="profile"?"noMargin":""} onClick={()=>{props.setOpenModal(true); props.setWhatModal("TripExtended");navigate(`/trips/${props.id}`,{state: { trip: trip, id: id.current},})}}>
               {showSeats=props.showSeats??true}
               {showAvatar=props.showAvatar??true}
               <div className={styles.cardTop}>

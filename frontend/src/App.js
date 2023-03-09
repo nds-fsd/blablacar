@@ -48,17 +48,16 @@ function App(props) {
           <Route path="profile" element={<ProtectedRoute/>}>
             <Route path="" element={<ProfileAccount />}/>
           </Route>
-          <Route path="*" element={<ErrorForm />} />
-          <Route path="rides" element={<ProtectedRoute/>}>
-            <Route path="" element={<Mytrips openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal} />}/>
+          <Route path="rides" element={<ProtectedRoute openModal={openModal} setOpenModal={setOpenModal} setWhatModal={setWhatModal}/>}>
+            <Route path="" element={<Mytrips openModal={openModal} whatModal={whatModal} setOpenModal={setOpenModal} setWhatModal={setWhatModal}/>}/>
           </Route>
           <Route path="personaldata" element={<ProtectedRoute/>}>
             <Route path="" element={<PersonalData/>}/>
           </Route>
           <Route path="notifications" element={<ProtectedRoute/>}>
-  <Route path="" element={<Notification />}/>
-</Route>
-          
+          <Route path="" element={<Notification />}/>
+          </Route>
+          <Route path="*" element={<ErrorForm />} />
       </Routes>
     </div>
   );

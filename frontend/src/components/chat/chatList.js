@@ -1,10 +1,10 @@
-import { useEffect,useState } from "react";
+import { useEffect,useState , useRef } from "react";
 import styles from "./chatList.module.css";
 import { Request } from "../../utils/apiWrapper";
 import { getUserToken } from "../../utils/storage";
 import io from "socket.io-client";
 import {Chat} from "./chat"
-const token = getUserToken()?.jwtToken
+
 const SOCKET_URL = window.location.hostname === 'pimpambuga.netlify.app'
 ?'https://pimpambuga.up.railway.app'
 :"http://localhost:3001";
@@ -12,19 +12,21 @@ const SOCKET_URL = window.location.hostname === 'pimpambuga.netlify.app'
   path: "/private",
   reconnectionDelayMax: 10000,
   auth: {
-    token,
+    token:getUserToken()?.jwtToken
   },
 });
 const ChatList =()=>{
-
+    
     const [msg,setMsg] = useState("");
     const [roomChat, setRoomChat] = useState('')
     const [user,setUserName] = useState('');
     const [chats,setChats] = useState("");
     const [openChat, setOpenChat] = useState(false)
     const userSession = getUserToken()
+    const token = useRef(getUserToken()?.jwtToken)
     useEffect(() => {
-            if(token){
+        token.current = getUserToken()?.jwtToken
+            if(token.current){
                 socket.connect();
                 socket.on("connection", (data) => {
                   console.log("Connected");
@@ -35,6 +37,9 @@ const ChatList =()=>{
     useEffect(()  => {
         const getChat = async () =>{
             const userSession = getUserToken()
+            if(!userSession){
+                return
+            }
             let headers = {
                 Authorization: `Bearer ${userSession.jwtToken}`,
             };
@@ -82,7 +87,7 @@ const ChatList =()=>{
                             {chats.participants.map((user) =>
                                 <>
                             
-                                {user._id !== userSession.userObj.userID ?
+                                {userSession&&user._id !== userSession.userObj.userID ?
                                     <div className={styles.diseñoChatUser} onClick={() => join(chats._id)}>
                                         {/* <span className={styles.icon}><UserAvatar user={user.surname} picUrl={user.picUrl}/></span> */}
                                         <span className={styles.icon}>{user.surname.charAt(0)}</span>
@@ -103,7 +108,7 @@ const ChatList =()=>{
 
             
         </div>
-        {openChat && <Chat socket={socket} userName={user.surname} token={token} room={roomChat} user={user} msg={msg} closeChat={setOpenChat}/> }
+        {openChat && <Chat socket={socket} userName={user.surname} token={token.current} room={roomChat} user={user} msg={msg} closeChat={setOpenChat}/> }
         </div>
     )
 }

@@ -55,9 +55,7 @@ const Parallax = ({setOpenModal, setWhatModal, openModal, whatModal})=>{
                 "Me encanta llevar a gente en mi coche antes de descuartizarla y entrerrarla
                 en el bosque. ¡No hay nada igual!"
               </p>
-              <div>
-               {logged && <ChatList/>}
-              </div>
+              
 
             </div>
         </div>

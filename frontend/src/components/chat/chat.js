@@ -54,7 +54,7 @@ const Chat = ({socket, userName, token, room, user, msg , closeChat }) => {
             socket.off('reply', recieveMessage)
         }
     },[messages])
-    console.log("estos son los datos que me llegan despues",messages)
+   
     const Socket = socket
     const name = userName
     const {register, handleSubmit, reset} = useForm() 

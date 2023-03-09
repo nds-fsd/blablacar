@@ -36,7 +36,7 @@ const AutocompleteField = ({onChange, labelName, setValue}) =>{
     }
     if (autofillValues){
         const newOptions=getOptions(autofillValues)
-        console.log(newOptions);
+       
     }
 },[autofillValues])
   return(
