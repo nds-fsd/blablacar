@@ -30,20 +30,23 @@ const Chat = ({socket, userName, token, room, user, msg , closeChat }) => {
                     alert(res.message)
                 }else{
                     setMessages(res.message)
+                    console.log(res.message);
                     scrollToBottom()
                 }
         }
         getMsg(room)
-    },[""])
+    },[])
 
 
 
 
 
 
-    // CUANDO ENTRA UN NUEVO MENSAJE POR SOCKET, CON LA CONVERSACIONO YA PRECARGADA LO METEMOS DENTRO DEL ARRAY DE MENSAJES.
+    // CUANDO ENTRA UN NUEVO MENSAJE POR SOCKET, CON LA CONVERSACIONO 
+    //YA PRECARGADA LO METEMOS DENTRO DEL ARRAY DE MENSAJES.
     useEffect(() =>{
         const recieveMessage = (data) => {
+            console.log(data);
             setMessages([...messages, {content: data.content,sender: [data.from]}])
             setTimeout(() => {
     scrollToBottom()
@@ -62,6 +65,7 @@ const Chat = ({socket, userName, token, room, user, msg , closeChat }) => {
 
 
 const onSubmit = (data) => {
+    console.log(data)
     Socket.emit('message', {message: data.message, user: myId , token: token, room : room})
     const newMessage = { content : data.message,sender: [{_id:myId}]}
     setMessages([...messages, newMessage])
