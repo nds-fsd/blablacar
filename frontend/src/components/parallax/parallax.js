@@ -52,8 +52,7 @@ const Parallax = ({setOpenModal, setWhatModal, openModal, whatModal})=>{
               <p className={styles.p3}>
                 <span className={styles.importantP}>Roberto, 45 años, Badajoz.</span>
                 <br/>
-                "Me encanta llevar a gente en mi coche antes de descuartizarla y entrerrarla
-                en el bosque. ¡No hay nada igual!"
+                "Es genial compartir viaje con otras personas y descubrir sus gustos y aficiones. Menos al que me hizo el Spoiler del final de Sexto Sentido, a ese no quiero volver a verlo."
               </p>
               
 
@@ -101,7 +100,7 @@ const Parallax = ({setOpenModal, setWhatModal, openModal, whatModal})=>{
               <p className={styles.p2}>
                 <span className={styles.importantP}>El futuro es eléctrico</span>
                 <br/>
-                Descuentos y oportunidades exclusivas si compartes viaje en tu TESLA, ricachón de los cojones.
+                Descuentos y oportunidades exclusivas si compartes viaje en tu super TESLA chachi de la muerte.
               </p>
               <p className={styles.p3}>
                 <span className={styles.importantP}>Día a día, creando un futuro mejor.</span>
