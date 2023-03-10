@@ -2,6 +2,14 @@
 
 ### **Descripción:**
 
+PimPam Buga es una aplicación web que funciona como una plataforma
+de carpooling o ridesharing. La idea es conectar a personas que necesitan
+viajar con otras que tienen un destino similar para que puedan compartir un vehículo
+y dividir los gastos de gasolina y peajes.
+
+Los usuarios pueden registrarse con una cuenta de correo electrónico y una contraseña.
+Una vez dentro, el usuario puede buscar un viaje especificando el origen y destino,
+la fecha  y el número de pasajeros que necesita.
 La aplicación mostrará los viajes disponibles que coinciden
 con los criterios de búsqueda del usuario. El usuario puede elegir el viaje que
 más le conviene y ponerse en contacto con el conductor a través de la
@@ -31,9 +39,12 @@ PimPam Buga tiene muchos beneficios para los usuarios:
 * React-Hook-form
 * ExpressJS
 * Mongoose (Base de datos)
-* Socket
+* Socket IO
 * Cloudinary
 * JWT
+* Material UI
+* Express-validator
+* Express-Morgan
 
 ---
 
@@ -41,11 +52,18 @@ PimPam Buga tiene muchos beneficios para los usuarios:
 
 1. **Pagina inicial**
 
-La pagina inicial permite, entre otras cosas:
+La pagina inicial contiene una barra de Navegación,
+visible durante todo el uso de la aplicacion. Controla el estado de 
+login de los usuarios y les permite, entre otras cosas:
 
-* navegar el menu del usuario
-* buscar un viaje existente por origen, destino, fecha
-* visualizar la disponibilidad de algunas rutas pre-determinadas
+* Registrarse
+* Iniciar Sesión
+
+En la home tenemos el buscador y una serie de textos sobre la aplicación. 
+Podemos:
+
+* buscar un viaje existente por origen, destino, fecha y asientos disponibles.
+* visualizar la disponibilidad de algunas rutas pre-determinadas.
 
 *Screenshot:*
 
@@ -53,7 +71,8 @@ La pagina inicial permite, entre otras cosas:
 
 2. **Form de registro de un nuevo usuario**
 
-Form criado utilizando un modal form, que permite registrar un nuevo usuario colectando algunos datos básicos.
+Form creado utilizando un modal, que permite registrar un nuevo usuario recogiendo algunos datos básicos utilizando
+React Hook Form para contorlar errores y/o campos requeridos.
 
 *Screenshot:*
 
@@ -61,7 +80,8 @@ Form criado utilizando un modal form, que permite registrar un nuevo usuario col
 
 3. **Form de login del usuario**
 
-Form criado utilizando un modal form, con validaciones a lado client y servidor.
+Form creado utilizando un modal, con validaciones a lado del client y servidor utilizando
+React Hook Form para contorlar errores y/o campos requeridos.
 
 *Screenshot:*
 
@@ -69,8 +89,8 @@ Form criado utilizando un modal form, con validaciones a lado client y servidor.
 
 4. **Búsqueda de viajes, lista de resultados y detalle del viaje**
 
-Al buscar un viaje desde la portada principal de la aplicación,
-se retorna una lista de los viajes disponibles, incluyendo:
+Al buscar un viaje desde la pagina principal de la aplicación,
+se devuelve una lista de los viajes disponibles, incluyendo:
 
 * origen
 * destino
@@ -80,9 +100,9 @@ se retorna una lista de los viajes disponibles, incluyendo:
 * precio
 * plazas disponibles
 
-De hecho, al clicar sobre un viaje, es posible ver el detalle del mismo, abrir las localidades en google maps,
+Al hacer click sobre un viaje, es posible ver el detalle del mismo, visualizar los puntos de origen y destino en google maps,
 
-Al tener el usuario una sesión activa, será posible chatear con el conductor, o inscribirse como participante al viaje, siempre que este tenga plazas disponibles.
+Si el usuario tiene una sesión activa, será posible chatear con el conductor, o inscribirse como participante al viaje, siempre que este tenga plazas disponibles.
 
 *Screenshots:*
 
@@ -96,8 +116,9 @@ Al tener el usuario una sesión activa, será posible chatear con el conductor, 
 
 En la pagina del perfil del usuario se encuentran enlaces de utilidad, como por ejemplo la gestión de los datos personales.
 
-* Datos personales: es posible visualizar los datos del usuario, subir o cambiar la imagen del perfil, determinar cual son los hábitos como conductor, y seleccionar marca o modelo del propio coche.
-* Tus viajes: es posible visualizar en la misma sección los viajes criados como conductor, y los viajes reservados como huésped.
+* Visualizar los datos del usuario, subir o cambiar la imagen del perfil, determinar cuales son los hábitos como conductor y seleccionar marca o modelo del propio coche.
+
+* Tus viajes: es posible visualizar en la misma sección los viajes creados como conductor y las reservas de viajes como pasajero. También podemos cancelar las reservas si fuera necesario.
 
 *Screenshots:*
 
@@ -107,9 +128,9 @@ En la pagina del perfil del usuario se encuentran enlaces de utilidad, como por 
 
 ![viajesyreservas](https://user-images.githubusercontent.com/34273028/224072690-24df99cd-055a-4ce5-97d2-b44094c92837.png)
 
-6. **Criar nuevo viaje**
+6. **Crear nuevo viaje**
 
-Mediante esta función, es posible criar un nuevo viaje como conductor, ofreciendo a los otros usuarios la posibilidad de inscribirse como huéspedes, y pagando una cantidad de dinero para aprovechar el servicio.
+Mediante esta función, es posible crear un nuevo viaje como conductor, ofreciendo a los otros usuarios la posibilidad de inscribirse como huéspedes, y pagando una cantidad de dinero para aprovechar el servicio.
 
 *Screenshot:*
 
@@ -117,8 +138,8 @@ Mediante esta función, es posible criar un nuevo viaje como conductor, ofrecien
 
 7. **Notificaciones**
 
-Cuando un usuario se prenota para un viaje activo, el conductor recibe una notificación.
-En el menu del usuario aparecerá un icono de estado, que permite saber si hay notificaciones sin leer. En el mismo menu, un numero al lado del enlace identifica cuantas notificaciones estás sin leer.
+Cuando un usuario reserva plaza o cancela su reserva en un viaje activo, el conductor recibe una notificación.
+En el menu del usuario aparecerá un icono de estado, que permite saber si hay notificaciones sin leer. En el mismo menu, un numero al lado del enlace identifica cuantas notificaciones estás sin leer. Una vez dentro de la opción de mensajes, puedes marcar estos como leídos y eliminarlos.
 
 *Screenshots:*
 
@@ -129,7 +150,10 @@ En el menu del usuario aparecerá un icono de estado, que permite saber si hay n
 
 8. **Chat**
 
-El chat permite interactuar de forma directa con los conductores.
+El chat permite interacció directa entre los usuarios. Cuando vemos un viaje de otro usuario, podemos abrir chat con éste para hablar
+sobre el viaje, condiciones, etc antes de reservar. El componente principal del chat es un floating div unido a la navbar lo que hace que,
+al igual que ésta, aparezca y esté presnete siempre que un usuario esté logueado, permitiendo acceder a los chats desde cualquier opción.
+
 
 *Screenshots:*
 
@@ -137,9 +161,9 @@ El chat permite interactuar de forma directa con los conductores.
 
 ### Nuestro componente Favorito
 
-El componente que querríamos destacar es la creación de un nuevo viaje, **newTrip.js**.
+El componente que queremos destacar es la creación de un nuevo viaje, **newTrip.js**.
 
-Es una modal que se abre sobre cualquier pantalla pulsando el icono + desde la navbar.
+Es un modal que se abre sobre cualquier pantalla pulsando el icono + (crear viaje) desde la navbar.
 
 El componente es un formulario creado en *react hook forms*, que utiliza el componente especial *Controller* para importar varios campos específicos basados en componente de *Material UI* customizados.
 
@@ -170,8 +194,8 @@ Antonio Colella
 
 ### Final credits
 
-🎉️🎉️🎉️ Gracias a todos los profe que nos han permitido llevar a cabo esta aventura!
+  🎉️🎉️🎉️ Gracias a todos los profesores que nos han permitido llevar a cabo esta aventura!
 
-JMC, PM, AB, CA, y ARI
+
 
 
