@@ -6,10 +6,15 @@ import {BsCircle, BsArrowDown } from "react-icons/bs"
 import ConfigIcon from "../IconConfig/iconsize_small"
 import { useNavigate } from "react-router-dom";
 import { getStorageObject } from "../../utils/storage";
+import { diaSemana , mesFecha , fechaHora } from "../../utils/dateWorks";
 function TripSummary(props) {
   console.log(props);
   const navigate=useNavigate()
   let trip=props.trip
+  let departure=new Date(props.trip.departureTime)
+  let arrival = new Date(props.trip.arrivalTime)
+  let departureDate=new Date(props.trip.originDate)
+
   let owner=props.trip.owner[0]
   console.log(owner);
   let showSeats;
@@ -29,11 +34,12 @@ function TripSummary(props) {
         <Card bsPrefix="tripSummary" className={props.location==="profile"?"noMargin":""} onClick={()=>{props.setOpenModal(true); props.setWhatModal("TripExtended");navigate(`/trips/${props.id}`,{state: { trip: trip, id: id.current},})}}>
               {showSeats=props.showSeats??true}
               {showAvatar=props.showAvatar??true}
+              <div className={styles.date}><p>{diaSemana(departureDate)}, {departureDate.getDate()} de {mesFecha(departureDate)}</p></div>
               <div className={styles.cardTop}>
                 <div className={styles.leftwrapper}>  
                   <div className={styles.timeTable}>
-                    <p>00:00</p>
-                    <p>12:00</p>
+                    <p>{fechaHora(departure)}</p>
+                    <p>{fechaHora(arrival)}</p>
                   </div>  
                   <div className={styles.locations}>
                     <div className={styles.location_graph_top}>

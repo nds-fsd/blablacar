@@ -61,7 +61,7 @@ useEffect(()=>{
     let id=session.userObj.userID
     setLogin(true)
     checkReservation(id)
-    console.log(ownerCheck(trip.owner[0]));
+    console.log(hasReservation);
     }
     
     
@@ -88,6 +88,7 @@ const cancelBooking =async()=>{
    
     let URLtoPost= `/booking/${myReservation.current}`
     const delBooking= await Request(URLtoPost, "DELETE")
+    trip.bookings=delBooking
     setHasReservation(false)
     myReservation.current=""
 }

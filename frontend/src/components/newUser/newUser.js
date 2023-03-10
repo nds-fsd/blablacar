@@ -30,7 +30,7 @@ const userSubmit=async(data)=>{
                         firstName:data.name,
                         surname:data.surname,
                         email:data.email,
-                        Birthday:data.Birthday,
+                        birthday:data.birthday,
                         treatment:data.treatment,
                         password:data.password,
                         talker:undefined,
@@ -86,7 +86,7 @@ return(
                     <Controller
                     control={control}
                     defaultValue={fechaNacimiento}
-                    name="Birthday"
+                    name="birthday"
                     rules={{required:true}}
                     render={
                         ({ field: { onChange, onBlur, value, ref } }) => (

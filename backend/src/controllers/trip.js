@@ -11,10 +11,14 @@ const getAll = async (req, res) => {
 
 const createTrip = async(req,res) =>{
     const id = req.params.id
+    let originT=new Date(req.body.departureTime)
+    let arrivalT=new Date(req.body.arrivalTime)
+    let originD=new Date(req.body.originDate)
+    console.log(originT,originD,arrivalT);
     const newTrip = new Trip(req.body);
-    req.body.originDate = new Date().toLocaleDateString('es-ES');
-    req.body.destinationDate = new Date().toLocaleDateString('es-ES');
-
+    newTrip.originDate=originD;
+    newTrip.departureTime=originT
+    newTrip.arrivalTime=arrivalT
     newTrip.owner = id;
     newTrip.availableSeats = newTrip.seats;
     await newTrip.save();
@@ -43,8 +47,8 @@ try{
     if(!user) return res.json({error: 'No User Found'})
     if(user){
         const newTrip = new Trip(bodyTrip)
-        newTrip.originDate = new Date().toLocaleDateString('es-ES');
-        newTrip.destinationDate = new Date().toLocaleDateString('es-ES');
+        newTrip.originDate = new Date();
+        newTrip.destinationDate = new Date();
         newTrip.owner = idUser;
         newTrip.availableSeats = newTrip.seats;
         const trip = await newTrip.save();

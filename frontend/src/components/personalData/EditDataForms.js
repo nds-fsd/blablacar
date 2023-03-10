@@ -11,10 +11,10 @@ const EditMainDataFrom = ({setEditData, userId, setChange, change, myData}) =>{
         setEditData(false);
         
                  const body = {
-                                firstName:data.name,
+                                firstName:data.firstName,
                                 surname:data.surname,
                                 email:data.email,
-                                birthday:data.Birthday,
+                                birthday:data.birthday,
                                 treatment:data.treatment
                             }
         
@@ -39,7 +39,7 @@ const EditMainDataFrom = ({setEditData, userId, setChange, change, myData}) =>{
         return(
              <form onSubmit={handleSubmit(dataSubmit, usrError)}>
                         <p><strong>Nombre:</strong></p>
-                            <input className={styles.textbox}{...(register("name", {required:true,minLength:3,maxLength:20}))}/>
+                            <input className={styles.textbox}{...(register("firstName", {required:true,minLength:3,maxLength:20}))}/>
                             {errors.name && errors.name.type==="required" && <p className={styles.emptyfield}>Este campo es obligatorio</p>}
                             {errors.name && errors.name.type==="minLength" && <p className={styles.emptyfield}>El mínimo  número de caracteres es 3</p>}
                             {errors.name && errors.name.type==="maxLength" && <p className={styles.emptyfield}>El nombre n puede exceder de 20 caracteres</p>}
@@ -53,8 +53,8 @@ const EditMainDataFrom = ({setEditData, userId, setChange, change, myData}) =>{
                             {errors.email && errors.email.type==="invalid" && <p className={styles.emptyfield}>Email no válido</p>}
                             {errors.email && errors.email.type==="required" && <p className={styles.emptyfield}>Este campo es obligatorio</p>}
                         <p><strong>Día de nacimiento:</strong></p>
-                            <input type="date" className={styles.textbox}{...(register("Birthday", {required:true, valueAsDate:true}))}/>
-                            {errors.Birthday && errors.Birthday.type==="required" && <p className={styles.emptyfield}>Este campo es obligatorio</p>}
+                            <input type="date" className={styles.textbox}{...(register("birthday", {required:true, valueAsDate:true}))}/>
+                            {errors.birthday && errors.birthday.type==="required" && <p className={styles.emptyfield}>Este campo es obligatorio</p>}
                         <p><strong>Tratamiento:</strong></p>
                             <select id="treatment" className={styles.textbox} name="Tratamiento" {...(register("treatment", {validate:(e)=>e!==""}))}>
                                 <option value="">Tratamiento</option>

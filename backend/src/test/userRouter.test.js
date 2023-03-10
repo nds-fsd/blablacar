@@ -28,7 +28,7 @@ describe('Company router TEST', () => {
                 firstName: 'Paulo',
                 surname: 'Dutra',
                 email: 'paulodutra@gmail.com',
-                Birthday: new Date(),
+                birthday: new Date(),
                 treatment: 'Mr',
                 password: 'blablacar',
             });

@@ -126,14 +126,14 @@ const deleteBooking =  async (req,res) =>{
             console.log(bookTrip.bookings);
             console.log(index);
             bookTrip.bookings.splice(index,1)
-            console.log(bookTrip.bookings);
+            const newBookings=bookTrip.bookings
             bookTrip.availableSeats = bookTrip.availableSeats + 1
             
             
             await bookTrip.save()
             await notification.save()
 
-            res.status(201).json({message:"Reserva eliminada con éxito","id":booking._id})   
+            res.status(201).json({"remainBookings":bookTrip.bookings})   
     }
     catch (e){
         res.status(500).json({ message: e })
