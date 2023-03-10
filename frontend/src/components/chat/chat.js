@@ -30,20 +30,23 @@ const Chat = ({socket, userName, token, room, user, msg , closeChat }) => {
                     alert(res.message)
                 }else{
                     setMessages(res.message)
+                    console.log(res.message);
                     scrollToBottom()
                 }
         }
         getMsg(room)
-    },[""])
+    },[])
 
 
 
 
 
 
-    // CUANDO ENTRA UN NUEVO MENSAJE POR SOCKET, CON LA CONVERSACIONO YA PRECARGADA LO METEMOS DENTRO DEL ARRAY DE MENSAJES.
+    // CUANDO ENTRA UN NUEVO MENSAJE POR SOCKET, CON LA CONVERSACIONO 
+    //YA PRECARGADA LO METEMOS DENTRO DEL ARRAY DE MENSAJES.
     useEffect(() =>{
         const recieveMessage = (data) => {
+            console.log(data);
             setMessages([...messages, {content: data.content,sender: [data.from]}])
             setTimeout(() => {
     scrollToBottom()
@@ -62,6 +65,7 @@ const Chat = ({socket, userName, token, room, user, msg , closeChat }) => {
 
 
 const onSubmit = (data) => {
+    console.log(data)
     Socket.emit('message', {message: data.message, user: myId , token: token, room : room})
     const newMessage = { content : data.message,sender: [{_id:myId}]}
     setMessages([...messages, newMessage])
@@ -86,9 +90,9 @@ const handleCloseChat = () => {
                 <div ref={chatContainerRef} className={styles.scroller}>
                 {messages.map((line) =>{
                     if(line.sender[0]._id === myId || line.sender[0].id === myId ){
-                        return <div className={styles.me}><span className={styles.chatStart}>{line.content}</span></div>
+                        return <div key={Math.random()} className={styles.me}><span className={styles.chatStart}>{line.content}</span></div>
                     }else{
-                        return <div className={styles.it}><span className={styles.chatEnd}>{line.content}</span></div>
+                        return <div key={Math.random()} className={styles.it}><span className={styles.chatEnd}>{line.content}</span></div>
                     }
                     return <div>{line.content}</div>
                 }

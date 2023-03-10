@@ -140,11 +140,11 @@ return(
         </div>
         </div>
         {!refSession.current&&<p className={styles.warning}>Por favor, inicia sesión para reservar o chatear con el creador del viaje</p>}
-            {login&&ownerCheck(trip.owner[0]._id)?
+            {/* {login&&ownerCheck(trip.owner[0]._id)?
             <Button onClick={(e)=>{editTrip(trip._id)}} bsPrefix="goTrip" >Editar</Button>
             :
             ""
-            }
+            } */}
             {(login&&!ownerCheck(trip.owner[0]._id)&&trip.availableSeats>0&&!hasReservation)?
             <Button onClick={(e)=>{bookTrip(trip._id)}} bsPrefix="goTrip" >Reservar</Button>
             :

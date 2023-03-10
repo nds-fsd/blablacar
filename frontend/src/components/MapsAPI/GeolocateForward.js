@@ -15,6 +15,7 @@ export const forwardGeolocate = async (address) =>{
         let geocode = await Radarrequest(`geocode/forward?query=${queryParams}`, "GET", undefined, undefined);
         if(geocode?.error){
             alert(geocode.message);
+            return undefined
         }else{
             const coordinates = geocode.addresses[0].geometry.coordinates;
             return coordinates;
