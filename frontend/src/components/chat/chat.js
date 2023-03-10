@@ -90,9 +90,9 @@ const handleCloseChat = () => {
                 <div ref={chatContainerRef} className={styles.scroller}>
                 {messages.map((line) =>{
                     if(line.sender[0]._id === myId || line.sender[0].id === myId ){
-                        return <div className={styles.me}><span className={styles.chatStart}>{line.content}</span></div>
+                        return <div key={Math.random()} className={styles.me}><span className={styles.chatStart}>{line.content}</span></div>
                     }else{
-                        return <div className={styles.it}><span className={styles.chatEnd}>{line.content}</span></div>
+                        return <div key={Math.random()} className={styles.it}><span className={styles.chatEnd}>{line.content}</span></div>
                     }
                     return <div>{line.content}</div>
                 }

@@ -23,7 +23,7 @@ const EditMainDataFrom = ({setEditData, userId, setChange, change, myData}) =>{
                         if(res?.error){
                             alert(res.message)
                         }else{
-                          alert("Datos editados con exito")
+                          
                           setChange(!change)
                         }                        
         }
@@ -86,7 +86,7 @@ const EditExtraDataForm = ({setEditExtraData, userId, setChange, change, myData}
                         if(res?.error){
                             alert(res.message)
                         }else{
-                          alert("Datos editados con exito")
+                          
                           setChange(!change)
                         }                        
         }
@@ -147,7 +147,7 @@ const EditCarForm = ({setEditCar, userId, setChange, change, myData}) =>{
                         if(res?.error){
                             alert(res.message)
                         }else{
-                          alert("Datos editados con exito")
+                          
                           setChange(!change)
                         }                        
         }

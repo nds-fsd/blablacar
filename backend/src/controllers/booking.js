@@ -122,8 +122,11 @@ const deleteBooking =  async (req,res) =>{
                 body: `El usuario ${bookUser.firstName} ha cancelado la reserva de tu viaje a ${bookTrip.destination} con fecha el ${diaSalida}, ${originDate.getDate()} de ${mesSalida} `
     
             });
-            const index=bookUser.bookedTrips.indexOf(id)
-            bookTrip.bookings.slice(index,1)
+            const index=bookTrip.bookings.indexOf(id)
+            console.log(bookTrip.bookings);
+            console.log(index);
+            bookTrip.bookings.splice(index,1)
+            console.log(bookTrip.bookings);
             bookTrip.availableSeats = bookTrip.availableSeats + 1
             
             

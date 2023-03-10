@@ -83,15 +83,15 @@ const ChatList =()=>{
             chats
             <div className={styles.dropupContent}>
                 {chats && chats.map((chats,i)=>(              
-                            <div key={i}>
+                            <div key={Math.random()}>
                             {chats.participants.map((user) =>
                                 <>
                             
                                 {userSession&&user._id !== userSession.userObj.userID ?
-                                    <div className={styles.diseñoChatUser} onClick={() => join(chats._id)}>
+                                    <div key={Math.random()} className={styles.diseñoChatUser} onClick={() => join(chats._id)}>
                                         {/* <span className={styles.icon}><UserAvatar user={user.surname} picUrl={user.picUrl}/></span> */}
-                                        <span className={styles.icon}>{user.surname.charAt(0)}</span>
-                                        <span className ={styles.name} onClick={() => participant(user.surname,chats._id)}>{user.surname}</span>
+                                        <span key={Math.random()} className={styles.icon}>{user.surname.charAt(0)}</span>
+                                        <span key={Math.random()} className ={styles.name} onClick={() => participant(user.surname,chats._id)}>{user.surname}</span>
                                     </div>:""
                                 }
                                    
