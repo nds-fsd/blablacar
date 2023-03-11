@@ -99,7 +99,6 @@ const ChatList = ({ stateChat }) => {
                                             <span className={styles.name} onClick={() => participant(user, chats._id)}>{user.surname}</span>
                                         </div> : ""
                                     }
-
                                 </>
 
                             )}

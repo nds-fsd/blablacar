@@ -20,7 +20,8 @@ const createChat = async (req,res) =>{
     try{
         const existsChat = await Chat.findOne({participants : [userMember,me]}) 
             if(existsChat){
-                return res.status(400).json({message: "this chat it is already declared"})
+
+                return res.status(400).json({message: "this chat is already declared"})
             }
             const chat = new Chat({participants: [ userMember,me] })
                 await chat.save()

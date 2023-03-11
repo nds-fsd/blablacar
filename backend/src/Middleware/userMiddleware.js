@@ -13,7 +13,7 @@ const validateUserInput = (req, res, next) => {
         res.status(400).send({message: "Email is missing"});
         return;
     }
-    else if(newUser.Birthday === undefined || newUser.Birthday.length === 0){
+    else if(newUser.birthday === undefined || newUser.birthday.length === 0){
         res.status(400).send({message: "Date of birth is missing"});
         return;
     }

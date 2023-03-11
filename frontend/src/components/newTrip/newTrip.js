@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TextField } from "@mui/material";
 import styles from "./newTrip.module.css";
-import { Radarrequest, Request } from "../../utils/apiWrapper";
+import { Request } from "../../utils/apiWrapper";
 import { getUserToken } from "../../utils/storage";
 import { LocalizationProvider, TimePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';

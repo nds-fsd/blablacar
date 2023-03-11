@@ -20,10 +20,11 @@ const usrGetAll=async (req, res) => {
 //TODO:añadir middlewares, hablar con Paulo
 const usrPost= async (req, res) => {
     const body=(req.body);
+    let nacimiento=new Date(body.birthday)
     const receivedUser={
         firstName:body.firstName,
         surname:body.surname,
-        Birthday: body.Birthday,
+        birthday: nacimiento,
         email:body.email,
         treatment:body.treatment,
         password: body.password
@@ -37,7 +38,7 @@ const usrPost= async (req, res) => {
         userID : newUser._id,
         userName: newUser.firstName,
         surname: newUser.surname,
-        birthday: newUser.Birthday,
+        birthday: newUser.birthday,
         treatment: newUser.treatment,
         picUrl:newUser.picUrl
         
