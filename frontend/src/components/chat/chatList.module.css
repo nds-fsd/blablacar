@@ -50,9 +50,10 @@
     flex-direction: row;
 }
 .icon{
+    width: 2rem;
+    height: 2rem;
     margin-right: 12px;
-    height: 10vw;
-    width: 10vw;
+    /* height: 10vw; */
 }
 .name{
     margin-left: 100px;

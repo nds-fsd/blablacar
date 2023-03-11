@@ -104,9 +104,17 @@ const openChat=async(user)=>{
         member:user
     }
     const chat=await Request("/chat","POST", body, headers)
-    chat&&setShowChat(true)
-
+    if(chat?.error){
+        setShowChat(!showChat)  
+        
+    }
+    else{
+        // chat&&setShowChat(true)
+        setShowChat(!showChat)
+    }
 }
+
+
 
 return(
    <div className={styles.modalBackground}>
@@ -159,7 +167,7 @@ return(
             
             
             
-            {showChat&&<ChatList/>}
+            {showChat&&<ChatList stateChat={showChat}/>}
 
     </div>
     </div> 
